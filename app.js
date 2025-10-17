@@ -102,60 +102,291 @@ let expandedMacroprocesos = {};
 let expandedAreas = {};
 
 const studentData = [
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Contaduría Pública","Estudiantes":801},
-  {"MUNICIPIO_PROGRAMA":"Soacha","Programa":"Ingeniería Industrial","Estudiantes":764},
-  {"MUNICIPIO_PROGRAMA":"Facatativá","Programa":"Psicología","Estudiantes":530},
-  {"MUNICIPIO_PROGRAMA":"Facatativá","Programa":"Contaduría Pública","Estudiantes":934},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Doctorado En Ciencias De La Educación","Estudiantes":22},
-  {"MUNICIPIO_PROGRAMA":"Soacha","Programa":"Profesional En Ciencias Del Deporte","Estudiantes":932},
-  {"MUNICIPIO_PROGRAMA":"Chía","Programa":"Administración De Empresas","Estudiantes":721},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Ingeniería Electrónica","Estudiantes":511},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Especialización En Gestión Pública","Estudiantes":63},
-  {"MUNICIPIO_PROGRAMA":"Zipaquirá","Programa":"Música","Estudiantes":286},
-  {"MUNICIPIO_PROGRAMA":"Ubaté","Programa":"Contaduría Pública","Estudiantes":514},
-  {"MUNICIPIO_PROGRAMA":"Chía","Programa":"Contaduría Pública","Estudiantes":477},
-  {"MUNICIPIO_PROGRAMA":"Chía","Programa":"Ingeniería De Sistemas Y Computación","Estudiantes":956},
-  {"MUNICIPIO_PROGRAMA":"Chía","Programa":"Ingeniería Mecatrónica","Estudiantes":237},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Licenciatura En Ciencias Sociales","Estudiantes":242},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Especialización En Analítica Aplicada A Negocios","Estudiantes":54},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Administración De Empresas","Estudiantes":866},
-  {"MUNICIPIO_PROGRAMA":"Chía","Programa":"Ingeniería Industrial","Estudiantes":308},
-  {"MUNICIPIO_PROGRAMA":"Soacha","Programa":"Contaduría Pública","Estudiantes":46},
-  {"MUNICIPIO_PROGRAMA":"Facatativá","Programa":"Administración De Empresas","Estudiantes":847},
-  {"MUNICIPIO_PROGRAMA":"Facatativá","Programa":"Ingeniería Agronómica","Estudiantes":400},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Ingeniería Agronómica","Estudiantes":459},
-  {"MUNICIPIO_PROGRAMA":"Soacha","Programa":"Ingeniería Topográfica Y Geomática","Estudiantes":26},
-  {"MUNICIPIO_PROGRAMA":"Facatativá","Programa":"Ingeniería De Sistemas Y Computación","Estudiantes":951},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Maestría En Educación","Estudiantes":6},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Especialización En Analítica Y Ciencia De Datos","Estudiantes":35},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Zootecnia","Estudiantes":470},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Especialización En Agroecología Y Desarrollo Agro Ecoturístico","Estudiantes":12},
-  {"MUNICIPIO_PROGRAMA":"Soacha","Programa":"Administración De Empresas","Estudiantes":173},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Especialización En Gerencia Para La Transformación Digital","Estudiantes":78},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Licenciatura En Educación Física, Recreación Y Deportes","Estudiantes":180},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Especialización En Marketing Digital","Estudiantes":36},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Ingeniería De Sistemas Y Computación","Estudiantes":1017},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Especialización En Gerencia Financiera Y Contable","Estudiantes":6},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Especialización En Metodologías De Calidad Para El Desarrollo Del Software","Estudiantes":38},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Especialización En Educación Ambiental Y Desarrollo De La Comunidad","Estudiantes":14},
-  {"MUNICIPIO_PROGRAMA":"Facatativá","Programa":"Especialización En Gerencia Para El Desarrollo Organizacional","Estudiantes":20},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Maestría En Ciencias Ambientales","Estudiantes":4},
-  {"MUNICIPIO_PROGRAMA":"Soacha","Programa":"Tecnología En Desarrollo De Software","Estudiantes":71},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Especialización En Infraestructura Y Seguridad De Redes","Estudiantes":16},
-  {"MUNICIPIO_PROGRAMA":"Soacha","Programa":"Ingeniería De Software","Estudiantes":526},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Especialización En Agronegocios Sostenibles","Estudiantes":18},
-  {"MUNICIPIO_PROGRAMA":"Ubaté","Programa":"Ingeniería De Sistemas Y Computación","Estudiantes":421},
-  {"MUNICIPIO_PROGRAMA":"Ubaté","Programa":"Ingeniería De Sistemas","Estudiantes":94},
-  {"MUNICIPIO_PROGRAMA":"Fusagasugá","Programa":"Tecnología En Cartografía","Estudiantes":2},
-  {"MUNICIPIO_PROGRAMA":"Girardot","Programa":"Administración De Empresas","Estudiantes":629},
-  {"MUNICIPIO_PROGRAMA":"Facatativá","Programa":"Ingeniería Ambiental","Estudiantes":486},
-  {"MUNICIPIO_PROGRAMA":"Girardot","Programa":"Enfermería","Estudiantes":555},
-  {"MUNICIPIO_PROGRAMA":"Girardot","Programa":"Ingeniería Ambiental","Estudiantes":364},
-  {"MUNICIPIO_PROGRAMA":"Girardot","Programa":"Ingeniería De Software","Estudiantes":346},
-  {"MUNICIPIO_PROGRAMA":"Girardot","Programa":"Tecnología En Gestión Turística Y Hotelera","Estudiantes":5},
-  {"MUNICIPIO_PROGRAMA":"Ubaté","Programa":"Zootecnia","Estudiantes":399},
-  {"MUNICIPIO_PROGRAMA":"Ubaté","Programa":"Administración De Empresas","Estudiantes":366},
-  {"MUNICIPIO_PROGRAMA":"Ubaté","Programa":"Medicina Veterinaria Y Zootecnia","Estudiantes":56}
+ {
+  "MUNICIPIO_PROGRAMA": "Soacha",
+  "Programa": "Contaduría Pública",
+  "Estudiantes": 39
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Especialización En Gerencia Financiera Y Contable",
+  "Estudiantes": 4
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Especialización En Gerencia Para La Transformación Digital",
+  "Estudiantes": 51
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Ingeniería De Sistemas Y Computación",
+  "Estudiantes": 670
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Facatativá",
+  "Programa": "Contaduría Publica",
+  "Estudiantes": 670
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Facatativá",
+  "Programa": "Ingeniería De Sistemas Y Computación",
+  "Estudiantes": 608
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Ingeniería Agronómica",
+  "Estudiantes": 318
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Facatativá",
+  "Programa": "Psicología",
+  "Estudiantes": 368
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Soacha",
+  "Programa": "Ingeniería De Software",
+  "Estudiantes": 375
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Facatativá",
+  "Programa": "Especialización En Gerencia Para El Desarrollo Organizacional",
+  "Estudiantes": 14
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Especialización En Educación Ambiental Y Desarrollo De La Comunidad",
+  "Estudiantes": 8
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Licenciatura En Educación Física, Recreación Y Deportes ",
+  "Estudiantes": 134
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Chía",
+  "Programa": "Ingeniería Industrial",
+  "Estudiantes": 218
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Facatativá",
+  "Programa": "Administración De Empresas",
+  "Estudiantes": 634
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Ingeniería Electrónica",
+  "Estudiantes": 334
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Soacha",
+  "Programa": "Ingeniería Industrial",
+  "Estudiantes": 480
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Zipaquirá",
+  "Programa": "Música",
+  "Estudiantes": 214
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Chía",
+  "Programa": "Ingeniería De Sistemas Y Computación",
+  "Estudiantes": 677
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Chía",
+  "Programa": "Ingeniería Mecatrónica",
+  "Estudiantes": 180
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Administración De Empresas",
+  "Estudiantes": 633
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Contaduría Pública",
+  "Estudiantes": 561
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Doctorado En Ciencias De La Educación",
+  "Estudiantes": 18
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Maestría En Ciencias Ambientales",
+  "Estudiantes": 4
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Maestría En Educación",
+  "Estudiantes": 5
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Chía",
+  "Programa": "Ingeniería De Sistemas",
+  "Estudiantes": 68
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Ingeniería De Sistemas",
+  "Estudiantes": 8
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Ubaté",
+  "Programa": "Ingeniería De Sistemas",
+  "Estudiantes": 57
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Zootecnia",
+  "Estudiantes": 324
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Soacha",
+  "Programa": "Profesional En Ciencias Del Deporte",
+  "Estudiantes": 631
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Ubaté",
+  "Programa": "Ingeniería De Sistemas Y Computación",
+  "Estudiantes": 287
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Facatativá",
+  "Programa": "Ingeniería Agronómica",
+  "Estudiantes": 289
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Licenciatura En Ciencias Sociales",
+  "Estudiantes": 171
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Chía",
+  "Programa": "Administración De Empresas",
+  "Estudiantes": 532
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Chía",
+  "Programa": "Contaduría Publica",
+  "Estudiantes": 321
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Soacha",
+  "Programa": "Administración De Empresas",
+  "Estudiantes": 137
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Ubaté",
+  "Programa": "Contaduría Publica",
+  "Estudiantes": 386
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Soacha",
+  "Programa": "Tecnología En Desarrollo De Software",
+  "Estudiantes": 42
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Especialización En Gestión Pública",
+  "Estudiantes": 45
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Especialización En Infraestructura Y Seguridad De Redes",
+  "Estudiantes": 10
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Especialización En Marketing Digital",
+  "Estudiantes": 22
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Soacha",
+  "Programa": "Ingeniería Topográfica Y Geomática ",
+  "Estudiantes": 22
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Licenciatura En Educación Básica Con Énfasis En Ciencias Sociales",
+  "Estudiantes": 2
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Especialización En Metodologías De Calidad Para El Desarrollo Del Software",
+  "Estudiantes": 24
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Especialización En Agroecología Y Desarrollo Agro ecoturístico",
+  "Estudiantes": 10
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Especialización En Agronegocios Sostenibles",
+  "Estudiantes": 10
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Especialización En Analítica Aplicada A Negocios",
+  "Estudiantes": 32
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Especialización En Analítica Y Ciencia De Datos",
+  "Estudiantes": 22
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Fusagasugá",
+  "Programa": "Tecnología En Cartografía",
+  "Estudiantes": 2
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Girardot",
+  "Programa": "Administración De Empresas",
+  "Estudiantes": 457
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Girardot",
+  "Programa": "Ingeniería De Software",
+  "Estudiantes": 256
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Girardot",
+  "Programa": "Ingeniería Ambiental",
+  "Estudiantes": 253
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Girardot",
+  "Programa": "Enfermería",
+  "Estudiantes": 390
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Facatativá",
+  "Programa": "Ingeniería Ambiental",
+  "Estudiantes": 322
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Girardot",
+  "Programa": "Tecnología En Gestión Turística Y Hotelera",
+  "Estudiantes": 3
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Ubaté",
+  "Programa": "Administración De Empresas",
+  "Estudiantes": 281
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Ubaté",
+  "Programa": "Medicina Veterinaria Y Zootecnia ",
+  "Estudiantes": 41
+ },
+ {
+  "MUNICIPIO_PROGRAMA": "Ubaté",
+  "Programa": "Zootecnia",
+  "Estudiantes": 275
+ }
 ];
 
 // Navegación
@@ -478,13 +709,13 @@ function initializeMap() {
   }
 
   const mapData = [
-    { name: "Fusagasugá", coords: [4.3391, -74.3636], students: 5028 },
-    { name: "Soacha", coords: [4.579, -74.214], students: 3644 },
-    { name: "Facatativá", coords: [4.814, -74.356], students: 4706 },
-    { name: "Chía", coords: [4.858, -74.053], students: 3887 },
-    { name: "Ubaté", coords: [5.313, -73.816], students: 1474 },
-    { name: "Girardot", coords: [4.304, -74.804], students: 2649 },
-    { name: "Zipaquirá", coords: [5.025, -74.004], students: 295 }
+    { name: "Fusagasugá", coords: [4.3391, -74.3636], students: 3422 },
+    { name: "Soacha", coords: [4.579, -74.214], students: 1726 },
+    { name: "Facatativá", coords: [4.814, -74.356], students: 2905 },
+    { name: "Chía", coords: [4.858, -74.053], students: 1996 },
+    { name: "Ubaté", coords: [5.313, -73.816], students: 1327 },
+    { name: "Girardot", coords: [4.304, -74.804], students: 1359 },
+    { name: "Zipaquirá", coords: [5.025, -74.004], students: 214 }
   ];
 
   map = L.map('map', {
