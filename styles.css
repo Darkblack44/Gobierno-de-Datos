@@ -22,7 +22,7 @@ body {
 .banner-section {
   width: 100%;
   height: 25vh;
-  background: url('Banner.png') center/cover no-repeat;
+  background: url('Images/Banner.png') center/cover no-repeat;
   position: relative;
   overflow: hidden;
   opacity: 0;
@@ -768,3 +768,4 @@ h2, h3 {
   }
 
 }
+
