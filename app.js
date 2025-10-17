@@ -889,8 +889,8 @@ function animateCounter(id, end) {
 }
 
 function initializeMetrics() {
-  animateCounter('totalStudentsCounter', 18390);
-  animateCounter('totalProgramsCounter', 54);
+  animateCounter('totalStudentsCounter', 12949);
+  animateCounter('totalProgramsCounter', 49);
   animateCounter('totalCampusesCounter', 7);
 
   updateTopProgramsChart(5);
