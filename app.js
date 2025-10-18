@@ -1,3 +1,38 @@
+// ==========================================
+// CONFIGURACIÓN DE DEBUG
+// ==========================================
+const DEBUG_MODE = false;
+
+function debugLog(message, data = null) {
+  if (DEBUG_MODE) {
+    if (data) {
+      console.log(`[DEBUG] ${message}`, data);
+    } else {
+      console.log(`[DEBUG] ${message}`);
+    }
+  }
+}
+
+// ==========================================
+// FUNCIÓN AUXILIAR PARA IDS SEGUROS Y ÚNICOS
+// ==========================================
+function generateSafeId(text, prefix = '') {
+  if (!text) return prefix + 'unknown';
+  
+  // Normalizar el texto: convertir a minúsculas y eliminar acentos
+  const normalized = text.toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-|-$/g, "");
+  
+  const id = prefix ? `${prefix}-${normalized}` : normalized;
+  debugLog(`ID generado: "${text}" → "${id}"`);
+  return id || prefix + 'area-unknown';
+}
+
 const dashboards = [
   {"id":1,"titulo":"Asesor Disciplinar","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiMzM4YTllZGUtOGQ1Yy00MWQ5LWFkN2UtNWFhMmViY2MxZTVkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"SNIES - Sistema Académico","elaboradoPor":"Oficina de Desarrollo Académico"},
   {"id":2,"titulo":"CAI Cátedra Generación Siglo 21 V2","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiMWFkODZhODgtOTVmZi00ZTFhLTlmZjgtMDlhZjlhNjA0N2YwIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Oficina de Desarrollo Académico"},
@@ -41,14 +76,15 @@ const dashboards = [
   {"id":40,"titulo":"Boletín Estadístico","area":"Dirección de Planeación","macroproceso":"Estratégico","subproceso":"Planeación Institucional","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiZTYyOWU0ZGQtNzUxNS00MTdjLTgxMTMtODRjNzc4NThkMTYxIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Planeación - SNIES","elaboradoPor":"Dirección de Planeación"},
   {"id":41,"titulo":"Deserción","area":"Dirección de Planeación","macroproceso":"Estratégico","subproceso":"Planeación Institucional","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiYTY0MDk3MDAtZDIzMy00MTk3LThlZmItYzgyNzk3YWU3YjNhIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - SPADIES","elaboradoPor":"Dirección de Planeación"},
   {"id":42,"titulo":"Calendario Institucional","area":"Dirección de Planeación","macroproceso":"Estratégico","subproceso":"Planeación Institucional","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiOTQzMDgxODgtMTFkYS00YWU2LWE2NTAtMjI0OTFiMTBmNWY5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Planeación","elaboradoPor":"Dirección de Planeación"},
-  {"id":43,"titulo":"CAI Encuentros Dialógicos y Formativos","area":"Dirección de Planeación","macroproceso":"Estratégico","subproceso":"Direccionamiento Estratégico","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiMjFlYmIzOTUtMDcyMy00MGNiLTllZjktNTY2ZjM2ZjgxMmVlIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Dirección de Planeación"}
+  {"id":43,"titulo":"CAI Encuentros Dialógicos y Formativos","area":"Dirección de Planeación","macroproceso":"Estratégico","subproceso":"Direccionamiento Estratégico","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiMjFlYmIzOTUtMDcyMy00MGNiLTllZjktNTY2ZjM2ZjgxMmVlIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Dirección de Planeación"},
+  {"id":44,"titulo":"Tablero Informativo","area":"Proyectos Especiales y Relaciones Interinstitucionales","macroproceso":"Estratégico","subproceso":"Proyectos Especiales y Relaciones Interinstitucionales","tipo":"Público","url":"https://www.ucundinamarca.edu.co/index.php/proyectos-especiales-y-relaciones-interinstitucionales","fechaActualizacion":"15/01/2025","fuente":"Sitio Web Institucional","elaboradoPor":"Proyectos Especiales"}
 ];
 
 const MACROPROCESOS = {
   'Estratégico': {
     icon: 'fa-bullseye',
     color: 'estrategico',
-    areas: ['Dirección de Planeación', 'Sistema de Gestión Ambiental', 'Sistema de Gestión de Seguridad de la Información - SGSI']
+    areas: ['Dirección de Planeación', 'Sistema de Gestión Ambiental', 'Sistema de Gestión de Seguridad de la Información - SGSI', 'Proyectos Especiales y Relaciones Interinstitucionales']
   },
   'Misional': {
     icon: 'fa-users',
@@ -93,7 +129,8 @@ const AREA_ICONS = {
   'Oficina de Compras': 'fa-shopping-cart',
   'Control Interno': 'fa-clipboard-check',
   'Sistemas y Tecnología': 'fa-cogs',
-  'Talento Humano': 'fa-users-cog'
+  'Talento Humano': 'fa-users-cog',
+  'Proyectos Especiales y Relaciones Interinstitucionales': 'fa-project-diagram'
 };
 
 let currentDashboard = null;
@@ -171,10 +208,7 @@ const studentData = [
 
 function checkSession() {
   const session = sessionStorage.getItem('isAuthenticated');
-  if (session === 'true') {
-    return true;
-  }
-  return false;
+  return session === 'true';
 }
 
 function saveSession() {
@@ -192,6 +226,7 @@ let isAuthenticated = checkSession();
 // ==========================================
 
 function navigateTo(view) {
+  debugLog(`Navegando a: ${view}`);
   document.querySelectorAll('.view-container').forEach(v => v.classList.remove('active'));
   document.getElementById(`${view}View`).classList.add('active');
   currentView = view;
@@ -199,10 +234,8 @@ function navigateTo(view) {
   if (view === 'estudiantes') {
     renderEstudiantesDashboards();
   } else if (view === 'administrativos') {
-    // Verificar si hay sesión activa
     if (checkSession()) {
       isAuthenticated = true;
-      // Mostrar ambas secciones: públicos y privados
       document.getElementById('adminSelectionSection').style.display = 'none';
       document.getElementById('loginSection').classList.add('hidden');
       document.getElementById('publicDashboardsSection').classList.remove('hidden');
@@ -211,7 +244,6 @@ function navigateTo(view) {
       renderPublicAdminDashboards();
       renderAdministrativosDashboards();
     } else {
-      // Mostrar pantalla de selección por defecto
       document.getElementById('adminSelectionSection').style.display = 'block';
       document.getElementById('loginSection').classList.add('hidden');
       document.getElementById('publicDashboardsSection').classList.add('hidden');
@@ -238,7 +270,6 @@ function showLoginSection() {
 }
 
 function backToAdminSelection() {
-  // Si hay sesión activa, cerrarla primero
   if (checkSession()) {
     clearSession();
     isAuthenticated = false;
@@ -282,55 +313,114 @@ function logout() {
 }
 
 // ==========================================
-// TOGGLE MACROPROCESO/ÁREA
+// TOGGLE MACROPROCESO/ÁREA - USANDO DATA ATTRIBUTES
 // ==========================================
 
-function toggleMacroproceso(macroproceso) {
-  const content = document.getElementById(`content-${macroproceso}`);
-  const icon = document.getElementById(`icon-${macroproceso}`);
+function toggleMacroproceso(macroprocesoId) {
+  debugLog(`Toggle macroproceso: ${macroprocesoId}`);
   
-  if (!content || !icon) return;
+  const content = document.getElementById(`content-${macroprocesoId}`);
+  const icon = document.getElementById(`icon-${macroprocesoId}`);
   
-  if (expandedMacroprocesos[macroproceso]) {
+  if (!content || !icon) {
+    console.error(`❌ No se encontraron elementos para macroproceso: ${macroprocesoId}`);
+    console.error(`content: ${content}, icon: ${icon}`);
+    return;
+  }
+  
+  const isExpanded = expandedMacroprocesos[macroprocesoId];
+  
+  if (isExpanded) {
     content.classList.remove('expanded');
     icon.classList.remove('expanded');
-    expandedMacroprocesos[macroproceso] = false;
+    expandedMacroprocesos[macroprocesoId] = false;
+    debugLog(`Macroproceso ${macroprocesoId} contraído`);
   } else {
     content.classList.add('expanded');
     icon.classList.add('expanded');
-    expandedMacroprocesos[macroproceso] = true;
+    expandedMacroprocesos[macroprocesoId] = true;
+    debugLog(`Macroproceso ${macroprocesoId} expandido`);
   }
 }
 
 function toggleArea(areaId) {
+  debugLog(`Toggle área: ${areaId}`);
+  
   const container = document.getElementById(`dashboards-${areaId}`);
   const card = document.getElementById(`area-card-${areaId}`);
   
-  if (!container || !card) return;
+  if (!container || !card) {
+    console.error(`❌ No se encontraron elementos para área: ${areaId}`);
+    console.error(`container: ${container}, card: ${card}`);
+    return;
+  }
   
-  if (expandedAreas[areaId]) {
+  const isExpanded = expandedAreas[areaId];
+  
+  if (isExpanded) {
     container.classList.remove('expanded');
     card.classList.remove('expanded');
     expandedAreas[areaId] = false;
+    debugLog(`Área ${areaId} contraída`);
   } else {
     container.classList.add('expanded');
     card.classList.add('expanded');
     expandedAreas[areaId] = true;
+    debugLog(`Área ${areaId} expandida`);
   }
 }
 
 // ==========================================
-// CREAR TARJETA DE ÁREA
+// EVENT DELEGATION - CONFIGURACIÓN GLOBAL
 // ==========================================
 
-function createAreaCard(area, dashboardsInArea, macroprocesoColor, index) {
-  const areaId = area.replace(/\s+/g, '-').replace(/[^a-zA-Z0-9-]/g, '');
+function setupEventDelegation() {
+  debugLog('Configurando event delegation para acordeones');
+  
+  // Delegar eventos para headers de macroprocesos
+  document.addEventListener('click', function(e) {
+    const header = e.target.closest('.macroproceso-header');
+    if (header) {
+      e.stopPropagation();
+      const macroprocesoId = header.dataset.macroprocesoId;
+      if (macroprocesoId) {
+        debugLog(`Click en macroproceso header: ${macroprocesoId}`);
+        toggleMacroproceso(macroprocesoId);
+      }
+    }
+  });
+  
+  // Delegar eventos para headers de áreas
+  document.addEventListener('click', function(e) {
+    const header = e.target.closest('.area-card-header');
+    if (header) {
+      e.stopPropagation();
+      const areaId = header.dataset.areaId;
+      if (areaId) {
+        debugLog(`Click en área header: ${areaId}`);
+        toggleArea(areaId);
+      }
+    }
+  });
+  
+  debugLog('Event delegation configurado ✓');
+}
+
+// ==========================================
+// CREAR TARJETA DE ÁREA - CON DATA ATTRIBUTES
+// ==========================================
+
+function createAreaCard(area, dashboardsInArea, macroprocesoColor, index, context = '') {
+  // CORRECCIÓN: Se usa un prefijo de contexto para crear un ID único para el área.
+  const areaId = generateSafeId(area, context + 'area');
   const iconClass = AREA_ICONS[area] || 'fa-folder-open';
   const dashboardCount = dashboardsInArea.length;
   
+  debugLog(`Creando tarjeta para área: "${area}" con ID único: "${areaId}"`);
+  
   return `
     <div class="area-card" id="area-card-${areaId}" style="animation-delay: ${index * 0.1}s;">
-      <div class="area-card-header" onclick="toggleArea('${areaId}'); event.stopPropagation();">
+      <div class="area-card-header" data-area-id="${areaId}">
         <div class="area-card-icon ${macroprocesoColor}">
           <i class="fas ${iconClass}"></i>
         </div>
@@ -359,6 +449,7 @@ function createAreaCard(area, dashboardsInArea, macroprocesoColor, index) {
 // ==========================================
 
 function renderEstudiantesDashboards() {
+  debugLog('Renderizando dashboards de estudiantes');
   const container = document.getElementById('estudiantesDashboards');
   const estudiantesDashboards = dashboards.filter(d => 
     d.macroproceso === 'Misional' && d.tipo === 'Público'
@@ -371,30 +462,34 @@ function renderEstudiantesDashboards() {
   });
   
   const config = MACROPROCESOS['Misional'];
+  const macroprocesoId = generateSafeId('estudiantes-Misional', 'macro');
   
   container.innerHTML = `
     <div class="macroproceso-section ${config.color}">
-      <div class="macroproceso-header" onclick="toggleMacroproceso('estudiantes-Misional'); event.stopPropagation();">
+      <div class="macroproceso-header" data-macroproceso-id="${macroprocesoId}">
         <div class="macroproceso-title">
           <div class="macroproceso-icon">
             <i class="fas ${config.icon}"></i>
           </div>
           <span>Macroproceso Misional</span>
         </div>
-        <i class="fas fa-chevron-down collapse-icon expanded" id="icon-estudiantes-Misional"></i>
+        <i class="fas fa-chevron-down collapse-icon expanded" id="icon-${macroprocesoId}"></i>
       </div>
-      <div class="macroproceso-content expanded" id="content-estudiantes-Misional">
+      <div class="macroproceso-content expanded" id="content-${macroprocesoId}">
         ${Object.entries(grouped).map(([area, items], index) => 
-          createAreaCard(area, items, config.color, index)
+          // CORRECCIÓN: Se pasa el prefijo 'est-' para garantizar IDs únicos.
+          createAreaCard(area, items, config.color, index, 'est-')
         ).join('')}
       </div>
     </div>
   `;
   
-  expandedMacroprocesos['estudiantes-Misional'] = true;
+  expandedMacroprocesos[macroprocesoId] = true;
+  debugLog(`Dashboards de estudiantes renderizados. Macroproceso ID: ${macroprocesoId}`);
 }
 
 function renderPublicAdminDashboards() {
+  debugLog('Renderizando dashboards públicos administrativos');
   const container = document.getElementById('publicDashboards');
   const publicAdminDashboards = dashboards.filter(d => 
     d.macroproceso !== 'Misional' && d.tipo === 'Público'
@@ -415,35 +510,36 @@ function renderPublicAdminDashboards() {
         grouped[d.area].push(d);
       });
       
+      const macroprocesoId = generateSafeId(`public-${nombre}`, 'macro');
+      
       return `
         <div class="macroproceso-section ${config.color}">
-          <div class="macroproceso-header" onclick="toggleMacroproceso('public-${nombre}'); event.stopPropagation();">
+          <div class="macroproceso-header" data-macroproceso-id="${macroprocesoId}">
             <div class="macroproceso-title">
               <div class="macroproceso-icon">
                 <i class="fas ${config.icon}"></i>
               </div>
               <span>Macroproceso ${nombre}</span>
             </div>
-            <i class="fas fa-chevron-down collapse-icon" id="icon-public-${nombre}"></i>
+            <i class="fas fa-chevron-down collapse-icon" id="icon-${macroprocesoId}"></i>
           </div>
-          <div class="macroproceso-content" id="content-public-${nombre}">
+          <div class="macroproceso-content" id="content-${macroprocesoId}">
             ${Object.entries(grouped).map(([area, items], index) => 
-              createAreaCard(area, items, config.color, index)
+              // CORRECCIÓN: Se pasa el prefijo 'pub-' para garantizar IDs únicos.
+              createAreaCard(area, items, config.color, index, 'pub-')
             ).join('')}
           </div>
         </div>
       `;
     }).join('');
+  
+  debugLog('Dashboards públicos administrativos renderizados');
 }
 
-// ==========================================
-// DASHBOARDS PRIVADOS SOLAMENTE
-// ==========================================
-
 function renderAdministrativosDashboards() {
+  debugLog('Renderizando dashboards administrativos privados');
   const container = document.getElementById('administrativosDashboards');
   
-  // Filtrar solo dashboards PRIVADOS que no son del macroproceso Misional
   const adminDashboards = dashboards.filter(d => 
     d.macroproceso !== 'Misional' && d.tipo === 'Privado'
   );
@@ -452,7 +548,6 @@ function renderAdministrativosDashboards() {
     .filter(([nombre]) => nombre !== 'Misional')
     .map(([nombre, config]) => {
       
-      // Agrupar los dashboards existentes por área
       const grouped = {};
       adminDashboards
         .filter(d => config.areas.includes(d.area))
@@ -461,28 +556,31 @@ function renderAdministrativosDashboards() {
           grouped[d.area].push(d);
         });
       
+      const macroprocesoId = generateSafeId(`admin-${nombre}`, 'macro');
+      
       return `
         <div class="macroproceso-section ${config.color}">
-          <div class="macroproceso-header" onclick="toggleMacroproceso('admin-${nombre}'); event.stopPropagation();">
+          <div class="macroproceso-header" data-macroproceso-id="${macroprocesoId}">
             <div class="macroproceso-title">
               <div class="macroproceso-icon">
                 <i class="fas ${config.icon}"></i>
               </div>
               <span>Macroproceso ${nombre}</span>
             </div>
-            <i class="fas fa-chevron-down collapse-icon" id="icon-admin-${nombre}"></i>
+            <i class="fas fa-chevron-down collapse-icon" id="icon-${macroprocesoId}"></i>
           </div>
-          <div class="macroproceso-content" id="content-admin-${nombre}">
+          <div class="macroproceso-content" id="content-${macroprocesoId}">
             ${config.areas.map((area, index) => {
-              // Obtener los tableros para el área actual, o un array vacío si no tiene
               const items = grouped[area] || [];
-              // Crear la tarjeta del área, que mostrará "0 tableros" si no tiene items
-              return createAreaCard(area, items, config.color, index);
+              // CORRECCIÓN: Se pasa el prefijo 'adm-' para garantizar IDs únicos.
+              return createAreaCard(area, items, config.color, index, 'adm-');
             }).join('')}
           </div>
         </div>
       `;
     }).join('');
+  
+  debugLog('Dashboards administrativos privados renderizados');
 }
 
 // ==========================================
@@ -823,7 +921,7 @@ function setupMobileMenu() {
 
   if (hamburgerBtn && mobileMenu) {
     hamburgerBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden'); // Alterna la visibilidad del menú
+      mobileMenu.classList.toggle('hidden');
     });
   }
 }
@@ -833,6 +931,12 @@ function setupMobileMenu() {
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
+  debugLog('=== INICIALIZANDO APLICACIÓN ===');
+  
+  // Configurar event delegation PRIMERO
+  setupEventDelegation();
+  
+  // Luego inicializar todo lo demás
   initializeMap();
   initializeMetrics();
   setupMobileMenu();
@@ -841,4 +945,7 @@ document.addEventListener('DOMContentLoaded', () => {
     isAuthenticated = true;
     document.getElementById('logoutBtn').classList.remove('hidden');
   }
+  
+  debugLog('=== APLICACIÓN INICIALIZADA ===');
+  debugLog('Modo debug activo. Para desactivar, cambiar DEBUG_MODE = false');
 });
