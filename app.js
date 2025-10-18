@@ -66,7 +66,9 @@ const MACROPROCESOS = {
     color: 'apoyo',
     areas: [
       'Vicerrectoría Administrativa y Financiera',
-      'Oficina de Compras'
+      'Oficina de Compras',
+      'Sistemas y Tecnología',
+      'Talento Humano'
     ]
   },
   'Seguimiento': {
@@ -89,7 +91,9 @@ const AREA_ICONS = {
   'Sistema de Gestión de Seguridad de la Información - SGSI': 'fa-shield-alt',
   'Vicerrectoría Administrativa y Financiera': 'fa-coins',
   'Oficina de Compras': 'fa-shopping-cart',
-  'Control Interno': 'fa-clipboard-check'
+  'Control Interno': 'fa-clipboard-check',
+  'Sistemas y Tecnología': 'fa-cogs',
+  'Talento Humano': 'fa-users-cog'
 };
 
 let currentDashboard = null;
@@ -439,7 +443,7 @@ function renderPublicAdminDashboards() {
 function renderAdministrativosDashboards() {
   const container = document.getElementById('administrativosDashboards');
   
-  // Mostrar SOLO dashboards PRIVADOS administrativos
+  // Filtrar solo dashboards PRIVADOS que no son del macroproceso Misional
   const adminDashboards = dashboards.filter(d => 
     d.macroproceso !== 'Misional' && d.tipo === 'Privado'
   );
@@ -447,17 +451,15 @@ function renderAdministrativosDashboards() {
   container.innerHTML = Object.entries(MACROPROCESOS)
     .filter(([nombre]) => nombre !== 'Misional')
     .map(([nombre, config]) => {
-      const dashboardsDelMacroproceso = adminDashboards.filter(d => 
-        config.areas.includes(d.area)
-      );
       
-      if (dashboardsDelMacroproceso.length === 0) return '';
-      
+      // Agrupar los dashboards existentes por área
       const grouped = {};
-      dashboardsDelMacroproceso.forEach(d => {
-        if (!grouped[d.area]) grouped[d.area] = [];
-        grouped[d.area].push(d);
-      });
+      adminDashboards
+        .filter(d => config.areas.includes(d.area))
+        .forEach(d => {
+          if (!grouped[d.area]) grouped[d.area] = [];
+          grouped[d.area].push(d);
+        });
       
       return `
         <div class="macroproceso-section ${config.color}">
@@ -471,9 +473,12 @@ function renderAdministrativosDashboards() {
             <i class="fas fa-chevron-down collapse-icon" id="icon-admin-${nombre}"></i>
           </div>
           <div class="macroproceso-content" id="content-admin-${nombre}">
-            ${Object.entries(grouped).map(([area, items], index) => 
-              createAreaCard(area, items, config.color, index)
-            ).join('')}
+            ${config.areas.map((area, index) => {
+              // Obtener los tableros para el área actual, o un array vacío si no tiene
+              const items = grouped[area] || [];
+              // Crear la tarjeta del área, que mostrará "0 tableros" si no tiene items
+              return createAreaCard(area, items, config.color, index);
+            }).join('')}
           </div>
         </div>
       `;
