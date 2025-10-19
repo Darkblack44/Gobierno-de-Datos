@@ -1,13 +1,7 @@
 /* ============================================
-   UNIVERSIDAD DE CUNDINAMARCA
    SISTEMA DE GOBIERNO DE DATOS
-   Versión: 2.1 - Optimizado
-   Fecha: 18/10/2025
-   ============================================ */
-
-/* ============================================
-   VARIABLES INSTITUCIONALES
-   Basado en Manual de Imagen ECOM002V_17
+   Versión: 2.1
+   Fecha: 19/10/2025
    ============================================ */
 :root {
   /* Colores Principales PANTONE */
@@ -1137,5 +1131,135 @@ select:focus {
   
   #map {
     min-height: 220px !important;
+  }
+}
+
+/* ============================================
+   FIN DEL ARCHIVO styles.css
+   ============================================ */
+
+   /* ============================================
+   ADVERTENCIA ANIMADA - TEMPORAL
+   ============================================ */
+.warning-badge-animated {
+  background: linear-gradient(135deg, #FEF3C7, #FDE68A, #FCD34D, #FDE68A, #FEF3C7);
+  background-size: 200% 200%;
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  border: 2.5px solid #F59E0B;
+  box-shadow: 
+    0 0 20px rgba(251, 191, 36, 0.6),
+    0 4px 15px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  animation: pulseWarning 2s ease-in-out infinite, gradientShift 4s ease infinite;
+  position: relative;
+  overflow: hidden;
+}
+
+.warning-badge-animated::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 70%
+  );
+  animation: shine 3s infinite;
+}
+
+.warning-badge-animated:hover {
+  transform: scale(1.02);
+  box-shadow: 
+    0 0 30px rgba(251, 191, 36, 0.8),
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.warning-icon-shake {
+  color: #DC2626;
+  font-size: 18px;
+  animation: shake 0.6s ease-in-out infinite;
+  filter: drop-shadow(0 2px 4px rgba(220, 38, 38, 0.3));
+}
+
+.warning-text {
+  color: #991B1B;
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes pulseWarning {
+  0%, 100% {
+    box-shadow: 
+      0 0 20px rgba(251, 191, 36, 0.6),
+      0 4px 15px rgba(0, 0, 0, 0.15),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow: 
+      0 0 35px rgba(251, 191, 36, 0.9),
+      0 6px 20px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  }
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes shake {
+  0%, 100% { 
+    transform: translateX(0) rotate(0deg); 
+  }
+  25% { 
+    transform: translateX(-2px) rotate(-5deg); 
+  }
+  75% { 
+    transform: translateX(2px) rotate(5deg); 
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(50%, 50%) rotate(360deg);
+  }
+}
+
+/* Responsive para móviles */
+@media (max-width: 640px) {
+  .warning-badge-animated {
+    padding: 10px 12px;
+    margin-top: 10px;
+  }
+  
+  .warning-text {
+    font-size: 11px;
+    letter-spacing: 0.5px;
+  }
+  
+  .warning-icon-shake {
+    font-size: 16px;
   }
 }
