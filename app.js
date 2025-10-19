@@ -49,7 +49,7 @@ const dashboards = [
   {"id":13,"titulo":"CAI Viviendo el MEDIT","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiZjdhZmFjYjEtZTUyMi00NzUwLTg0YzItMjEyYjgyNWZjYTBkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Oficina de Educación Virtual"},
   {"id":14,"titulo":"Campo Multidimensional de Aprendizaje (CMA)","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiMzdlYjNhNDAtYzQzOC00ZmRhLTk5NTktNWQ2YzA4NGI5YTc0IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - CMA","elaboradoPor":"Oficina de Educación Virtual"},
   {"id":15,"titulo":"Campo Multidimensional de Aprendizaje (CMA) - Posgrados","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiY2RiZTJjMzktNGVhOC00YmZhLWFkNzItNTUzOTlhZTYyNTc4IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - CMA","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":16,"titulo":"Cursos Autogestionados<br><span class='text-red-600 font-semibold'>(SE DEBE ANONIMIZAR DATOS)</span>","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiOTBhNThkMTktNmU0OC00YmM5LTkyNDktNGFjMTA5NGFmNTdmIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma Virtual","elaboradoPor":"Oficina de Educación Virtual"},
+  {"id":16,"titulo":"Cursos Autogestionados<br><div class='warning-badge-animated'><i class='fas fa-exclamation-triangle warning-icon-shake'></i><span class='warning-text'>⚠️ Se debe anonimizar datos</span></div>","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiOTBhNThkMTktNmU0OC00YmM5LTkyNDktNGFjMTA5NGFmNTdmIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma Virtual","elaboradoPor":"Oficina de Educación Virtual"},
   {"id":17,"titulo":"Diagnósticos y Nivelatorios - Informe","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiZWQwOTI0ZDYtZTYxNC00MGFmLWE1OTUtNTM4MzViZDcwNDNkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Diagnósticos","elaboradoPor":"Oficina de Educación Virtual"},
   {"id":18,"titulo":"Graduados UCundinamarca","area":"Graduados","macroproceso":"Misional","subproceso":"Graduados","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiZjZkZmQ1MzUtMjA4Yy00OTIzLWE5N2QtMmU4NTE1Y2UwMWY5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Graduados - SNIES","elaboradoPor":"Oficina de Graduados"},
   {"id":19,"titulo":"Informe Final","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiYzdiN2I2ZWQtOWY4ZS00MWJiLWIyODUtZTViY2Q0ZTc3NDc2IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico","elaboradoPor":"Oficina de Educación Virtual"},
@@ -653,7 +653,14 @@ function openDashboard(id) {
   }
 
   currentDashboard = dashboard;
-  document.getElementById('modalTitle').textContent = dashboard.titulo;
+  
+  // Crear un elemento temporal para extraer solo el texto limpio
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = dashboard.titulo;
+  const cleanTitle = tempDiv.textContent || tempDiv.innerText || "";
+  
+  // Usar el título limpio en el modal
+  document.getElementById('modalTitle').textContent = cleanTitle;
   document.getElementById('modalArea').textContent = dashboard.area;
   document.getElementById('modalType').innerHTML = dashboard.tipo === 'Privado' 
     ? '<i class="fas fa-lock text-blue-500"></i> <span class="text-blue-700">Privado</span>' 
