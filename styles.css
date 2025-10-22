@@ -1,30 +1,23 @@
 /* ============================================
    SISTEMA DE GOBIERNO DE DATOS
-   Versión: 2.1
-   Fecha: 19/10/2025
+   Versión: 3.0
+   Fecha: 22/10/2025
    ============================================ */
 :root {
-  /* Colores Principales PANTONE */
   --uc-yellow-1: #FBE122;
   --uc-yellow-2: #DAAA00;
   --uc-green-1: #007B3E;
   --uc-green-2: #00482B;
-  
-  /* Colores Secundarios PANTONE */
   --uc-orange: #F7931E;
   --uc-green-light-1: #79C000;
   --uc-green-light-2: #91C256;
   --uc-turquoise: #00A99D;
   --uc-gray: #4D4D4D;
-  
-  /* Degradados Institucionales */
   --uc-gradient-green-primary: linear-gradient(135deg, #007B3E, #79C000);
   --uc-gradient-green-dark: linear-gradient(135deg, #00482B, #007B3E);
   --uc-gradient-turquoise: linear-gradient(135deg, #00A99D, #79C000);
   --uc-gradient-green-to-light: linear-gradient(90deg, #007B3E, #79C000);
   --uc-gradient-dark-to-primary: linear-gradient(90deg, #00482B, #007B3E);
-  
-  /* Escala de Grises */
   --uc-white: #FFFFFF;
   --uc-gray-50: #F9FAFB;
   --uc-gray-100: #F3F4F6;
@@ -37,51 +30,34 @@
   --uc-gray-800: #1F2937;
   --uc-gray-900: #111827;
   --uc-black: #000000;
-  
-  /* Colores Funcionales */
   --uc-error: #DC2626;
   --uc-warning: #F59E0B;
   --uc-success: #007B3E;
   --uc-info: #00A99D;
-  
-  /* Backgrounds */
   --uc-bg-primary: var(--uc-green-1);
   --uc-bg-secondary: var(--uc-green-2);
   --uc-bg-light: var(--uc-gray-50);
   --uc-bg-white: var(--uc-white);
-  
-  /* Tipografía - MONTSERRAT PRIORITARIA */
   --uc-font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --uc-font-secondary: 'Century Gothic', 'Segoe UI', sans-serif;
   --uc-font-serif: 'Times New Roman', Georgia, serif;
-  
-  /* Espaciados */
   --uc-radius-sm: 8px;
   --uc-radius-md: 12px;
   --uc-radius-lg: 16px;
   --uc-radius-xl: 20px;
   --uc-radius-full: 9999px;
-  
-  /* Sombras */
   --uc-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.06);
   --uc-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
   --uc-shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.12);
   --uc-shadow-xl: 0 12px 28px rgba(0, 0, 0, 0.15);
-  
-  /* Transiciones */
   --uc-transition-fast: 0.2s ease;
   --uc-transition-normal: 0.3s ease;
   --uc-transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  
-  /* Z-index */
   --uc-z-base: 1;
   --uc-z-nav: 1050;
   --uc-z-modal: 2000;
 }
 
-/* ============================================
-   RESET Y BASE
-   ============================================ */
 * { 
   margin: 0; 
   padding: 0; 
@@ -106,9 +82,6 @@ h2, h3 {
   animation: slideInFromLeft 0.6s ease forwards;
 }
 
-/* ============================================
-   ANIMACIONES
-   ============================================ */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -129,9 +102,6 @@ h2, h3 {
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* ============================================
-   LAYOUT PRINCIPAL
-   ============================================ */
 .banner-section {
   width: 100%;
   height: 25vh;
@@ -159,9 +129,6 @@ h2, h3 {
   animation: fadeIn 0.3s ease;
 }
 
-/* ============================================
-   TARJETAS KPI
-   ============================================ */
 .stat-card-modern {
   background: var(--uc-white);
   border-radius: var(--uc-radius-lg);
@@ -230,9 +197,6 @@ h2, h3 {
   font-weight: 600 !important;
 }
 
-/* ============================================
-   TARJETAS SEDES
-   ============================================ */
 .sede-card {
   background: var(--uc-white);
   border-radius: var(--uc-radius-md);
@@ -263,9 +227,6 @@ h2, h3 {
   color: var(--uc-green-1);
 }
 
-/* ============================================
-   TARJETAS NIVEL ACADÉMICO
-   ============================================ */
 .nivel-card {
   background: var(--uc-white);
   border-radius: var(--uc-radius-lg);
@@ -329,9 +290,6 @@ h2, h3 {
   color: #6B7280 !important;
 }
 
-/* ============================================
-   MAPAS Y GRÁFICOS
-   ============================================ */
 .chart-container {
   position: relative;
   height: 320px;
@@ -418,7 +376,6 @@ h2, h3 {
   cursor: pointer;
 }
 
-/* Fuente de datos - Override específico */
 .data-source {
   text-align: center;
   font-size: 12px;
@@ -429,9 +386,6 @@ h2, h3 {
   font-weight: 700 !important;
 }
 
-/* ============================================
-   SELECTOR TOP PROGRAMS
-   ============================================ */
 #topProgramsSelector {
   background: #FFFFFF;
   color: #1F2937;
@@ -475,7 +429,6 @@ h2, h3 {
   font-weight: 600;
 }
 
-/* Canvas de gráficos */
 #topProgramsChart {
   width: 100% !important;
   height: 100% !important;
@@ -490,7 +443,6 @@ canvas {
   display: block !important;
 }
 
-/* Contenedores de grid */
 .grid.lg\:grid-cols-5 > div {
   overflow: hidden;
   min-width: 0;
@@ -512,9 +464,6 @@ canvas {
   position: relative;
 }
 
-/* ============================================
-   SISTEMAS DE GESTIÓN
-   ============================================ */
 .sistemas-gestion-section {
   background: var(--uc-white);
   border-radius: var(--uc-radius-xl);
@@ -563,9 +512,6 @@ canvas {
   transform: scale(1.05);
 }
 
-/* ============================================
-   DASHBOARDS
-   ============================================ */
 .dashboard-card {
   background: var(--uc-white);
   border-radius: var(--uc-radius-lg);
@@ -584,10 +530,6 @@ canvas {
   right: 0;
   height: 4px;
   background: var(--uc-gradient-green-to-light);
-}
-
-.dashboard-card.private::before {
-  background: linear-gradient(90deg, var(--uc-turquoise), var(--uc-green-light-1));
 }
 
 .dashboard-card:hover {
@@ -620,9 +562,6 @@ canvas {
   color: var(--uc-green-1);
 }
 
-/* ============================================
-   BOTONES
-   ============================================ */
 .btn-primary {
   background: var(--uc-gradient-green-primary);
   color: var(--uc-white);
@@ -663,9 +602,26 @@ canvas {
   box-shadow: 0 10px 20px rgba(0, 169, 157, 0.3);
 }
 
-/* ============================================
-   FORMULARIOS
-   ============================================ */
+.btn-csv {
+  background: linear-gradient(135deg, #F59E0B, #D97706);
+  color: var(--uc-white);
+  padding: 10px 24px;
+  border-radius: var(--uc-radius-md);
+  font-weight: 600;
+  transition: all var(--uc-transition-normal);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--uc-font-primary);
+}
+
+.btn-csv:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
+}
+
 .login-card {
   background: var(--uc-white);
   border-radius: var(--uc-radius-xl);
@@ -675,9 +631,6 @@ canvas {
   margin: 0 auto;
 }
 
-/* ============================================
-   MACROPROCESOS
-   ============================================ */
 .macroproceso-section {
   background: var(--uc-white);
   border-radius: var(--uc-radius-xl);
@@ -777,9 +730,6 @@ canvas {
   max-height: 5000px;
 }
 
-/* ============================================
-   ÁREAS
-   ============================================ */
 .area-subsection {
   margin-top: 20px;
   padding: 16px;
@@ -913,8 +863,9 @@ canvas {
 }
 
 /* ============================================
-   MODAL
+   MODAL MEJORADO CON LAYOUT 80/20
    ============================================ */
+
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -933,7 +884,7 @@ canvas {
   animation: fadeIn 0.3s ease;
 }
 
-.modal-content {
+.modal-content-enhanced {
   background: var(--uc-white);
   border-radius: var(--uc-radius-xl);
   width: 95vw;
@@ -946,29 +897,194 @@ canvas {
   overflow: hidden;
 }
 
-/* Forzar texto blanco en header del modal */
-#modalTitle {
+.dashboard-modal-header {
+  background: linear-gradient(135deg, var(--uc-green-1), var(--uc-green-2));
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.dashboard-modal-header * {
   color: #FFFFFF !important;
 }
 
-#modalArea {
-  color: #FFFFFF !important;
-  opacity: 0.9;
+.dashboard-modal-body {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  background: var(--uc-gray-50);
 }
 
-.modal-content .text-white,
-.modal-content .bg-gradient-to-r .text-white {
-  color: #FFFFFF !important;
+.dashboard-iframe-wrapper {
+  flex: 1;
+  display: flex;
+  position: relative;
+  transition: all var(--uc-transition-smooth);
 }
 
-/* Asegurar que todos los elementos dentro del header verde sean blancos */
-.modal-content .bg-gradient-to-r * {
-  color: #FFFFFF !important;
+.dashboard-iframe-container {
+  width: 100%;
+  height: 100%;
+  background: var(--uc-white);
+  border-radius: var(--uc-radius-md);
+  overflow: hidden;
 }
 
-/* ============================================
-   ACCESIBILIDAD
-   ============================================ */
+.dashboard-iframe-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.info-panel-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: var(--uc-green-1);
+  color: var(--uc-white);
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.25rem;
+  box-shadow: var(--uc-shadow-lg);
+  transition: all var(--uc-transition-normal);
+  z-index: 10;
+}
+
+.info-panel-toggle:hover {
+  background: var(--uc-green-2);
+  transform: scale(1.1);
+  box-shadow: var(--uc-shadow-xl);
+}
+
+.dashboard-info-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 100%;
+  background: var(--uc-white);
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: width var(--uc-transition-smooth);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-info-panel.expanded {
+  width: 380px;
+}
+
+.info-panel-header {
+  background: var(--uc-gradient-green-primary);
+  color: var(--uc-white);
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.info-panel-header h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0;
+  color: var(--uc-white);
+}
+
+.info-panel-close {
+  background: transparent;
+  border: none;
+  color: var(--uc-white);
+  cursor: pointer;
+  font-size: 1.25rem;
+  padding: 0.25rem;
+  transition: all var(--uc-transition-fast);
+  border-radius: var(--uc-radius-sm);
+}
+
+.info-panel-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.info-panel-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.info-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--uc-gray-200);
+}
+
+.info-section:last-child {
+  border-bottom: none;
+}
+
+.info-section h4 {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--uc-green-1);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-section p {
+  font-size: 0.875rem;
+  color: var(--uc-gray-700);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.status-badge {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border-radius: var(--uc-radius-md);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.status-active {
+  background: rgba(0, 123, 62, 0.15);
+  color: var(--uc-green-1);
+  border: 2px solid var(--uc-green-1);
+}
+
+.status-badge.status-inactive {
+  background: rgba(220, 38, 38, 0.15);
+  color: var(--uc-error);
+  border: 2px solid var(--uc-error);
+}
+
+.dashboard-modal-footer {
+  background: var(--uc-gray-50);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  flex-shrink: 0;
+  border-top: 1px solid var(--uc-gray-200);
+}
+
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -996,9 +1112,6 @@ select:focus {
   color: var(--uc-gray-600);
 }
 
-/* ============================================
-   OVERRIDES TAILWIND CSS
-   ============================================ */
 .text-green-600,
 .text-green-700 {
   color: var(--uc-green-1) !important;
@@ -1063,12 +1176,13 @@ select:focus {
   border-color: var(--uc-turquoise) !important;
 }
 
-/* ============================================
-   RESPONSIVE
-   ============================================ */
 @media (max-width: 1024px) {
   .chart-container {
     height: 280px;
+  }
+  
+  .dashboard-info-panel.expanded {
+    width: 320px;
   }
 }
 
@@ -1112,6 +1226,21 @@ select:focus {
   #map {
     min-height: 250px !important;
   }
+  
+  .dashboard-info-panel.expanded {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 30;
+  }
+  
+  .modal-content-enhanced {
+    width: 100vw;
+    height: 95vh;
+  }
 }
 
 @media (max-width: 640px) {
@@ -1121,6 +1250,22 @@ select:focus {
   
   #map {
     min-height: 220px !important;
+  }
+  
+  .info-panel-toggle {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+  
+  .dashboard-modal-footer {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .dashboard-modal-footer button {
+    width: 100%;
+    justify-content: center;
   }
 }
 
@@ -1132,134 +1277,12 @@ select:focus {
   #map {
     min-height: 220px !important;
   }
-}
-
-/* ============================================
-   FIN DEL ARCHIVO styles.css
-   ============================================ */
-
-   /* ============================================
-   ADVERTENCIA ANIMADA - TEMPORAL
-   ============================================ */
-.warning-badge-animated {
-  background: linear-gradient(135deg, #FEF3C7, #FDE68A, #FCD34D, #FDE68A, #FEF3C7);
-  background-size: 200% 200%;
-  margin-top: 12px;
-  padding: 12px 16px;
-  border-radius: 10px;
-  border: 2.5px solid #F59E0B;
-  box-shadow: 
-    0 0 20px rgba(251, 191, 36, 0.6),
-    0 4px 15px rgba(0, 0, 0, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  animation: pulseWarning 2s ease-in-out infinite, gradientShift 4s ease infinite;
-  position: relative;
-  overflow: hidden;
-}
-
-.warning-badge-animated::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(
-    45deg,
-    transparent 30%,
-    rgba(255, 255, 255, 0.3) 50%,
-    transparent 70%
-  );
-  animation: shine 3s infinite;
-}
-
-.warning-badge-animated:hover {
-  transform: scale(1.02);
-  box-shadow: 
-    0 0 30px rgba(251, 191, 36, 0.8),
-    0 6px 20px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
-}
-
-.warning-icon-shake {
-  color: #DC2626;
-  font-size: 18px;
-  animation: shake 0.6s ease-in-out infinite;
-  filter: drop-shadow(0 2px 4px rgba(220, 38, 38, 0.3));
-}
-
-.warning-text {
-  color: #991B1B;
-  font-weight: 800;
-  font-size: 13px;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  position: relative;
-  z-index: 1;
-}
-
-@keyframes pulseWarning {
-  0%, 100% {
-    box-shadow: 
-      0 0 20px rgba(251, 191, 36, 0.6),
-      0 4px 15px rgba(0, 0, 0, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  }
-  50% {
-    box-shadow: 
-      0 0 35px rgba(251, 191, 36, 0.9),
-      0 6px 20px rgba(0, 0, 0, 0.2),
-      inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  }
-}
-
-@keyframes gradientShift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes shake {
-  0%, 100% { 
-    transform: translateX(0) rotate(0deg); 
-  }
-  25% { 
-    transform: translateX(-2px) rotate(-5deg); 
-  }
-  75% { 
-    transform: translateX(2px) rotate(5deg); 
-  }
-}
-
-@keyframes shine {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(50%, 50%) rotate(360deg);
-  }
-}
-
-/* Responsive para móviles */
-@media (max-width: 640px) {
-  .warning-badge-animated {
-    padding: 10px 12px;
-    margin-top: 10px;
+  
+  .info-section h4 {
+    font-size: 0.875rem;
   }
   
-  .warning-text {
-    font-size: 11px;
-    letter-spacing: 0.5px;
-  }
-  
-  .warning-icon-shake {
-    font-size: 16px;
+  .info-section p {
+    font-size: 0.8125rem;
   }
 }
