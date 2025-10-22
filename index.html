@@ -8,7 +8,6 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="responsive.css">
   
-  <!-- "Suprimir warning de Tailwind en producción" -->
   <script>
     window.process = { env: { NODE_ENV: 'production' } };
   </script>
@@ -18,6 +17,122 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  
+  <style>
+    .dataset-overview {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid var(--uc-gray-200);
+    }
+    
+    .dataset-header {
+      background: linear-gradient(135deg, rgba(0, 123, 62, 0.05), rgba(121, 192, 0, 0.05));
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    
+    .dataset-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--uc-green-1);
+      margin-bottom: 0.5rem;
+    }
+    
+    .dataset-abstract {
+      font-size: 0.875rem;
+      color: var(--uc-gray-700);
+      line-height: 1.5;
+    }
+    
+    .columns-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.8125rem;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .columns-table thead {
+      background: var(--uc-green-1);
+      color: white;
+    }
+    
+    .columns-table th {
+      padding: 0.75rem 0.5rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .columns-table td {
+      padding: 0.75rem 0.5rem;
+      border-bottom: 1px solid var(--uc-gray-200);
+      color: var(--uc-gray-700);
+    }
+    
+    .columns-table tbody tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .columns-table tbody tr:hover {
+      background: var(--uc-gray-50);
+    }
+    
+    .column-type {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    .type-text {
+      background: rgba(59, 130, 246, 0.1);
+      color: #2563eb;
+    }
+    
+    .type-number {
+      background: rgba(16, 185, 129, 0.1);
+      color: #059669;
+    }
+    
+    .type-date {
+      background: rgba(249, 115, 22, 0.1);
+      color: #ea580c;
+    }
+    
+    .dataset-meta {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: var(--uc-gray-50);
+      border-radius: 8px;
+      font-size: 0.8125rem;
+    }
+    
+    .dataset-meta-item {
+      margin-bottom: 0.5rem;
+    }
+    
+    .dataset-meta-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .dataset-meta-label {
+      font-weight: 700;
+      color: var(--uc-green-1);
+    }
+    
+    .dataset-meta-value {
+      color: var(--uc-gray-700);
+    }
+  </style>
 </head>
 <body>
   <div class="banner-section"></div>
@@ -25,7 +140,6 @@
   <nav class="nav-wrapper">
     <div class="max-w-7xl mx-auto px-4">
       <div class="flex items-center justify-between h-16">
-        <!-- Logo y Título -->
         <div class="flex items-center gap-3">
           <img src="https://www.ucundinamarca.edu.co/images/ucundinamarca/escudo-color.png" alt="UdeC" class="h-10 w-10 object-contain">
           <div class="text-white">
@@ -34,7 +148,6 @@
           </div>
         </div>
 
-        <!-- Contenedor de Enlaces para Escritorio -->
         <div class="hidden md:flex items-center gap-2 nav-links-desktop">
           <button onclick="navigateTo('home')" class="text-white px-4 py-2 rounded-lg hover:bg-white/10 transition flex items-center gap-2">
             <i class="fas fa-home"></i><span>Inicio</span>
@@ -48,12 +161,14 @@
           <button onclick="navigateTo('administrativos')" class="text-white px-4 py-2 rounded-lg hover:bg-white/10 transition flex items-center gap-2">
             <i class="fas fa-briefcase"></i><span>Administrativos</span>
           </button>
+          <button onclick="navigateTo('gestores')" class="text-white px-4 py-2 rounded-lg hover:bg-white/10 transition flex items-center gap-2">
+            <i class="fas fa-chalkboard-teacher"></i><span>Gestores</span>
+          </button>
           <button id="logoutBtn" onclick="logout()" class="hidden text-white px-4 py-2 rounded-lg bg-red-500/20 hover:bg-red-500/30 transition flex items-center gap-2">
             <i class="fas fa-sign-out-alt"></i><span>Salir</span>
           </button>
         </div>
 
-        <!-- Botón de Hamburguesa para Móvil -->
         <div class="md:hidden">
           <button id="hamburgerBtn" class="text-white focus:outline-none">
             <i class="fas fa-bars text-2xl"></i>
@@ -62,23 +177,20 @@
       </div>
     </div>
 
-    <!-- Menú Desplegable para Móvil (inicialmente oculto) -->
     <div id="mobileMenu" class="md:hidden hidden bg-gray-800">
       <button onclick="navigateTo('home')" class="block text-white px-4 py-3 hover:bg-gray-700 w-full text-left">Inicio</button>
       <button onclick="navigateTo('lineamientos')" class="block text-white px-4 py-3 hover:bg-gray-700 w-full text-left">Lineamientos</button>
       <button onclick="navigateTo('estudiantes')" class="block text-white px-4 py-3 hover:bg-gray-700 w-full text-left">Estudiantes</button>
       <button onclick="navigateTo('administrativos')" class="block text-white px-4 py-3 hover:bg-gray-700 w-full text-left">Administrativos</button>
+      <button onclick="navigateTo('gestores')" class="block text-white px-4 py-3 hover:bg-gray-700 w-full text-left">Gestores del Conocimiento</button>
     </div>
   </nav>
 
-  <!-- VISTA HOME -->
   <div id="homeView" class="view-container active">
     <section class="max-w-7xl mx-auto px-4 py-8">
-      <!-- Panel de KPIs Principales -->
       <div class="bg-white rounded-2xl p-8 shadow-lg border border-gray-200 mb-8">
         <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Métricas</h2>
         
-        <!-- Tarjetas KPI Principales -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-10">
           <div class="stat-card-modern blue">
             <div class="stat-icon bg-blue-100">
@@ -105,7 +217,6 @@
           </div>
         </div>
 
-        <!-- Tarjetas por Nivel Académico -->
         <div class="mb-10">
           <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Distribución por Nivel Académico</h3>
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -139,7 +250,6 @@
           </div>
         </div>
 
-        <!-- Visualizaciones -->
         <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 mt-8">
           <div class="lg:col-span-2 bg-gray-50 p-4 rounded-xl border">
             <h3 class="font-bold text-center text-gray-700 mb-2">Distribución de Estudiantes por Sede</h3>
@@ -192,21 +302,8 @@
     </section>
   </div>
 
-  <!-- VISTA ESTUDIANTES -->
-  <div id="estudiantesView" class="view-container">
-    <main class="max-w-7xl mx-auto px-4 py-8">
-      <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 mb-8">
-        <h2 class="text-3xl font-bold text-gray-800 mb-4">Dashboards para Estudiantes</h2>
-        <p class="text-gray-600">Tableros de datos organizados por macroprocesos institucionales relacionados con información estudiantil y académica.</p>
-      </div>
-      <div id="estudiantesDashboards"></div>
-    </main>
-  </div>
-
-  <!-- VISTA LINEAMIENTOS DE GOBIERNO DE DATOS -->
   <div id="lineamientosView" class="view-container">
     <main class="max-w-7xl mx-auto px-4 py-8">
-      <!-- Header -->
       <div class="bg-gradient-to-r from-green-600 to-green-700 rounded-2xl p-8 shadow-xl mb-8 text-white">
         <div class="flex items-center gap-4 mb-4">
           <div class="bg-white/20 p-4 rounded-full">
@@ -219,9 +316,7 @@
         </div>
       </div>
 
-      <!-- Sección de columnas principales -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
-        <!-- COLUMNA: GOBIERNO DE DATOS -->
         <div class="bg-white rounded-2xl p-8 shadow-lg border-2 border-green-500">
           <div class="flex items-center gap-3 mb-6 pb-4 border-b-2 border-green-500">
             <div class="bg-green-100 p-3 rounded-full">
@@ -230,7 +325,6 @@
             <h2 class="text-3xl font-bold text-green-700">Gobierno de Datos</h2>
           </div>
 
-          <!-- Contenido del documento de Gobierno de Datos -->
           <div class="space-y-6">
             <div class="bg-green-50 p-5 rounded-lg border-l-4 border-green-600">
               <h3 class="font-bold text-xl text-gray-800 mb-3 flex items-center gap-2">
@@ -379,7 +473,6 @@
           </div>
         </div>
 
-        <!-- COLUMNA: INTELIGENCIA ARTIFICIAL -->
         <div class="bg-white rounded-2xl p-8 shadow-lg border-2 border-blue-500">
           <div class="flex items-center gap-3 mb-6 pb-4 border-b-2 border-blue-500">
             <div class="bg-blue-100 p-3 rounded-full">
@@ -388,7 +481,6 @@
             <h2 class="text-3xl font-bold text-blue-700">Inteligencia Artificial</h2>
           </div>
 
-          <!-- Contenido de Inteligencia Artificial -->
           <div class="space-y-6">
             <div class="bg-blue-50 p-5 rounded-lg border-l-4 border-blue-600">
               <h3 class="font-bold text-xl text-gray-800 mb-3 flex items-center gap-2">
@@ -543,7 +635,6 @@
         </div>
       </div>
 
-      <!-- Call to Action -->
       <div class="bg-gradient-to-r from-green-600 to-blue-600 rounded-2xl p-8 text-white text-center">
         <h2 class="text-3xl font-bold mb-4">¿Tienes preguntas sobre estos lineamientos?</h2>
         <p class="text-green-100 mb-6 text-lg">Nuestro equipo está disponible para ayudarte</p>
@@ -554,113 +645,98 @@
     </main>
   </div>
 
-  <!-- VISTA ADMINISTRATIVOS (PANTALLA INTERMEDIA + LOGIN) -->
-  <div id="administrativosView" class="view-container">
+  <div id="loginView" class="view-container">
     <main class="max-w-7xl mx-auto px-4 py-8">
-      <!-- Pantalla intermedia de selección -->
-      <div id="adminSelectionSection">
-        <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 mb-8">
-          <h2 class="text-3xl font-bold text-gray-800 mb-4">Dashboards Administrativos</h2>
-          <p class="text-gray-600">Seleccione el tipo de contenido al que desea acceder:</p>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          <!-- Opción Públicos -->
-          <div class="bg-gradient-to-br from-green-50 to-green-100 rounded-2xl p-8 shadow-lg border-2 border-green-500 hover:shadow-2xl transition-all cursor-pointer" onclick="showPublicDashboards()">
-            <div class="text-center">
-              <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-full mb-4">
-                <i class="fas fa-unlock text-white text-3xl"></i>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-800 mb-3">Dashboards Públicos</h3>
-              <p class="text-gray-600 mb-6">Acceso libre a tableros de información general e indicadores institucionales</p>
-              <button class="btn-primary w-full justify-center">
-                <i class="fas fa-arrow-right"></i><span>Acceder</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- Opción Privados -->
-          <div class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 shadow-lg border-2 border-blue-500 hover:shadow-2xl transition-all cursor-pointer" onclick="showLoginSection()">
-            <div class="text-center">
-              <div class="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mb-4">
-                <i class="fas fa-lock text-white text-3xl"></i>
-              </div>
-              <h3 class="text-2xl font-bold text-gray-800 mb-3">Dashboards Privados</h3>
-              <p class="text-gray-600 mb-6">Información confidencial y estratégica para usuarios autorizados</p>
-              <button class="btn-secondary w-full justify-center">
-                <i class="fas fa-sign-in-alt"></i><span>Iniciar Sesión</span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Sección de Login -->
-      <div id="loginSection" class="hidden min-h-[60vh] flex items-center justify-center">
+      <div class="min-h-[60vh] flex items-center justify-center">
         <div class="login-card">
-          <button onclick="backToAdminSelection()" class="text-gray-600 hover:text-gray-800 mb-4 flex items-center gap-2">
-            <i class="fas fa-arrow-left"></i> Volver
-          </button>
           <div class="text-center mb-6">
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full mb-4">
+            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-full mb-4" id="loginIcon">
               <i class="fas fa-user-lock text-white text-2xl"></i>
             </div>
-            <h2 class="text-3xl font-bold text-gray-800">Acceso Administrativo</h2>
-            <p class="text-gray-600 mt-2">Ingrese sus credenciales para continuar</p>
+            <h2 class="text-3xl font-bold text-gray-800" id="loginTitle">Acceso al Sistema</h2>
+            <p class="text-gray-600 mt-2" id="loginSubtitle">Ingrese sus credenciales para continuar</p>
           </div>
-          <div class="space-y-4">
+          <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();" class="space-y-4">
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">Usuario</label>
-              <input type="text" id="adminUsername" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+              <input type="text" id="username" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none" required>
             </div>
             <div>
               <label class="block text-sm font-medium text-gray-700 mb-1">Contraseña</label>
-              <input type="password" id="adminPassword" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+              <input type="password" id="password" class="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-green-500 outline-none" required>
             </div>
-            <div class="bg-blue-50 border border-blue-200 rounded-lg p-3 text-sm">
-              <strong class="text-blue-900">Demo:</strong>
-              <span class="text-blue-700"> Usuario: admin / Contraseña: udec2024</span>
+            <div class="bg-green-50 border border-green-200 rounded-lg p-3 text-sm">
+              <strong class="text-green-900">Credenciales de acceso:</strong>
+              <ul class="text-green-700 mt-2 space-y-1">
+                <li><strong>Estudiantes:</strong> estudiante / udec2024</li>
+                <li><strong>Administrativos:</strong> admin / udec2024</li>
+                <li><strong>Docentes:</strong> docente / udec2024</li>
+              </ul>
             </div>
-            <div id="adminLoginError" class="hidden bg-red-50 border border-red-200 text-red-700 rounded-lg p-3 text-sm"></div>
-            <button onclick="handleAdminLogin()" class="btn-secondary w-full py-3 text-lg justify-center">
+            <div id="loginError" class="hidden bg-red-50 border border-red-200 text-red-700 rounded-lg p-3 text-sm"></div>
+            <button type="submit" class="btn-primary w-full py-3 text-lg justify-center">
               <i class="fas fa-sign-in-alt"></i><span>Iniciar Sesión</span>
             </button>
-          </div>
+          </form>
         </div>
-      </div>
-
-      <!-- Sección Dashboards Públicos -->
-      <div id="publicDashboardsSection" class="hidden">
-        <button onclick="backToAdminSelection()" class="text-gray-600 hover:text-gray-800 mb-4 flex items-center gap-2">
-          <i class="fas fa-arrow-left"></i> Volver a opciones
-        </button>
-        <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 mb-8">
-          <h2 class="text-3xl font-bold text-gray-800 mb-4">Dashboards Públicos</h2>
-          <p class="text-gray-600">Tableros de datos de acceso libre organizados por macroprocesos institucionales.</p>
-        </div>
-        <div id="publicDashboards"></div>
-      </div>
-
-      <!-- Sección Dashboards Privados (después del login) -->
-      <div id="adminDashboardsSection" class="hidden">
-        <div class="flex items-center justify-between mb-4">
-          <button onclick="logout()" class="text-gray-600 hover:text-gray-800 flex items-center gap-2">
-            <i class="fas fa-arrow-left"></i> Cerrar sesión
-          </button>
-        </div>
-        <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 mb-8">
-          <h2 class="text-3xl font-bold text-gray-800 mb-4">Dashboards Administrativos Privados</h2>
-          <p class="text-gray-600">Tableros de datos confidenciales para gestión administrativa y toma de decisiones estratégicas.</p>
-        </div>
-        <div id="administrativosDashboards"></div>
       </div>
     </main>
   </div>
 
-  <!-- MODAL DASHBOARD -->
+  <div id="estudiantesView" class="view-container">
+    <main class="max-w-7xl mx-auto px-4 py-8">
+      <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 mb-8">
+        <div class="flex items-center gap-4">
+          <div class="bg-green-100 p-4 rounded-full">
+            <i class="fas fa-user-graduate text-green-600 text-3xl"></i>
+          </div>
+          <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">Portal Estudiantil</h2>
+            <p class="text-gray-600">Tableros de indicadores académicos y formativos organizados por áreas institucionales</p>
+          </div>
+        </div>
+      </div>
+      <div id="estudiantesDashboards"></div>
+    </main>
+  </div>
+
+  <div id="administrativosView" class="view-container">
+    <main class="max-w-7xl mx-auto px-4 py-8">
+      <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 mb-8">
+        <div class="flex items-center gap-4">
+          <div class="bg-blue-100 p-4 rounded-full">
+            <i class="fas fa-briefcase text-blue-600 text-3xl"></i>
+          </div>
+          <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">Portal Administrativo</h2>
+            <p class="text-gray-600">Tableros de gestión institucional, planeación estratégica y control interno</p>
+          </div>
+        </div>
+      </div>
+      <div id="administrativosDashboards"></div>
+    </main>
+  </div>
+
+  <div id="gestoresView" class="view-container">
+    <main class="max-w-7xl mx-auto px-4 py-8">
+      <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 mb-8">
+        <div class="flex items-center gap-4">
+          <div class="bg-amber-100 p-4 rounded-full">
+            <i class="fas fa-chalkboard-teacher text-amber-600 text-3xl"></i>
+          </div>
+          <div>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">Portal Gestores del Conocimiento</h2>
+            <p class="text-gray-600">Información sobre cuerpo docente, contratación y gestión del talento académico</p>
+          </div>
+        </div>
+      </div>
+      <div id="gestoresDashboards"></div>
+    </main>
+  </div>
+
   <div id="dashboardModal" class="modal-backdrop">
-    <div class="modal-content">
-      <div class="bg-gradient-to-r from-green-600 to-green-700 p-4 rounded-t-2xl flex items-center justify-between">
+    <div class="modal-content-enhanced">
+      <div class="dashboard-modal-header">
         <div class="text-white">
           <h2 id="modalTitle" class="text-xl font-bold"></h2>
           <p id="modalArea" class="text-sm opacity-90"></p>
@@ -669,11 +745,63 @@
           <i class="fas fa-times text-xl"></i>
         </button>
       </div>
-      <div class="flex-1 bg-gray-100 p-2 overflow-hidden">
-        <div id="iframeContainer" class="w-full h-full bg-white rounded-lg"></div>
+      <div class="dashboard-modal-body">
+        <div class="dashboard-iframe-wrapper">
+          <div id="iframeContainer" class="dashboard-iframe-container"></div>
+          <button id="toggleInfoPanelBtn" onclick="toggleInfoPanel()" class="info-panel-toggle" title="Mostrar información del tablero">
+            <i class="fas fa-info-circle"></i>
+          </button>
+        </div>
+        <div id="dashboardInfoPanel" class="dashboard-info-panel">
+          <div class="info-panel-header">
+            <h3><i class="fas fa-info-circle"></i> Información del Tablero</h3>
+            <button onclick="toggleInfoPanel()" class="info-panel-close">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="info-panel-content">
+            <div class="info-section">
+              <h4><i class="fas fa-align-left"></i> Descripción</h4>
+              <p id="infoDescripcion"></p>
+            </div>
+            <div class="info-section">
+              <h4><i class="fas fa-toggle-on"></i> Estado</h4>
+              <div id="infoEstado" class="status-badge"></div>
+            </div>
+            <div class="info-section" id="infoHistoricoSection" style="display: none;">
+              <h4><i class="fas fa-history"></i> Indicador Histórico</h4>
+              <p id="infoHistorico"></p>
+            </div>
+            <div class="info-section">
+              <h4><i class="fas fa-comment-dots"></i> Observaciones</h4>
+              <p id="infoObservaciones"></p>
+            </div>
+            
+            <div class="info-section dataset-overview">
+              <h4><i class="fas fa-database"></i> Información del Dataset</h4>
+              <div class="dataset-header">
+                <div class="dataset-name" id="datasetName"></div>
+                <div class="dataset-abstract" id="datasetAbstract"></div>
+              </div>
+              <div id="datasetColumnsContainer"></div>
+              <div class="dataset-meta">
+                <div class="dataset-meta-item">
+                  <span class="dataset-meta-label">Origen:</span>
+                  <span class="dataset-meta-value" id="datasetSource"></span>
+                </div>
+                <div class="dataset-meta-item">
+                  <span class="dataset-meta-label">Notas:</span>
+                  <span class="dataset-meta-value" id="datasetNotes"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="p-4 bg-gray-50 rounded-b-2xl flex items-center justify-between">
-        <div id="modalType" class="flex items-center gap-2"></div>
+      <div class="dashboard-modal-footer">
+        <button onclick="downloadCSV()" class="btn-csv">
+          <i class="fas fa-download"></i><span>Descargar CSV</span>
+        </button>
         <button onclick="openInNewTab()" class="btn-primary">
           <i class="fas fa-external-link-alt"></i><span>Abrir en nueva pestaña</span>
         </button>
