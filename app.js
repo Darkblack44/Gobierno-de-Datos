@@ -1,7 +1,7 @@
 // ==========================================
 // CONFIGURACIÓN DE DEBUG
 // ==========================================
-const DEBUG_MODE = false; // Cambiar a false en producción
+const DEBUG_MODE = false;
 
 function debugLog(message, data = null) {
   if (DEBUG_MODE) {
@@ -19,7 +19,6 @@ function debugLog(message, data = null) {
 function generateSafeId(text, prefix = '') {
   if (!text) return prefix + 'unknown';
   
-  // Normalizar el texto: convertir a minúsculas y eliminar acentos
   const normalized = text.toLowerCase()
     .normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
@@ -33,52 +32,80 @@ function generateSafeId(text, prefix = '') {
   return id || prefix + 'area-unknown';
 }
 
+// ==========================================
+// SISTEMA DE ROLES Y USUARIOS
+// ==========================================
+const USERS = {
+  'estudiante': { password: 'udec2024', role: 'Estudiante', name: 'Estudiante' },
+  'admin': { password: 'udec2024', role: 'Administrativo', name: 'Administrativo' },
+  'docente': { password: 'udec2024', role: 'Docente', name: 'Gestor del Conocimiento' }
+};
+
+let currentUser = null;
+
+// ==========================================
+// DATOS DE DASHBOARDS - COMPLETOS Y REORGANIZADOS
+// ==========================================
 const dashboards = [
-  {"id":1,"titulo":"Asesor Disciplinar","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiMzM4YTllZGUtOGQ1Yy00MWQ5LWFkN2UtNWFhMmViY2MxZTVkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"SNIES - Sistema Académico","elaboradoPor":"Oficina de Desarrollo Académico"},
-  {"id":2,"titulo":"CAI Cátedra Generación Siglo 21 V2","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiMWFkODZhODgtOTVmZi00ZTFhLTlmZjgtMDlhZjlhNjA0N2YwIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Oficina de Desarrollo Académico"},
-  {"id":3,"titulo":"CAI Viviendo el MEDIT","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiZjdhZmFjYjEtZTUyMi00NzUwLTg0YzItMjEyYjgyNWZjYTBkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Oficina de Desarrollo Académico"},
-  {"id":4,"titulo":"Campo Multidimensional de Aprendizaje (CMA)","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiMzdlYjNhNDAtYzQzOC00ZmRhLTk5NTktNWQ2YzA4NGI5YTc0IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - CMA","elaboradoPor":"Oficina de Desarrollo Académico"},
-  {"id":5,"titulo":"Diagnósticos y Nivelatorios - Informe","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiZWQwOTI0ZDYtZTYxNC00MGFmLWE1OTUtNTM4MzViZDcwNDNkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Diagnósticos","elaboradoPor":"Oficina de Desarrollo Académico"},
-  {"id":6,"titulo":"Ingresos a Campo Multidimensional de Aprendizaje","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiMDNjYzVmNjYtYzI4OS00NGEwLWJlNDgtODMzY2M2ZDMzY2Q2IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - CMA","elaboradoPor":"Oficina de Desarrollo Académico"},
-  {"id":7,"titulo":"Monitorías","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiMjdlNTVkNmItMDMwZi00ZjlkLWJhNzktNWYwMWQyYWY4MGFjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Monitorías","elaboradoPor":"Oficina de Desarrollo Académico"},
-  {"id":8,"titulo":"Tránsito de la Educación Media a la Educación Superior","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Admisiones y Registro","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiN2IwOWQ0MTAtZjY1Mi00YmRjLTg2MmItYTJlYmZjZDk1YjY1IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"SNIES - ICFES","elaboradoPor":"Oficina de Desarrollo Académico"},
-  {"id":9,"titulo":"Asesor Disciplinar","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiOTE5MTcyZjAtYjNkNy00ZTE0LTgyMDItNGQ0MGE4OTZlMDk0IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma Virtual","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":10,"titulo":"Asesor Disciplinar V2","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiMzM4YTllZGUtOGQ1Yy00MWQ5LWFkN2UtNWFhMmViY2MxZTVkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma Virtual","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":11,"titulo":"CAI Cátedra Generación Siglo 21","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiNjQ3ODYwNzItZDRlMi00ZDljLTk1ODQtNjJlMGY1YTI2NTJjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":12,"titulo":"CAI Cátedra Generación Siglo 21 V2","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiMWFkODZhODgtOTVmZi00ZTFhLTlmZjgtMDlhZjlhNjA0N2YwIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":13,"titulo":"CAI Viviendo el MEDIT","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiZjdhZmFjYjEtZTUyMi00NzUwLTg0YzItMjEyYjgyNWZjYTBkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":14,"titulo":"Campo Multidimensional de Aprendizaje (CMA)","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiMzdlYjNhNDAtYzQzOC00ZmRhLTk5NTktNWQ2YzA4NGI5YTc0IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - CMA","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":15,"titulo":"Campo Multidimensional de Aprendizaje (CMA) - Posgrados","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiY2RiZTJjMzktNGVhOC00YmZhLWFkNzItNTUzOTlhZTYyNTc4IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - CMA","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":16,"titulo":"Cursos Autogestionados<br><div class='warning-badge-animated'><i class='fas fa-exclamation-triangle warning-icon-shake'></i><span class='warning-text'>⚠️ Se debe anonimizar datos</span></div>","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiOTBhNThkMTktNmU0OC00YmM5LTkyNDktNGFjMTA5NGFmNTdmIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma Virtual","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":17,"titulo":"Diagnósticos y Nivelatorios - Informe","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiZWQwOTI0ZDYtZTYxNC00MGFmLWE1OTUtNTM4MzViZDcwNDNkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Diagnósticos","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":18,"titulo":"Graduados UCundinamarca","area":"Graduados","macroproceso":"Misional","subproceso":"Graduados","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiZjZkZmQ1MzUtMjA4Yy00OTIzLWE5N2QtMmU4NTE1Y2UwMWY5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Graduados - SNIES","elaboradoPor":"Oficina de Graduados"},
-  {"id":19,"titulo":"Informe Final","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiYzdiN2I2ZWQtOWY4ZS00MWJiLWIyODUtZTViY2Q0ZTc3NDc2IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":20,"titulo":"Ingresos a Campo Multidimensional de Aprendizaje","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiMDNjYzVmNjYtYzI4OS00NGEwLWJlNDgtODMzY2M2ZDMzY2Q2IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - CMA","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":21,"titulo":"Insignias Digitales","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiYWQ1MmJiNzQtNzJkZS00MzYzLTg4YWEtMjFjOTAxNDMzYWJjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma de Insignias","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":22,"titulo":"Inventario de Recursos Educativos Digitales","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiN2JlODU1MGQtM2FiNi00NWU4LWI1YjItNWVmMGZlMmNlM2I5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Repositorio Institucional","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":23,"titulo":"Monitorías","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiMjdlNTVkNmItMDMwZi00ZjlkLWJhNzktNWYwMWQyYWY4MGFjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Monitorías","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":24,"titulo":"Posgrados","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiMjFiNDQ4ODQtMWE4Mi00YjFmLWJiOTYtYWU1MGViNjQzOWI1IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":25,"titulo":"Tránsito de la Educación Media a la Educación Superior","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Admisiones y Registro","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiN2IwOWQ0MTAtZjY1Mi00YmRjLTg2MmItYTJlYmZjZDk1YjY1IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"SNIES - ICFES","elaboradoPor":"Oficina de Educación Virtual"},
-  {"id":26,"titulo":"Indicadores del Sistema de Gestión Ambiental","area":"Sistema de Gestión Ambiental","macroproceso":"Estratégico","subproceso":"Sistemas Integrados","tipo":"Público","url":"https://www.ucundinamarca.edu.co/index.php/servicios2022/sistema-de-gestion-ambiental","fechaActualizacion":"15/01/2025","fuente":"Sistema de Gestión Ambiental","elaboradoPor":"Coordinación SGA"},
-  {"id":27,"titulo":"Procesos de Contratación","area":"Oficina de Compras","macroproceso":"Apoyo","subproceso":"Bienes y Servicios","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiZTJkYjJlNmYtZjY3MC00Y2YxLWI2YzctNzNmMTUyYTlkNGU3IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Contratación - SECOP","elaboradoPor":"Oficina de Compras"},
-  {"id":28,"titulo":"Tablero General de Indicadores","area":"Control Interno","macroproceso":"Seguimiento","subproceso":"Control Interno","tipo":"Público","url":"https://www.ucundinamarca.edu.co/index.php/control-interno","fechaActualizacion":"15/01/2025","fuente":"Sistema de Control Interno","elaboradoPor":"Oficina de Control Interno"},
-  {"id":29,"titulo":"Participación en Eventos de SGSI","area":"Sistema de Gestión de Seguridad de la Información - SGSI","macroproceso":"Estratégico","subproceso":"Sistemas Integrados","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiYzAyMTE5MzktZWNhNS00ZmQ0LWFjNmMtYjNmNmE4ODViYTQ5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema SGSI","elaboradoPor":"Coordinación SGSI"},
-  {"id":30,"titulo":"Tablero de Planes de Mejoramiento","area":"Control Interno","macroproceso":"Seguimiento","subproceso":"Control Interno","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiYzBmNDk1MGYtZjJiYi00OTBlLWI4ZDMtMWVhZDFjMDc0ZGUxIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Control Interno","elaboradoPor":"Oficina de Control Interno"},
-  {"id":31,"titulo":"Seguimiento de Proyectos","area":"Dirección de Investigación","macroproceso":"Misional","subproceso":"Ciencia, Tecnología e Innovación","tipo":"Público","url":"https://www.ucundinamarca.edu.co/investigacion/index.php/proyectos","fechaActualizacion":"15/01/2025","fuente":"Sistema de Investigación","elaboradoPor":"Dirección de Investigación"},
-  {"id":32,"titulo":"Ejecución Activa","area":"Vicerrectoría Administrativa y Financiera","macroproceso":"Apoyo","subproceso":"Financiera","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiM2UzMWM0ODEtYmMwNC00NzUzLWEyM2YtOThiMzAwZjZmMzRlIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Financiero SAP","elaboradoPor":"Vicerrectoría Administrativa"},
-  {"id":33,"titulo":"Ejecución Pasiva","area":"Vicerrectoría Administrativa y Financiera","macroproceso":"Apoyo","subproceso":"Financiera","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiMWE4NGI1N2EtNGY2OC00MmMyLTkzMjMtYWUxZjA5OTk2ZGVhIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Financiero SAP","elaboradoPor":"Vicerrectoría Administrativa"},
-  {"id":34,"titulo":"Planes de Mejoramiento","area":"Vicerrectoría Administrativa y Financiera","macroproceso":"Apoyo","subproceso":"Financiera","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiYjFhMTE5MjgtZjRmZS00ZDQzLWE3ZTktNjMyZDdiNjRhODlkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Mejoramiento","elaboradoPor":"Vicerrectoría Administrativa"},
-  {"id":35,"titulo":"Plan Mensual de Contratación","area":"Vicerrectoría Administrativa y Financiera","macroproceso":"Apoyo","subproceso":"Bienes y Servicios","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiZmNkOWQ1MTItOTM0Yy00YjgyLWFkNGYtNzEwNjBmNzM3YWM2IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Contratación","elaboradoPor":"Vicerrectoría Administrativa"},
-  {"id":36,"titulo":"Conexión Líneas de Profundización Pregrado-Posgrados","area":"Instituto de Posgrados","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiYTBmN2M3YjctOGFiMS00OWYyLWJkNGItOWVkM2VjNDgyZDIxIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - SNIES","elaboradoPor":"Instituto de Posgrados"},
-  {"id":37,"titulo":"Perfil de Estudiantes IDEP","area":"Instituto de Posgrados","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiMGE4MjRlOWUtMDM5MC00YmFlLWJlYTEtZTgxNGUzOGVmYTIwIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico","elaboradoPor":"Instituto de Posgrados"},
-  {"id":38,"titulo":"Encuesta de Satisfacción de Programas","area":"Instituto de Posgrados","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiYjEyOTYyN2MtNmZhYy00YjAzLThjNDgtMmU3Yjg1OWM1ZTQwIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Encuestas","elaboradoPor":"Instituto de Posgrados"},
-  {"id":39,"titulo":"Reporte de Opciones de Grado","area":"Instituto de Posgrados","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiODJlMjM2MTctOWI4NS00NzBjLWE4NTYtNDQxNzdkNzRhMWVmIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico","elaboradoPor":"Instituto de Posgrados"},
-  {"id":40,"titulo":"Boletín Estadístico","area":"Dirección de Planeación","macroproceso":"Estratégico","subproceso":"Planeación Institucional","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiZTYyOWU0ZGQtNzUxNS00MTdjLTgxMTMtODRjNzc4NThkMTYxIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Planeación - SNIES","elaboradoPor":"Dirección de Planeación"},
-  {"id":41,"titulo":"Deserción","area":"Dirección de Planeación","macroproceso":"Estratégico","subproceso":"Planeación Institucional","tipo":"Privado","url":"https://app.powerbi.com/view?r=eyJrIjoiYTY0MDk3MDAtZDIzMy00MTk3LThlZmItYzgyNzk3YWU3YjNhIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - SPADIES","elaboradoPor":"Dirección de Planeación"},
-  {"id":42,"titulo":"Calendario Institucional","area":"Dirección de Planeación","macroproceso":"Estratégico","subproceso":"Planeación Institucional","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiOTQzMDgxODgtMTFkYS00YWU2LWE2NTAtMjI0OTFiMTBmNWY5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Planeación","elaboradoPor":"Dirección de Planeación"},
-  {"id":43,"titulo":"CAI Encuentros Dialógicos y Formativos","area":"Dirección de Planeación","macroproceso":"Estratégico","subproceso":"Direccionamiento Estratégico","tipo":"Público","url":"https://app.powerbi.com/view?r=eyJrIjoiMjFlYmIzOTUtMDcyMy00MGNiLTllZjktNTY2ZjM2ZjgxMmVlIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Dirección de Planeación"},
-  {"id":44,"titulo":"Tablero Informativo","area":"Proyectos Especiales y Relaciones Interinstitucionales","macroproceso":"Estratégico","subproceso":"Proyectos Especiales y Relaciones Interinstitucionales","tipo":"Público","url":"https://www.ucundinamarca.edu.co/index.php/proyectos-especiales-y-relaciones-interinstitucionales","fechaActualizacion":"15/01/2025","fuente":"Sitio Web Institucional","elaboradoPor":"Proyectos Especiales"}
+  {"id":1,"titulo":"Asesor Disciplinar","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiMzM4YTllZGUtOGQ1Yy00MWQ5LWFkN2UtNWFhMmViY2MxZTVkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"SNIES - Sistema Académico","elaboradoPor":"Oficina de Desarrollo Académico","descripcion":"Tablero interactivo para el seguimiento y análisis del acompañamiento académico disciplinar brindado a estudiantes de pregrado.","estado":"Activo","observaciones":"Actualizado semestralmente con datos del Sistema Académico Institucional.","esHistorico":false,"datasetName":"Asesorias_Disciplinares","datasetAbstract":"Registro de asesorías disciplinares brindadas a estudiantes de pregrado por programa, periodo y estado de avance.","columns":[{"name":"id_asesoria","type":"number","description":"Identificador único de la asesoría"},{"name":"codigo_estudiante","type":"text","description":"Código institucional del estudiante"},{"name":"programa_academico","type":"text","description":"Nombre del programa académico"},{"name":"periodo_academico","type":"text","description":"Periodo en formato AAAA-P"},{"name":"asignatura","type":"text","description":"Nombre de la asignatura asesorada"},{"name":"fecha_asesoria","type":"date","description":"Fecha de realización de la asesoría"},{"name":"duracion_minutos","type":"number","description":"Duración en minutos"},{"name":"modalidad","type":"text","description":"Presencial / Virtual / Híbrida"},{"name":"estado","type":"text","description":"Programada / Realizada / Cancelada"},{"name":"calificacion_estudiante","type":"number","description":"Calificación de satisfacción (1-5)"}],"datasetSource":"Sistema Académico Institucional - Base de datos de asesorías","datasetNotes":"Se actualizan cada fin de semestre. Los datos históricos se conservan desde 2020-1."},
+  {"id":2,"titulo":"CAI Cátedra Generación Siglo 21 V2","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiMWFkODZhODgtOTVmZi00ZTFhLTlmZjgtMDlhZjlhNjA0N2YwIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Oficina de Desarrollo Académico","descripcion":"Visualización de datos de participación, asistencia y desempeño estudiantil en la cátedra institucional Generación Siglo 21.","estado":"Activo","observaciones":"Datos recopilados de la plataforma CAI en tiempo real durante el periodo académico vigente.","esHistorico":false,"datasetName":"CAI_Generacion_Siglo21","datasetAbstract":"Participación, asistencia y calificaciones de estudiantes en la cátedra institucional Generación Siglo 21.","columns":[{"name":"codigo_estudiante","type":"text","description":"Código del estudiante"},{"name":"programa","type":"text","description":"Programa académico al que pertenece"},{"name":"periodo","type":"text","description":"Periodo académico"},{"name":"modulo","type":"text","description":"Nombre del módulo cursado"},{"name":"asistencias","type":"number","description":"Número de asistencias registradas"},{"name":"sesiones_totales","type":"number","description":"Total de sesiones del módulo"},{"name":"calificacion_final","type":"number","description":"Calificación final obtenida (0-5)"},{"name":"estado_aprobacion","type":"text","description":"Aprobado / Reprobado / En curso"}],"datasetSource":"Plataforma CAI - Base de datos académica","datasetNotes":"Actualización en tiempo real. Filtros aplicados por periodo y sede."},
+  {"id":3,"titulo":"CAI Viviendo el MEDIT","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiZjdhZmFjYjEtZTUyMi00NzUwLTg0YzItMjEyYjgyNWZjYTBkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Oficina de Desarrollo Académico","descripcion":"Dashboard dedicado al seguimiento de actividades y participación en la cátedra Viviendo el MEDIT (Modelo Educativo Digital Transmoderno).","estado":"Activo","observaciones":"Refleja el compromiso estudiantil con el modelo educativo institucional.","esHistorico":false,"datasetName":"CAI_Viviendo_MEDIT","datasetAbstract":"Seguimiento de la participación y rendimiento de los estudiantes en la cátedra institucional 'Viviendo el MEDIT'.","columns":[{"name":"codigo_estudiante","type":"text","description":"Código del estudiante"},{"name":"programa_academico","type":"text","description":"Programa académico del estudiante"},{"name":"periodo_academico","type":"text","description":"Periodo en formato AAAA-P"},{"name":"modulo_medit","type":"text","description":"Módulo o tema del MEDIT cursado"},{"name":"actividades_completadas","type":"number","description":"Número de actividades finalizadas"},{"name":"calificacion_promedio","type":"number","description":"Promedio de calificaciones en las actividades"},{"name":"fecha_ultima_actividad","type":"date","description":"Fecha de la última interacción del estudiante"}],"datasetSource":"Plataforma CAI - Módulo de seguimiento académico","datasetNotes":"Actualización en tiempo real durante el semestre. Los datos se consolidan al final del periodo."},
+  {"id":4,"titulo":"Campo Multidimensional de Aprendizaje (CMA)","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiMzdlYjNhNDAtYzQzOC00ZmRhLTk5NTktNWQ2YzA4NGI5YTc0IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - CMA","elaboradoPor":"Oficina de Desarrollo Académico","descripcion":"Tablero para analizar el avance y resultados de los estudiantes en los Campos Multidimensionales de Aprendizaje.","estado":"Activo","observaciones":"Incluye métricas de participación, evaluación y desarrollo de competencias transversales.","esHistorico":false,"datasetName":"Rendimiento_CMA","datasetAbstract":"Registro del rendimiento y avance de estudiantes en los diferentes Campos Multidimensionales de Aprendizaje (CMA).","columns":[{"name":"codigo_estudiante","type":"text","description":"Código del estudiante"},{"name":"nombre_cma","type":"text","description":"Nombre del Campo Multidimensional de Aprendizaje"},{"name":"competencia_desarrollada","type":"text","description":"Competencia específica que aborda el CMA"},{"name":"horas_cursadas","type":"number","description":"Total de horas certificadas"},{"name":"calificacion_final","type":"number","description":"Calificación obtenida en el CMA"},{"name":"periodo_cursado","type":"text","description":"Periodo académico de finalización"},{"name":"estado","type":"text","description":"Inscrito / En curso / Aprobado / Reprobado"}],"datasetSource":"Sistema de Gestión de CMA - Integrado con Sistema Académico","datasetNotes":"Actualización al finalizar cada periodo académico. Permite filtros por programa y sede."},
+  {"id":5,"titulo":"Diagnósticos y Nivelatorios - Informe","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiZWQwOTI0ZDYtZTYxNC00MGFmLWE1OTUtNTM4MzViZDcwNDNkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Diagnósticos","elaboradoPor":"Oficina de Desarrollo Académico","descripcion":"Reporte de resultados de las pruebas diagnósticas y cursos nivelatorios aplicados al inicio de cada periodo académico.","estado":"Activo","observaciones":"Permite identificar necesidades de refuerzo académico desde el ingreso de los estudiantes.","esHistorico":false,"datasetName":"Resultados_Diagnosticos_Nivelatorios","datasetAbstract":"Resultados de pruebas diagnósticas y cursos de nivelación para estudiantes de primer ingreso.","columns":[{"name":"codigo_estudiante","type":"text","description":"Código del estudiante de primer ingreso"},{"name":"periodo_ingreso","type":"text","description":"Periodo de admisión del estudiante"},{"name":"prueba_diagnostica","type":"text","description":"Nombre de la prueba (Ej. Matemáticas, Lectoescritura)"},{"name":"puntaje_obtenido","type":"number","description":"Puntaje del estudiante en la prueba"},{"name":"percentil","type":"number","description":"Posición porcentual del estudiante respecto al grupo"},{"name":"requiere_nivelatorio","type":"text","description":"Indica si el puntaje sugiere un curso nivelatorio (Sí/No)"},{"name":"curso_nivelatorio_tomado","type":"text","description":"Nombre del curso de nivelación inscrito"},{"name":"aprobacion_nivelatorio","type":"text","description":"Resultado del curso de nivelación (Aprobado/Reprobado)"}],"datasetSource":"Plataforma de Pruebas Diagnósticas Institucional","datasetNotes":"Datos cargados al inicio de cada semestre. Se utiliza para la planificación de estrategias de apoyo académico temprano."},
+  {"id":6,"titulo":"Ingresos a Campo Multidimensional de Aprendizaje","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiMDNjYzVmNjYtYzI4OS00NGEwLWJlNDgtODMzY2M2ZDMzY2Q2IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - CMA","elaboradoPor":"Oficina de Desarrollo Académico","descripcion":"Visualización de inscripciones y participación estudiantil en las diferentes áreas del Campo Multidimensional de Aprendizaje.","estado":"Activo","observaciones":"Datos actualizados al inicio de cada periodo académico.","esHistorico":false,"datasetName":"Inscripciones_CMA","datasetAbstract":"Registro de inscripciones de estudiantes a los diferentes Campos Multidimensionales de Aprendizaje (CMA) por periodo.","columns":[{"name":"id_inscripcion","type":"number","description":"Identificador único de la inscripción"},{"name":"codigo_estudiante","type":"text","description":"Código del estudiante"},{"name":"programa_academico","type":"text","description":"Programa del estudiante"},{"name":"periodo_inscripcion","type":"text","description":"Periodo en el que se realiza la inscripción"},{"name":"nombre_cma","type":"text","description":"Nombre del CMA al que se inscribe"},{"name":"area_conocimiento_cma","type":"text","description":"Área de conocimiento principal del CMA"},{"name":"fecha_inscripcion","type":"date","description":"Fecha exacta de la inscripción"}],"datasetSource":"Sistema de Gestión de CMA","datasetNotes":"La data se actualiza durante el periodo de inscripciones de cada semestre."},
+  {"id":7,"titulo":"Monitorías","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiMjdlNTVkNmItMDMwZi00ZjlkLWJhNzktNWYwMWQyYWY4MGFjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Monitorías","elaboradoPor":"Oficina de Desarrollo Académico","descripcion":"Tablero que muestra estadísticas de asignación, asistencia y efectividad de las monitorías académicas ofrecidas a estudiantes.","estado":"Activo","observaciones":"Incluye datos por programa académico, asignatura y tipo de monitoría.","esHistorico":false,"datasetName":"Gestion_Monitorias_Academicas","datasetAbstract":"Seguimiento de las monitorías académicas, incluyendo información del monitor, el estudiante asistido y la sesión.","columns":[{"name":"id_monitoria","type":"number","description":"Identificador de la sesión de monitoría"},{"name":"codigo_monitor","type":"text","description":"Código del estudiante que ejerce como monitor"},{"name":"codigo_estudiante_asistente","type":"text","description":"Código del estudiante que recibe la monitoría"},{"name":"asignatura","type":"text","description":"Asignatura objeto de la monitoría"},{"name":"tema_tratado","type":"text","description":"Tema específico abordado en la sesión"},{"name":"fecha_monitoria","type":"date","description":"Fecha de la sesión"},{"name":"duracion_horas","type":"number","description":"Duración de la sesión en horas"},{"name":"evaluacion_satisfaccion","type":"number","description":"Calificación de la sesión por parte del asistente (1-5)"}],"datasetSource":"Sistema de Gestión de Monitorías","datasetNotes":"Actualización semanal durante el periodo académico. Los datos son anonimizados en los agregados."},
+  {"id":8,"titulo":"Tránsito de la Educación Media a la Educación Superior","area":"Oficina de Desarrollo Académico","macroproceso":"Misional","subproceso":"Admisiones y Registro","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiN2IwOWQ0MTAtZjY1Mi00YmRjLTg2MmItYTJlYmZjZDk1YjY1IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"SNIES - ICFES","elaboradoPor":"Oficina de Desarrollo Académico","descripcion":"Análisis del perfil de ingreso de estudiantes nuevos, incluyendo resultados de pruebas ICFES y características sociodemográficas.","estado":"Activo","observaciones":"Datos agregados del SNIES e ICFES para caracterización de población estudiantil.","esHistorico":false,"datasetName":"Perfil_Ingresantes_Pruebas_Saber11","datasetAbstract":"Caracterización de los estudiantes admitidos, cruzando datos sociodemográficos con los resultados de las pruebas de estado Saber 11.","columns":[{"name":"periodo_admision","type":"text","description":"Periodo de ingreso del estudiante"},{"name":"programa_admitido","type":"text","description":"Programa al que fue admitido"},{"name":"tipo_colegio","type":"text","description":"Tipo de colegio de procedencia (Oficial/Privado)"},{"name":"puntaje_global_saber11","type":"number","description":"Puntaje global obtenido en la prueba Saber 11"},{"name":"puntaje_matematicas","type":"number","description":"Puntaje en el componente de matemáticas"},{"name":"puntaje_lectura_critica","type":"number","description":"Puntaje en el componente de lectura crítica"},{"name":"puntaje_ciencias_naturales","type":"number","description":"Puntaje en el componente de ciencias naturales"},{"name":"puntaje_sociales_ciudadanas","type":"number","description":"Puntaje en el componente de sociales y ciudadanas"},{"name":"estrato_socioeconomico","type":"number","description":"Estrato de la vivienda del estudiante"}],"datasetSource":"Datos del ICFES y Sistema de Admisiones Institucional","datasetNotes":"Datos actualizados anualmente. Se utilizan para establecer líneas base y estrategias de acompañamiento."},
+  {"id":9,"titulo":"Asesor Disciplinar","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiOTE5MTcyZjAtYjNkNy00ZTE0LTgyMDItNGQ0MGE4OTZlMDk0IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma Virtual","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Seguimiento del acompañamiento académico disciplinar en modalidad virtual y a distancia.","estado":"Activo","observaciones":"Datos extraídos de la plataforma de educación virtual institucional.","esHistorico":false,"datasetName":"Asesorias_Disciplinares_Virtual","datasetAbstract":"Registro de asesorías disciplinares en modalidad virtual. Similar al presencial pero con métricas de interacción digital.","columns":[{"name":"id_asesoria","type":"number","description":"Identificador único de la asesoría"},{"name":"codigo_estudiante","type":"text","description":"Código institucional del estudiante"},{"name":"programa_academico","type":"text","description":"Nombre del programa académico"},{"name":"periodo_academico","type":"text","description":"Periodo en formato AAAA-P"},{"name":"asignatura_virtual","type":"text","description":"Nombre de la asignatura o espacio virtual"},{"name":"fecha_asesoria","type":"date","description":"Fecha de la asesoría"},{"name":"tipo_interaccion","type":"text","description":"Foro / Chat / Videoconferencia"},{"name":"duracion_sesion_minutos","type":"number","description":"Duración en minutos"},{"name":"estado","type":"text","description":"Solicitada / Atendida / Cerrada"}],"datasetSource":"LMS Institucional (Moodle/Canvas) - Módulo de tutorías","datasetNotes":"Actualización semanal. Incluye análisis de tiempos de respuesta del tutor."},
+  {"id":10,"titulo":"Asesor Disciplinar V2","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiMzM4YTllZGUtOGQ1Yy00MWQ5LWFkN2UtNWFhMmViY2MxZTVkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma Virtual","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Versión mejorada del tablero de Asesor Disciplinar para programas virtuales, con métricas ampliadas de interacción y seguimiento.","estado":"Activo","observaciones":"Incluye análisis de interacciones en foros, chats y videoconferencias.","esHistorico":false,"datasetName":"Asesorias_Disciplinares_Virtual_V2","datasetAbstract":"Versión extendida del dataset de asesorías virtuales, con mayor granularidad en las interacciones y seguimiento.","columns":[{"name":"id_interaccion","type":"number","description":"Identificador único de la interacción"},{"name":"id_asesoria","type":"number","description":"ID de la asesoría a la que pertenece"},{"name":"codigo_estudiante","type":"text","description":"Código del estudiante"},{"name":"codigo_tutor","type":"text","description":"Código del tutor"},{"name":"asignatura_virtual","type":"text","description":"Espacio virtual de la asignatura"},{"name":"tipo_interaccion","type":"text","description":"Foro / Mensaje Directo / Tarea / Videoconferencia"},{"name":"fecha_interaccion","type":"date","description":"Fecha y hora de la interacción"},{"name":"contenido_analizado","type":"text","description":"Categoría del tema tratado (Ej. Conceptual, Procedimental)"},{"name":"tiempo_respuesta_tutor_horas","type":"number","description":"Tiempo que tardó el tutor en responder"}],"datasetSource":"LMS Institucional y Plataforma de analíticas de aprendizaje","datasetNotes":"Actualización diaria. Se utiliza para el monitoreo proactivo de la interacción tutorial."},
+  {"id":11,"titulo":"CAI Cátedra Generación Siglo 21","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiNjQ3ODYwNzItZDRlMi00ZDljLTk1ODQtNjJlMGY1YTI2NTJjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Visualización de participación estudiantil en la cátedra institucional para programas de educación virtual.","estado":"Activo","observaciones":"Datos sincronizados con la plataforma CAI institucional.","esHistorico":false,"datasetName":"CAI_Generacion_Siglo21_Virtual","datasetAbstract":"Datos del tablero ID 2, filtrados y contextualizados para la modalidad virtual.","columns":[{"name":"codigo_estudiante","type":"text","description":"Código del estudiante"},{"name":"programa_virtual","type":"text","description":"Programa académico virtual"},{"name":"periodo","type":"text","description":"Periodo académico"},{"name":"modulo","type":"text","description":"Módulo de la cátedra cursado"},{"name":"interacciones_plataforma","type":"number","description":"Número de clics/vistas en el módulo"},{"name":"calificacion_final","type":"number","description":"Calificación final obtenida (0-5)"}],"datasetSource":"Plataforma CAI - Base de datos académica (modalidad virtual)","datasetNotes":"Actualización en tiempo real."},
+  {"id":12,"titulo":"CAI Cátedra Generación Siglo 21 V2","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiMWFkODZhODgtOTVmZi00ZTFhLTlmZjgtMDlhZjlhNjA0N2YwIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Versión actualizada del tablero CAI Cátedra Generación Siglo 21 para modalidad virtual.","estado":"Activo","observaciones":"Incluye métricas de asistencia, participación y calificaciones.","esHistorico":false},
+  {"id":13,"titulo":"CAI Viviendo el MEDIT","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiZjdhZmFjYjEtZTUyMi00NzUwLTg0YzItMjEyYjgyNWZjYTBkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Dashboard de seguimiento de la cátedra Viviendo el MEDIT en modalidad virtual.","estado":"Activo","observaciones":"Refleja el compromiso estudiantil con el modelo educativo digital.","esHistorico":false},
+  {"id":14,"titulo":"Campo Multidimensional de Aprendizaje (CMA)","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiMzdlYjNhNDAtYzQzOC00ZmRhLTk5NTktNWQ2YzA4NGI5YTc0IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - CMA","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Análisis del avance de estudiantes en modalidad virtual en los Campos Multidimensionales de Aprendizaje.","estado":"Activo","observaciones":"Incluye métricas específicas para entornos de aprendizaje virtual.","esHistorico":false},
+  {"id":15,"titulo":"Campo Multidimensional de Aprendizaje (CMA) - Posgrados","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiY2RiZTJjMzktNGVhOC00YmZhLWFkNzItNTUzOTlhZTYyNTc4IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - CMA","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Tablero especializado para el seguimiento del CMA en programas de posgrado virtual.","estado":"Activo","observaciones":"Datos actualizados por cohorte de posgrado.","esHistorico":false,"datasetName":"Rendimiento_CMA_Posgrados","datasetAbstract":"Seguimiento del avance en CMA para estudiantes de posgrado en modalidad virtual.","columns":[{"name":"codigo_estudiante_posgrado","type":"text","description":"Código del estudiante"},{"name":"programa_posgrado","type":"text","description":"Maestría o Especialización cursada"},{"name":"cohorte","type":"text","description":"Cohorte de ingreso"},{"name":"nombre_cma","type":"text","description":"Nombre del CMA"},{"name":"tipo_producto_cma","type":"text","description":"Tipo de producto final (Artículo, Pasantía, etc.)"},{"name":"estado_avance","type":"text","description":"Propuesta / En desarrollo / Finalizado"},{"name":"calificacion_producto","type":"number","description":"Calificación del producto final"}],"datasetSource":"Sistema de Gestión de Posgrados y CMA","datasetNotes":"Actualización semestral por cohorte."},
+  {"id":16,"titulo":"Cursos Autogestionados","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiOTBhNThkMTktNmU0OC00YmM5LTkyNDktNGFjMTA5NGFmNTdmIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma Virtual","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Visualización de inscripciones, avance y finalización de cursos autogestionados ofrecidos por la universidad.","estado":"Activo","observaciones":"Incluye datos de cursos MOOC y microcredenciales digitales.","esHistorico":false,"datasetName":"Participacion_Cursos_Autogestionados","datasetAbstract":"Registro de la participación y finalización de estudiantes y público general en cursos abiertos y autogestionados.","columns":[{"name":"id_curso","type":"text","description":"Identificador del curso"},{"name":"nombre_curso","type":"text","description":"Nombre del curso autogestionado"},{"name":"id_participante","type":"text","description":"Identificador del participante (estudiante o externo)"},{"name":"fecha_inscripcion","type":"date","description":"Fecha de inicio del curso"},{"name":"progreso_porcentaje","type":"number","description":"Porcentaje de avance en el curso"},{"name":"fecha_finalizacion","type":"date","description":"Fecha de finalización (si aplica)"},{"name":"certificado_emitido","type":"text","description":"Indica si se generó un certificado (Sí/No)"}],"datasetSource":"Plataforma de Educación Continua (LMS)","datasetNotes":"Actualización diaria. Abierto a la comunidad, no solo a estudiantes regulares."},
+  {"id":17,"titulo":"Diagnósticos y Nivelatorios - Informe","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiZWQwOTI0ZDYtZTYxNC00MGFmLWE1OTUtNTM4MzViZDcwNDNkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Diagnósticos","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Reporte de diagnósticos y nivelatorios para estudiantes de modalidad virtual.","estado":"Activo","observaciones":"Permite estrategias de refuerzo adaptadas a la virtualidad.","esHistorico":false},
+  {"id":18,"titulo":"Graduados UCundinamarca","area":"Graduados","macroproceso":"Misional","subproceso":"Graduados","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiZjZkZmQ1MzUtMjA4Yy00OTIzLWE5N2QtMmU4NTE1Y2UwMWY5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Graduados - SNIES","elaboradoPor":"Oficina de Graduados","descripcion":"Dashboard con estadísticas de graduados: ubicación laboral, nivel de ingresos, sector de empleo y satisfacción.","estado":"Activo","observaciones":"Datos recopilados mediante encuestas a graduados y cruces con el SNIES.","esHistorico":false,"datasetName":"Seguimiento_Graduados","datasetAbstract":"Información sociodemográfica y laboral de los graduados, obtenida a través de encuestas de seguimiento y fuentes externas.","columns":[{"name":"documento_graduado","type":"text","description":"Número de identificación del graduado (anonimizado)"},{"name":"programa_graduado","type":"text","description":"Programa del cual se graduó"},{"name":"anio_graduacion","type":"number","description":"Año de obtención del título"},{"name":"sector_laboral","type":"text","description":"Sector económico donde trabaja (Ej. Público, Privado, Educación)"},{"name":"tipo_contrato","type":"text","description":"Modalidad de contratación (Indefinido, Fijo, Prestación de servicios)"},{"name":"rango_salarial","type":"text","description":"Rango de ingresos mensuales"},{"name":"ciudad_residencia","type":"text","description":"Ciudad actual de residencia"},{"name":"fecha_seguimiento","type":"date","description":"Fecha de la última encuesta o actualización"}],"datasetSource":"Sistema de Egresados y Graduados (SEG) y Observatorio Laboral del MEN","datasetNotes":"Los datos se actualizan anualmente. La tasa de respuesta de la encuesta puede afectar la representatividad."},
+  {"id":19,"titulo":"Informe Final","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiYzdiN2I2ZWQtOWY4ZS00MWJiLWIyODUtZTViY2Q0ZTc3NDc2IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Informe consolidado de resultados académicos finales para programas virtuales.","estado":"Activo","observaciones":"Generado al cierre de cada periodo académico.","esHistorico":false},
+  {"id":20,"titulo":"Ingresos a Campo Multidimensional de Aprendizaje","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiMDNjYzVmNjYtYzI4OS00NGEwLWJlNDgtODMzY2M2ZDMzY2Q2IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - CMA","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Visualización de inscripciones al CMA en modalidad virtual.","estado":"Activo","observaciones":"Datos actualizados al inicio de cada periodo académico.","esHistorico":false},
+  {"id":21,"titulo":"Insignias Digitales","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiYWQ1MmJiNzQtNzJkZS00MzYzLTg4YWEtMjFjOTAxNDMzYWJjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma de Insignias","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Tablero de seguimiento de obtención de insignias digitales por competencias adquiridas.","estado":"Activo","observaciones":"Incluye clasificación por tipo de competencia y programa académico.","esHistorico":false,"datasetName":"Emision_Insignias_Digitales","datasetAbstract":"Registro de todas las insignias digitales emitidas por la universidad, asociadas a competencias específicas.","columns":[{"name":"id_insignia","type":"text","description":"Identificador único de la insignia emitida"},{"name":"nombre_insignia","type":"text","description":"Nombre de la insignia"},{"name":"codigo_estudiante","type":"text","description":"Código del estudiante que la recibió"},{"name":"competencia_acreditada","type":"text","description":"Competencia que certifica la insignia"},{"name":"fecha_emision","type":"date","description":"Fecha en que se otorgó la insignia"},{"name":"evento_asociado","type":"text","description":"Curso, taller o actividad que otorgó la insignia"},{"name":"plataforma_emision","type":"text","description":"Plataforma donde se aloja la insignia (Ej. Credly, Badgr)"}],"datasetSource":"Plataforma de Gestión de Credenciales Digitales","datasetNotes":"Actualización en tiempo real a medida que se emiten las insignias."},
+  {"id":22,"titulo":"Inventario de Recursos Educativos Digitales","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiN2JlODU1MGQtM2FiNi00NWU4LWI1YjItNWVmMGZlMmNlM2I5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Repositorio Institucional","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Catálogo visual de recursos educativos digitales disponibles para estudiantes y docentes.","estado":"Activo","observaciones":"Actualizado continuamente con nuevos recursos y materiales didácticos.","esHistorico":false,"datasetName":"Repositorio_Recursos_Educativos_Digitales","datasetAbstract":"Inventario y clasificación de los Recursos Educativos Digitales (RED) disponibles en el repositorio institucional.","columns":[{"name":"id_recurso","type":"text","description":"Identificador único del recurso"},{"name":"titulo_recurso","type":"text","description":"Nombre del RED"},{"name":"tipo_recurso","type":"text","description":"Formato del recurso (Video, PDF, Interactivo, Simulación)"},{"name":"area_conocimiento","type":"text","description":"Área de conocimiento a la que pertenece"},{"name":"autor","type":"text","description":"Autor o creador del recurso"},{"name":"fecha_publicacion","type":"date","description":"Fecha de publicación en el repositorio"},{"name":"numero_descargas","type":"number","description":"Cantidad de veces que ha sido descargado o accedido"},{"name":"licencia_uso","type":"text","description":"Tipo de licencia (Ej. Creative Commons)"}],"datasetSource":"Repositorio Institucional Digital","datasetNotes":"Actualización mensual con los nuevos recursos catalogados."},
+  {"id":23,"titulo":"Monitorías","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiMjdlNTVkNmItMDMwZi00ZjlkLWJhNzktNWYwMWQyYWY4MGFjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Monitorías","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Estadísticas de monitorías académicas virtuales: asignación, asistencia y efectividad.","estado":"Activo","observaciones":"Incluye datos por programa académico y asignatura.","esHistorico":false},
+  {"id":24,"titulo":"Posgrados","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiMjFiNDQ4ODQtMWE4Mi00YjFmLWJiOTYtYWU1MGViNjQzOWI1IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Tablero con indicadores de programas de posgrado virtual: matrículas, deserción, graduación.","estado":"Activo","observaciones":"Datos consolidados por cohorte y programa de posgrado.","esHistorico":false,"datasetName":"Indicadores_Posgrados_Virtuales","datasetAbstract":"Indicadores clave de gestión académica para los programas de posgrado en modalidad virtual.","columns":[{"name":"programa_posgrado","type":"text","description":"Nombre de la especialización o maestría"},{"name":"cohorte","type":"text","description":"Cohorte de ingreso"},{"name":"numero_admitidos","type":"number","description":"Total de estudiantes admitidos en la cohorte"},{"name":"numero_matriculados","type":"number","description":"Total de estudiantes que formalizaron matrícula"},{"name":"tasa_desercion_periodo","type":"number","description":"Porcentaje de deserción en el último periodo"},{"name":"promedio_academico_cohorte","type":"number","description":"Promedio de notas de la cohorte"},{"name":"numero_graduados","type":"number","description":"Total de graduados de la cohorte hasta la fecha"},{"name":"tiempo_promedio_graduacion_meses","type":"number","description":"Tiempo promedio en meses para graduarse"}],"datasetSource":"Sistema de Gestión de Posgrados","datasetNotes":"Actualización semestral. Los datos son consolidados por cohorte para seguimiento longitudinal."},
+  {"id":25,"titulo":"Tránsito de la Educación Media a la Educación Superior","area":"Oficina de Educación Virtual y a Distancia","macroproceso":"Misional","subproceso":"Admisiones y Registro","rol":"Estudiante","url":"https://app.powerbi.com/view?r=eyJrIjoiN2IwOWQ0MTAtZjY1Mi00YmRjLTg2MmItYTJlYmZjZDk1YjY1IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"SNIES - ICFES","elaboradoPor":"Oficina de Educación Virtual","descripcion":"Análisis del perfil de ingreso de estudiantes nuevos en programas virtuales.","estado":"Activo","observaciones":"Incluye caracterización sociodemográfica y resultados de pruebas ICFES.","esHistorico":false},
+  {"id":26,"titulo":"Indicadores del Sistema de Gestión Ambiental","area":"Sistema de Gestión Ambiental","macroproceso":"Estratégico","subproceso":"Sistemas Integrados","rol":"Administrativo","url":"https://www.ucundinamarca.edu.co/index.php/servicios2022/sistema-de-gestion-ambiental","fechaActualizacion":"15/01/2025","fuente":"Sistema de Gestión Ambiental","elaboradoPor":"Coordinación SGA","descripcion":"Dashboard de indicadores de desempeño ambiental, incluyendo consumo de recursos, residuos y cumplimiento normativo.","estado":"Activo","observaciones":"Actualizado mensualmente con datos de todas las sedes de la universidad.","esHistorico":false,"datasetName":"Indicadores_SGA","datasetAbstract":"Mediciones de impacto ambiental de la universidad, incluyendo consumo de agua, energía y generación de residuos.","columns":[{"name":"sede","type":"text","description":"Sede o unidad regional de la medición"},{"name":"periodo_medicion","type":"text","description":"Mes y año del registro (YYYY-MM)"},{"name":"consumo_agua_m3","type":"number","description":"Consumo de agua en metros cúbicos"},{"name":"consumo_energia_kwh","type":"number","description":"Consumo de energía eléctrica en kilovatios-hora"},{"name":"residuos_aprovechables_kg","type":"number","description":"Peso en kg de residuos reciclables generados"},{"name":"residuos_ordinarios_kg","type":"number","description":"Peso en kg de residuos no aprovechables"},{"name":"huella_carbono_ton_co2","type":"number","description":"Estimación de la huella de carbono en toneladas de CO2 equivalente"}],"datasetSource":"Sistema de Gestión Ambiental (SGA) - Registros de servicios públicos y gestores de residuos","datasetNotes":"Actualización mensual. La huella de carbono se calcula trimestralmente."},
+  {"id":27,"titulo":"Procesos de Contratación","area":"Oficina de Compras","macroproceso":"Apoyo","subproceso":"Bienes y Servicios","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiZTJkYjJlNmYtZjY3MC00Y2YxLWI2YzctNzNmMTUyYTlkNGU3IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Contratación - SECOP","elaboradoPor":"Oficina de Compras","descripcion":"Visualización de procesos de contratación: estados, montos, proveedores y tiempos de ejecución.","estado":"Activo","observaciones":"Sincronizado con el sistema SECOP para garantizar transparencia.","esHistorico":false,"datasetName":"Procesos_Contratacion","datasetAbstract":"Seguimiento detallado de procesos contractuales institucionales con estados, montos y proveedores.","columns":[{"name":"numero_proceso","type":"text","description":"Identificador único del proceso"},{"name":"tipo_proceso","type":"text","description":"Licitación / Contratación directa / Menor cuantía"},{"name":"objeto_contrato","type":"text","description":"Descripción del objeto a contratar"},{"name":"valor_contrato","type":"number","description":"Valor en pesos colombianos"},{"name":"fecha_publicacion","type":"date","description":"Fecha de publicación en SECOP"},{"name":"fecha_adjudicacion","type":"date","description":"Fecha de adjudicación del contrato"},{"name":"proveedor","type":"text","description":"Razón social del proveedor adjudicado"},{"name":"estado","type":"text","description":"En curso / Adjudicado / Finalizado / Desierto"},{"name":"dependencia_solicitante","type":"text","description":"Dependencia que solicita el servicio"}],"datasetSource":"Sistema de Contratación Institucional - SECOP II","datasetNotes":"Sincronización diaria con SECOP. Históricos desde 2019."},
+  {"id":28,"titulo":"Tablero General de Indicadores","area":"Control Interno","macroproceso":"Seguimiento","subproceso":"Control Interno","rol":"Administrativo","url":"https://www.ucundinamarca.edu.co/index.php/control-interno","fechaActualizacion":"15/01/2025","fuente":"Sistema de Control Interno","elaboradoPor":"Oficina de Control Interno","descripcion":"Dashboard consolidado de indicadores de control interno institucional, riesgos y planes de mejoramiento.","estado":"Activo","observaciones":"Actualizado trimestralmente con reportes de todas las dependencias.","esHistorico":false,"datasetName":"Indicadores_Control_Interno_MECI","datasetAbstract":"Consolidado de indicadores del Modelo Estándar de Control Interno (MECI), incluyendo gestión de riesgos y auditorías.","columns":[{"name":"componente_meci","type":"text","description":"Componente del MECI evaluado"},{"name":"id_indicador","type":"text","description":"Código del indicador"},{"name":"nombre_indicador","type":"text","description":"Nombre del indicador de gestión"},{"name":"meta","type":"number","description":"Valor meta para el periodo"},{"name":"resultado","type":"number","description":"Valor obtenido en el periodo"},{"name":"porcentaje_cumplimiento","type":"number","description":"Porcentaje de cumplimiento de la meta"},{"name":"fecha_medicion","type":"date","description":"Fecha del corte de la medición"},{"name":"riesgo_asociado","type":"text","description":"Principal riesgo institucional asociado al indicador"}],"datasetSource":"Sistema de Gestión de Calidad y Control Interno","datasetNotes":"Actualización trimestral. Utilizado para los informes de gestión y auditorías."},
+  {"id":29,"titulo":"Participación en Eventos de SGSI","area":"Sistema de Gestión de Seguridad de la Información - SGSI","macroproceso":"Estratégico","subproceso":"Sistemas Integrados","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiYzAyMTE5MzktZWNhNS00ZmQ0LWFjNmMtYjNmNmE4ODViYTQ5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema SGSI","elaboradoPor":"Coordinación SGSI","descripcion":"Tablero de seguimiento de participación en capacitaciones y eventos de seguridad de la información.","estado":"Activo","observaciones":"Incluye métricas de asistencia, certificación y cumplimiento.","esHistorico":false,"datasetName":"Capacitacion_SGSI","datasetAbstract":"Registro de participación de funcionarios en capacitaciones y campañas de sensibilización del SGSI.","columns":[{"name":"id_evento","type":"text","description":"ID del evento de capacitación"},{"name":"nombre_evento","type":"text","description":"Nombre de la capacitación o campaña"},{"name":"fecha_evento","type":"date","description":"Fecha de realización"},{"name":"tipo_evento","type":"text","description":"Capacitación / Simulación Phishing / Charla"},{"name":"id_participante","type":"text","description":"Identificación del funcionario"},{"name":"area_participante","type":"text","description":"Área a la que pertenece el funcionario"},{"name":"asistencia_confirmada","type":"text","description":"Sí / No"},{"name":"evaluacion_aprobada","type":"text","description":"Sí / No / No Aplica"}],"datasetSource":"Plataforma de capacitación y registros de asistencia SGSI","datasetNotes":"Actualización después de cada evento de sensibilización o capacitación."},
+  {"id":30,"titulo":"Tablero de Planes de Mejoramiento","area":"Control Interno","macroproceso":"Seguimiento","subproceso":"Control Interno","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiYzBmNDk1MGYtZjJiYi00OTBlLWI4ZDMtMWVhZDFjMDc0ZGUxIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Control Interno","elaboradoPor":"Oficina de Control Interno","descripcion":"Visualización del estado de avance de planes de mejoramiento derivados de auditorías y evaluaciones institucionales.","estado":"Activo","observaciones":"Actualizado bimensualmente con reportes de áreas responsables.","esHistorico":false,"datasetName":"Seguimiento_Planes_Mejoramiento","datasetAbstract":"Seguimiento al estado y avance de los planes de mejoramiento derivados de hallazgos de auditoría.","columns":[{"name":"id_plan","type":"text","description":"Identificador del plan de mejoramiento"},{"name":"origen_hallazgo","type":"text","description":"Auditoría interna / Contraloría / Autoevaluación"},{"name":"proceso_responsable","type":"text","description":"Proceso o área responsable de la ejecución"},{"name":"descripcion_hallazgo","type":"text","description":"Descripción del hallazgo que origina el plan"},{"name":"accion_propuesta","type":"text","description":"Acción correctiva o preventiva a implementar"},{"name":"fecha_limite","type":"date","description":"Fecha límite para la implementación"},{"name":"porcentaje_avance","type":"number","description":"Porcentaje de avance reportado"},{"name":"estado_plan","type":"text","description":"Abierto / En Progreso / Cerrado / Vencido"}],"datasetSource":"Software de Gestión de Auditorías y Planes de Mejoramiento","datasetNotes":"Actualización mensual basada en los reportes de los líderes de proceso."},
+  {"id":31,"titulo":"Seguimiento de Proyectos","area":"Dirección de Investigación","macroproceso":"Misional","subproceso":"Ciencia, Tecnología e Innovación","rol":"Administrativo","url":"https://www.ucundinamarca.edu.co/investigacion/index.php/proyectos","fechaActualizacion":"15/01/2025","fuente":"Sistema de Investigación","elaboradoPor":"Dirección de Investigación","descripcion":"Dashboard de seguimiento de proyectos de investigación: estados, financiación, productos y avances.","estado":"Activo","observaciones":"Incluye proyectos financiados interna y externamente.","esHistorico":false,"datasetName":"Gestion_Proyectos_Investigacion","datasetAbstract":"Información consolidada de los proyectos de investigación, desde su propuesta hasta su finalización y productos derivados.","columns":[{"name":"codigo_proyecto","type":"text","description":"Código único del proyecto"},{"name":"titulo_proyecto","type":"text","description":"Nombre del proyecto"},{"name":"investigador_principal","type":"text","description":"Nombre del líder del proyecto"},{"name":"grupo_investigacion","type":"text","description":"Grupo de investigación asociado"},{"name":"fuente_financiacion","type":"text","description":"Interna / Externa (Minciencias, etc.)"},{"name":"presupuesto_asignado","type":"number","description":"Monto total del presupuesto en COP"},{"name":"fecha_inicio","type":"date","description":"Fecha de inicio del proyecto"},{"name":"fecha_fin","type":"date","description":"Fecha de finalización programada"},{"name":"estado_proyecto","type":"text","description":"Propuesta / Activo / Finalizado"},{"name":"productos_generados","type":"number","description":"Cantidad de productos (artículos, ponencias, etc.)"}],"datasetSource":"Sistema de Información de la Investigación (HERMES/GRI)","datasetNotes":"Actualización trimestral con el avance de los proyectos."},
+  {"id":32,"titulo":"Ejecución Activa","area":"Vicerrectoría Administrativa y Financiera","macroproceso":"Apoyo","subproceso":"Financiera","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiM2UzMWM0ODEtYmMwNC00NzUzLWEyM2YtOThiMzAwZjZmMzRlIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Financiero SAP","elaboradoPor":"Vicerrectoría Administrativa","descripcion":"Tablero de ejecución presupuestal de ingresos (activa) con análisis por fuente y periodo.","estado":"Activo","observaciones":"Datos actualizados mensualmente desde el sistema SAP.","esHistorico":false,"datasetName":"Ejecucion_Presupuestal_Ingresos","datasetAbstract":"Seguimiento de la ejecución del presupuesto de ingresos, comparando lo recaudado frente a lo proyectado.","columns":[{"name":"rubro_ingreso","type":"text","description":"Concepto del ingreso (Matrículas, Transferencias, etc.)"},{"name":"fuente_financiacion","type":"text","description":"Fuente de los recursos (Nación, Propios, etc.)"},{"name":"presupuesto_apropiado","type":"number","description":"Valor presupuestado para el rubro en la vigencia"},{"name":"recaudo_acumulado","type":"number","description":"Valor total recaudado a la fecha de corte"},{"name":"porcentaje_ejecucion","type":"number","description":"Porcentaje del recaudo frente a lo apropiado"},{"name":"fecha_corte","type":"date","description":"Fecha de corte de los datos"},{"name":"dependencia_recaudadora","type":"text","description":"Oficina que gestiona el recaudo"}],"datasetSource":"Sistema Integrado de Información Financiera (SAP - Módulo FI/PSM)","datasetNotes":"Actualización mensual con cierre al último día del mes anterior."},
+  {"id":33,"titulo":"Ejecución Pasiva","area":"Vicerrectoría Administrativa y Financiera","macroproceso":"Apoyo","subproceso":"Financiera","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiMWE4NGI1N2EtNGY2OC00MmMyLTkzMjMtYWUxZjA5OTk2ZGVhIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Financiero SAP","elaboradoPor":"Vicerrectoría Administrativa","descripcion":"Tablero de ejecución presupuestal de egresos (pasiva) con análisis por rubro y dependencia.","estado":"Activo","observaciones":"Actualizado mensualmente con datos del sistema financiero SAP.","esHistorico":false,"datasetName":"Ejecucion_Presupuestal_Gastos","datasetAbstract":"Seguimiento de la ejecución del presupuesto de gastos, detallando compromisos, obligaciones y pagos.","columns":[{"name":"rubro_gasto","type":"text","description":"Concepto del gasto (Servicios Personales, Gastos Generales, etc.)"},{"name":"dependencia_ejecutora","type":"text","description":"Dependencia que ordena el gasto"},{"name":"presupuesto_apropiado","type":"number","description":"Valor presupuestado para el rubro"},{"name":"valor_comprometido","type":"number","description":"Valor de los contratos y compromisos adquiridos"},{"name":"valor_obligado","type":"number","description":"Valor de las obligaciones causadas (bienes/servicios recibidos)"},{"name":"valor_pagado","type":"number","description":"Valor total pagado a la fecha de corte"},{"name":"porcentaje_ejecucion_pago","type":"number","description":"Porcentaje pagado frente a lo apropiado"},{"name":"fecha_corte","type":"date","description":"Fecha de corte de los datos"}],"datasetSource":"Sistema Integrado de Información Financiera (SAP - Módulo FI/PSM)","datasetNotes":"Actualización mensual con cierre al último día del mes anterior."},
+  {"id":34,"titulo":"Planes de Mejoramiento","area":"Vicerrectoría Administrativa y Financiera","macroproceso":"Apoyo","subproceso":"Financiera","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiYjFhMTE5MjgtZjRmZS00ZDQzLWE3ZTktNjMyZDdiNjRhODlkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Mejoramiento","elaboradoPor":"Vicerrectoría Administrativa","descripcion":"Seguimiento de planes de mejoramiento del área administrativa y financiera.","estado":"Activo","observaciones":"Incluye acciones derivadas de auditorías internas y externas.","esHistorico":false},
+  {"id":35,"titulo":"Plan Mensual de Contratación","area":"Vicerrectoría Administrativa y Financiera","macroproceso":"Apoyo","subproceso":"Bienes y Servicios","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiZmNkOWQ1MTItOTM0Yy00YjgyLWFkNGYtNzEwNjBmNzM3YWM2IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05N77mLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Contratación","elaboradoPor":"Vicerrectoría Administrativa","descripcion":"Visualización del plan mensual de contratación con proyecciones y avances de procesos.","estado":"Activo","observaciones":"Actualizado al inicio de cada mes con las necesidades de contratación institucional.","esHistorico":false},
+  {"id":36,"titulo":"Conexión Líneas de Profundización Pregrado-Posgrados","area":"Instituto de Posgrados","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiYTBmN2M3YjctOGFiMS00OWYyLWJkNGItOWVkM2VjNDgyZDIxIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - SNIES","elaboradoPor":"Instituto de Posgrados","descripcion":"Análisis de articulación entre líneas de profundización de pregrado y programas de posgrado.","estado":"Activo","observaciones":"Permite identificar rutas académicas y oportunidades de articulación.","esHistorico":false},
+  {"id":37,"titulo":"Perfil de Estudiantes IDEP","area":"Instituto de Posgrados","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiMGE4MjRlOWUtMDM5MC00YmFlLWJlYTEtZTgxNGUzOGVmYTIwIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico","elaboradoPor":"Instituto de Posgrados","descripcion":"Caracterización de estudiantes del Instituto de Posgrados: perfil demográfico, académico y profesional.","estado":"Activo","observaciones":"Datos actualizados por cohorte de ingreso.","esHistorico":false},
+  {"id":38,"titulo":"Encuesta de Satisfacción de Programas","area":"Instituto de Posgrados","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiYjEyOTYyN2MtNmZhYy00YjAzLThjNDgtMmU3Yjg1OWM1ZTQwIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Encuestas","elaboradoPor":"Instituto de Posgrados","descripcion":"Resultados de encuestas de satisfacción aplicadas a estudiantes de programas de posgrado.","estado":"Activo","observaciones":"Aplicadas al finalizar cada periodo académico.","esHistorico":false},
+  {"id":39,"titulo":"Reporte de Opciones de Grado","area":"Instituto de Posgrados","macroproceso":"Misional","subproceso":"Formación y Aprendizaje","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiODJlMjM2MTctOWI4NS00NzBjLWE4NTYtNDQxNzdkNzRhMWVmIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico","elaboradoPor":"Instituto de Posgrados","descripcion":"Estadísticas de opciones de grado seleccionadas por estudiantes de posgrado.","estado":"Activo","observaciones":"Incluye tiempos promedio de culminación por modalidad de grado.","esHistorico":false},
+  {"id":40,"titulo":"Boletín Estadístico","area":"Dirección de Planeación","macroproceso":"Estratégico","subproceso":"Planeación Institucional","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiZTYyOWU0ZGQtNzUxNS00MTdjLTgxMTMtODRjNzc4NThkMTYxIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Planeación - SNIES","elaboradoPor":"Dirección de Planeación","descripcion":"Boletín estadístico institucional con indicadores clave de desempeño académico y administrativo.","estado":"Activo","observaciones":"Publicado semestralmente con datos consolidados de la institución.","esHistorico":false},
+  {"id":41,"titulo":"Deserción","area":"Dirección de Planeación","macroproceso":"Estratégico","subproceso":"Planeación Institucional","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiYTY0MDk3MDAtZDIzMy00MTk3LThlZmItYzgyNzk3YWU3YjNhIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico - SPADIES","elaboradoPor":"Dirección de Planeación","descripcion":"Análisis de tasas de deserción estudiantil por programa, cohorte y factores asociados.","estado":"Activo","observaciones":"Sincronizado con el sistema SPADIES del Ministerio de Educación.","esHistorico":false},
+  {"id":42,"titulo":"Calendario Institucional","area":"Dirección de Planeación","macroproceso":"Estratégico","subproceso":"Planeación Institucional","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiOTQzMDgxODgtMTFkYS00YWU2LWE2NTAtMjI0OTFiMTBmNWY5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Planeación","elaboradoPor":"Dirección de Planeación","descripcion":"Visualización interactiva del calendario académico y administrativo institucional.","estado":"Activo","observaciones":"Actualizado al inicio de cada vigencia académica.","esHistorico":false},
+  {"id":43,"titulo":"CAI Encuentros Dialógicos y Formativos","area":"Dirección de Planeación","macroproceso":"Estratégico","subproceso":"Direccionamiento Estratégico","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiMjFlYmIzOTUtMDcyMy00MGNiLTllZjktNTY2ZjM2ZjgxMmVlIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Plataforma CAI","elaboradoPor":"Dirección de Planeación","descripcion":"Seguimiento de encuentros dialógicos y formativos institucionales con indicadores de participación.","estado":"Activo","observaciones":"Incluye eventos de formación docente y administrativa.","esHistorico":false},
+  {"id":44,"titulo":"Experiencia de Aprendizaje Online","area":"Sistemas y Tecnología","macroproceso":"Apoyo","subproceso":"Tecnología e Infraestructura","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiMWZiOWUyMjktODBiNi00ODRjLWJlNTUtOGE2ODA4NTM0NjljIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection","fechaActualizacion":"15/01/2025","fuente":"Plataforma de Aprendizaje","elaboradoPor":"Dirección de Sistemas y Tecnología","descripcion":"Métricas de experiencia de usuario en plataformas de aprendizaje online: accesos, tiempos de uso y satisfacción.","estado":"Activo","observaciones":"Monitoreo continuo de plataformas educativas virtuales.","esHistorico":false},
+  {"id":45,"titulo":"Horas Sustantivas de Docentes","area":"Sistemas y Tecnología","macroproceso":"Apoyo","subproceso":"Tecnología e Infraestructura","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiZGYyZjdmZGUtMzZhZi00Zjk4LTkwOTQtOWVjNjVkOGUzMzNjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico","elaboradoPor":"Dirección de Sistemas y Tecnología","descripcion":"Análisis de distribución de horas sustantivas docentes: docencia, investigación, extensión y administrativa.","estado":"Activo","observaciones":"Datos extraídos del sistema de gestión académica.","esHistorico":false},
+  {"id":46,"titulo":"Monitorias Académicas","area":"Sistemas y Tecnología","macroproceso":"Apoyo","subproceso":"Tecnología e Infraestructura","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiYTk4ZWExYjMtYTNkYS00YmQzLTg4MWItZjA0N2VhNDRkMjQzIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico","elaboradoPor":"Dirección de Sistemas y Tecnología","descripcion":"Dashboard técnico de monitorías académicas con análisis de datos del sistema.","estado":"Activo","observaciones":"Complementa el tablero de Monitorías con análisis técnico.","esHistorico":false},
+  {"id":47,"titulo":"Inscripciones Ucundinamarca","area":"Sistemas y Tecnología","macroproceso":"Apoyo","subproceso":"Tecnología e Infraestructura","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiMmFmNWViOWMtMjIzMy00NTQ1LTgxYmEtZDVmZDFhOTkwYzdiIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Inscripciones","elaboradoPor":"Dirección de Sistemas y Tecnología","descripcion":"Análisis de inscripciones a programas académicos: tendencias, canales y conversión.","estado":"Activo","observaciones":"Actualizado en tiempo real durante procesos de admisión.","esHistorico":false},
+  {"id":48,"titulo":"Horas de Interacción Social","area":"Sistemas y Tecnología","macroproceso":"Apoyo","subproceso":"Tecnología e Infraestructura","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiMGE3NGVjMWEtYzk1Yy00YTQ2LWJmNDYtYjc2OTZkYTc0NjllIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Interacción Social","elaboradoPor":"Dirección de Sistemas y Tecnología","descripcion":"Seguimiento de horas dedicadas a actividades de interacción social y proyección comunitaria.","estado":"Activo","observaciones":"Incluye proyectos de extensión, consultorías y servicio social.","esHistorico":false},
+  {"id":49,"titulo":"Matricula Financiera","area":"Sistemas y Tecnología","macroproceso":"Apoyo","subproceso":"Tecnología e Infraestructura","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiYzgyNDZlYTItODk4NC00MzczLWE1ODctMTJhODcxYTRlZGVmIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Financiero","elaboradoPor":"Dirección de Sistemas y Tecnología","descripcion":"Análisis de matrícula financiera: recaudos, comportamiento de pago y morosidad.","estado":"Activo","observaciones":"Datos sincronizados con el sistema financiero SAP.","esHistorico":false},
+  {"id":50,"titulo":"Programas Académicos","area":"Sistemas y Tecnología","macroproceso":"Apoyo","subproceso":"Tecnología e Infraestructura","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiZmI5MTZiZGEtMzE0Ny00NGZjLTg1NDctNzBlN2E5M2FiOTUzIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema Académico","elaboradoPor":"Dirección de Sistemas y Tecnología","descripcion":"Catálogo interactivo de programas académicos con indicadores de matrícula y estado.","estado":"Activo","observaciones":"Actualizado semestralmente con la oferta académica vigente.","esHistorico":false},
+  {"id":51,"titulo":"Microsoft Teams UCundinamarca","area":"Sistemas y Tecnología","macroproceso":"Apoyo","subproceso":"Tecnología e Infraestructura","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiOTU2YWQwNDctYTRhZS00ZGZjLWFjMDAtMmNiNWZlMzM3ZDYzIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection","fechaActualizacion":"15/01/2025","fuente":"Microsoft 365","elaboradoPor":"Dirección de Sistemas y Tecnología","descripcion":"Métricas de uso de Microsoft Teams: usuarios activos, reuniones, colaboración y almacenamiento.","estado":"Activo","observaciones":"Datos extraídos de Microsoft 365 Analytics.","esHistorico":false},
+  {"id":52,"titulo":"Sesiones Virtuales de Sistemas y Tecnología","area":"Sistemas y Tecnología","macroproceso":"Apoyo","subproceso":"Tecnología e Infraestructura","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiYzU1YTY1ZTUtMDcxZC00N2M3LWI3ODItNmQwYTQ0MDQ3NWM3IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection","fechaActualizacion":"15/01/2025","fuente":"Sistema de Seguimiento","elaboradoPor":"Dirección de Sistemas y Tecnología","descripcion":"Registro y análisis de sesiones virtuales organizadas por el área de Sistemas y Tecnología.","estado":"Activo","observaciones":"Incluye capacitaciones, soporte técnico y talleres virtuais.","esHistorico":false},
+  {"id":53,"titulo":"Iniciativas Tecnológicas de Transformación PETI","area":"Sistemas y Tecnología","macroproceso":"Apoyo","subproceso":"Tecnología e Infraestructura","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiNzNhZjE4NTgtZDlhZi00ZTMxLWEzZGEtZTVkOGQyMTg4MTFjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"PETI Institucional","elaboradoPor":"Dirección de Sistemas y Tecnología","descripcion":"Seguimiento de iniciativas del Plan Estratégico de Tecnologías de Información (PETI).","estado":"Activo","observaciones":"Incluye avance, presupuesto y resultados de projetos tecnológicos.","esHistorico":false},
+  {"id":54,"titulo":"Información sobre el cuerpo docente de la Ucundinamarca","area":"Dirección de Talento Humano","macroproceso":"Apoyo","subproceso":"Gestión del Talento Humano","rol":"Docente","url":"https://app.powerbi.com/view?r=eyJrIjoiMThlNDcyY2EtNDNlMC00MTUyLWI0ODMtMjNkYTllMTFjODljIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Módulos de Contratación - Sistema de Talento Humano","elaboradoPor":"Dirección de Talento Humano","descripcion":"Caracterización del cuerpo docente: perfiles académicos, vinculación, escalafón y producción académica.","estado":"Activo","observaciones":"Actualizado semestralmente con datos del sistema de talento humano.","esHistorico":false,"datasetName":"Cuerpo_Docente","datasetAbstract":"Información completa sobre el cuerpo docente institucional: formación, vinculación y producción académica.","columns":[{"name":"cedula_docente","type":"text","description":"Número de identificación del docente"},{"name":"nombre_completo","type":"text","description":"Nombre completo del docente"},{"name":"tipo_vinculacion","type":"text","description":"Planta / Cátedra / Ocasional"},{"name":"nivel_formacion","type":"text","description":"Pregrado / Especialización / Maestría / Doctorado"},{"name":"escalafon","type":"text","description":"Categoría según escalafón docente"},{"name":"programa_adscrito","type":"text","description":"Programa al que está vinculado"},{"name":"sede","type":"text","description":"Sede de trabajo principal"},{"name":"fecha_ingreso","type":"date","description":"Fecha de ingreso a la universidad"},{"name":"produccion_academica","type":"number","description":"Número de publicaciones / proyectos"},{"name":"estado","type":"text","description":"Activo / Licencia / Comisión"}],"datasetSource":"Sistema de Talento Humano - Módulo de contratación docente","datasetNotes":"Actualización semestral. Datos protegidos según normativa de habeas data."},
+  {"id":55,"titulo":"Implementación Cursos Talento Humano","area":"Dirección de Talento Humano","macroproceso":"Apoyo","subproceso":"Gestión del Talento Humano","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiM2FkODU4MDktNjVlOC00MGQ5LTk5MWEtMjBmZGViYjI2NDQ0IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Capacitación","elaboradoPor":"Dirección de Talento Humano","descripcion":"Seguimiento de implementación de cursos de formación para el talento humano institucional.","estado":"Activo","observaciones":"Incluye cobertura, certificación y evaluación de impacto.","esHistorico":false,"datasetName":"Plan_Capacitacion_Talento_Humano","datasetAbstract":"Seguimiento al Plan Institucional de Capacitación para docentes y administrativos.","columns":[{"name":"id_curso","type":"text","description":"Identificador del curso de capacitación"},{"name":"nombre_curso","type":"text","description":"Nombre del curso"},{"name":"eje_tematico","type":"text","description":"Eje del plan de capacitación"},{"name":"publico_objetivo","type":"text","description":"Docentes / Administrativos / Ambos"},{"name":"numero_inscritos","type":"number","description":"Total de funcionarios inscritos"},{"name":"numero_certificados","type":"number","description":"Total de funcionarios que completaron y aprobaron"},{"name":"tasa_finalizacion","type":"number","description":"Porcentaje de finalización (Certificados/Inscritos)"},{"name":"satisfaccion_promedio","type":"number","description":"Calificación promedio de satisfacción del curso (1-5)"}],"datasetSource":"Sistema de Gestión de la Capacitación (SGCap)","datasetNotes":"Los datos se actualizan al finalizar cada cohorte de cursos."},
+  {"id":56,"titulo":"Tablero Informativo","area":"Proyectos Especiales y Relaciones Interinstitucionales","macroproceso":"Estratégico","subproceso":"Proyectos Especiales y Relaciones Interinstitucionales","rol":"Administrativo","url":"https://www.ucundinamarca.edu.co/index.php/proyectos-especiales-y-relaciones-interinstitucionales","fechaActualizacion":"15/01/2025","fuente":"Sitio Web Institucional","elaboradoPor":"Proyectos Especiales","descripcion":"Dashboard informativo de projetos especiais en desarrollo y alianzas interinstitucionales.","estado":"Activo","observaciones":"Publicado en el sitio web institucional con actualizaciones periódicas.","esHistorico":false,"datasetName":"Proyectos_Relaciones_Interinstitucionales","datasetAbstract":"Resumen de los proyectos especiales y convenios vigentes de la universidad.","columns":[{"name":"nombre_proyecto_convenio","type":"text","description":"Nombre del proyecto o del convenio"},{"name":"tipo","type":"text","description":"Proyecto Especial / Convenio Marco / Convenio Específico"},{"name":"socio_estrategico","type":"text","description":"Entidad nacional o internacional con la que se colabora"},{"name":"objetivo","type":"text","description":"Objetivo principal del proyecto o convenio"},{"name":"estado_actual","type":"text","description":"Vigente / En formulación / Finalizado"},{"name":"fecha_inicio","type":"date","description":"Fecha de firma o inicio"},{"name":"fecha_fin_vigencia","type":"date","description":"Fecha de finalización"},{"name":"area_responsable_ucundinamarca","type":"text","description":"Área líder dentro de la universidad"}],"datasetSource":"Sistema de Gestión de Convenios y Proyectos Especiales","datasetNotes":"Actualización trimestral. Este es un resumen público, datos sensibles no se incluyen."},
+  {"id":57,"titulo":"Convenios y Proyectos","area":"Proyectos Especiales y Relaciones Interinstitucionales","macroproceso":"Estratégico","subproceso":"Proyectos Especiales y Relaciones Interinstitucionales","rol":"Administrativo","url":"https://app.powerbi.com/view?r=eyJrIjoiZGVhYjkwODUtZTc5YS00OThmLThkNGYtY2M2NDQ4NmNhOTFkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9","fechaActualizacion":"15/01/2025","fuente":"Sistema de Proyectos","elaboradoPor":"Proyectos Especiales","descripcion":"Visualización de convenios interinstitucionales y projetos especiais: estados, alcance y resultados.","estado":"Activo","observaciones":"Incluye convenios nacionais e internacionais vigentes.","esHistorico":false,"datasetName":"Gestion_Detallada_Convenios_Proyectos","datasetAbstract":"Versión detallada para gestión interna de los convenios y proyectos, incluyendo aspectos financieros y de impacto.","columns":[{"name":"id_convenio_proyecto","type":"text","description":"ID interno de gestión"},{"name":"nombre_convenio_proyecto","type":"text","description":"Nombre"},{"name":"socio","type":"text","description":"Entidad aliada"},{"name":"tipo_alianza","type":"text","description":"Nacional / Internacional"},{"name":"presupuesto_total","type":"number","description":"Presupuesto total (si aplica)"},{"name":"aporte_ucundinamarca","type":"number","description":"Aporte de la universidad en especie o efectivo"},{"name":"indicador_impacto_1","type":"text","description":"Principal indicador de resultado esperado"},{"name":"resultado_alcanzado_1","type":"text","description":"Resultado medido para el indicador 1"},{"name":"estado_actual","type":"text","description":"Vigente / En ejecución / Cerrado"}],"datasetSource":"Sistema de Gestión de Convenios y Proyectos Especiales","datasetNotes":"Actualización mensual para seguimiento de la gestión. Acceso restringido a personal administrativo."}
 ];
+
 
 const MACROPROCESOS = {
   'Estratégico': {
@@ -104,7 +131,7 @@ const MACROPROCESOS = {
       'Vicerrectoría Administrativa y Financiera',
       'Oficina de Compras',
       'Sistemas y Tecnología',
-      'Talento Humano'
+      'Dirección de Talento Humano'
     ]
   },
   'Seguimiento': {
@@ -129,7 +156,7 @@ const AREA_ICONS = {
   'Oficina de Compras': 'fa-shopping-cart',
   'Control Interno': 'fa-clipboard-check',
   'Sistemas y Tecnología': 'fa-cogs',
-  'Talento Humano': 'fa-users-cog',
+  'Dirección de Talento Humano': 'fa-users-cog',
   'Proyectos Especiales y Relaciones Interinstitucionales': 'fa-project-diagram'
 };
 
@@ -141,8 +168,8 @@ let mapCircles = [];
 let isFullscreen = false;
 let expandedMacroprocesos = {};
 let expandedAreas = {};
-let resizeTimeout; // Variable para gestionar el debounce del evento resize
-
+let resizeTimeout;
+let infoPanelExpanded = false;
 
 const studentData = [
   {"MUNICIPIO_PROGRAMA": "Soacha", "Programa": "Contaduría Pública", "Estudiantes": 39},
@@ -205,26 +232,33 @@ const studentData = [
 ];
 
 // ==========================================
-// GESTIÓN DE SESIÓN PERSISTENTE
+// GESTIÓN DE SESIÓN PERSISTENTE CON ROLES
 // ==========================================
 
 function checkSession() {
   const session = sessionStorage.getItem('isAuthenticated');
-  return session === 'true';
+  const role = sessionStorage.getItem('userRole');
+  return { authenticated: session === 'true', role: role };
 }
 
-function saveSession() {
+function saveSession(role) {
   sessionStorage.setItem('isAuthenticated', 'true');
+  sessionStorage.setItem('userRole', role);
 }
 
 function clearSession() {
   sessionStorage.removeItem('isAuthenticated');
+  sessionStorage.removeItem('userRole');
+  currentUser = null;
 }
 
-let isAuthenticated = checkSession();
+const sessionData = checkSession();
+if (sessionData.authenticated && sessionData.role) {
+  currentUser = { role: sessionData.role };
+}
 
 // ==========================================
-// NAVEGACIÓN CON SESIÓN PERSISTENTE
+// NAVEGACIÓN CON SISTEMA DE ROLES MEJORADO
 // ==========================================
 
 function navigateTo(view) {
@@ -235,100 +269,161 @@ function navigateTo(view) {
     mobileMenu.classList.add('hidden');
   }
 
+  const protectedViews = {
+    'estudiantes': 'Estudiante',
+    'administrativos': 'Administrativo',
+    'gestores': 'Docente'
+  };
+
+  if (protectedViews[view]) {
+    if (!currentUser) {
+      showLoginForRole(view);
+      return;
+    } else if (currentUser.role !== protectedViews[view]) {
+      alert(`Acceso denegado. Esta sección es solo para ${protectedViews[view]}s.`);
+      return;
+    }
+  }
+
   document.querySelectorAll('.view-container').forEach(v => v.classList.remove('active'));
   document.getElementById(`${view}View`).classList.add('active');
   currentView = view;
   
-  if (view === 'estudiantes') {
-    renderEstudiantesDashboards();
-  } else if (view === 'administrativos') {
-    if (checkSession()) {
-      isAuthenticated = true;
-      document.getElementById('adminSelectionSection').style.display = 'none';
-      document.getElementById('loginSection').classList.add('hidden');
-      document.getElementById('publicDashboardsSection').classList.remove('hidden');
-      document.getElementById('adminDashboardsSection').classList.remove('hidden');
-      document.getElementById('logoutBtn').classList.remove('hidden');
-      renderPublicAdminDashboards();
-      renderAdministrativosDashboards();
-    } else {
-      document.getElementById('adminSelectionSection').style.display = 'block';
-      document.getElementById('loginSection').classList.add('hidden');
-      document.getElementById('publicDashboardsSection').classList.add('hidden');
-      document.getElementById('adminDashboardsSection').classList.add('hidden');
-      document.getElementById('logoutBtn').classList.add('hidden');
-    }
+  if (view === 'estudiantes' && currentUser && currentUser.role === 'Estudiante') {
+    renderDashboardsByRole('Estudiante');
+  } else if (view === 'administrativos' && currentUser && currentUser.role === 'Administrativo') {
+    renderDashboardsByRole('Administrativo');
+  } else if (view === 'gestores' && currentUser && currentUser.role === 'Docente') {
+    renderDashboardsByRole('Docente');
   }
   
-  // Redimensionar mapa y gráfico si navegamos a home
   if (view === 'home') {
     setTimeout(() => {
       handleResize();
-    }, 500); // Delay aumentado para asegurar que la vista está completamente renderizada
+    }, 500);
   }
 }
 
 // ==========================================
-// FUNCIONES PARA SECCIÓN ADMINISTRATIVOS
+// FUNCIONES DE AUTENTICACIÓN POR ROLES
 // ==========================================
 
-function showPublicDashboards() {
-  document.getElementById('adminSelectionSection').style.display = 'none';
-  document.getElementById('publicDashboardsSection').classList.remove('hidden');
-  document.getElementById('adminDashboardsSection').classList.add('hidden');
-  renderPublicAdminDashboards();
-}
-
-function showLoginSection() {
-  document.getElementById('adminSelectionSection').style.display = 'none';
-  document.getElementById('loginSection').classList.remove('hidden');
-}
-
-function backToAdminSelection() {
-  if (checkSession()) {
-    clearSession();
-    isAuthenticated = false;
+function showLoginForRole(targetView) {
+  document.querySelectorAll('.view-container').forEach(v => v.classList.remove('active'));
+  document.getElementById('loginView').classList.add('active');
+  currentView = 'login';
+  
+  const loginTitle = document.getElementById('loginTitle');
+  const loginSubtitle = document.getElementById('loginSubtitle');
+  const loginIcon = document.getElementById('loginIcon');
+  
+  if (targetView === 'estudiantes') {
+    loginTitle.textContent = 'Acceso Estudiantes';
+    loginSubtitle.textContent = 'Ingrese sus credenciales para ver tableros académicos';
+    loginIcon.className = 'fas fa-user-graduate text-white text-2xl';
+    document.getElementById('loginForm').dataset.targetRole = 'Estudiante';
+    document.getElementById('loginForm').dataset.targetView = 'estudiantes';
+  } else if (targetView === 'administrativos') {
+    loginTitle.textContent = 'Acceso Administrativos';
+    loginSubtitle.textContent = 'Ingrese sus credenciales para ver tableros institucionales';
+    loginIcon.className = 'fas fa-briefcase text-white text-2xl';
+    document.getElementById('loginForm').dataset.targetRole = 'Administrativo';
+    document.getElementById('loginForm').dataset.targetView = 'administrativos';
+  } else if (targetView === 'gestores') {
+    loginTitle.textContent = 'Acceso Gestores del Conocimiento';
+    loginSubtitle.textContent = 'Ingrese sus credenciales para ver información docente';
+    loginIcon.className = 'fas fa-chalkboard-teacher text-white text-2xl';
+    document.getElementById('loginForm').dataset.targetRole = 'Docente';
+    document.getElementById('loginForm').dataset.targetView = 'gestores';
   }
-  
-  document.getElementById('adminSelectionSection').style.display = 'block';
-  document.getElementById('loginSection').classList.add('hidden');
-  document.getElementById('publicDashboardsSection').classList.add('hidden');
-  document.getElementById('adminDashboardsSection').classList.add('hidden');
-  document.getElementById('adminUsername').value = '';
-  document.getElementById('adminPassword').value = '';
-  document.getElementById('adminLoginError').classList.add('hidden');
-  document.getElementById('logoutBtn').classList.add('hidden');
 }
 
-function handleAdminLogin() {
-  const username = document.getElementById('adminUsername').value;
-  const password = document.getElementById('adminPassword').value;
+function handleLogin() {
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  const errorDiv = document.getElementById('loginError');
+  const form = document.getElementById('loginForm');
+  const targetRole = form.dataset.targetRole;
+  const targetView = form.dataset.targetView;
   
-  if (username === 'admin' && password === 'udec2024') {
-    isAuthenticated = true;
-    saveSession();
-    document.getElementById('loginSection').classList.add('hidden');
-    document.getElementById('publicDashboardsSection').classList.remove('hidden');
-    document.getElementById('adminDashboardsSection').classList.remove('hidden');
+  if (USERS[username] && USERS[username].password === password && USERS[username].role === targetRole) {
+    currentUser = USERS[username];
+    saveSession(currentUser.role);
+    
     document.getElementById('logoutBtn').classList.remove('hidden');
-    renderPublicAdminDashboards();
-    renderAdministrativosDashboards();
+    
+    document.getElementById('username').value = '';
+    document.getElementById('password').value = '';
+    errorDiv.classList.add('hidden');
+    
+    navigateTo(targetView);
   } else {
-    const error = document.getElementById('adminLoginError');
-    error.textContent = 'Usuario o contraseña incorrectos';
-    error.classList.remove('hidden');
+    errorDiv.textContent = 'Usuario o contraseña incorrectos para este rol';
+    errorDiv.classList.remove('hidden');
   }
 }
 
 function logout() {
-  isAuthenticated = false;
   clearSession();
   document.getElementById('logoutBtn').classList.add('hidden');
-  backToAdminSelection();
+  navigateTo('home');
 }
 
 // ==========================================
-// TOGGLE MACROPROCESO/ÁREA - USANDO DATA ATTRIBUTES
+// RENDERIZAR DASHBOARDS POR ROL
+// ==========================================
+
+function renderDashboardsByRole(role) {
+  debugLog(`Renderizando dashboards para rol: ${role}`);
+  
+  const roleDashboards = dashboards.filter(d => d.rol === role);
+  const containerId = role === 'Estudiante' ? 'estudiantesDashboards' :
+                      role === 'Administrativo' ? 'administrativosDashboards' :
+                      'gestoresDashboards';
+  
+  const container = document.getElementById(containerId);
+  
+  const grouped = {};
+  roleDashboards.forEach(d => {
+    if (!grouped[d.macroproceso]) grouped[d.macroproceso] = {};
+    if (!grouped[d.macroproceso][d.area]) grouped[d.macroproceso][d.area] = [];
+    grouped[d.macroproceso][d.area].push(d);
+  });
+  
+  container.innerHTML = Object.entries(grouped).map(([macroproceso, areas]) => {
+    const config = MACROPROCESOS[macroproceso];
+    const macroprocesoId = generateSafeId(`${role}-${macroproceso}`, 'macro');
+    
+    return `
+      <div class="macroproceso-section ${config.color}">
+        <div class="macroproceso-header" data-macroproceso-id="${macroprocesoId}">
+          <div class="macroproceso-title">
+            <div class="macroproceso-icon">
+              <i class="fas ${config.icon}"></i>
+            </div>
+            <span>Macroproceso ${macroproceso}</span>
+          </div>
+          <i class="fas fa-chevron-down collapse-icon expanded" id="icon-${macroprocesoId}"></i>
+        </div>
+        <div class="macroproceso-content expanded" id="content-${macroprocesoId}">
+          ${Object.entries(areas).map(([area, items], index) => 
+            createAreaCard(area, items, config.color, index, `${role}-${macroproceso}-`)
+          ).join('')}
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  Object.keys(grouped).forEach((macroproceso) => {
+    const macroprocesoId = generateSafeId(`${role}-${macroproceso}`, 'macro');
+    expandedMacroprocesos[macroprocesoId] = true;
+  });
+  
+  debugLog(`Dashboards renderizados para ${role}`);
+}
+
+// ==========================================
+// TOGGLE MACROPROCESO/ÁREA
 // ==========================================
 
 function toggleMacroproceso(macroprocesoId) {
@@ -338,8 +433,7 @@ function toggleMacroproceso(macroprocesoId) {
   const icon = document.getElementById(`icon-${macroprocesoId}`);
   
   if (!content || !icon) {
-    console.error(`❌ No se encontraron elementos para macroproceso: ${macroprocesoId}`);
-    console.error(`content: ${content}, icon: ${icon}`);
+    console.error(`✖ No se encontraron elementos para macroproceso: ${macroprocesoId}`);
     return;
   }
   
@@ -349,12 +443,10 @@ function toggleMacroproceso(macroprocesoId) {
     content.classList.remove('expanded');
     icon.classList.remove('expanded');
     expandedMacroprocesos[macroprocesoId] = false;
-    debugLog(`Macroproceso ${macroprocesoId} contraído`);
   } else {
     content.classList.add('expanded');
     icon.classList.add('expanded');
     expandedMacroprocesos[macroprocesoId] = true;
-    debugLog(`Macroproceso ${macroprocesoId} expandido`);
   }
 }
 
@@ -365,8 +457,7 @@ function toggleArea(areaId) {
   const card = document.getElementById(`area-card-${areaId}`);
   
   if (!container || !card) {
-    console.error(`❌ No se encontraron elementos para área: ${areaId}`);
-    console.error(`container: ${container}, card: ${card}`);
+    console.error(`✖ No se encontraron elementos para área: ${areaId}`);
     return;
   }
   
@@ -376,43 +467,37 @@ function toggleArea(areaId) {
     container.classList.remove('expanded');
     card.classList.remove('expanded');
     expandedAreas[areaId] = false;
-    debugLog(`Área ${areaId} contraída`);
   } else {
     container.classList.add('expanded');
     card.classList.add('expanded');
     expandedAreas[areaId] = true;
-    debugLog(`Área ${areaId} expandida`);
   }
 }
 
 // ==========================================
-// EVENT DELEGATION - CONFIGURACIÓN GLOBAL
+// EVENT DELEGATION
 // ==========================================
 
 function setupEventDelegation() {
   debugLog('Configurando event delegation para acordeones');
   
-  // Delegar eventos para headers de macroprocesos
   document.addEventListener('click', function(e) {
     const header = e.target.closest('.macroproceso-header');
     if (header) {
       e.stopPropagation();
       const macroprocesoId = header.dataset.macroprocesoId;
       if (macroprocesoId) {
-        debugLog(`Click en macroproceso header: ${macroprocesoId}`);
         toggleMacroproceso(macroprocesoId);
       }
     }
   });
   
-  // Delegar eventos para headers de áreas
   document.addEventListener('click', function(e) {
     const header = e.target.closest('.area-card-header');
     if (header) {
       e.stopPropagation();
       const areaId = header.dataset.areaId;
       if (areaId) {
-        debugLog(`Click en área header: ${areaId}`);
         toggleArea(areaId);
       }
     }
@@ -422,7 +507,7 @@ function setupEventDelegation() {
 }
 
 // ==========================================
-// CREAR TARJETA DE ÁREA - CON DATA ATTRIBUTES
+// CREAR TARJETA DE ÁREA
 // ==========================================
 
 function createAreaCard(area, dashboardsInArea, macroprocesoColor, index, context = '') {
@@ -459,161 +544,21 @@ function createAreaCard(area, dashboardsInArea, macroprocesoColor, index, contex
 }
 
 // ==========================================
-// RENDERIZAR DASHBOARDS
-// ==========================================
-
-function renderEstudiantesDashboards() {
-  debugLog('Renderizando dashboards de estudiantes');
-  const container = document.getElementById('estudiantesDashboards');
-  const estudiantesDashboards = dashboards.filter(d => 
-    d.macroproceso === 'Misional' && d.tipo === 'Público'
-  );
-  
-  const grouped = {};
-  estudiantesDashboards.forEach(d => {
-    if (!grouped[d.area]) grouped[d.area] = [];
-    grouped[d.area].push(d);
-  });
-  
-  const config = MACROPROCESOS['Misional'];
-  const macroprocesoId = generateSafeId('estudiantes-Misional', 'macro');
-  
-  container.innerHTML = `
-    <div class="macroproceso-section ${config.color}">
-      <div class="macroproceso-header" data-macroproceso-id="${macroprocesoId}">
-        <div class="macroproceso-title">
-          <div class="macroproceso-icon">
-            <i class="fas ${config.icon}"></i>
-          </div>
-          <span>Macroproceso Misional</span>
-        </div>
-        <i class="fas fa-chevron-down collapse-icon expanded" id="icon-${macroprocesoId}"></i>
-      </div>
-      <div class="macroproceso-content expanded" id="content-${macroprocesoId}">
-        ${Object.entries(grouped).map(([area, items], index) => 
-          createAreaCard(area, items, config.color, index, 'est-')
-        ).join('')}
-      </div>
-    </div>
-  `;
-  
-  expandedMacroprocesos[macroprocesoId] = true;
-  debugLog(`Dashboards de estudiantes renderizados. Macroproceso ID: ${macroprocesoId}`);
-}
-
-function renderPublicAdminDashboards() {
-  debugLog('Renderizando dashboards públicos administrativos');
-  const container = document.getElementById('publicDashboards');
-  const publicAdminDashboards = dashboards.filter(d => 
-    d.macroproceso !== 'Misional' && d.tipo === 'Público'
-  );
-  
-  container.innerHTML = Object.entries(MACROPROCESOS)
-    .filter(([nombre]) => nombre !== 'Misional')
-    .map(([nombre, config]) => {
-      const dashboardsDelMacroproceso = publicAdminDashboards.filter(d => 
-        config.areas.includes(d.area)
-      );
-      
-      if (dashboardsDelMacroproceso.length === 0) return '';
-      
-      const grouped = {};
-      dashboardsDelMacroproceso.forEach(d => {
-        if (!grouped[d.area]) grouped[d.area] = [];
-        grouped[d.area].push(d);
-      });
-      
-      const macroprocesoId = generateSafeId(`public-${nombre}`, 'macro');
-      
-      return `
-        <div class="macroproceso-section ${config.color}">
-          <div class="macroproceso-header" data-macroproceso-id="${macroprocesoId}">
-            <div class="macroproceso-title">
-              <div class="macroproceso-icon">
-                <i class="fas ${config.icon}"></i>
-              </div>
-              <span>Macroproceso ${nombre}</span>
-            </div>
-            <i class="fas fa-chevron-down collapse-icon" id="icon-${macroprocesoId}"></i>
-          </div>
-          <div class="macroproceso-content" id="content-${macroprocesoId}">
-            ${Object.entries(grouped).map(([area, items], index) => 
-              createAreaCard(area, items, config.color, index, 'pub-')
-            ).join('')}
-          </div>
-        </div>
-      `;
-    }).join('');
-  
-  debugLog('Dashboards públicos administrativos renderizados');
-}
-
-function renderAdministrativosDashboards() {
-  debugLog('Renderizando dashboards administrativos privados');
-  const container = document.getElementById('administrativosDashboards');
-  
-  const adminDashboards = dashboards.filter(d => 
-    d.macroproceso !== 'Misional' && d.tipo === 'Privado'
-  );
-  
-  container.innerHTML = Object.entries(MACROPROCESOS)
-    .filter(([nombre]) => nombre !== 'Misional')
-    .map(([nombre, config]) => {
-      
-      const grouped = {};
-      adminDashboards
-        .filter(d => config.areas.includes(d.area))
-        .forEach(d => {
-          if (!grouped[d.area]) grouped[d.area] = [];
-          grouped[d.area].push(d);
-        });
-      
-      const macroprocesoId = generateSafeId(`admin-${nombre}`, 'macro');
-      
-      return `
-        <div class="macroproceso-section ${config.color}">
-          <div class="macroproceso-header" data-macroproceso-id="${macroprocesoId}">
-            <div class="macroproceso-title">
-              <div class="macroproceso-icon">
-                <i class="fas ${config.icon}"></i>
-              </div>
-              <span>Macroproceso ${nombre}</span>
-            </div>
-            <i class="fas fa-chevron-down collapse-icon" id="icon-${macroprocesoId}"></i>
-          </div>
-          <div class="macroproceso-content" id="content-${macroprocesoId}">
-            ${config.areas.map((area, index) => {
-              const items = grouped[area] || [];
-              return createAreaCard(area, items, config.color, index, 'adm-');
-            }).join('')}
-          </div>
-        </div>
-      `;
-    }).join('');
-  
-  debugLog('Dashboards administrativos privados renderizados');
-}
-
-// ==========================================
 // CREAR TARJETA DE DASHBOARD
 // ==========================================
 
 function createDashboardCard(dashboard) {
-  const isPrivate = dashboard.tipo === 'Privado';
   const isExternalLink = !dashboard.url.includes('powerbi.com');
-  
-  const accentColor = isPrivate ? 'secondary' : 'primary';
-  const iconColor = isPrivate ? 'blue' : 'green';
   
   const buttonIcon = isExternalLink ? 'fa-external-link-alt' : 'fa-chart-line';
   const buttonText = isExternalLink ? 'Visitar Sitio' : 'Ver Dashboard';
 
   return `
-    <div class="dashboard-card ${isPrivate ? 'private' : ''}">
+    <div class="dashboard-card">
       <div class="p-6">
         <div class="flex items-start justify-between mb-4">
           <h4 class="font-bold text-gray-800 flex-1 pr-2 text-base leading-tight">${dashboard.titulo}</h4>
-          <i class="fas fa-${isPrivate ? 'lock' : 'unlock'} text-${iconColor}-500 flex-shrink-0"></i>
+          <i class="fas fa-chart-line text-green-600 flex-shrink-0"></i>
         </div>
         <div class="dashboard-metadata">
           <div class="dashboard-metadata-item">
@@ -629,7 +574,7 @@ function createDashboardCard(dashboard) {
             <span><strong>Elaborado por:</strong> ${dashboard.elaboradoPor}</span>
           </div>
         </div>
-        <button onclick="openDashboard(${dashboard.id}); event.stopPropagation();" class="btn-${accentColor} w-full justify-center mt-4">
+        <button onclick="openDashboard(${dashboard.id}); event.stopPropagation();" class="btn-primary w-full justify-center mt-4">
           <i class="fas ${buttonIcon}"></i><span>${buttonText}</span>
         </button>
       </div>
@@ -638,8 +583,43 @@ function createDashboardCard(dashboard) {
 }
 
 // ==========================================
-// MODAL DASHBOARD
+// MODAL DASHBOARD CON PANEL INFORMATIVO
 // ==========================================
+
+// --- INICIO DE CÓDIGO MEJORADO ---
+function getTypeClass(type) {
+  if (type === 'text') return 'type-text';
+  if (type === 'number') return 'type-number';
+  if (type === 'date') return 'type-date';
+  return 'type-text';
+}
+
+function renderDatasetInfo(dashboard) {
+  if (!dashboard.datasetName) return '';
+  
+  const columnsHTML = dashboard.columns ? `
+    <table class="columns-table">
+      <thead>
+        <tr>
+          <th>Campo</th>
+          <th>Tipo</th>
+          <th>Descripción</th>
+        </tr>
+      </thead>
+      <tbody>
+        ${dashboard.columns.map(col => `
+          <tr>
+            <td><strong>${col.name}</strong></td>
+            <td><span class="column-type ${getTypeClass(col.type)}">${col.type}</span></td>
+            <td>${col.description}</td>
+          </tr>
+        `).join('')}
+      </tbody>
+    </table>
+  ` : '';
+  
+  return columnsHTML;
+}
 
 function openDashboard(id) {
   const dashboard = dashboards.find(d => d.id === id);
@@ -653,23 +633,72 @@ function openDashboard(id) {
   }
 
   currentDashboard = dashboard;
+  infoPanelExpanded = false;
   
-  // Crear un elemento temporal para extraer solo el texto limpio
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = dashboard.titulo;
   const cleanTitle = tempDiv.textContent || tempDiv.innerText || "";
   
-  // Usar el título limpio en el modal
   document.getElementById('modalTitle').textContent = cleanTitle;
   document.getElementById('modalArea').textContent = dashboard.area;
-  document.getElementById('modalType').innerHTML = dashboard.tipo === 'Privado' 
-    ? '<i class="fas fa-lock text-blue-500"></i> <span class="text-blue-700">Privado</span>' 
-    : '<i class="fas fa-unlock text-green-500"></i> <span class="text-green-700">Público</span>';
   document.getElementById('iframeContainer').innerHTML = 
     `<iframe src="${dashboard.url}" width="100%" height="100%" frameborder="0" allowfullscreen></iframe>`;
   
+  document.getElementById('infoDescripcion').textContent = dashboard.descripcion || 'Sin descripción disponible';
+  
+  const estadoBadge = document.getElementById('infoEstado');
+  estadoBadge.textContent = dashboard.estado || 'Sin información';
+  estadoBadge.className = 'status-badge status-' + (dashboard.estado === 'Activo' ? 'active' : 'inactive');
+  
+  const historicoSection = document.getElementById('infoHistoricoSection');
+  if (dashboard.esHistorico) {
+    historicoSection.style.display = 'block';
+    document.getElementById('infoHistorico').textContent = 'Este tablero contiene datos históricos sin actualización periódica.';
+  } else {
+    historicoSection.style.display = 'none';
+  }
+  
+  document.getElementById('infoObservaciones').textContent = dashboard.observaciones || 'Sin observaciones adicionales';
+  
+  // Lógica para el diccionario de datos
+  if (dashboard.datasetName) {
+    document.getElementById('datasetName').textContent = dashboard.datasetName;
+    document.getElementById('datasetAbstract').textContent = dashboard.datasetAbstract || 'Dataset del tablero de indicadores institucionales.';
+    document.getElementById('datasetColumnsContainer').innerHTML = renderDatasetInfo(dashboard);
+    document.getElementById('datasetSource').textContent = dashboard.datasetSource || dashboard.fuente;
+    document.getElementById('datasetNotes').textContent = dashboard.datasetNotes || 'Consultar documentación técnica para más detalles.';
+  } else {
+    // Comportamiento por defecto para tableros sin metadatos extendidos
+    document.getElementById('datasetName').textContent = dashboard.titulo;
+    document.getElementById('datasetAbstract').textContent = 'Dataset de indicadores institucionales sin especificación detallada.';
+    document.getElementById('datasetColumnsContainer').innerHTML = '<p class="text-gray-600 text-sm">Información de campos no disponible.</p>';
+    document.getElementById('datasetSource').textContent = dashboard.fuente;
+    document.getElementById('datasetNotes').textContent = 'Consultar con el área responsable para información técnica detallada.';
+  }
+  
+  const infoPanel = document.getElementById('dashboardInfoPanel');
+  infoPanel.classList.remove('expanded');
+  
   document.body.style.overflow = 'hidden';
   document.getElementById('dashboardModal').classList.add('active');
+}
+// --- FIN DE CÓDIGO MEJORADO ---
+
+function toggleInfoPanel() {
+  const panel = document.getElementById('dashboardInfoPanel');
+  const toggleBtn = document.getElementById('toggleInfoPanelBtn');
+  
+  infoPanelExpanded = !infoPanelExpanded;
+  
+  if (infoPanelExpanded) {
+    panel.classList.add('expanded');
+    toggleBtn.innerHTML = '<i class="fas fa-times"></i>';
+    toggleBtn.title = 'Ocultar información';
+  } else {
+    panel.classList.remove('expanded');
+    toggleBtn.innerHTML = '<i class="fas fa-info-circle"></i>';
+    toggleBtn.title = 'Mostrar información del tablero';
+  }
 }
 
 function closeDashboardModal() {
@@ -677,12 +706,31 @@ function closeDashboardModal() {
   document.getElementById('dashboardModal').classList.remove('active');
   document.getElementById('iframeContainer').innerHTML = '';
   currentDashboard = null;
+  infoPanelExpanded = false;
 }
 
 function openInNewTab() {
   if (currentDashboard) {
     window.open(currentDashboard.url, '_blank');
   }
+}
+
+function downloadCSV() {
+  if (!currentDashboard) return;
+  
+  const csvContent = `Tablero,Área,Fecha Actualización,Fuente,Elaborado Por,Descripción,Estado,Observaciones
+"${currentDashboard.titulo}","${currentDashboard.area}","${currentDashboard.fechaActualizacion}","${currentDashboard.fuente}","${currentDashboard.elaboradoPor}","${currentDashboard.descripcion}","${currentDashboard.estado}","${currentDashboard.observaciones}"`;
+  
+  const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+  const link = document.createElement('a');
+  const url = URL.createObjectURL(blob);
+  
+  link.setAttribute('href', url);
+  link.setAttribute('download', `${currentDashboard.titulo.replace(/[^a-z0-9]/gi, '_')}.csv`);
+  link.style.visibility = 'hidden';
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
 }
 
 // ==========================================
@@ -934,11 +982,8 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape' && document.getElementById('dashboardModal').classList.contains('active')) {
     closeDashboardModal();
   }
-  if (e.key === 'Enter' && currentView === 'administrativos' && !isAuthenticated) {
-    const loginVisible = !document.getElementById('loginSection').classList.contains('hidden');
-    if (loginVisible) {
-      handleAdminLogin();
-    }
+  if (e.key === 'Enter' && currentView === 'login') {
+    handleLogin();
   }
 });
 
@@ -957,59 +1002,47 @@ function setupMobileMenu() {
 }
 
 // ==========================================
-// MANEJADOR DE REDIMENSIONAMIENTO DE VENTANA
+// MANEJADOR DE REDIMENSIONAMIENTO
 // ==========================================
 function handleResize() {
-  // Solo actualiza si la vista de inicio está activa
   if (currentView === 'home') {
     debugLog('🔄 Iniciando redimensionamiento...');
     
-    // Forzar reflow del DOM para obtener dimensiones actuales
     const mapContainer = document.getElementById('map');
     const chartContainer = document.getElementById('topProgramsChart');
     
     if (mapContainer) {
-      void mapContainer.offsetHeight; // Forzar reflow
+      void mapContainer.offsetHeight;
     }
     if (chartContainer) {
-      void chartContainer.offsetHeight; // Forzar reflow
+      void chartContainer.offsetHeight;
     }
     
-    // Redimensionar el mapa de Leaflet con estrategia escalonada
     if (map && mapContainer) {
-      // Primera actualización: pan false para evitar movimientos
       setTimeout(() => {
         map.invalidateSize({
           pan: false,
           animate: false
         });
-        debugLog('✓ Mapa: Primera actualización');
       }, 50);
       
-      // Segunda actualización: más tiempo para asegurar layout completo
       setTimeout(() => {
         map.invalidateSize({
           pan: false,
           animate: false
         });
-        debugLog('✓ Mapa: Segunda actualización');
       }, 200);
       
-      // Tercera actualización: confirmación final
       setTimeout(() => {
         map.invalidateSize();
-        debugLog('✓ Mapa redimensionado correctamente');
       }, 350);
     }
     
-    // Redimensionar el gráfico de Chart.js con estrategia escalonada
     if (topProgramsChartInstance && chartContainer) {
-      // Obtener el canvas y su contexto
       const canvas = chartContainer;
       const parent = canvas.parentElement;
       
       setTimeout(() => {
-        // Forzar dimensiones del canvas al contenedor
         if (parent) {
           const parentWidth = parent.clientWidth;
           const parentHeight = parent.clientHeight;
@@ -1020,28 +1053,21 @@ function handleResize() {
           }
         }
         
-        // Primera actualización del gráfico
         topProgramsChartInstance.resize();
-        debugLog('✓ Gráfico: Primera actualización');
       }, 50);
       
-      // Segunda actualización con rerender completo
       setTimeout(() => {
         topProgramsChartInstance.resize();
-        topProgramsChartInstance.update('none'); // Sin animación para mayor rapidez
-        debugLog('✓ Gráfico: Segunda actualización');
+        topProgramsChartInstance.update('none');
       }, 200);
       
-      // Tercera actualización: confirmación final
       setTimeout(() => {
         topProgramsChartInstance.resize();
         topProgramsChartInstance.update('resize');
-        debugLog('✓ Gráfico redimensionado correctamente');
       }, 350);
     }
   }
 }
-
 
 // ==========================================
 // INICIALIZACIÓN
@@ -1050,26 +1076,19 @@ function handleResize() {
 document.addEventListener('DOMContentLoaded', () => {
   debugLog('=== INICIALIZANDO APLICACIÓN ===');
   
-  // Configurar event delegation PRIMERO
   setupEventDelegation();
-  
-  // Luego inicializar todo lo demás
   initializeMap();
   initializeMetrics();
   setupMobileMenu();
   
-  if (checkSession()) {
-    isAuthenticated = true;
+  if (currentUser) {
     document.getElementById('logoutBtn').classList.remove('hidden');
   }
 
-  // Añadir listener para el evento resize con debounce mejorado
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
-    // Debounce aumentado a 400ms para evitar ejecuciones excesivas
     resizeTimeout = setTimeout(handleResize, 400);
   });
   
   debugLog('=== APLICACIÓN INICIALIZADA ===');
-  debugLog('Modo debug activo. Para desactivar, cambiar DEBUG_MODE = false');
 });
