@@ -1,61 +1,64 @@
 # Gobierno de Datos - Universidad de Cundinamarca
 
-Plataforma web institucional diseñada para centralizar la gestión, visualización y análisis de datos académicos y administrativos. Este sistema facilita la toma de decisiones basada en evidencia y promueve la transparencia mediante el acceso a tableros de indicadores (dashboards) integrados con Power BI.
+Plataforma web institucional diseñada para centralizar la gestión, visualización y análisis de datos académicos y administrativos. Este sistema facilita la toma de decisiones basada en evidencia y promueve la transparencia mediante el acceso a tableros de indicadores (dashboards) integrados.
 
 El proyecto responde a la Resolución No. 036 del 17 de marzo de 2025, estableciendo un marco de gobernanza para la calidad, integridad y seguridad de la información, alineado con el Modelo Educativo Digital Transmoderno (MEDIT).
+
+## Alcance y Naturaleza del Proyecto (Prototipo)
+
+**Este desarrollo constituye un entorno de pruebas y maquetación conceptual (Beta).**
+
+Ha sido elaborado en respuesta a la solicitud de los directivos encargados con el propósito exclusivo de brindar una aproximación visual y funcional de lo que será el futuro micrositio de Gobierno de Datos. Su objetivo es facilitar la comprensión del alcance, la navegación y la experiencia de usuario propuesta.
+
+Es importante aclarar que:
+*   **Carácter Ilustrativo:** Tanto el diseño gráfico como la información contenida en este prototipo son representaciones preliminares y no constituyen datos reales de producción ni la imagen definitiva.
+*   **Sujeto a Cambios:** Esta versión no es el producto final. El desarrollo está sujeto a modificaciones sustanciales, adaptaciones técnicas y reestructuraciones de diseño para asegurar su total alineación con la identidad corporativa, los manuales de marca y la infraestructura tecnológica oficial de la Universidad de Cundinamarca.
+*   **Entorno de Validación:** Se presenta como una herramienta de validación para la toma de decisiones estratégicas previas al desarrollo e implementación final.
 
 ## Características Principales
 
 ### Gestión de Datos Institucionales
-*   **Centralización de Información:** Acceso unificado a más de 50 tableros de control activos.
-*   **Múltiples Fuentes de Datos:** Integración con sistemas como SNIES, SPADIES, plataforma CAI, SAP y LMS institucional.
-*   **Diccionario de Datos:** Visualización detallada de metadatos, tipos de variables y descripciones para cada conjunto de datos (dataset).
+*   **Centralización de Información:** Acceso unificado a diversos tableros de control.
+*   **Múltiples Fuentes de Datos:** Simulación de integración con sistemas como SNIES, SPADIES, plataforma CAI y SAP.
+*   **Diccionario de Datos:** Visualización detallada de metadatos, tipos de variables y descripciones para cada conjunto de datos.
 
 ### Roles y Seguridad
-El sistema implementa un control de acceso basado en roles (RBAC) para garantizar la seguridad y pertinencia de la información mostrada:
-*   **Estudiante:** Acceso a indicadores de desempeño académico, bienestar y seguimiento curricular.
-*   **Administrativo:** Visualización de métricas de gestión, contratación, financiera y planeación estratégica.
-*   **Gestor del Conocimiento (Docente):** Tableros específicos sobre producción académica, escalafón y carga docente.
+El sistema implementa una simulación de control de acceso basado en roles (RBAC) para diferenciar la pertinencia de la información mostrada:
+*   **Estudiante:** Indicadores de desempeño académico y bienestar.
+*   **Administrativo:** Métricas de gestión, contratación y planeación.
+*   **Gestor del Conocimiento (Docente):** Tableros sobre producción académica y carga docente.
 
 ### Visualización y Experiencia de Usuario
-*   **Interfaz Interactiva:** Integración fluida de reportes de Power BI mediante iframes seguros.
-*   **Panel de Información Ajustable:** Funcionalidad para redimensionar el área de metadatos, mejorando la legibilidad en diferentes resoluciones.
-*   **Diseño Responsivo:** Adaptabilidad total a dispositivos móviles, tabletas y escritorio.
-*   **Georreferenciación:** Mapa interactivo para visualizar la distribución estudiantil por sedes regionales.
+*   **Interfaz Interactiva:** Integración de reportes visuales.
+*   **Panel de Información Ajustable:** Funcionalidad para redimensionar manualmente el área de detalles.
+*   **Diseño Responsivo:** Adaptabilidad a dispositivos móviles, tabletas y escritorio.
+*   **Georreferenciación:** Mapa interactivo para visualizar la distribución por sedes.
 
-## Tecnologías Implementadas
+## Tecnologías Utilizadas
 
-El desarrollo se ha realizado utilizando tecnologías web estándar para asegurar compatibilidad y rendimiento:
+El prototipo se ha construido utilizando tecnologías web estándar para facilitar su visualización en cualquier navegador moderno:
 
-*   **HTML5 / CSS3:** Estructura semántica y estilos personalizados.
-*   **JavaScript (Vanilla):** Lógica de negocio, gestión de sesión y manipulación del DOM sin dependencias de frameworks pesados.
-*   **Tailwind CSS:** Framework de utilidad para agilizar el diseño de componentes.
-*   **Leaflet.js:** Librería para la visualización de mapas interactivos.
-*   **Chart.js:** Renderizado de gráficos estadísticos nativos en el navegador.
+*   **HTML5 / CSS3:** Estructura y estilos.
+*   **JavaScript (Vanilla):** Lógica de interacción y manipulación del DOM.
+*   **Tailwind CSS:** Framework de diseño para agilidad en el prototipado.
+*   **Librerías de Visualización:** Leaflet.js para mapas y Chart.js para gráficos estadísticos.
 
 ## Estructura del Proyecto
 
-El repositorio se organiza de la siguiente manera:
+*   `index.html`: Estructura principal y contenedores.
+*   `styles.css`: Hoja de estilos y variables de diseño.
+*   `responsive.css`: Adaptaciones para diferentes tamaños de pantalla.
+*   `app.js`: Lógica del prototipo, datos simulados y funciones de interacción.
 
-*   `index.html`: Punto de entrada principal de la aplicación. Contiene la estructura base y los contenedores dinámicos.
-*   `styles.css`: Hoja de estilos global, definición de variables CSS y temas institucionales.
-*   `responsive.css`: Reglas de medios (media queries) para adaptar la interfaz a diferentes tamaños de pantalla.
-*   `app.js`: Archivo principal de lógica. Maneja la autenticación simulada, renderizado de dashboards, interactividad del mapa y lógica de negocio.
+## Configuración para Visualización
 
-## Configuración y Despliegue
+Al ser una aplicación estática (client-side), no requiere instalación de servidores complejos para su visualización:
 
-Este proyecto es una aplicación estática (client-side), lo que facilita su despliegue en cualquier servidor web estándar.
-
-1.  **Requisitos:** Un navegador web moderno (Chrome, Firefox, Edge). No requiere backend ni base de datos para su funcionamiento básico en modo demostración.
-2.  **Instalación:** Clonar el repositorio y abrir el archivo `index.html` en el navegador.
-3.  **Modo Demo:** La aplicación incluye un modo de demostración activo por defecto para facilitar la revisión de funcionalidades sin credenciales reales.
-
-## Consideraciones Técnicas
-
-*   **Autenticación:** El sistema actual utiliza una simulación de autenticación basada en `sessionStorage` para fines demostrativos y de prototipado. En un entorno de producción, esto debe integrarse con el directorio activo o sistema de identidad institucional (SSO).
-*   **Redimensionamiento:** Se implementó una lógica personalizada con `requestAnimationFrame` para optimizar el rendimiento al redimensionar paneles laterales, evitando retrasos (lag) visuales.
+1.  Clonar o descargar el repositorio.
+2.  Abrir el archivo `index.html` en un navegador web moderno (Chrome, Edge, Firefox).
+3.  El sistema iniciará en **Modo Demo** para facilitar la navegación por todas las secciones sin restricciones de autenticación real.
 
 ## Licencia y Derechos
 
 © 2025 Universidad de Cundinamarca. Todos los derechos reservados.
-El uso de este software está restringido a fines institucionales y académicos autorizados por la Dirección de Planeación y la Dirección de Sistemas y Tecnología.
+El uso de este prototipo está restringido a fines de revisión institucional, académicos y de planeación autorizados por la Dirección de Planeación y la Dirección de Sistemas y Tecnología.
