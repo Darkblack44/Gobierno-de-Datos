@@ -2350,7 +2350,9 @@ function toggleInfoPanel() {
 }
 
 function closeDashboardModal() {
+  document.documentElement.style.overflow = ''; 
   document.body.style.overflow = '';
+
   document.getElementById('dashboardModal').classList.remove('active');
   document.getElementById('iframeContainer').innerHTML = '';
   currentDashboard = null;
