@@ -2,6 +2,7 @@
 // CONFIGURACIÓN DE DEBUG
 // ==========================================
 const DEBUG_MODE = false;
+const DEMO_MODE = true; // Modo demo: login automático sin credenciales
 
 function debugLog(message, data = null) {
   if (DEBUG_MODE) {
@@ -43,9 +44,9 @@ const USERS = {
 
 let currentUser = null;
 
-  // ==========================================================================================
-  // MACROPROCESO MISIONAL - DESARROLLO ACADÉMICO (PREGRADO)
-  // ==========================================================================================
+// ==========================================
+// DATOS DE DASHBOARDS - COMPLETOS Y REORGANIZADOS
+// ==========================================
 const dashboards = [
   {
     "id": 1,
@@ -912,8 +913,7 @@ const dashboards = [
     "fechaActualizacion": "01/03/2025",
     "fuente": "Sistema de Control Interno",
     "elaboradoPor": "Oficina de Control Interno",
-    "descripcion": "Visualización del estado de avance de planes de mejoramiento derivados de auditorías y evaluaciones institucionales.",
-    "estado": "Activo",
+    "descripcion": "Visualización del estado de avance de planes de mejoramiento derivados de auditorías y evaluaciones institucionales.","estado": "Activo",
     "observaciones": "Actualizado bimensualmente con reportes de áreas responsables.",
     "esHistorico": false,
     "datasetName": "Seguimiento_Planes_Mejoramiento",
@@ -1867,49 +1867,42 @@ function navigateTo(view) {
     mobileMenu.classList.add('hidden');
   }
 
-  // Estudiantes: acceso público directo (sin autenticación)
-  if (view === 'estudiantes') {
-    document.querySelectorAll('.view-container').forEach(v => v.classList.remove('active'));
-    document.getElementById('estudiantesView').classList.add('active');
-    currentView = 'estudiantes';
-    renderDashboardsByRole('Estudiante');
-    return;
-  }
-
-  // Administrativos y Gestores: modo DEMO - acceso automático
-  const demoViews = {
+  const protectedViews = {
     'administrativos': 'Administrativo',
     'gestores': 'Docente'
   };
 
-  if (demoViews[view]) {
-    // Acceso automático en modo DEMO
-    if (!currentUser || currentUser.role !== demoViews[view]) {
-      currentUser = { 
-        role: demoViews[view], 
-        name: demoViews[view],
-        isDemo: true 
-      };
-      saveSession(currentUser.role);
-      document.getElementById('logoutBtn').classList.remove('hidden');
-    }
-    
+  // Sección de estudiantes ahora es pública (sin protección)
+  if (view === 'estudiantes') {
+    // Acceso directo sin autenticación
     document.querySelectorAll('.view-container').forEach(v => v.classList.remove('active'));
-    document.getElementById(`${view}View`).classList.add('active');
+    document.getElementById('estudiantesView').classList.add('active');
     currentView = view;
-    
-    if (view === 'administrativos') {
-      renderDashboardsByRole('Administrativo');
-    } else if (view === 'gestores') {
-      renderDashboardsByRole('Docente');
-    }
+    renderDashboardsByRole('Estudiante');
     return;
   }
 
-  // Vista home y otras vistas públicas
+  if (protectedViews[view]) {
+    if (!currentUser) {
+      showLoginForRole(view);
+      return;
+    } else if (currentUser.role !== protectedViews[view]) {
+      alert(`Acceso denegado. Esta sección es solo para ${protectedViews[view]}s.`);
+      return;
+    }
+  }
+
   document.querySelectorAll('.view-container').forEach(v => v.classList.remove('active'));
   document.getElementById(`${view}View`).classList.add('active');
   currentView = view;
+  
+  if (view === 'estudiantes' && currentUser && currentUser.role === 'Estudiante') {
+    renderDashboardsByRole('Estudiante');
+  } else if (view === 'administrativos' && currentUser && currentUser.role === 'Administrativo') {
+    renderDashboardsByRole('Administrativo');
+  } else if (view === 'gestores' && currentUser && currentUser.role === 'Docente') {
+    renderDashboardsByRole('Docente');
+  }
   
   if (view === 'home') {
     setTimeout(() => {
@@ -1960,6 +1953,27 @@ function handleLogin() {
   const targetRole = form.dataset.targetRole;
   const targetView = form.dataset.targetView;
   
+  // MODO DEMO: Acceso directo sin validación de credenciales
+  if (DEMO_MODE) {
+    // Asignar usuario demo según el rol objetivo
+    if (targetRole === 'Administrativo') {
+      currentUser = { password: 'demo', role: 'Administrativo', name: 'Usuario Demo - Administrativo' };
+    } else if (targetRole === 'Docente') {
+      currentUser = { password: 'demo', role: 'Docente', name: 'Usuario Demo - Gestor' };
+    } else {
+      currentUser = { password: 'demo', role: 'Estudiante', name: 'Usuario Demo - Estudiante' };
+    }
+    
+    saveSession(currentUser.role);
+    document.getElementById('logoutBtn').classList.remove('hidden');
+    document.getElementById('username').value = '';
+    document.getElementById('password').value = '';
+    errorDiv.classList.add('hidden');
+    navigateTo(targetView);
+    return;
+  }
+  
+  // Modo normal (deshabilitado en demo)
   if (USERS[username] && USERS[username].password === password && USERS[username].role === targetRole) {
     currentUser = USERS[username];
     saveSession(currentUser.role);
@@ -2680,6 +2694,46 @@ function handleResize() {
         topProgramsChartInstance.update('resize');
       }, 350);
     }
+  }
+}
+
+// ==========================================
+// FUNCIÓN PARA CAMBIAR PESTAÑAS DE LINEAMIENTOS
+// ==========================================
+function mostrarLineamiento(tipo) {
+  debugLog(`Cambiando a pestaña: ${tipo}`);
+  
+  // Obtener referencias a los contenedores de contenido
+  const contenidoGobierno = document.getElementById('contenidoGobiernoDatos');
+  const contenidoIA = document.getElementById('contenidoInteligenciaArtificial');
+  
+  // Obtener referencias a los botones
+  const btnGobierno = document.getElementById('btnGobiernoDatos');
+  const btnIA = document.getElementById('btnInteligenciaArtificial');
+  
+  // Validar que existan los elementos antes de intentar modificarlos
+  if (!contenidoGobierno || !contenidoIA || !btnGobierno || !btnIA) {
+    console.error("Error: No se encontraron los elementos de las pestañas en el DOM.");
+    return;
+  }
+
+  if (tipo === 'gobierno-datos') {
+    // Activar Gobierno de Datos
+    contenidoGobierno.classList.add('active');
+    contenidoIA.classList.remove('active');
+    
+    // Estilos de botones
+    btnGobierno.classList.add('active');
+    btnIA.classList.remove('active');
+    
+  } else if (tipo === 'inteligencia-artificial') {
+    // Activar Inteligencia Artificial
+    contenidoGobierno.classList.remove('active');
+    contenidoIA.classList.add('active');
+    
+    // Estilos de botones
+    btnGobierno.classList.remove('active');
+    btnIA.classList.add('active');
   }
 }
 
