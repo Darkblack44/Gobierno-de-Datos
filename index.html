@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+  <!-- ==========================================
+       METADATOS Y RECURSOS EXTERNOS
+       ========================================== -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Gobierno de Datos</title>
   <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAP1BMVEVHcEwASCsASCsASCsASCsASCsASCsASCsASCsASCsASCsASCsASCsASCsASCsASCsASCsASCsASCsASCsASCvBlJW4AAAAFXRSTlMAOAhd/E8etELXcsssk+fCgLsSp2qt5DD+AAABoElEQVR4AXXQV47YMAwA0bFsUZVU8/3PGrgAMXaT9z0ACz9t/I9zAPvhAcTxiw8RtpRLhZw2ftFiIbZMHzGNkvlprkg3nXMu8/jBl9Q5axCirkvfnNismxdeZ1ktBT9G3733ew8jphVWOnn5IbWutE8esqc2xf3dtI5JCY6PUSbmPgsuBXBReK21JV7SUygAvR0nrxlWWvfQGGztz7hj14LLnotv9WymoMWRlUsRgh3tEC7rxLUd5jhd8E/gQSarv7fR7803i6FyaU8XAxexWjYuy8bkok9QjZtpmgDdtvYNwErZAas6BJdbreUJ1h04cbErYOJ6IR6KDAFwdnd7yrIruAPXDefTkLUB7KbdUcveyqEQi5RRAfJROsDUXqrazkP7cfKwswm3YEN41CIrc8uBpdyWOV6qxPd8q4h5LnryykV4Pxxt6Znt5MNlO3UkywAu+q5HLVp5sa1SdfnqeDEPRJv6CYhfrQt68iEHkHOzS8lnhO75sr3Z4UFyBUnJ1vB8rbXPLeFOC5WuSNaNLwFoXVvtxaeNf4vHEtht8dcfZUcUqHv2A5wAAAAASUVORK5CYII=">
+  
+  <!-- Hojas de estilo locales -->
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="responsive.css">
-  <script src="mobile.js"></script>
   
+  <!-- Scripts de configuración y librerías externas -->
+  <script src="mobile.js"></script>
   <script>
     window.process = { env: { NODE_ENV: 'production' } };
   </script>
-  
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
   
+  <!-- Estilos específicos para visualización de datasets -->
   <style>
     .dataset-overview {
       margin-top: 1.5rem;
@@ -136,10 +142,14 @@
   </style>
 </head>
 <body>
-  <!-- Navegación principal - Estilo glassmorphism -->
+  
+  <!-- ==========================================
+       NAVEGACIÓN PRINCIPAL
+       ========================================== -->
   <nav class="nav-wrapper-new">
     <div class="nav-container">
-      <!-- Logo -->
+      
+      <!-- Identidad Institucional -->
       <div class="nav-logo">
         <img src="https://www.ucundinamarca.edu.co/images/ucundinamarca/escudo-color.png" alt="UdeC">
         <div class="nav-logo-text">
@@ -148,7 +158,7 @@
         </div>
       </div>
 
-      <!-- Enlaces de navegación desktop -->
+      <!-- Menú Desktop -->
       <div class="nav-links-new">
         <button onclick="navigateTo('home')" class="nav-link-item">Inicio</button>
         <button onclick="navigateTo('lineamientos')" class="nav-link-item">Lineamientos</button>
@@ -158,32 +168,50 @@
         <button id="logoutBtn" onclick="logout()" class="nav-link-item nav-logout hidden">Salir</button>
       </div>
 
-      <!-- Botón de usuario -->
+      <!-- Controles de Usuario y Móvil -->
       <button class="nav-user-btn">
         <i class="fas fa-user"></i>
       </button>
 
-      <!-- Botón menú móvil -->
       <button id="hamburgerBtn" class="nav-mobile-toggle">
         <i class="fas fa-bars"></i>
       </button>
     </div>
 
-    <!-- Menú móvil -->
+    <!-- Menú Desplegable Móvil -->
     <div id="mobileMenu" class="nav-mobile-menu hidden">
-      <button onclick="navigateTo('home')" class="nav-mobile-link">Inicio</button>
-      <button onclick="navigateTo('lineamientos')" class="nav-mobile-link">Lineamientos</button>
-      <button onclick="navigateTo('estudiantes')" class="nav-mobile-link">Estudiantes</button>
-      <button onclick="navigateTo('administrativos')" class="nav-mobile-link">Administrativos</button>
-      <button onclick="navigateTo('gestores')" class="nav-mobile-link">Gestores del Conocimiento</button>
+      <button onclick="navigateTo('home')" class="nav-mobile-link">
+        <i class="fas fa-home"></i>
+        <span>Inicio</span>
+      </button>
+      <button onclick="navigateTo('lineamientos')" class="nav-mobile-link">
+        <i class="fas fa-book"></i>
+        <span>Lineamientos</span>
+      </button>
+      <button onclick="navigateTo('estudiantes')" class="nav-mobile-link">
+        <i class="fas fa-user-graduate"></i>
+        <span>Estudiantes</span>
+      </button>
+      <button onclick="navigateTo('administrativos')" class="nav-mobile-link">
+        <i class="fas fa-user-tie"></i>
+        <span>Administrativos</span>
+      </button>
+      <button onclick="navigateTo('gestores')" class="nav-mobile-link">
+        <i class="fas fa-chalkboard-teacher"></i>
+        <span>Gestores del Conocimiento</span>
+      </button>
     </div>
   </nav>
 
-  <!-- Hero Banner - Solo imagen de fondo -->
+  <!-- Imagen Hero de Fondo -->
   <section class="hero-banner-new"></section>
 
+  <!-- ==========================================
+       VISTA PRINCIPAL (HOME)
+       ========================================== -->
   <div id="homeView" class="view-container active">
-    <!-- Hero Section -->
+    
+    <!-- Sección Hero: Propuesta de Valor -->
     <section class="hero-section">
       <div class="max-w-7xl mx-auto px-4 py-16">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -245,7 +273,7 @@
       </div>
     </section>
 
-    <!-- Objetivos y Propósito -->
+    <!-- Sección: Propósito y Objetivos Estratégicos -->
     <section class="bg-gradient-to-b from-gray-50 to-white py-16">
       <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
@@ -289,7 +317,7 @@
       </div>
     </section>
 
-    <!-- Principios Fundamentales -->
+    <!-- Sección: Principios Rectores -->
     <section class="py-16">
       <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
@@ -357,7 +385,7 @@
       </div>
     </section>
 
-    <!-- Métricas Institucionales -->
+    <!-- Sección: Dashboard de Métricas e Indicadores -->
     <section id="indicadores" class="bg-gradient-to-b from-white to-gray-50 py-16">
       <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
@@ -477,128 +505,7 @@
       </div>
     </section>
 
-    <!-- Estructura de Gobierno -->
-    <!-- 
-    <section class="py-16">
-      <div class="max-w-7xl mx-auto px-4">
-        <div class="text-center mb-12">
-          <h2 class="text-4xl font-bold text-gray-900 mb-4">Estructura de Gobierno de Datos</h2>
-          <p class="text-xl text-gray-600">Resolución No. 036 del 17 de marzo de 2025</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <div class="governance-card">
-            <div class="governance-icon bg-blue-500">
-              <i class="fas fa-chart-line"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Dirección de Planeación</h3>
-            <p class="text-gray-600 mb-4">Dirección, seguimiento y control del Grupo Interno de Trabajo de Gobierno de Datos</p>
-            <ul class="text-sm text-gray-600 space-y-2">
-              <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                <span>Coordinación estratégica</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                <span>Evaluación continua</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="governance-card">
-            <div class="governance-icon bg-green-500">
-              <i class="fas fa-server"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Dirección de Sistemas</h3>
-            <p class="text-gray-600 mb-4">Articulación técnica e implementación de infraestructura tecnológica</p>
-            <ul class="text-sm text-gray-600 space-y-2">
-              <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                <span>Gestión de arquitectura</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                <span>Soporte tecnológico</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="governance-card">
-            <div class="governance-icon bg-purple-500">
-              <i class="fas fa-shield-alt"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Sistema de Gestión de Seguridad</h3>
-            <p class="text-gray-600 mb-4">Protección de datos y cumplimiento normativo</p>
-            <ul class="text-sm text-gray-600 space-y-2">
-              <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                <span>Seguridad de información</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                <span>Protección de datos</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="governance-card">
-            <div class="governance-icon bg-amber-500">
-              <i class="fas fa-users-cog"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Profesional de Planeación</h3>
-            <p class="text-gray-600 mb-4">Apoyo operativo y seguimiento de iniciativas</p>
-            <ul class="text-sm text-gray-600 space-y-2">
-              <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                <span>Gestión de proyectos</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                <span>Reportes trimestrales</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="governance-card">
-            <div class="governance-icon bg-red-500">
-              <i class="fas fa-user-lock"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Oficial de Protección</h3>
-            <p class="text-gray-600 mb-4">Cumplimiento de ley de protección de datos personales</p>
-            <ul class="text-sm text-gray-600 space-y-2">
-              <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                <span>Habeas Data</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                <span>Ley 1581 de 2012</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="governance-card">
-            <div class="governance-icon bg-indigo-500">
-              <i class="fas fa-database"></i>
-            </div>
-            <h3 class="text-xl font-bold text-gray-800 mb-3">Inventario de Tableros</h3>
-            <p class="text-gray-600 mb-4">Catálogo institucional de dashboards y reportes</p>
-            <ul class="text-sm text-gray-600 space-y-2">
-              <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                <span>52 tableros activos</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <i class="fas fa-check-circle text-green-500 mt-1"></i>
-                <span>Actualización continua</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
- -->
-    <!-- Áreas de Trabajo -->
+    <!-- Sección: Áreas de Enfoque Estratégico -->
     <section class="bg-gradient-to-b from-gray-50 to-white py-16">
       <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
@@ -609,63 +516,63 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <div class="work-area-card">
             <div class="work-area-number">01</div>
-            <i class="fas fa-chart-pie work-area-icon"></i> <!-- Clases de color eliminadas -->
+            <i class="fas fa-chart-pie work-area-icon"></i>
             <h3 class="text-lg font-bold text-gray-800 mb-2">Análisis de Datos</h3>
             <p class="text-gray-600 text-sm">Recopilación, filtrado e interpretación de datos para transformarlos en información útil para la toma de decisiones</p>
           </div>
 
           <div class="work-area-card">
             <div class="work-area-number">02</div>
-            <i class="fas fa-brain work-area-icon"></i> <!-- Clases de color eliminadas -->
+            <i class="fas fa-brain work-area-icon"></i>
             <h3 class="text-lg font-bold text-gray-800 mb-2">Inteligencia Artificial</h3>
             <p class="text-gray-600 text-sm">Técnicas de estadística, machine learning y ciencia de datos para extraer insights significativos</p>
           </div>
 
           <div class="work-area-card">
             <div class="work-area-number">03</div>
-            <i class="fas fa-code work-area-icon"></i> <!-- Clases de color eliminadas -->
+            <i class="fas fa-code work-area-icon"></i>
             <h3 class="text-lg font-bold text-gray-800 mb-2">Programación</h3>
             <p class="text-gray-600 text-sm">Análisis exploratorio con Python y R, aplicando conceptos estadísticos mediante Jupyter Notebooks</p>
           </div>
 
           <div class="work-area-card">
             <div class="work-area-number">04</div>
-            <i class="fas fa-chart-line work-area-icon"></i> <!-- Clases de color eliminadas -->
+            <i class="fas fa-chart-line work-area-icon"></i>
             <h3 class="text-lg font-bold text-gray-800 mb-2">Visualización de Datos</h3>
             <p class="text-gray-600 text-sm">Identificación y corrección de registros erróneos, limpieza y perfilamiento de datos</p>
           </div>
 
           <div class="work-area-card">
             <div class="work-area-number">05</div>
-            <i class="fas fa-project-diagram work-area-icon"></i> <!-- Clases de color eliminadas -->
+            <i class="fas fa-project-diagram work-area-icon"></i>
             <h3 class="text-lg font-bold text-gray-800 mb-2">Arquitectura de Datos</h3>
             <p class="text-gray-600 text-sm">Recopilación, almacenamiento y análisis de grandes volúmenes garantizando disponibilidad</p>
           </div>
 
           <div class="work-area-card">
             <div class="work-area-number">06</div>
-            <i class="fas fa-database work-area-icon"></i> <!-- Clases de color eliminadas -->
+            <i class="fas fa-database work-area-icon"></i>
             <h3 class="text-lg font-bold text-gray-800 mb-2">Diseño de Bases de Datos</h3>
             <p class="text-gray-600 text-sm">Diseño, reestructuración e interacción con bases de datos, documentando procesos</p>
           </div>
 
           <div class="work-area-card">
             <div class="work-area-number">07</div>
-            <i class="fas fa-gavel work-area-icon"></i> <!-- Clases de color eliminadas -->
+            <i class="fas fa-gavel work-area-icon"></i>
             <h3 class="text-lg font-bold text-gray-800 mb-2">Normatividad Legal</h3>
             <p class="text-gray-600 text-sm">Marco legal, roles y responsabilidades para cumplir con normativa nacional e internacional</p>
           </div>
 
           <div class="work-area-card">
             <div class="work-area-number">08</div>
-            <i class="fas fa-shield-alt work-area-icon"></i> <!-- Clases de color eliminadas -->
+            <i class="fas fa-shield-alt work-area-icon"></i>
             <h3 class="text-lg font-bold text-gray-800 mb-2">Seguridad de la Información</h3>
             <p class="text-gray-600 text-sm">Protección de sistemas, redes y datos contra ataques, daños o accesos no autorizados</p>
           </div>
 
           <div class="work-area-card">
             <div class="work-area-number">09</div>
-            <i class="fas fa-search work-area-icon"></i> <!-- Clases de color eliminadas -->
+            <i class="fas fa-search work-area-icon"></i>
             <h3 class="text-lg font-bold text-gray-800 mb-2">Minería de Datos</h3>
             <p class="text-gray-600 text-sm">Búsqueda de patrones, tendencias y relaciones significativas en grandes conjuntos de datos</p>
           </div>
@@ -673,7 +580,7 @@
       </div>
     </section>
 
-    <!-- Sistemas de Gestión -->
+    <!-- Sección: Certificaciones de Calidad -->
     <section class="py-16">
       <div class="max-w-7xl mx-auto px-4">
         <div class="text-center mb-12">
@@ -705,7 +612,7 @@
       </div>
     </section>
 
-    <!-- Call to Action -->
+    <!-- Sección: Llamado a la Acción y Contacto -->
     <section class="cta-section">
       <div class="max-w-4xl mx-auto px-4 text-center">
         <div class="bg-white/10 backdrop-blur-sm rounded-full px-6 py-2 inline-block mb-6">
@@ -731,6 +638,9 @@
     </section>
   </div>
 
+  <!-- ==========================================
+       VISTA DE LINEAMIENTOS Y NORMATIVA
+       ========================================== -->
   <div id="lineamientosView" class="view-container">
     <main class="max-w-7xl mx-auto px-4 py-8">
       <div class="bg-gradient-to-r from-green-600 to-green-700 rounded-2xl p-8 shadow-xl mb-8 text-white">
@@ -744,7 +654,7 @@
           </div>
         </div>
         
-        <!-- Botones de selección -->
+        <!-- Pestañas de Navegación Interna -->
         <div class="flex justify-center gap-4 mt-6">
           <button id="btnGobiernoDatos" onclick="mostrarLineamiento('gobierno-datos')" class="lineamiento-tab-btn active">
             <i class="fas fa-database"></i>
@@ -757,7 +667,7 @@
         </div>
       </div>
 
-      <!-- Contenedor de Gobierno de Datos -->
+      <!-- PESTAÑA: GOBIERNO DE DATOS - Marco normativo, objetivos y estructura organizacional -->
       <div id="contenidoGobiernoDatos" class="lineamiento-content-container active">
         <div class="bg-white rounded-2xl p-8 shadow-lg border-2 border-green-500">
           <div class="flex items-center gap-3 mb-6 pb-4 border-b-2 border-green-500">
@@ -915,9 +825,8 @@
           </div>
         </div>
       </div>
-      <!-- Fin Contenedor de Gobierno de Datos -->
-
-      <!-- Contenedor de Inteligencia Artificial -->
+      
+      <!-- PESTAÑA: INTELIGENCIA ARTIFICIAL - Lineamientos estratégicos, ética y desarrollo tecnológico -->
       <div id="contenidoInteligenciaArtificial" class="lineamiento-content-container">
         <div class="bg-white rounded-2xl p-8 shadow-lg border-2 border-blue-500">
           <div class="flex items-center gap-3 mb-6 pb-4 border-b-2 border-blue-500">
@@ -1083,6 +992,9 @@
     </main>
   </div>
 
+  <!-- ==========================================
+       VISTA DE ACCESO Y AUTENTICACIÓN
+       ========================================== -->
   <div id="loginView" class="view-container">
     <main class="max-w-7xl mx-auto px-4 py-8">
       <div class="min-h-[60vh] flex items-center justify-center">
@@ -1132,6 +1044,11 @@
     </main>
   </div>
 
+  <!-- ==========================================
+       VISTAS DE PORTALES (ROLES ESPECÍFICOS)
+       ========================================== -->
+  
+  <!-- Portal Estudiantes -->
   <div id="estudiantesView" class="view-container">
     <main class="max-w-7xl mx-auto px-4 py-8">
       <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 mb-8">
@@ -1149,6 +1066,7 @@
     </main>
   </div>
 
+  <!-- Portal Administrativos -->
   <div id="administrativosView" class="view-container">
     <main class="max-w-7xl mx-auto px-4 py-8">
       <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 mb-8">
@@ -1166,6 +1084,7 @@
     </main>
   </div>
 
+  <!-- Portal Gestores/Docentes -->
   <div id="gestoresView" class="view-container">
     <main class="max-w-7xl mx-auto px-4 py-8">
       <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 mb-8">
@@ -1183,6 +1102,9 @@
     </main>
   </div>
 
+  <!-- ==========================================
+       COMPONENTE MODAL DE DASHBOARDS
+       ========================================== -->
   <div id="dashboardModal" class="modal-backdrop">
     <div class="modal-content-enhanced">
       <div class="dashboard-modal-header">
