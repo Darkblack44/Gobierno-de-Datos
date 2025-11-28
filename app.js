@@ -1,8 +1,8 @@
 // ==========================================
-// CONFIGURACION DE DEBUG
+// CONFIGURACIÓN DE ENTORNO Y EJECUCIÓN
 // ==========================================
 const DEBUG_MODE = false;
-const DEMO_MODE = true; // Modo demo: login automático sin credenciales
+const DEMO_MODE = true; // Habilita el acceso simplificado omitiendo la validación estricta de credenciales
 
 function debugLog(message, data = null) {
   if (DEBUG_MODE) {
@@ -15,7 +15,7 @@ function debugLog(message, data = null) {
 }
 
 // ==========================================
-// FUNCION AUXILIAR PARA IDS SEGUROS Y UNICOS
+// UTILIDADES: NORMALIZACIÓN Y SANITIZACIÓN
 // ==========================================
 function generateSafeId(text, prefix = '') {
   if (!text) return prefix + 'unknown';
@@ -34,7 +34,7 @@ function generateSafeId(text, prefix = '') {
 }
 
 // ==========================================
-// SISTEMA DE ROLES Y USUARIOS
+// CONTROL DE ACCESO: ROLES Y USUARIOS
 // ==========================================
 const USERS = {
   'estudiante': { password: 'udec2024', role: 'Estudiante', name: 'Estudiante' },
@@ -45,7 +45,7 @@ const USERS = {
 let currentUser = null;
 
 // ==========================================
-// DATOS DE DASHBOARDS - COMPLETOS Y REORGANIZADOS
+// REPOSITORIO DE DATOS: DASHBOARDS
 // ==========================================
 const dashboards = [
   {
@@ -290,7 +290,7 @@ const dashboards = [
   },
   
   // ==========================================================================================
-  // MACROPROCESO MISIONAL - EDUCACION VIRTUAL Y A DISTANCIA
+  // AREA MISIONAL: EDUCACIÓN VIRTUAL Y A DISTANCIA
   // ==========================================================================================
   {
     "id": 9,
@@ -780,7 +780,7 @@ const dashboards = [
   },
 
   // ==========================================================================================
-  // MACROPROCESO ESTRATEGICO Y DE APOYO - GESTION ADMINISTRATIVA
+  // AREA DE APOYO Y ESTRATÉGICA: GESTIÓN ADMINISTRATIVA
   // ==========================================================================================
   {
     "id": 26,
@@ -1573,7 +1573,7 @@ const dashboards = [
   },
   
   // ==========================================================================================
-  // MACROPROCESO DE APOYO - TALENTO HUMANO (DOCENTES)
+  // AREA DE APOYO: GESTIÓN DE TALENTO HUMANO (DOCENTE)
   // ==========================================================================================
   {
     "id": 54,
@@ -1639,7 +1639,7 @@ const dashboards = [
   },
   
   // ==========================================================================================
-  // MACROPROCESO ESTRATEGICO - PROYECTOS ESPECIALES
+  // AREA ESTRATÉGICA: PROYECTOS ESPECIALES Y RELACIONAMIENTO
   // ==========================================================================================
   {
     "id": 56,
@@ -1830,7 +1830,7 @@ const studentData = [
 ];
 
 // ==========================================
-// GESTION DE SESION PERSISTENTE CON ROLES
+// GESTIÓN DEL CICLO DE VIDA DE LA SESIÓN Y AUTENTICACIÓN
 // ==========================================
 
 function checkSession() {
@@ -1856,26 +1856,41 @@ if (sessionData.authenticated && sessionData.role) {
 }
 
 // ==========================================
-// NAVEGACION CON SISTEMA DE ROLES MEJORADO
+// SISTEMA DE NAVEGACIÓN Y CONTROL DE ACCESO BASADO EN ROLES
 // ==========================================
 
 function navigateTo(view) {
   debugLog(`Navegando a: ${view}`);
 
   const mobileMenu = document.getElementById('mobileMenu');
+  const hamburgerBtn = document.getElementById('hamburgerBtn'); // Referencia al botón
+
+  // Gestión del estado del menú responsivo
   if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
     mobileMenu.classList.add('hidden');
+
+    // Restauración visual del botón de menú
+    if (hamburgerBtn) {
+        hamburgerBtn.classList.remove('menu-open'); // Quita el estilo activo
+        const icon = hamburgerBtn.querySelector('i');
+        if (icon) {
+            icon.classList.remove('fa-times'); // Quita la X
+            icon.classList.add('fa-bars');     // Vuelve a poner las barras
+        }
+    }
   }
 
-  // Actualizar estado activo de los botones del menu
+  // Sincronización visual de elementos de navegación activos
+  // Actualizar estado activo de los botones del menú escritorio
   document.querySelectorAll('.nav-link-item').forEach(btn => {
     btn.classList.remove('active');
   });
+  // Actualizar estado activo de los botones del menú móvil
   document.querySelectorAll('.nav-mobile-link').forEach(btn => {
     btn.classList.remove('active');
   });
   
-  // Activar el boton correspondiente a la vista actual
+  // Activar el botón correspondiente a la vista actual
   const navButtons = document.querySelectorAll('.nav-link-item');
   const mobileButtons = document.querySelectorAll('.nav-mobile-link');
   
@@ -1893,14 +1908,13 @@ function navigateTo(view) {
     }
   });
 
+  // Verificación de permisos y redireccionamiento de vistas
   const protectedViews = {
     'administrativos': 'Administrativo',
     'gestores': 'Docente'
   };
 
-  // Seccion de estudiantes ahora es publica (sin proteccion)
   if (view === 'estudiantes') {
-    // Acceso directo sin autenticacion
     document.querySelectorAll('.view-container').forEach(v => v.classList.remove('active'));
     document.getElementById('estudiantesView').classList.add('active');
     currentView = view;
@@ -1913,7 +1927,7 @@ function navigateTo(view) {
       showLoginForRole(view);
       return;
     } else if (currentUser.role !== protectedViews[view]) {
-      alert(`Acceso denegado. Esta seccion es solo para ${protectedViews[view]}s.`);
+      alert(`Acceso denegado. Esta sección es solo para ${protectedViews[view]}s.`);
       return;
     }
   }
@@ -1938,7 +1952,7 @@ function navigateTo(view) {
 }
 
 // ==========================================
-// FUNCIONES DE AUTENTICACION POR ROLES
+// LÓGICA DE AUTENTICACIÓN Y VALIDACIÓN DE CREDENCIALES
 // ==========================================
 
 function showLoginForRole(targetView) {
@@ -1979,7 +1993,7 @@ function handleLogin() {
   const targetRole = form.dataset.targetRole;
   const targetView = form.dataset.targetView;
   
-  // MODO DEMO: Acceso directo sin validación de credenciales
+  // Acceso simplificado para demostración
   if (DEMO_MODE) {
     // Asignar usuario demo según el rol objetivo
     if (targetRole === 'Administrativo') {
@@ -1999,7 +2013,7 @@ function handleLogin() {
     return;
   }
   
-  // Modo normal (deshabilitado en demo)
+  // Autenticación estándar
   if (USERS[username] && USERS[username].password === password && USERS[username].role === targetRole) {
     currentUser = USERS[username];
     saveSession(currentUser.role);
@@ -2024,7 +2038,7 @@ function logout() {
 }
 
 // ==========================================
-// RENDERIZAR DASHBOARDS POR ROL
+// MOTOR DE RENDERIZADO DINÁMICO DE INTERFAZ
 // ==========================================
 
 function renderDashboardsByRole(role) {
@@ -2077,7 +2091,7 @@ function renderDashboardsByRole(role) {
 }
 
 // ==========================================
-// TOGGLE MACROPROCESO/AREA
+// CONTROL DE INTERACCIÓN: SECCIONES COLAPSABLES
 // ==========================================
 
 function toggleMacroproceso(macroprocesoId) {
@@ -2129,7 +2143,7 @@ function toggleArea(areaId) {
 }
 
 // ==========================================
-// EVENT DELEGATION
+// OPTIMIZACIÓN DE EVENTOS MEDIANTE DELEGACIÓN
 // ==========================================
 
 function setupEventDelegation() {
@@ -2161,7 +2175,7 @@ function setupEventDelegation() {
 }
 
 // ==========================================
-// CREAR TARJETA DE AREA
+// COMPONENTES DE INTERFAZ: TARJETAS DE ÁREA
 // ==========================================
 
 function createAreaCard(area, dashboardsInArea, macroprocesoColor, index, context = '') {
@@ -2198,7 +2212,7 @@ function createAreaCard(area, dashboardsInArea, macroprocesoColor, index, contex
 }
 
 // ==========================================
-// CREAR TARJETA DE DASHBOARD
+// COMPONENTES DE INTERFAZ: TARJETAS DE DASHBOARD
 // ==========================================
 
 function createDashboardCard(dashboard) {
@@ -2237,10 +2251,9 @@ function createDashboardCard(dashboard) {
 }
 
 // ==========================================
-// MODAL DASHBOARD CON PANEL INFORMATIVO
+// GESTIÓN DEL MODAL DE VISUALIZACIÓN
 // ==========================================
 
-// --- INICIO DE CODIGO MEJORADO ---
 function getTypeClass(type) {
   if (type === 'text') return 'type-text';
   if (type === 'number') return 'type-number';
@@ -2276,7 +2289,7 @@ function renderDatasetInfo(dashboard) {
 }
 
 // ==========================================
-// MODAL DASHBOARD CON PANEL INFORMATIVO Y BLOQUEO DE SCROLL
+// LÓGICA DEL MODAL Y BLOQUEO DE SCROLL
 // ==========================================
 
 function openDashboard(id) {
@@ -2348,6 +2361,17 @@ function closeDashboardModal() {
 
   document.getElementById('dashboardModal').classList.remove('active');
   document.getElementById('iframeContainer').innerHTML = '';
+  
+  // Resetear el panel de información y el botón de toggle
+  const panel = document.getElementById('dashboardInfoPanel');
+  const toggleBtn = document.getElementById('toggleInfoPanelBtn');
+  
+  panel.classList.remove('expanded');
+  panel.style.width = '';
+  toggleBtn.style.display = 'flex';
+  toggleBtn.innerHTML = '<i class="fas fa-info-circle"></i>';
+  toggleBtn.title = 'Mostrar informacion del tablero';
+  
   currentDashboard = null;
   infoPanelExpanded = false;
 }
@@ -2355,16 +2379,26 @@ function closeDashboardModal() {
 function toggleInfoPanel() {
   const panel = document.getElementById('dashboardInfoPanel');
   const toggleBtn = document.getElementById('toggleInfoPanelBtn');
+  const isMobile = window.innerWidth <= 768;
   
   infoPanelExpanded = !infoPanelExpanded;
   
   if (infoPanelExpanded) {
     panel.classList.add('expanded');
-    toggleBtn.innerHTML = '<i class="fas fa-times"></i>';
-    toggleBtn.title = 'Ocultar informacion';
+    
+    // En móviles, ocultar el botón de toggle cuando el panel está abierto
+    if (isMobile) {
+      toggleBtn.style.display = 'none';
+    } else {
+      toggleBtn.innerHTML = '<i class="fas fa-times"></i>';
+      toggleBtn.title = 'Ocultar informacion';
+    }
   } else {
     panel.classList.remove('expanded');
     panel.style.width = ''; 
+    
+    // Mostrar el botón de toggle
+    toggleBtn.style.display = 'flex';
     toggleBtn.innerHTML = '<i class="fas fa-info-circle"></i>';
     toggleBtn.title = 'Mostrar informacion del tablero';
   }
@@ -2395,7 +2429,7 @@ function downloadCSV() {
 }
 
 // ==========================================
-// MAPA
+// INICIALIZACIÓN Y CONFIGURACIÓN DEL MAPA
 // ==========================================
 
 function initializeMap() {
@@ -2564,7 +2598,7 @@ document.addEventListener('fullscreenchange', function() {
 });
 
 // ==========================================
-// METRICAS
+// VISUALIZACIÓN DE MÉTRICAS Y GRÁFICOS
 // ==========================================
 
 function animateCounter(id, end) {
@@ -2636,7 +2670,7 @@ function renderTopProgramsChart(labels, data) {
 }
 
 // ==========================================
-// KEYBOARD SHORTCUTS
+// ATAJOS DE TECLADO
 // ==========================================
 
 document.addEventListener('keydown', (e) => {
@@ -2649,7 +2683,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ==========================================
-// MENU MOVIL RESPONSIVE
+// COMPORTAMIENTO DEL MENÚ EN DISPOSITIVOS MÓVILES
 // ==========================================
 function setupMobileMenu() {
   const hamburgerBtn = document.getElementById('hamburgerBtn');
@@ -2657,13 +2691,37 @@ function setupMobileMenu() {
 
   if (hamburgerBtn && mobileMenu) {
     hamburgerBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
+      const isOpen = mobileMenu.classList.toggle('hidden');
+      const icon = hamburgerBtn.querySelector('i');
+      
+      if (!isOpen) {
+        // Menu is now visible
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+        hamburgerBtn.classList.add('menu-open');
+      } else {
+        // Menu is now hidden
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+        hamburgerBtn.classList.remove('menu-open');
+      }
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!hamburgerBtn.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.add('hidden');
+        const icon = hamburgerBtn.querySelector('i');
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+        hamburgerBtn.classList.remove('menu-open');
+      }
     });
   }
 }
 
 // ==========================================
-// MANEJADOR DE REDIMENSIONAMIENTO
+// AJUSTE RESPONSIVO DE GRÁFICOS Y MAPAS
 // ==========================================
 function handleResize() {
   if (currentView === 'home') {
@@ -2731,7 +2789,7 @@ function handleResize() {
 }
 
 // ==========================================
-// FUNCION PARA CAMBIAR PESTANAS DE LINEAMIENTOS
+// NAVEGACIÓN DE PESTAÑAS PARA LINEAMIENTOS
 // ==========================================
 function mostrarLineamiento(tipo) {
   debugLog(`Cambiando a pestaña: ${tipo}`);
@@ -2771,7 +2829,7 @@ function mostrarLineamiento(tipo) {
 }
 
 // ==========================================
-// LOGICA DE REDIMENSIONAMIENTO DEL PANEL
+// CONTROLADOR DE REDIMENSIONAMIENTO DEL PANEL LATERAL
 // ==========================================
 function initResizeHandle() {
   const handle = document.getElementById('resizeHandle');
@@ -2821,7 +2879,7 @@ function initResizeHandle() {
 }
 
 // ==========================================
-// INICIALIZACION
+// INICIALIZACIÓN DEL CICLO DE VIDA DE LA APLICACIÓN
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
