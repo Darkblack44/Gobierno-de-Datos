@@ -1,70 +1,72 @@
-/* ============================================
-   UNIVERSIDAD DE CUNDINAMARCA
-   CORRECCIONES JAVASCRIPT PARA MÓVILES v1.0
-   ============================================ */
+/* ==========================================================================
+   MÓDULO DE OPTIMIZACIÓN Y COMPATIBILIDAD MÓVIL
+   Universidad de Cundinamarca - Ajustes de UX/UI para dispositivos táctiles
+   ========================================================================== */
 
 (function() {
   'use strict';
   
-  // ===============================
-  // DETECCIÓN DE DISPOSITIVO MÓVIL
-  // ===============================
+  // ==========================================
+  // DETECCIÓN DEL ENTORNO DE EJECUCIÓN
+  // ==========================================
+  // Identifica si el usuario navega desde un dispositivo móvil y distingue
+  // el sistema operativo (iOS/Android) para aplicar parches específicos.
   const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
   const isAndroid = /Android/i.test(navigator.userAgent);
   
-  // ===============================
-  // FIX VIEWPORT HEIGHT EN iOS
-  // ===============================
+  // ==========================================
+  // CORRECCIÓN DE ALTURA DEL VIEWPORT (VH)
+  // ==========================================
+  // Calcula dinámicamente la altura real visible para corregir inconsistencias 
+  // en navegadores móviles donde la barra de navegación afecta el 100vh.
   function setVHProperty() {
     const vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
   }
   
-  // Ejecutar al cargar y al redimensionar
   setVHProperty();
   window.addEventListener('resize', setVHProperty);
   window.addEventListener('orientationchange', () => {
     setTimeout(setVHProperty, 100);
   });
   
-  // ===============================
-  // MEJORA DE CARGA DEL IFRAME
-  // ===============================
+  // ==========================================
+  // GESTIÓN OPTIMIZADA DE CARGA DE IFRAMES
+  // ==========================================
+  // Intercepta la función de apertura del modal para inyectar estados de carga,
+  // mejorar atributos de rendimiento y forzar el renderizado en iOS.
   const originalOpenDashboardModal = window.openDashboardModal;
   
   if (typeof originalOpenDashboardModal === 'function') {
     window.openDashboardModal = function(dashboardId) {
       const iframeContainer = document.getElementById('iframeContainer');
       
-      // Agregar estado de carga
+      // Indicador visual de carga
       if (iframeContainer) {
         iframeContainer.classList.add('loading');
       }
       
-      // Llamar a la función original
       originalOpenDashboardModal(dashboardId);
       
-      // Esperar a que se cree el iframe y configurarlo
+      // Configuración asíncrona de atributos del iframe para priorizar rendimiento
       setTimeout(() => {
         const iframe = iframeContainer?.querySelector('iframe');
         if (iframe) {
-          // Configurar atributos para mejor rendimiento móvil
           iframe.setAttribute('loading', 'eager');
           iframe.setAttribute('importance', 'high');
           
-          // En iOS, forzar repaint para evitar iframe en blanco
+          // Hack para forzar el repintado en WebKit (iOS) y evitar iframes blancos
           if (isIOS) {
             iframe.style.transform = 'translateZ(0)';
             iframe.style.webkitTransform = 'translateZ(0)';
           }
           
-          // Evento de carga
           iframe.addEventListener('load', function() {
             iframeContainer.classList.remove('loading');
           });
           
-          // Timeout de seguridad para quitar loading
+          // Mecanismo de seguridad: elimina el loader si la carga tarda demasiado
           setTimeout(() => {
             iframeContainer.classList.remove('loading');
           }, 8000);
@@ -73,9 +75,11 @@
     };
   }
   
-  // ===============================
-  // PREVENIR ZOOM ACCIDENTAL EN INPUTS
-  // ===============================
+  // ==========================================
+  // MEJORA DE ACCESIBILIDAD Y UX EN FORMULARIOS
+  // ==========================================
+  // Asegura un tamaño de fuente mínimo de 16px en inputs para evitar que 
+  // los navegadores móviles (especialmente Safari) hagan zoom automático al enfocar.
   if (isMobile) {
     document.addEventListener('DOMContentLoaded', function() {
       const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"], textarea, select');
@@ -87,14 +91,15 @@
     });
   }
   
-  // ===============================
-  // FIX SCROLL MODAL EN iOS
-  // ===============================
+  // ==========================================
+  // CONTROL DE DESPLAZAMIENTO EN MODALES (iOS)
+  // ==========================================
+  // Bloquea el scroll del cuerpo de la página cuando el modal está activo
+  // para prevenir el efecto de desplazamiento de fondo no deseado.
   if (isIOS) {
     const modal = document.getElementById('dashboardModal');
     
     if (modal) {
-      // Prevenir scroll del body cuando el modal está abierto
       const observer = new MutationObserver((mutations) => {
         mutations.forEach((mutation) => {
           if (mutation.attributeName === 'class') {
@@ -117,9 +122,11 @@
     }
   }
   
-  // ===============================
-  // MEJORAR TOUCH EN PANEL DE INFO
-  // ===============================
+  // ==========================================
+  // OPTIMIZACIÓN DE EVENTOS TÁCTILES
+  // ==========================================
+  // Mejora la interacción en paneles deslizables y previene el rebote elástico
+  // del scroll nativo cuando se alcanzan los límites del contenedor.
   document.addEventListener('DOMContentLoaded', function() {
     const infoPanel = document.getElementById('dashboardInfoPanel');
     const infoPanelContent = infoPanel?.querySelector('.info-panel-content');
@@ -135,7 +142,6 @@
       infoPanelContent.addEventListener('touchmove', function(e) {
         currentY = e.touches[0].clientY;
         
-        // Prevenir bounce en iOS cuando está en el tope o fondo
         const isAtTop = infoPanelContent.scrollTop === 0;
         const isAtBottom = infoPanelContent.scrollHeight - infoPanelContent.scrollTop === infoPanelContent.clientHeight;
         
@@ -146,15 +152,16 @@
     }
   });
   
-  // ===============================
-  // AJUSTE AUTOMÁTICO DE ALTURA DEL MODAL
-  // ===============================
+  // ==========================================
+  // ADAPTABILIDAD DE LA VENTANA MODAL
+  // ==========================================
+  // Recalcula la altura del contenedor modal ante cambios de orientación o 
+  // redimensionamiento para garantizar que ocupe todo el viewport visible.
   function adjustModalHeight() {
     const modalContent = document.querySelector('.modal-content-enhanced');
     const modal = document.getElementById('dashboardModal');
     
     if (modalContent && modal && modal.classList.contains('active')) {
-      // Usar la altura real del viewport
       const viewportHeight = window.innerHeight;
       
       if (isMobile) {
@@ -164,7 +171,6 @@
     }
   }
   
-  // Ajustar al abrir modal y al cambiar orientación
   const modalObserver = new MutationObserver((mutations) => {
     mutations.forEach((mutation) => {
       if (mutation.target.id === 'dashboardModal' && mutation.attributeName === 'class') {
@@ -186,9 +192,11 @@
   
   window.addEventListener('resize', adjustModalHeight);
   
-  // ===============================
-  // CERRAR MODAL CON BOTÓN ATRÁS
-  // ===============================
+  // ==========================================
+  // INTEGRACIÓN CON NAVEGACIÓN NATIVA
+  // ==========================================
+  // Manipula el historial del navegador para permitir cerrar el modal
+  // utilizando el botón "Atrás" físico o de software del dispositivo.
   if (isMobile) {
     window.addEventListener('popstate', function(e) {
       const modal = document.getElementById('dashboardModal');
@@ -200,7 +208,6 @@
       }
     });
     
-    // Agregar estado al historial cuando se abre el modal
     const originalOpen = window.openDashboardModal;
     if (typeof originalOpen === 'function') {
       const enhancedOpen = window.openDashboardModal;
@@ -211,11 +218,12 @@
     }
   }
   
-  // ===============================
-  // MEJORA DE RENDIMIENTO SCROLL
-  // ===============================
+  // ==========================================
+  // OPTIMIZACIÓN DE RENDIMIENTO DE SCROLL
+  // ==========================================
+  // Gestiona clases CSS durante el desplazamiento para reducir operaciones
+  // de repintado y mejorar la fluidez (FPS) en dispositivos móviles.
   if (isMobile) {
-    // Agregar will-change solo cuando sea necesario
     document.addEventListener('scroll', function() {
       document.body.classList.add('is-scrolling');
     }, { passive: true });
@@ -229,9 +237,9 @@
     }, { passive: true });
   }
   
-  // ===============================
-  // DEBUG EN DESARROLLO
-  // ===============================
+  // ==========================================
+  // DIAGNÓSTICO EN ENTORNO LOCAL
+  // ==========================================
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
     console.log('📱 Mobile fixes loaded');
     console.log('Device:', { isMobile, isIOS, isAndroid });
