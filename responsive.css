@@ -1,10 +1,11 @@
-/* ============================================
-   UNIVERSIDAD DE CUNDINAMARCA
-   ============================================ */
+/* ==========================================================================
+   HOJA DE ESTILOS RESPONSIVA - UNIVERSIDAD DE CUNDINAMARCA
+   Adaptación multiplataforma y correcciones para dispositivos móviles
+   ========================================================================== */
 
-/* ===============================
-   CONFIGURACIÓN BASE GLOBAL
-================================ */
+/* ==========================================
+   NORMALIZACIÓN Y CONFIGURACIÓN BASE
+   ========================================== */
 
 *,
 *::before,
@@ -24,7 +25,7 @@ body {
   width: 100%;
   max-width: 100vw;
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100dvh; /* Soporte para Dynamic Viewport Height */
 }
 
 img {
@@ -32,23 +33,25 @@ img {
   height: auto;
 }
 
+/* Variables para áreas seguras en dispositivos con "notch" o barras de gesto */
 :root {
   --mobile-safe-area-inset-top: env(safe-area-inset-top, 0px);
   --mobile-safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
 }
 
-/* ===============================
+/* ==========================================
    BREAKPOINT: PANTALLAS GRANDES (>= 1440px)
-================================ */
+   Monitores de alta resolución y escritorio
+   ========================================== */
 @media (min-width: 1440px) {
   .max-w-7xl {
     max-width: 1400px;
   }
 }
 
-/* ===============================
-   BREAKPOINT: LAPTOPS PEQUEÑAS (<= 1280px)
-================================ */
+/* ==========================================
+   BREAKPOINT: LAPTOPS Y ESCRITORIOS PEQUEÑOS (<= 1280px)
+   ========================================== */
 @media (max-width: 1280px) {
   .max-w-7xl {
     padding-left: 2.5rem;
@@ -64,9 +67,9 @@ img {
   }
 }
 
-/* ===============================
-   BREAKPOINT: TABLETS HORIZONTALES (<= 1024px)
-================================ */
+/* ==========================================
+   BREAKPOINT: TABLETS MODO PAISAJE / LAPTOPS TÁCTILES (<= 1024px)
+   ========================================== */
 @media (max-width: 1024px) {
   .banner-section {
     height: 22vh;
@@ -74,6 +77,7 @@ img {
     background-size: cover;
   }
 
+  /* Ocultar texto en botones de navegación para ahorrar espacio */
   .nav-links-desktop button span {
     display: none;
   }
@@ -83,6 +87,7 @@ img {
     padding-right: 0.75rem;
   }
 
+  /* Ajuste de grillas para mejor distribución del contenido */
   .grid.lg\:grid-cols-5 {
     grid-template-columns: 1fr;
   }
@@ -127,9 +132,10 @@ img {
   }
 }
 
-/* ===============================
-   BREAKPOINT: TABLETS VERTICALES (<= 768px)
-================================ */
+/* ==========================================
+   BREAKPOINT: TABLETS MODO RETRATO (<= 768px)
+   Punto de corte principal para diseño móvil
+   ========================================== */
 @media (max-width: 768px) {
   .banner-section {
     height: 18vh;
@@ -145,44 +151,61 @@ img {
     display: none !important;
   }
 
+  /* --- NAVEGACIÓN Y MENÚ COLAPSABLE --- */
   #mobileMenu {
-    background: rgba(0, 72, 43, 0.98);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: rgba(0, 72, 43, 0.98); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    padding-top: 10px;
+    padding-bottom: 10px;
   }
 
-  #mobileMenu button {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  .nav-mobile-link {
+    color: #FFFFFF !important; 
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
     transition: all 0.3s ease;
   }
 
-  #mobileMenu button:hover {
-    background: rgba(255, 255, 255, 0.1);
-    padding-left: 1.5rem;
+  .nav-mobile-link i {
+    color: rgba(255, 255, 255, 0.7) !important; 
+    transition: color 0.3s ease;
   }
 
-  #mobileMenu button:last-child {
+  .nav-mobile-link:hover {
+    background: rgba(255, 255, 255, 0.1); 
+    color: #FBE122 !important; 
+    padding-left: 1.5rem; 
+  }
+
+  .nav-mobile-link:hover i {
+    color: #FBE122 !important; 
+  }
+
+  .nav-mobile-link.active {
+    background: rgba(0, 123, 62, 1); 
+    color: #FFFFFF !important;
+    border-left: 4px solid #FBE122; 
+    font-weight: 700;
+  }
+  
+  .nav-mobile-link.active i {
+    color: #FFFFFF !important;
+  }
+
+  .nav-mobile-link:last-child {
     border-bottom: none;
   }
 
+  /* --- ADAPTACIÓN DE TIPOGRAFÍA Y ESPACIADO --- */
   .max-w-7xl {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
 
-  h1.text-4xl {
-    font-size: 2rem;
-    line-height: 1.2;
-  }
+  h1.text-4xl { font-size: 2rem; line-height: 1.2; }
+  h2.text-3xl { font-size: 1.75rem; line-height: 1.3; }
+  h3.text-2xl { font-size: 1.5rem; }
 
-  h2.text-3xl {
-    font-size: 1.75rem;
-    line-height: 1.3;
-  }
-
-  h3.text-2xl {
-    font-size: 1.5rem;
-  }
-
+  /* Reorganización de columnas a flujo vertical */
   .grid.md\:grid-cols-3,
   .grid.md\:grid-cols-2,
   .grid.lg\:grid-cols-3,
@@ -191,27 +214,12 @@ img {
     gap: 1rem;
   }
 
-  .stat-card-modern {
-    padding: 1.5rem;
-  }
-
-  .stat-value {
-    font-size: 2.25rem;
-  }
-
-  .stat-icon {
-    width: 56px;
-    height: 56px;
-  }
-
-  .sede-count {
-    font-size: 1.75rem;
-  }
-
-  .nivel-card {
-    padding: 1.5rem;
-  }
-
+  .stat-card-modern { padding: 1.5rem; }
+  .stat-value { font-size: 2.25rem; }
+  .stat-icon { width: 56px; height: 56px; }
+  .sede-count { font-size: 1.75rem; }
+  .nivel-card { padding: 1.5rem; }
+  
   .nivel-stats {
     flex-direction: column;
     gap: 1rem;
@@ -225,71 +233,34 @@ img {
     border-radius: 8px;
   }
 
-  .nivel-stat-value {
-    font-size: 1.75rem;
-  }
+  .nivel-stat-value { font-size: 1.75rem; }
 
   .sistemas-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
 
-  .sistema-card {
-    padding: 0.75rem;
-  }
+  .sistema-card { padding: 0.75rem; }
+  .sistema-card img { width: 140px; height: 112px; }
 
-  .sistema-card img {
-    width: 140px;
-    height: 112px;
-  }
+  .macroproceso-section { padding: 1.25rem; }
+  .macroproceso-title { font-size: 1.125rem; }
+  .macroproceso-icon { width: 36px; height: 36px; font-size: 18px; }
 
-  .macroproceso-section {
-    padding: 1.25rem;
-  }
+  .area-card { padding: 1.25rem; }
+  .area-card-icon { width: 50px; height: 50px; font-size: 24px; }
+  .area-card-title { font-size: 1rem; }
+  .area-card-subtitle { font-size: 0.8125rem; }
 
-  .macroproceso-title {
-    font-size: 1.125rem;
-  }
+  .dashboard-card { margin-bottom: 1rem; }
+  .dashboard-card .p-6 { padding: 1.25rem; }
 
-  .macroproceso-icon {
-    width: 36px;
-    height: 36px;
-    font-size: 18px;
-  }
-
-  .area-card {
-    padding: 1.25rem;
-  }
-
-  .area-card-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 24px;
-  }
-
-  .area-card-title {
-    font-size: 1rem;
-  }
-
-  .area-card-subtitle {
-    font-size: 0.8125rem;
-  }
-
-  .dashboard-card {
-    margin-bottom: 1rem;
-  }
-
-  .dashboard-card .p-6 {
-    padding: 1.25rem;
-  }
-
-  .btn-primary,
-  .btn-secondary {
+  .btn-primary, .btn-secondary {
     padding: 0.75rem 1.25rem;
     font-size: 0.9375rem;
   }
 
-  /* ====== MODAL DASHBOARD - TABLET ====== */
+  /* --- PERSONALIZACIÓN DE LA VENTANA MODAL --- */
   .modal-backdrop {
     padding: 0;
     align-items: stretch;
@@ -306,42 +277,84 @@ img {
   }
   
   .dashboard-modal-header {
-    padding: 0.875rem 1rem;
+    padding: 0.75rem 1rem;
     flex-shrink: 0;
     min-height: 56px;
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
   }
   
   .dashboard-modal-header .text-white {
-    flex: 1;
+    flex: 1 !important;
+    width: auto !important;
     min-width: 0;
   }
   
   #modalTitle {
     font-size: 1rem;
-    line-height: 1.25;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    line-height: 1.3;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    word-wrap: break-word;
   }
   
   #modalArea {
     font-size: 0.75rem;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: normal;
+    opacity: 0.9;
   }
 
-  /* BODY DEL MODAL - SIN SCROLL */
+  /* Estilos específicos para el botón de cierre */
+  .dashboard-modal-header button {
+    flex: 0 0 auto !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    max-width: 34px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 2px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .dashboard-modal-header button i {
+    font-size: 16px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    color: #FFFFFF !important;
+    transition: color 0.2s ease !important;
+  }
+
+  /* Estados interactivos del botón */
+  .dashboard-modal-header button:active,
+  .dashboard-modal-header button:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+    transform: scale(1.05);
+  }
+
+  .dashboard-modal-header button:active i,
+  .dashboard-modal-header button:hover i {
+    color: #FBE122 !important;
+  }
+
+  /* --- ESTRUCTURA INTERNA DEL MODAL E IFRAME --- */
   .dashboard-modal-body {
     flex: 1;
     display: flex;
     flex-direction: column;
     position: relative;
-    overflow: hidden !important; /* Sin scroll externo */
+    overflow: hidden !important;
     min-height: 0;
   }
   
-  /* WRAPPER IFRAME - SIN SCROLL */
   .dashboard-iframe-wrapper {
     flex: 1;
     display: flex;
@@ -351,36 +364,29 @@ img {
     min-height: 0;
   }
   
-  /* CONTENEDOR IFRAME - AJUSTE A PANTALLA */
-  .dashboard-iframe-container,
-  #iframeContainer {
+  .dashboard-iframe-container, #iframeContainer {
     flex: 1;
     width: 100%;
     height: 100%;
     position: relative;
-    overflow: hidden !important; /* Sin scroll */
+    overflow: hidden !important;
     background: #f5f5f5;
   }
   
-  /* IFRAME POWER BI - AJUSTE COMPLETO */
-  .dashboard-iframe-container iframe,
-  #iframeContainer iframe {
+  .dashboard-iframe-container iframe, #iframeContainer iframe {
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 0; left: 0;
     width: 100% !important;
     height: 100% !important;
     border: none !important;
     display: block;
   }
   
-  /* Panel info responsive */
+  /* Panel deslizante de información */
   .dashboard-info-panel {
     position: fixed;
-    top: 0;
-    right: 0;
-    width: 0;
-    height: 100%;
+    top: 0; right: 0;
+    width: 0; height: 100%;
     max-width: 100%;
     overflow: hidden;
     z-index: 30;
@@ -393,68 +399,43 @@ img {
   }
   
   .info-panel-toggle {
-    width: 40px;
-    height: 40px;
+    width: 40px; height: 40px;
     font-size: 1rem;
-    top: 0.5rem;
-    right: 0.5rem;
+    top: 0.5rem; right: 0.5rem;
     z-index: 20;
   }
   
-  /* Footer modal compacto */
   .dashboard-modal-footer {
     padding: 0.625rem 0.875rem;
     flex-shrink: 0;
     min-height: 48px;
   }
 
+  /* --- AJUSTES COMPLEMENTARIOS UI --- */
   footer .grid {
     grid-template-columns: 1fr;
     gap: 2rem;
     text-align: center;
   }
 
-  footer h4 {
-    font-size: 1.125rem;
-  }
-
-  .p-8 {
-    padding: 1.5rem;
-  }
-
-  .p-6 {
-    padding: 1.25rem;
-  }
-
-  section {
-    margin-bottom: 2rem;
-  }
-
-  .chart-container {
-    height: 280px;
-  }
-
-  #map {
-    min-height: 300px;
-  }
+  footer h4 { font-size: 1.125rem; }
+  .p-8 { padding: 1.5rem; }
+  .p-6 { padding: 1.25rem; }
+  section { margin-bottom: 2rem; }
+  .chart-container { height: 280px; }
+  #map { min-height: 300px; }
 
   .login-card {
     max-width: 100%;
     padding: 2rem 1.5rem;
   }
 
-  #adminSelectionSection .grid {
-    gap: 1.5rem;
-  }
-
+  #adminSelectionSection .grid,
   #lineamientosView .grid {
     gap: 1.5rem;
   }
   
-  button,
-  a,
-  .area-card-header,
-  .macroproceso-header {
+  button, a, .area-card-header, .macroproceso-header {
     min-height: 44px;
     min-width: 44px;
   }
@@ -465,17 +446,16 @@ img {
     min-height: 48px;
   }
   
-  button:focus,
-  a:focus,
-  input:focus {
+  /* Accesibilidad: foco visible */
+  button:focus, a:focus, input:focus {
     outline: 3px solid #007B3E;
     outline-offset: 3px;
   }
 }
 
-/* ===============================
+/* ==========================================
    BREAKPOINT: MÓVILES GRANDES (<= 640px)
-================================ */
+   ========================================== */
 @media (max-width: 640px) {
   .banner-section {
     height: 15vh;
@@ -598,7 +578,7 @@ img {
     font-size: 0.875rem;
   }
 
-  /* ====== MODAL MÓVIL GRANDE - FULLSCREEN SIN SCROLL ====== */
+  /* --- ADAPTACIÓN A PANTALLA COMPLETA PARA MÓVILES --- */
   .modal-backdrop {
     padding: 0;
   }
@@ -629,7 +609,7 @@ img {
     min-height: 36px;
   }
   
-  /* Panel información fullscreen */
+  /* Configuración del panel de información en fullscreen */
   .dashboard-info-panel.expanded {
     width: 100%;
     max-width: 100%;
@@ -650,7 +630,7 @@ img {
     right: 0.375rem;
   }
   
-  /* Footer modal */
+  /* Ajuste del pie de página del modal */
   .dashboard-modal-footer {
     padding: 0.5rem 0.75rem;
     padding-bottom: calc(0.5rem + var(--mobile-safe-area-inset-bottom));
@@ -727,9 +707,9 @@ img {
   }
 }
 
-/* ===============================
+/* ==========================================
    BREAKPOINT: MÓVILES PEQUEÑOS (<= 480px)
-================================ */
+   ========================================== */
 @media (max-width: 480px) {
   .banner-section {
     height: 12vh;
@@ -763,11 +743,11 @@ img {
   }
 
   h1.text-4xl {
-    font-size: 1.5rem;
+    font-size: 1.375rem;
   }
 
   h2.text-3xl {
-    font-size: 1.375rem;
+    font-size: 1.25rem;
   }
 
   h3.text-2xl {
@@ -916,7 +896,7 @@ img {
     min-height: 44px;
   }
 
-  /* Modal header ultra compacto */
+  /* Encabezado del modal ultra compacto */
   .dashboard-modal-header {
     padding: 0.625rem 0.75rem;
     min-height: 48px;
@@ -1062,9 +1042,9 @@ img {
   }
 }
 
-/* ===============================
+/* ==========================================
    BREAKPOINT: MÓVILES EXTRA PEQUEÑOS (<= 360px)
-================================ */
+   ========================================== */
 @media (max-width: 360px) {
   .banner-section {
     height: 10vh;
@@ -1135,9 +1115,9 @@ img {
   }
 }
 
-/* ===============================
-   CORRECCIONES DE OVERFLOW
-================================ */
+/* ==========================================
+   GESTIÓN DE DESBORDAMIENTO Y SCROLL
+   ========================================== */
 
 html,
 body {
@@ -1153,24 +1133,24 @@ section,
   max-width: 100%;
 }
 
-/* ===============================
-   MODAL - FORZAR SIN SCROLL
-================================ */
+/* ==========================================
+   CONFIGURACIÓN DE SCROLL EN MODAL
+   ========================================== */
 
-/* El contenedor del iframe NO debe tener scroll */
+/* Bloqueo de scroll en contenedor del iframe */
 #iframeContainer {
   overflow: hidden !important;
 }
 
-/* Solo el panel de información puede tener scroll interno */
+/* Habilitación de scroll interno en panel de información */
 .info-panel-content {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
-/* ===============================
-   MEJORAS DE RENDIMIENTO
-================================ */
+/* ==========================================
+   OPTIMIZACIÓN DE RENDIMIENTO Y UX
+   ========================================== */
 
 @media (max-width: 768px) {
   * {
@@ -1195,9 +1175,9 @@ section,
   }
 }
 
-/* ===============================
-   FIX iOS SAFARI
-================================ */
+/* ==========================================
+   COMPATIBILIDAD CON IOS (SAFARI/WEBKIT)
+   ========================================== */
 @supports (-webkit-touch-callout: none) {
   body {
     min-height: -webkit-fill-available;
@@ -1217,25 +1197,25 @@ section,
     max-height: -webkit-fill-available;
   }
   
-  /* Forzar render del iframe en iOS */
+  /* Forzado de renderizado del iframe en iOS */
   #iframeContainer iframe {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
   }
 }
 
-/* ===============================
-   FIX ANDROID CHROME
-================================ */
+/* ==========================================
+   COMPATIBILIDAD CON ANDROID CHROME
+   ========================================== */
 @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
   .modal-content-enhanced {
     height: 100dvh;
   }
 }
 
-/* ===============================
-   LANDSCAPE MÓVIL
-================================ */
+/* ==========================================
+   AJUSTES PARA MODO PAISAJE EN MÓVIL
+   ========================================== */
 @media (max-height: 500px) and (orientation: landscape) {
   .modal-content-enhanced {
     height: 100vh;
@@ -1272,9 +1252,9 @@ section,
   }
 }
 
-/* ===============================
-   PRINT STYLES
-================================ */
+/* ==========================================
+   ESTILOS DE IMPRESIÓN
+   ========================================== */
 @media print {
   .banner-section,
   nav,
