@@ -58,6 +58,8 @@ Al ser una aplicación estática (client-side), no requiere instalación de serv
 2.  Abrir el archivo `index.html` en un navegador web moderno (Chrome, Edge, Firefox).
 3.  El sistema iniciará en **Modo Demo** para facilitar la navegación por todas las secciones sin restricciones de autenticación real.
 
+## Ver sitio web: https://darkblack44.github.io/Gobierno-de-Datos/
+
 ## Licencia y Derechos
 
 © 2025 Universidad de Cundinamarca. Todos los derechos reservados.
