@@ -24,7 +24,7 @@ body {
   width: 100%;
   max-width: 100vw;
   min-height: 100vh;
-  min-height: 100dvh; /* Dynamic viewport height para móviles */
+  min-height: 100dvh;
 }
 
 img {
@@ -32,9 +32,6 @@ img {
   height: auto;
 }
 
-/* ===============================
-   VARIABLES CSS PARA MOBILE
-================================ */
 :root {
   --mobile-safe-area-inset-top: env(safe-area-inset-top, 0px);
   --mobile-safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
@@ -125,7 +122,6 @@ img {
     font-size: 1.25rem;
   }
   
-  /* Panel de información responsive */
   .dashboard-info-panel.expanded {
     width: 450px;
   }
@@ -293,26 +289,26 @@ img {
     font-size: 0.9375rem;
   }
 
-  /* ====== CORRECCIONES CRÍTICAS DEL MODAL PARA TABLET ====== */
+  /* ====== MODAL DASHBOARD - TABLET ====== */
   .modal-backdrop {
-    padding: 0.75rem;
-    align-items: flex-start;
-    padding-top: 1rem;
+    padding: 0;
+    align-items: stretch;
   }
   
   .modal-content-enhanced {
-    width: 100%;
-    max-width: 100%;
-    height: 95vh;
-    height: 95dvh;
-    border-radius: 16px;
-    margin: 0;
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
   }
   
   .dashboard-modal-header {
-    padding: 1rem 1.25rem;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+    padding: 0.875rem 1rem;
+    flex-shrink: 0;
+    min-height: 56px;
   }
   
   .dashboard-modal-header .text-white {
@@ -321,48 +317,52 @@ img {
   }
   
   #modalTitle {
-    font-size: 1.125rem;
-    line-height: 1.3;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    font-size: 1rem;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
   #modalArea {
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
-  /* CORRECCIÓN CRÍTICA: Body del modal */
+  /* BODY DEL MODAL - SIN SCROLL */
   .dashboard-modal-body {
     flex: 1;
     display: flex;
     flex-direction: column;
     position: relative;
-    overflow: hidden;
-    min-height: 0; /* Importante para flex children */
+    overflow: hidden !important; /* Sin scroll externo */
+    min-height: 0;
   }
   
-  /* CORRECCIÓN CRÍTICA: Wrapper del iframe */
+  /* WRAPPER IFRAME - SIN SCROLL */
   .dashboard-iframe-wrapper {
     flex: 1;
     display: flex;
     flex-direction: column;
     position: relative;
-    min-height: 300px;
-    overflow: hidden;
+    overflow: hidden !important;
+    min-height: 0;
   }
   
-  /* CORRECCIÓN CRÍTICA: Contenedor del iframe Power BI */
-  .dashboard-iframe-container {
+  /* CONTENEDOR IFRAME - AJUSTE A PANTALLA */
+  .dashboard-iframe-container,
+  #iframeContainer {
     flex: 1;
     width: 100%;
-    min-height: 300px;
     height: 100%;
     position: relative;
-    overflow: hidden;
-    background: #ffffff;
+    overflow: hidden !important; /* Sin scroll */
+    background: #f5f5f5;
   }
   
-  /* CORRECCIÓN CRÍTICA: iframe de Power BI */
+  /* IFRAME POWER BI - AJUSTE COMPLETO */
   .dashboard-iframe-container iframe,
   #iframeContainer iframe {
     position: absolute;
@@ -370,21 +370,21 @@ img {
     left: 0;
     width: 100% !important;
     height: 100% !important;
-    min-height: 300px;
-    border: none;
+    border: none !important;
     display: block;
   }
   
-  /* Panel de información - pantalla completa en tablets */
+  /* Panel info responsive */
   .dashboard-info-panel {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     width: 0;
     height: 100%;
     max-width: 100%;
     overflow: hidden;
-    z-index: 25;
+    z-index: 30;
+    background: #ffffff;
   }
   
   .dashboard-info-panel.expanded {
@@ -392,20 +392,20 @@ img {
     max-width: 400px;
   }
   
-  /* Botón toggle información */
   .info-panel-toggle {
-    width: 44px;
-    height: 44px;
-    font-size: 1.125rem;
-    top: 0.75rem;
-    right: 0.75rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    top: 0.5rem;
+    right: 0.5rem;
     z-index: 20;
   }
   
-  /* Footer del modal */
+  /* Footer modal compacto */
   .dashboard-modal-footer {
-    padding: 0.875rem 1rem;
+    padding: 0.625rem 0.875rem;
     flex-shrink: 0;
+    min-height: 48px;
   }
 
   footer .grid {
@@ -451,7 +451,6 @@ img {
     gap: 1.5rem;
   }
   
-  /* Mejora de áreas táctiles */
   button,
   a,
   .area-card-header,
@@ -599,98 +598,38 @@ img {
     font-size: 0.875rem;
   }
 
-  /* ====== CORRECCIONES CRÍTICAS DEL MODAL PARA MÓVIL GRANDE ====== */
+  /* ====== MODAL MÓVIL GRANDE - FULLSCREEN SIN SCROLL ====== */
   .modal-backdrop {
     padding: 0;
-    align-items: stretch;
   }
   
   .modal-content-enhanced {
     width: 100vw;
-    max-width: 100vw;
     height: 100vh;
     height: 100dvh;
     border-radius: 0;
-    display: flex;
-    flex-direction: column;
   }
   
   .dashboard-modal-header {
-    padding: 0.875rem 1rem;
-    min-height: 60px;
+    padding: 0.75rem 0.875rem;
+    min-height: 52px;
   }
   
   #modalTitle {
-    font-size: 1rem;
-    line-height: 1.25;
+    font-size: 0.9375rem;
   }
   
   #modalArea {
-    font-size: 0.75rem;
+    font-size: 0.6875rem;
   }
   
   .dashboard-modal-header button {
-    padding: 0.5rem;
-    min-width: 40px;
-    min-height: 40px;
+    padding: 0.375rem;
+    min-width: 36px;
+    min-height: 36px;
   }
   
-  /* CORRECCIÓN CRÍTICA: Body del modal móvil */
-  .dashboard-modal-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 0;
-    overflow: hidden;
-  }
-  
-  /* CORRECCIÓN CRÍTICA: Wrapper iframe móvil */
-  .dashboard-iframe-wrapper {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    min-height: 250px;
-    position: relative;
-  }
-  
-  /* CORRECCIÓN CRÍTICA: Contenedor iframe móvil */
-  .dashboard-iframe-container,
-  #iframeContainer {
-    flex: 1;
-    width: 100%;
-    min-height: 250px;
-    position: relative;
-    overflow: auto;
-    -webkit-overflow-scrolling: touch; /* Scroll suave iOS */
-    background: #ffffff;
-  }
-  
-  /* CORRECCIÓN CRÍTICA: iframe Power BI móvil */
-  .dashboard-iframe-container iframe,
-  #iframeContainer iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100% !important;
-    height: 100% !important;
-    min-height: 250px;
-    border: none !important;
-    display: block;
-  }
-  
-  /* Panel información fullscreen en móvil */
-  .dashboard-info-panel {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 0;
-    height: 100%;
-    z-index: 30;
-    background: #ffffff;
-  }
-  
+  /* Panel información fullscreen */
   .dashboard-info-panel.expanded {
     width: 100%;
     max-width: 100%;
@@ -699,36 +638,32 @@ img {
   .info-panel-content {
     padding: 1rem;
     padding-bottom: calc(1rem + var(--mobile-safe-area-inset-bottom));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
   
-  /* Botón toggle más pequeño para móvil */
   .info-panel-toggle {
-    width: 40px;
-    height: 40px;
-    font-size: 1rem;
-    top: 0.5rem;
-    right: 0.5rem;
+    width: 36px;
+    height: 36px;
+    font-size: 0.875rem;
+    top: 0.375rem;
+    right: 0.375rem;
   }
   
-  /* Footer modal móvil */
+  /* Footer modal */
   .dashboard-modal-footer {
-    padding: 0.75rem;
+    padding: 0.5rem 0.75rem;
+    padding-bottom: calc(0.5rem + var(--mobile-safe-area-inset-bottom));
     flex-direction: column;
-    gap: 0.5rem;
-    padding-bottom: calc(0.75rem + var(--mobile-safe-area-inset-bottom));
+    gap: 0.375rem;
+    min-height: 44px;
   }
   
   .dashboard-modal-footer button {
     width: 100%;
     justify-content: center;
-  }
-  
-  .btn-download-csv {
-    padding: 0.75rem 1rem;
-  }
-  
-  .btn-download-csv span {
-    display: inline;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
   }
 
   footer {
@@ -981,75 +916,45 @@ img {
     min-height: 44px;
   }
 
-  /* ====== CORRECCIONES MODAL MÓVIL PEQUEÑO ====== */
+  /* Modal header ultra compacto */
   .dashboard-modal-header {
-    padding: 0.75rem;
-    min-height: 56px;
+    padding: 0.625rem 0.75rem;
+    min-height: 48px;
   }
   
   #modalTitle {
-    font-size: 0.9375rem;
+    font-size: 0.875rem;
   }
   
   #modalArea {
-    font-size: 0.6875rem;
+    font-size: 0.625rem;
   }
   
-  .dashboard-modal-header button {
-    padding: 0.375rem;
-    min-width: 36px;
-    min-height: 36px;
-  }
-  
-  .dashboard-modal-header button i {
-    font-size: 1rem;
-  }
-  
-  /* Contenedor iframe móvil pequeño */
-  .dashboard-iframe-container,
-  #iframeContainer {
-    min-height: 220px;
-  }
-  
-  .dashboard-iframe-container iframe,
-  #iframeContainer iframe {
-    min-height: 220px;
-  }
-  
-  /* Botón info más pequeño */
-  .info-panel-toggle {
-    width: 36px;
-    height: 36px;
-    font-size: 0.875rem;
-    top: 0.375rem;
-    right: 0.375rem;
-  }
-  
-  /* Panel info header */
   .info-panel-header {
-    padding: 1rem;
+    padding: 0.875rem;
   }
   
   .info-panel-header h3 {
-    font-size: 1rem;
+    font-size: 0.9375rem;
   }
   
   .info-section h4 {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
   }
   
   .info-section p {
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
   }
   
-  /* Footer modal */
+  .info-panel-toggle {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+  
   .dashboard-modal-footer {
-    padding: 0.625rem;
-  }
-  
-  .dashboard-modal-footer button {
-    padding: 0.625rem 0.875rem;
-    font-size: 0.8125rem;
+    padding: 0.375rem 0.625rem;
+    padding-bottom: calc(0.375rem + var(--mobile-safe-area-inset-bottom));
   }
 
   footer {
@@ -1204,29 +1109,23 @@ img {
     font-size: 0.75rem;
   }
 
-  /* Modal extra pequeño */
   .dashboard-modal-header {
-    padding: 0.625rem;
-    min-height: 50px;
+    padding: 0.5rem 0.625rem;
+    min-height: 44px;
   }
   
   #modalTitle {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
   }
   
   #modalArea {
-    font-size: 0.625rem;
-  }
-  
-  .dashboard-iframe-container,
-  #iframeContainer {
-    min-height: 200px;
+    font-size: 0.5625rem;
   }
   
   .info-panel-toggle {
-    width: 32px;
-    height: 32px;
-    font-size: 0.75rem;
+    width: 28px;
+    height: 28px;
+    font-size: 0.625rem;
   }
 
   footer p,
@@ -1237,7 +1136,7 @@ img {
 }
 
 /* ===============================
-   CORRECCIONES DE OVERFLOW Y SCROLL
+   CORRECCIONES DE OVERFLOW
 ================================ */
 
 html,
@@ -1254,13 +1153,18 @@ section,
   max-width: 100%;
 }
 
-/* Contenedor de iframe con scroll touch */
+/* ===============================
+   MODAL - FORZAR SIN SCROLL
+================================ */
+
+/* El contenedor del iframe NO debe tener scroll */
 #iframeContainer {
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
+  overflow: hidden !important;
 }
 
-.modal-backdrop {
+/* Solo el panel de información puede tener scroll interno */
+.info-panel-content {
+  overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
 
@@ -1292,10 +1196,9 @@ section,
 }
 
 /* ===============================
-   FIX CRÍTICO PARA iOS SAFARI
+   FIX iOS SAFARI
 ================================ */
 @supports (-webkit-touch-callout: none) {
-  /* Altura correcta en iOS */
   body {
     min-height: -webkit-fill-available;
   }
@@ -1304,7 +1207,6 @@ section,
     min-height: 100px;
   }
 
-  /* Modal iOS - usar viewport dinámico */
   .modal-backdrop {
     height: 100vh;
     height: -webkit-fill-available;
@@ -1315,15 +1217,7 @@ section,
     max-height: -webkit-fill-available;
   }
   
-  /* Contenedor iframe iOS */
-  .dashboard-iframe-container,
-  #iframeContainer {
-    -webkit-overflow-scrolling: touch;
-    overflow: auto;
-  }
-  
-  /* Permitir scroll dentro del iframe en iOS */
-  .dashboard-iframe-container iframe,
+  /* Forzar render del iframe en iOS */
   #iframeContainer iframe {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
@@ -1331,7 +1225,7 @@ section,
 }
 
 /* ===============================
-   FIX PARA ANDROID CHROME
+   FIX ANDROID CHROME
 ================================ */
 @media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
   .modal-content-enhanced {
@@ -1340,7 +1234,7 @@ section,
 }
 
 /* ===============================
-   LANDSCAPE MODE MÓVIL
+   LANDSCAPE MÓVIL
 ================================ */
 @media (max-height: 500px) and (orientation: landscape) {
   .modal-content-enhanced {
@@ -1349,27 +1243,32 @@ section,
   }
   
   .dashboard-modal-header {
-    padding: 0.5rem 1rem;
-    min-height: auto;
+    padding: 0.375rem 0.75rem;
+    min-height: 40px;
   }
   
   #modalTitle {
-    font-size: 0.875rem;
+    font-size: 0.8125rem;
+  }
+  
+  #modalArea {
+    display: none;
   }
   
   .dashboard-modal-footer {
-    padding: 0.5rem;
+    padding: 0.375rem;
+    min-height: 36px;
   }
   
-  .dashboard-iframe-container,
-  #iframeContainer {
-    min-height: 150px;
+  .dashboard-modal-footer button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
   }
   
   .info-panel-toggle {
-    width: 32px;
-    height: 32px;
-    font-size: 0.75rem;
+    width: 28px;
+    height: 28px;
+    font-size: 0.625rem;
   }
 }
 
@@ -1400,41 +1299,4 @@ section,
     box-shadow: none !important;
     text-shadow: none !important;
   }
-}
-
-/* ===============================
-   ESTADO DE CARGA DEL IFRAME
-================================ */
-.dashboard-iframe-container.loading::before,
-#iframeContainer.loading::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 48px;
-  height: 48px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #007B3E;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  z-index: 5;
-}
-
-@keyframes spin {
-  0% { transform: translate(-50%, -50%) rotate(0deg); }
-  100% { transform: translate(-50%, -50%) rotate(360deg); }
-}
-
-/* Logo Power BI mientras carga */
-.dashboard-iframe-container.loading::after,
-#iframeContainer.loading::after {
-  content: 'Cargando dashboard...';
-  position: absolute;
-  top: calc(50% + 40px);
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 0.875rem;
-  color: #666;
-  z-index: 5;
 }
