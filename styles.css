@@ -1,21 +1,32 @@
-/* ============================================
-   SISTEMA DE GOBIERNO DE DATOS
-   ============================================ */
+/* ==========================================================================
+   SISTEMA DE DISEÑO - UNIVERSIDAD DE CUNDINAMARCA (GOBIERNO DE DATOS)
+   Hoja de estilos global, temas y componentes visuales
+   ========================================================================== */
+
+/* ==========================================
+   VARIABLES DE SISTEMA (CSS CUSTOM PROPERTIES)
+   Paleta de colores oficial, tipografías y efectos visuales
+   ========================================== */
 :root {
+  /* Paleta Institucional Principal */
   --uc-yellow-1: #FBE122;
   --uc-yellow-2: #DAAA00;
-  --uc-green-1: #007B3E;
-  --uc-green-2: #00482B;
+  --uc-green-1: #007B3E; /* Verde Principal */
+  --uc-green-2: #00482B; /* Verde Oscuro */
   --uc-orange: #F7931E;
   --uc-green-light-1: #79C000;
   --uc-green-light-2: #91C256;
   --uc-turquoise: #00A99D;
   --uc-gray: #4D4D4D;
+
+  /* Gradientes Predefinidos */
   --uc-gradient-green-primary: linear-gradient(135deg, #007B3E, #79C000);
   --uc-gradient-green-dark: linear-gradient(135deg, #00482B, #007B3E);
   --uc-gradient-turquoise: linear-gradient(135deg, #00A99D, #79C000);
   --uc-gradient-green-to-light: linear-gradient(90deg, #007B3E, #79C000);
   --uc-gradient-dark-to-primary: linear-gradient(90deg, #00482B, #007B3E);
+
+  /* Escala de Grises y Neutros */
   --uc-white: #FFFFFF;
   --uc-gray-50: #F9FAFB;
   --uc-gray-100: #F3F4F6;
@@ -28,17 +39,25 @@
   --uc-gray-800: #1F2937;
   --uc-gray-900: #111827;
   --uc-black: #000000;
+
+  /* Estados Semánticos */
   --uc-error: #DC2626;
   --uc-warning: #F59E0B;
   --uc-success: #007B3E;
   --uc-info: #00A99D;
+
+  /* Mapeo de Colores de Fondo */
   --uc-bg-primary: var(--uc-green-1);
   --uc-bg-secondary: var(--uc-green-2);
   --uc-bg-light: var(--uc-gray-50);
   --uc-bg-white: var(--uc-white);
+
+  /* Tipografía */
   --uc-font-primary: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --uc-font-secondary: 'Century Gothic', 'Segoe UI', sans-serif;
   --uc-font-serif: 'Times New Roman', Georgia, serif;
+
+  /* Sistema de Bordes y Sombras */
   --uc-radius-sm: 8px;
   --uc-radius-md: 12px;
   --uc-radius-lg: 16px;
@@ -48,6 +67,8 @@
   --uc-shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
   --uc-shadow-lg: 0 8px 20px rgba(0, 0, 0, 0.12);
   --uc-shadow-xl: 0 12px 28px rgba(0, 0, 0, 0.15);
+
+  /* Transiciones y Capas Z */
   --uc-transition-fast: 0.2s ease;
   --uc-transition-normal: 0.3s ease;
   --uc-transition-smooth: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -56,6 +77,9 @@
   --uc-z-modal: 2000;
 }
 
+/* ==========================================
+   RESET Y NORMALIZACIÓN GLOBAL
+   ========================================== */
 * { 
   margin: 0; 
   padding: 0; 
@@ -85,6 +109,10 @@ h2, h3 {
   animation: slideInFromLeft 0.6s ease forwards;
 }
 
+/* ==========================================
+   ANIMACIONES CLAVE
+   Efectos de entrada y transición para elementos de UI
+   ========================================== */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -105,9 +133,10 @@ h2, h3 {
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* =========================================
-   NUEVO MENÚ DE NAVEGACIÓN - FLOTANTE GLASSMORPHISM
-   ========================================= */
+/* ==========================================
+   COMPONENTE: BARRA DE NAVEGACIÓN (GLASSMORPHISM)
+   Menú flotante con efecto de desenfoque y transparencia
+   ========================================== */
 .nav-wrapper-new {
   position: absolute;
   top: 24px;
@@ -226,6 +255,7 @@ h2, h3 {
   box-shadow: 0 4px 16px rgba(121, 192, 0, 0.4);
 }
 
+/* Control del Menú Móvil */
 .nav-mobile-toggle {
   display: none;
   background: transparent;
@@ -236,42 +266,103 @@ h2, h3 {
   cursor: pointer;
   color: var(--uc-gray-700);
   font-size: 1.25rem;
-  transition: background var(--uc-transition-fast);
+  transition: all var(--uc-transition-fast);
 }
 
 .nav-mobile-toggle:hover {
-  background: rgba(0, 123, 62, 0.06);
+  background: rgba(0, 123, 62, 0.1);
+  color: var(--uc-green-1);
+}
+
+.nav-mobile-toggle.menu-open {
+  background: var(--uc-green-1);
+  color: var(--uc-white);
+}
+
+.nav-mobile-toggle.menu-open:hover {
+  background: var(--uc-green-2);
 }
 
 .nav-mobile-menu {
   background: var(--uc-white);
-  border-top: 1px solid var(--uc-gray-100);
+  border-top: 1px solid var(--uc-gray-200);
   padding: 8px 0;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .nav-mobile-link {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 14px;
   width: 100%;
   text-align: left;
   background: transparent;
   border: none;
-  color: var(--uc-gray-700);
+  border-left: 4px solid transparent;
+  color: var(--uc-gray-800);
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 500;
-  padding: 14px 24px;
+  padding: 14px 20px;
   cursor: pointer;
-  transition: all var(--uc-transition-fast);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.nav-mobile-link i {
+  width: 24px;
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--uc-gray-500);
+  transition: all 0.2s ease;
+}
+
+.nav-mobile-link span {
+  flex: 1;
 }
 
 .nav-mobile-link:hover {
-  background: rgba(0, 123, 62, 0.06);
+  background: var(--uc-green-1);
+  color: var(--uc-white);
+  border-left-color: var(--uc-yellow-1);
+}
+
+.nav-mobile-link:hover i {
+  color: var(--uc-white);
+}
+
+.nav-mobile-link:active {
+  background: var(--uc-green-2);
+  transform: scale(0.98);
+}
+
+.nav-mobile-link.active {
+  background: linear-gradient(90deg, rgba(0, 123, 62, 0.1) 0%, transparent 100%);
+  color: var(--uc-green-1);
+  border-left-color: var(--uc-green-1);
+  font-weight: 600;
+}
+
+.nav-mobile-link.active i {
   color: var(--uc-green-1);
 }
 
-/* =========================================
-   NUEVO HERO BANNER - SOLO IMAGEN DE FONDO
-   ========================================= */
+/* ==========================================
+   COMPONENTE: HERO BANNER
+   Cabecera principal con imagen de fondo adaptativa
+   ========================================== */
 .hero-banner-new {
   background: url('Images/Banner.png') center/cover no-repeat;
   position: relative;
@@ -283,7 +374,10 @@ h2, h3 {
   display: none;
 }
 
-/* Responsive para nuevo nav y hero */
+/* ==========================================
+   ADAPTACIÓN RESPONSIVA (MEDIA QUERIES)
+   Ajustes para navegación y cabecera en distintos dispositivos
+   ========================================== */
 @media (max-width: 1024px) {
   .nav-wrapper-new {
     width: calc(100% - 48px);
@@ -327,6 +421,17 @@ h2, h3 {
   
   .nav-mobile-menu {
     border-radius: 0 0 var(--uc-radius-xl) var(--uc-radius-xl);
+    background: var(--uc-white);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .nav-mobile-link {
+    padding: 16px 24px;
+  }
+  
+  .nav-mobile-link:hover {
+    background: var(--uc-green-1);
+    color: var(--uc-white);
   }
   
   .hero-banner-new {
@@ -353,7 +458,7 @@ h2, h3 {
   }
 }
 
-/* Ocultar estilos antiguos */
+/* Clases de utilidad para ocultar elementos antiguos */
 .banner-section {
   display: none;
 }
@@ -371,6 +476,10 @@ h2, h3 {
   animation: fadeIn 0.3s ease;
 }
 
+/* ==========================================
+   COMPONENTE: TARJETAS DE ESTADÍSTICAS MODERNAS
+   Visualización de indicadores clave
+   ========================================== */
 .stat-card-modern {
   background: var(--uc-white);
   border-radius: var(--uc-radius-lg);
@@ -403,6 +512,7 @@ h2, h3 {
   background: linear-gradient(90deg, var(--uc-orange), var(--uc-yellow-2));
 }
 
+/* Retraso secuencial para animaciones de entrada */
 .stat-card-modern:nth-child(1) { animation-delay: 0.1s; }
 .stat-card-modern:nth-child(2) { animation-delay: 0.2s; }
 .stat-card-modern:nth-child(3) { animation-delay: 0.3s; }
@@ -439,6 +549,9 @@ h2, h3 {
   font-weight: 600 !important;
 }
 
+/* ==========================================
+   COMPONENTE: TARJETAS DE SEDES Y NIVELES ACADÉMICOS
+   ========================================== */
 .sede-card {
   background: var(--uc-white);
   border-radius: var(--uc-radius-md);
@@ -532,6 +645,10 @@ h2, h3 {
   color: #6B7280 !important;
 }
 
+/* ==========================================
+   COMPONENTE: VISUALIZACIÓN DE MAPAS Y GRÁFICOS
+   Estilos para Leaflet y Chart.js
+   ========================================== */
 .chart-container {
   position: relative;
   height: 320px;
@@ -628,6 +745,7 @@ h2, h3 {
   font-weight: 700 !important;
 }
 
+/* Selector de programas para el gráfico */
 #topProgramsSelector {
   background: #FFFFFF;
   color: #1F2937;
@@ -685,27 +803,10 @@ canvas {
   display: block !important;
 }
 
-.grid.lg\:grid-cols-5 > div {
-  overflow: hidden;
-  min-width: 0;
-}
-
-.lg\:col-span-2,
-.lg\:col-span-3 {
-  overflow: hidden;
-  min-width: 0;
-}
-
-.bg-gray-50 {
-  overflow: hidden;
-}
-
-.relative[style*="height: 300px"] {
-  height: 300px !important;
-  overflow: hidden;
-  position: relative;
-}
-
+/* ==========================================
+   COMPONENTE: SECCIÓN DE SISTEMAS DE GESTIÓN
+   Grid responsivo para enlaces externos
+   ========================================== */
 .sistemas-gestion-section {
   background: var(--uc-white);
   border-radius: var(--uc-radius-xl);
@@ -754,6 +855,10 @@ canvas {
   transform: scale(1.05);
 }
 
+/* ==========================================
+   COMPONENTE: TARJETA DE DASHBOARD
+   Visualización de tableros de control disponibles
+   ========================================== */
 .dashboard-card {
   background: var(--uc-white);
   border-radius: var(--uc-radius-lg);
@@ -804,6 +909,10 @@ canvas {
   color: var(--uc-green-1);
 }
 
+/* ==========================================
+   BOTONES E INTERACCIÓN
+   Estilos para acciones principales y secundarias
+   ========================================== */
 .btn-primary {
   background: var(--uc-gradient-green-primary);
   color: var(--uc-white);
@@ -864,7 +973,6 @@ canvas {
   box-shadow: 0 10px 20px rgba(245, 158, 11, 0.3);
 }
 
-/* Botón de descarga CSV con color verde primario */
 .btn-download-csv {
   background: var(--uc-gradient-green-primary);
   color: var(--uc-white);
@@ -892,6 +1000,9 @@ canvas {
   transform: translateY(0);
 }
 
+/* ==========================================
+   COMPONENTE: LOGIN Y AUTENTICACIÓN
+   ========================================== */
 .login-card {
   background: var(--uc-white);
   border-radius: var(--uc-radius-xl);
@@ -901,6 +1012,10 @@ canvas {
   margin: 0 auto;
 }
 
+/* ==========================================
+   ESTRUCTURA DE MACROPROCESOS Y ÁREAS
+   Organización jerárquica de contenidos colapsables
+   ========================================== */
 .macroproceso-section {
   background: var(--uc-white);
   border-radius: var(--uc-radius-xl);
@@ -910,21 +1025,11 @@ canvas {
   border-left: 6px solid;
 }
 
-.macroproceso-section.estrategico {
-  border-left-color: var(--uc-green-light-1);
-}
-
-.macroproceso-section.misional {
-  border-left-color: var(--uc-green-2);
-}
-
-.macroproceso-section.apoyo {
-  border-left-color: var(--uc-green-1);
-}
-
-.macroproceso-section.seguimiento {
-  border-left-color: var(--uc-orange);
-}
+/* Código de colores por tipo de macroproceso */
+.macroproceso-section.estrategico { border-left-color: var(--uc-green-light-1); }
+.macroproceso-section.misional { border-left-color: var(--uc-green-2); }
+.macroproceso-section.apoyo { border-left-color: var(--uc-green-1); }
+.macroproceso-section.seguimiento { border-left-color: var(--uc-orange); }
 
 .macroproceso-header {
   display: flex;
@@ -960,6 +1065,7 @@ canvas {
   font-size: 20px;
 }
 
+/* Iconos de macroproceso con colores específicos */
 .macroproceso-section.estrategico .macroproceso-icon {
   background: rgba(121, 192, 0, 0.15);
   color: var(--uc-green-light-1);
@@ -1000,6 +1106,7 @@ canvas {
   max-height: 5000px;
 }
 
+/* Subsecciones de Área */
 .area-subsection {
   margin-top: 20px;
   padding: 16px;
@@ -1057,6 +1164,7 @@ canvas {
   transform: scale(1.1);
 }
 
+/* Colores de íconos de área según macroproceso */
 .area-card-icon.estrategico {
   background: linear-gradient(135deg, rgba(121, 192, 0, 0.2), rgba(121, 192, 0, 0.1));
   color: var(--uc-green-light-1);
@@ -1132,11 +1240,10 @@ canvas {
   border-top: 2px solid var(--uc-gray-100);
 }
 
-/* ============================================
-   MODAL MEJORADO CON LAYOUT 80/20
-   ============================================ */
-
-/* Prevenir scroll cuando el modal está abierto */
+/* ==========================================
+   MODAL MEJORADO (LAYOUT 80/20)
+   Visualización de dashboards con panel lateral informativo
+   ========================================== */
 body.modal-open {
   overflow: hidden;
   position: fixed;
@@ -1267,7 +1374,6 @@ body.modal-open {
   flex-direction: column;
 }
 
-/* Agregamos la transición SOLO cuando NO se está arrastrando */
 .dashboard-info-panel.animating {
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -1377,6 +1483,9 @@ body.modal-open {
   border-top: 1px solid var(--uc-gray-200);
 }
 
+/* ==========================================
+   ACCESIBILIDAD Y RESPONSIVIDAD AVANZADA
+   ========================================== */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -1399,6 +1508,7 @@ select:focus {
   outline-offset: 2px;
 }
 
+/* Utilidades de texto */
 .text-sm,
 .stat-label {
   color: var(--uc-gray-600);
@@ -1424,6 +1534,7 @@ select:focus {
   background-color: var(--uc-turquoise) !important;
 }
 
+/* Clases de gradiente Tailwind personalizadas */
 .from-green-600 {
   --tw-gradient-from: var(--uc-green-1) !important;
 }
@@ -1440,6 +1551,7 @@ select:focus {
   --tw-gradient-to: var(--uc-green-light-1) !important;
 }
 
+/* Ajustes de color específicos */
 .border-blue-500 {
   border-color: var(--uc-turquoise) !important;
 }
@@ -1468,6 +1580,7 @@ select:focus {
   border-color: var(--uc-turquoise) !important;
 }
 
+/* Media Queries Específicos */
 @media (max-width: 1024px) {
   .chart-container {
     height: 280px;
@@ -1523,14 +1636,32 @@ select:focus {
     padding: 0;
   }
   
-  .dashboard-info-panel.expanded {
-    width: 100%;
-    position: fixed;
+  /* Adaptación de panel lateral a modo móvil */
+  .dashboard-info-panel {
+    position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
+    left: auto !important;
+    right: 0 !important;
     bottom: 0;
-    z-index: 30;
+    width: 0;
+    height: 100%;
+    z-index: 50;
+    transform: none;
+    transition: width 0.3s ease;
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .dashboard-info-panel.expanded {
+    width: 380px !important;
+    transform: none;
+  }
+  
+  .info-panel-header {
+    padding: 1rem;
+  }
+  
+  .info-panel-content {
+    padding: 1rem;
   }
   
   .modal-content-enhanced {
@@ -1600,6 +1731,25 @@ select:focus {
     right: 0.5rem;
   }
   
+  /* Panel en pantalla completa para móviles pequeños */
+  .dashboard-info-panel {
+    position: fixed;
+    top: 0;
+    left: auto !important;
+    right: 0 !important;
+    bottom: 0;
+    width: 0;
+    height: 100% !important;
+    z-index: 200;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .dashboard-info-panel.expanded {
+    width: 100% !important;
+    transform: translateX(0);
+  }
+  
   .modal-content-enhanced {
     width: 100vw;
     height: 100vh;
@@ -1660,11 +1810,13 @@ select:focus {
     font-size: 0.8125rem;
   }
 }
+
 /* ==========================================
-   NUEVA PÁGINA HOME - ESTILOS PROFESIONALES
+   ESTILOS DE LANDING PAGE Y COMPONENTES VISUALES
+   Estilización de tarjetas, hero section y elementos decorativos
    ========================================== */
 
-/* Hero Section - OCULTO (reemplazado por hero-banner-new) */
+/* Hero Section Base */
 .hero-section {
   display: none;
   background: linear-gradient(135deg, #f6f9fc 0%, #ffffff 100%);
@@ -1733,7 +1885,7 @@ select:focus {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-/* Purpose Cards */
+/* Tarjetas de Propósito */
 .purpose-card {
   background: white;
   padding: 32px;
@@ -1763,7 +1915,7 @@ select:focus {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Principle Cards */
+/* Tarjetas de Principios */
 .principle-card {
   background: white;
   padding: 28px;
@@ -1802,7 +1954,7 @@ select:focus {
   margin: 20px 0;
 }
 
-/* Metric Cards */
+/* Tarjetas de Métricas */
 .metric-card {
   padding: 32px;
   border-radius: 20px;
@@ -1864,7 +2016,7 @@ select:focus {
   gap: 6px;
 }
 
-/* Level Cards */
+/* Tarjetas de Nivel Académico */
 .level-card {
   background: white;
   padding: 32px;
@@ -1929,7 +2081,7 @@ select:focus {
   font-weight: 600;
 }
 
-/* Governance Cards */
+/* Tarjetas de Gobernanza */
 .governance-card {
   background: white;
   padding: 28px;
@@ -1957,7 +2109,7 @@ select:focus {
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Work Area Cards */
+/* Tarjetas de Áreas de Trabajo */
 .work-area-card {
   background: white;
   padding: 28px;
@@ -1988,7 +2140,7 @@ select:focus {
   margin-bottom: 16px;
 }
 
-/* Certification Cards */
+/* Tarjetas de Certificación */
 .certification-card {
   background: white;
   padding: 24px;
@@ -2028,7 +2180,7 @@ select:focus {
   line-height: 1.4;
 }
 
-/* CTA Section */
+/* Sección de Llamado a la Acción (CTA) */
 .cta-section {
   background: linear-gradient(135deg, var(--uc-green-1) 0%, var(--uc-green-2) 50%, #007B3E 100%);
   padding: 80px 20px;
@@ -2105,7 +2257,7 @@ select:focus {
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
-/* Animaciones */
+/* Animaciones de Entrada */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -2121,7 +2273,7 @@ select:focus {
   animation: fadeInUp 0.6s ease-out;
 }
 
-/* Responsividad adicional */
+/* Ajustes de Responsividad en Componentes */
 @media (max-width: 768px) {
   .hero-section {
     padding-top: 40px;
@@ -2149,7 +2301,7 @@ select:focus {
   }
 }
 
-/* Data Source Styling */
+/* Estilos para Fuentes de Datos */
 .data-source {
   font-size: 0.75rem;
   color: var(--uc-gray-500);
@@ -2158,7 +2310,8 @@ select:focus {
 }
 
 /* ==========================================
-   AJUSTES DE COLOR INSTITUCIONAL
+   CODIFICACIÓN DE COLOR SEMÁNTICA
+   Asignación de colores a elementos específicos
    ========================================== */
 
 /* Colores para la sección "Nuestro Propósito" */
@@ -2191,7 +2344,7 @@ select:focus {
 .principle-card:nth-child(8) .principle-number { background-color: var(--uc-gray); }
 .principle-card:nth-child(8) .principle-icon { color: var(--uc-gray); }
 
-/* Colores para la sección "Áreas de Trabajo" */
+/* Colores para la sección "Áreas de Trabajo" */
 .work-area-card:nth-child(1) .work-area-icon { color: var(--uc-green-1); }
 .work-area-card:nth-child(2) .work-area-icon { color: var(--uc-green-2); }
 .work-area-card:nth-child(3) .work-area-icon { color: var(--uc-turquoise); }
@@ -2202,10 +2355,10 @@ select:focus {
 .work-area-card:nth-child(8) .work-area-icon { color: var(--uc-green-2); }
 .work-area-card:nth-child(9) .work-area-icon { color: var(--uc-green-1); }
 
-/* ============================================
-   ESTILOS PARA LINEAMIENTOS CON TABS
-   ============================================ */
-
+/* ==========================================
+   COMPONENTE: PESTAÑAS DE LINEAMIENTOS
+   Interfaz de navegación para documentos normativos
+   ========================================== */
 .lineamiento-tab-btn {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
@@ -2251,7 +2404,6 @@ select:focus {
   display: block;
 }
 
-/* Animación para el cambio de contenido */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -2262,25 +2414,26 @@ select:focus {
     transform: translateY(0);
   }
 }
-/* ============================================
-   ESTILOS PARA PANEL DE INFORMACION REDIMENSIONABLE
-   ============================================ */
-/* Agarradera para redimensionar el panel */
+
+/* ==========================================
+   COMPONENTE: REDIMENSIONAMIENTO DE PANELES
+   Controlador de UI para ajuste de ancho
+   ========================================== */
 .resize-handle {
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 10px; /* Zona de agarre */
-  cursor: col-resize; /* Cursor de flechas laterales */
+  width: 10px; /* Área activa para el cursor */
+  cursor: col-resize; /* Cursor de redimensionamiento horizontal */
   z-index: 100;
-  transform: translateX(-50%); /* Centrar en el borde */
+  transform: translateX(-50%); /* Centrado visual */
   background: transparent;
   transition: background 0.2s;
 }
 
-/* Feedback visual al pasar el mouse o arrastrar */
+/* Indicador visual de interacción */
 .resize-handle:hover,
 .resize-handle:active {
-  background: rgba(0, 123, 62, 0.3); /* Color verde semitransparente */
+  background: rgba(0, 123, 62, 0.3); /* Resaltado verde translúcido */
 }
