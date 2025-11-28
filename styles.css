@@ -1013,7 +1013,7 @@ canvas {
 }
 
 .dashboard-info-panel.expanded {
-  width: 380px;
+  width: 600px;
 }
 
 .info-panel-header {
@@ -1940,4 +1940,5 @@ select:focus {
 .resize-handle:hover,
 .resize-handle:active {
   background: rgba(0, 123, 62, 0.3); /* Color verde semitransparente */
+
 }
