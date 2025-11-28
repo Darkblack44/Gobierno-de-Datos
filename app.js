@@ -1,5 +1,5 @@
 // ==========================================
-// CONFIGURACIÓN DE DEBUG
+// CONFIGURACION DE DEBUG
 // ==========================================
 const DEBUG_MODE = false;
 const DEMO_MODE = true; // Modo demo: login automático sin credenciales
@@ -15,7 +15,7 @@ function debugLog(message, data = null) {
 }
 
 // ==========================================
-// FUNCIÓN AUXILIAR PARA IDS SEGUROS Y ÚNICOS
+// FUNCION AUXILIAR PARA IDS SEGUROS Y UNICOS
 // ==========================================
 function generateSafeId(text, prefix = '') {
   if (!text) return prefix + 'unknown';
@@ -29,7 +29,7 @@ function generateSafeId(text, prefix = '') {
     .replace(/^-|-$/g, "");
   
   const id = prefix ? `${prefix}-${normalized}` : normalized;
-  debugLog(`ID generado: "${text}" → "${id}"`);
+  debugLog(`ID generado: "${text}" â†’ "${id}"`);
   return id || prefix + 'area-unknown';
 }
 
@@ -108,7 +108,7 @@ const dashboards = [
       {"name": "estado_aprobacion", "type": "text", "description": "Aprobado / Reprobado / En curso"}
     ],
     "datasetSource": "Plataforma CAI - Base de datos académica",
-    "datasetNotes": "Actualización en tiempo real. Filtros aplicados por periodo y sede."
+    "datasetNotes": "Actualizacion en tiempo real. Filtros aplicados por periodo y sede."
   },
   {
     "id": 3,
@@ -137,7 +137,7 @@ const dashboards = [
       {"name": "fecha_ultima_actividad", "type": "date", "description": "Fecha de la última interacción del estudiante"}
     ],
     "datasetSource": "Plataforma CAI - Módulo de seguimiento académico",
-    "datasetNotes": "Actualización en tiempo real durante el semestre. Los datos se consolidan al final del periodo."
+    "datasetNotes": "Actualizacion en tiempo real durante el semestre. Los datos se consolidan al final del periodo."
   },
   {
     "id": 4,
@@ -166,7 +166,7 @@ const dashboards = [
       {"name": "estado", "type": "text", "description": "Inscrito / En curso / Aprobado / Reprobado"}
     ],
     "datasetSource": "Sistema de Gestión de CMA - Integrado con Sistema Académico",
-    "datasetNotes": "Actualización al finalizar cada periodo académico. Permite filtros por programa y sede."
+    "datasetNotes": "Actualizacion al finalizar cada periodo académico. Permite filtros por programa y sede."
   },
   {
     "id": 5,
@@ -184,7 +184,7 @@ const dashboards = [
     "observaciones": "Permite identificar necesidades de refuerzo académico desde el ingreso de los estudiantes.",
     "esHistorico": false,
     "datasetName": "Resultados_Diagnosticos_Nivelatorios",
-    "datasetAbstract": "Resultados de pruebas diagnósticas y cursos de nivelación para estudiantes de primer ingreso.",
+    "datasetAbstract": "Resultados de pruebas diagnósticas y cursos de nivelacion para estudiantes de primer ingreso.",
     "columns": [
       {"name": "codigo_estudiante", "type": "text", "description": "Código del estudiante de primer ingreso"},
       {"name": "periodo_ingreso", "type": "text", "description": "Periodo de admisión del estudiante"},
@@ -192,8 +192,8 @@ const dashboards = [
       {"name": "puntaje_obtenido", "type": "number", "description": "Puntaje del estudiante en la prueba"},
       {"name": "percentil", "type": "number", "description": "Posición porcentual del estudiante respecto al grupo"},
       {"name": "requiere_nivelatorio", "type": "text", "description": "Indica si el puntaje sugiere un curso nivelatorio (Sí/No)"},
-      {"name": "curso_nivelatorio_tomado", "type": "text", "description": "Nombre del curso de nivelación inscrito"},
-      {"name": "aprobacion_nivelatorio", "type": "text", "description": "Resultado del curso de nivelación (Aprobado/Reprobado)"}
+      {"name": "curso_nivelatorio_tomado", "type": "text", "description": "Nombre del curso de nivelacion inscrito"},
+      {"name": "aprobacion_nivelatorio", "type": "text", "description": "Resultado del curso de nivelacion (Aprobado/Reprobado)"}
     ],
     "datasetSource": "Plataforma de Pruebas Diagnósticas Institucional",
     "datasetNotes": "Datos cargados al inicio de cada semestre. Se utiliza para la planificación de estrategias de apoyo académico temprano."
@@ -221,7 +221,7 @@ const dashboards = [
       {"name": "programa_academico", "type": "text", "description": "Programa del estudiante"},
       {"name": "periodo_inscripcion", "type": "text", "description": "Periodo en el que se realiza la inscripción"},
       {"name": "nombre_cma", "type": "text", "description": "Nombre del CMA al que se inscribe"},
-      {"name": "area_conocimiento_cma", "type": "text", "description": "Área de conocimiento principal del CMA"},
+      {"name": "area_conocimiento_cma", "type": "text", "description": "Area de conocimiento principal del CMA"},
       {"name": "fecha_inscripcion", "type": "date", "description": "Fecha exacta de la inscripción"}
     ],
     "datasetSource": "Sistema de Gestión de CMA",
@@ -255,7 +255,7 @@ const dashboards = [
       {"name": "evaluacion_satisfaccion", "type": "number", "description": "Calificación de la sesión por parte del asistente (1-5)"}
     ],
     "datasetSource": "Sistema de Gestión de Monitorías",
-    "datasetNotes": "Actualización semanal durante el periodo académico. Los datos son anonimizados en los agregados."
+    "datasetNotes": "Actualizacion semanal durante el periodo académico. Los datos son anonimizados en los agregados."
   },
   {
     "id": 8,
@@ -290,7 +290,7 @@ const dashboards = [
   },
   
   // ==========================================================================================
-  // MACROPROCESO MISIONAL - EDUCACIÓN VIRTUAL Y A DISTANCIA
+  // MACROPROCESO MISIONAL - EDUCACION VIRTUAL Y A DISTANCIA
   // ==========================================================================================
   {
     "id": 9,
@@ -321,7 +321,7 @@ const dashboards = [
       {"name": "estado", "type": "text", "description": "Solicitada / Atendida / Cerrada"}
     ],
     "datasetSource": "LMS Institucional (Moodle/Canvas) - Módulo de tutorías",
-    "datasetNotes": "Actualización semanal. Incluye análisis de tiempos de respuesta del tutor."
+    "datasetNotes": "Actualizacion semanal. Incluye análisis de tiempos de respuesta del tutor."
   },
   {
     "id": 10,
@@ -352,7 +352,7 @@ const dashboards = [
       {"name": "tiempo_respuesta_tutor_horas", "type": "number", "description": "Tiempo que tardó el tutor en responder"}
     ],
     "datasetSource": "LMS Institucional y Plataforma de analíticas de aprendizaje",
-    "datasetNotes": "Actualización diaria. Se utiliza para el monitoreo proactivo de la interacción tutorial."
+    "datasetNotes": "Actualizacion diaria. Se utiliza para el monitoreo proactivo de la interacción tutorial."
   },
   {
     "id": 11,
@@ -380,7 +380,7 @@ const dashboards = [
       {"name": "calificacion_final", "type": "number", "description": "Calificación final obtenida (0-5)"}
     ],
     "datasetSource": "Plataforma CAI - Base de datos académica (modalidad virtual)",
-    "datasetNotes": "Actualización en tiempo real."
+    "datasetNotes": "Actualizacion en tiempo real."
   },
   {
     "id": 12,
@@ -492,7 +492,7 @@ const dashboards = [
       {"name": "calificacion_producto", "type": "number", "description": "Calificación del producto final"}
     ],
     "datasetSource": "Sistema de Gestión de Posgrados y CMA",
-    "datasetNotes": "Actualización semestral por cohorte."
+    "datasetNotes": "Actualizacion semestral por cohorte."
   },
   {
     "id": 16,
@@ -521,7 +521,7 @@ const dashboards = [
       {"name": "certificado_emitido", "type": "text", "description": "Indica si se generó un certificado (Sí/No)"}
     ],
     "datasetSource": "Plataforma de Educación Continua (LMS)",
-    "datasetNotes": "Actualización diaria. Abierto a la comunidad, no solo a estudiantes regulares."
+    "datasetNotes": "Actualizacion diaria. Abierto a la comunidad, no solo a estudiantes regulares."
   },
   {
     "id": 17,
@@ -544,11 +544,11 @@ const dashboards = [
       {"name": "programa", "type": "text", "description": "Programa académico"},
       {"name": "competencia_digital", "type": "number", "description": "Puntaje en habilidades digitales"},
       {"name": "competencia_lectora", "type": "number", "description": "Puntaje en lectura crítica"},
-      {"name": "requiere_refuerzo", "type": "text", "description": "Áreas sugeridas para nivelación"},
+      {"name": "requiere_refuerzo", "type": "text", "description": "Areas sugeridas para nivelacion"},
       {"name": "estado_nivelatorio", "type": "text", "description": "Inscrito / Completado"}
     ],
     "datasetSource": "Sistema de Pruebas Institucional",
-    "datasetNotes": "Énfasis en competencias digitales previas."
+    "datasetNotes": "Enfasis en competencias digitales previas."
   },
   {
     "id": 18,
@@ -661,7 +661,7 @@ const dashboards = [
       {"name": "plataforma_emision", "type": "text", "description": "Plataforma donde se aloja la insignia (Ej. Credly, Badgr)"}
     ],
     "datasetSource": "Plataforma de Gestión de Credenciales Digitales",
-    "datasetNotes": "Actualización en tiempo real a medida que se emiten las insignias."
+    "datasetNotes": "Actualizacion en tiempo real a medida que se emiten las insignias."
   },
   {
     "id": 22,
@@ -684,14 +684,14 @@ const dashboards = [
       {"name": "id_recurso", "type": "text", "description": "Identificador único del recurso"},
       {"name": "titulo_recurso", "type": "text", "description": "Nombre del RED"},
       {"name": "tipo_recurso", "type": "text", "description": "Formato del recurso (Video, PDF, Interactivo, Simulación)"},
-      {"name": "area_conocimiento", "type": "text", "description": "Área de conocimiento a la que pertenece"},
+      {"name": "area_conocimiento", "type": "text", "description": "Area de conocimiento a la que pertenece"},
       {"name": "autor", "type": "text", "description": "Autor o creador del recurso"},
       {"name": "fecha_publicacion", "type": "date", "description": "Fecha de publicación en el repositorio"},
       {"name": "numero_descargas", "type": "number", "description": "Cantidad de veces que ha sido descargado o accedido"},
       {"name": "licencia_uso", "type": "text", "description": "Tipo de licencia (Ej. Creative Commons)"}
     ],
     "datasetSource": "Repositorio Institucional Digital",
-    "datasetNotes": "Actualización mensual con los nuevos recursos catalogados."
+    "datasetNotes": "Actualizacion mensual con los nuevos recursos catalogados."
   },
   {
     "id": 23,
@@ -749,7 +749,7 @@ const dashboards = [
       {"name": "tiempo_promedio_graduacion_meses", "type": "number", "description": "Tiempo promedio en meses para graduarse"}
     ],
     "datasetSource": "Sistema de Gestión de Posgrados",
-    "datasetNotes": "Actualización semestral. Los datos son consolidados por cohorte para seguimiento longitudinal."
+    "datasetNotes": "Actualizacion semestral. Los datos son consolidados por cohorte para seguimiento longitudinal."
   },
   {
     "id": 25,
@@ -780,7 +780,7 @@ const dashboards = [
   },
 
   // ==========================================================================================
-  // MACROPROCESO ESTRATÉGICO Y DE APOYO - GESTIÓN ADMINISTRATIVA
+  // MACROPROCESO ESTRATEGICO Y DE APOYO - GESTION ADMINISTRATIVA
   // ==========================================================================================
   {
     "id": 26,
@@ -809,7 +809,7 @@ const dashboards = [
       {"name": "huella_carbono_ton_co2", "type": "number", "description": "Estimación de la huella de carbono en toneladas de CO2 equivalente"}
     ],
     "datasetSource": "Sistema de Gestión Ambiental (SGA) - Registros de servicios públicos y gestores de residuos",
-    "datasetNotes": "Actualización mensual. La huella de carbono se calcula trimestralmente."
+    "datasetNotes": "Actualizacion mensual. La huella de carbono se calcula trimestralmente."
   },
   {
     "id": 27,
@@ -831,7 +831,7 @@ const dashboards = [
     "columns": [
       {"name": "numero_proceso", "type": "text", "description": "Identificador único del proceso"},
       {"name": "tipo_proceso", "type": "text", "description": "Licitación / Contratación directa / Menor cuantía"},
-      {"name": "objeto_contrato", "type": "text", "description": "Descripción del objeto a contratar"},
+      {"name": "objeto_contrato", "type": "text", "description": "Descripcion del objeto a contratar"},
       {"name": "valor_contrato", "type": "number", "description": "Valor en pesos colombianos"},
       {"name": "fecha_publicacion", "type": "date", "description": "Fecha de publicación en SECOP"},
       {"name": "fecha_adjudicacion", "type": "date", "description": "Fecha de adjudicación del contrato"},
@@ -870,7 +870,7 @@ const dashboards = [
       {"name": "riesgo_asociado", "type": "text", "description": "Principal riesgo institucional asociado al indicador"}
     ],
     "datasetSource": "Sistema de Gestión de Calidad y Control Interno",
-    "datasetNotes": "Actualización trimestral. Utilizado para los informes de gestión y auditorías."
+    "datasetNotes": "Actualizacion trimestral. Utilizado para los informes de gestión y auditorías."
   },
   {
     "id": 29,
@@ -895,12 +895,12 @@ const dashboards = [
       {"name": "fecha_evento", "type": "date", "description": "Fecha de realización"},
       {"name": "tipo_evento", "type": "text", "description": "Capacitación / Simulación Phishing / Charla"},
       {"name": "id_participante", "type": "text", "description": "Identificación del funcionario"},
-      {"name": "area_participante", "type": "text", "description": "Área a la que pertenece el funcionario"},
+      {"name": "area_participante", "type": "text", "description": "Area a la que pertenece el funcionario"},
       {"name": "asistencia_confirmada", "type": "text", "description": "Sí / No"},
       {"name": "evaluacion_aprobada", "type": "text", "description": "Sí / No / No Aplica"}
     ],
     "datasetSource": "Plataforma de capacitación y registros de asistencia SGSI",
-    "datasetNotes": "Actualización después de cada evento de sensibilización o capacitación."
+    "datasetNotes": "Actualizacion después de cada evento de sensibilización o capacitación."
   },
   {
     "id": 30,
@@ -922,14 +922,14 @@ const dashboards = [
       {"name": "id_plan", "type": "text", "description": "Identificador del plan de mejoramiento"},
       {"name": "origen_hallazgo", "type": "text", "description": "Auditoría interna / Contraloría / Autoevaluación"},
       {"name": "proceso_responsable", "type": "text", "description": "Proceso o área responsable de la ejecución"},
-      {"name": "descripcion_hallazgo", "type": "text", "description": "Descripción del hallazgo que origina el plan"},
+      {"name": "descripcion_hallazgo", "type": "text", "description": "Descripcion del hallazgo que origina el plan"},
       {"name": "accion_propuesta", "type": "text", "description": "Acción correctiva o preventiva a implementar"},
       {"name": "fecha_limite", "type": "date", "description": "Fecha límite para la implementación"},
       {"name": "porcentaje_avance", "type": "number", "description": "Porcentaje de avance reportado"},
       {"name": "estado_plan", "type": "text", "description": "Abierto / En Progreso / Cerrado / Vencido"}
     ],
     "datasetSource": "Software de Gestión de Auditorías y Planes de Mejoramiento",
-    "datasetNotes": "Actualización mensual basada en los reportes de los líderes de proceso."
+    "datasetNotes": "Actualizacion mensual basada en los reportes de los líderes de proceso."
   },
   {
     "id": 31,
@@ -961,7 +961,7 @@ const dashboards = [
       {"name": "productos_generados", "type": "number", "description": "Cantidad de productos (artículos, ponencias, etc.)"}
     ],
     "datasetSource": "Sistema de Información de la Investigación (HERMES/GRI)",
-    "datasetNotes": "Actualización trimestral con el avance de los proyectos."
+    "datasetNotes": "Actualizacion trimestral con el avance de los proyectos."
   },
   {
     "id": 32,
@@ -990,7 +990,7 @@ const dashboards = [
       {"name": "dependencia_recaudadora", "type": "text", "description": "Oficina que gestiona el recaudo"}
     ],
     "datasetSource": "Sistema Integrado de Información Financiera (SAP - Módulo FI/PSM)",
-    "datasetNotes": "Actualización mensual con cierre al último día del mes anterior."
+    "datasetNotes": "Actualizacion mensual con cierre al último día del mes anterior."
   },
   {
     "id": 33,
@@ -1020,7 +1020,7 @@ const dashboards = [
       {"name": "fecha_corte", "type": "date", "description": "Fecha de corte de los datos"}
     ],
     "datasetSource": "Sistema Integrado de Información Financiera (SAP - Módulo FI/PSM)",
-    "datasetNotes": "Actualización mensual con cierre al último día del mes anterior."
+    "datasetNotes": "Actualizacion mensual con cierre al último día del mes anterior."
   },
   {
     "id": 34,
@@ -1097,7 +1097,7 @@ const dashboards = [
     "datasetAbstract": "Matriz de correspondencia entre asignaturas electivas de pregrado y contenidos de posgrados.",
     "columns": [
       {"name": "programa_pregrado", "type": "text", "description": "Carrera base"},
-      {"name": "linea_profundizacion", "type": "text", "description": "Énfasis electivo"},
+      {"name": "linea_profundizacion", "type": "text", "description": "Enfasis electivo"},
       {"name": "posgrado_destino", "type": "text", "description": "Especialización/Maestría afín"},
       {"name": "creditos_homologables", "type": "number", "description": "Posibles créditos a reconocer"},
       {"name": "estudiantes_potenciales", "type": "number", "description": "Alumnos cursando la línea"}
@@ -1153,7 +1153,7 @@ const dashboards = [
     "columns": [
       {"name": "programa", "type": "text", "description": "Programa evaluado"},
       {"name": "dimension", "type": "text", "description": "Aspecto (Docentes, Currículo, Administrativo)"},
-      {"name": "pregunta", "type": "text", "description": "Ítem evaluado"},
+      {"name": "pregunta", "type": "text", "description": "Item evaluado"},
       {"name": "promedio_calificacion", "type": "number", "description": "Puntaje medio (1-5)"},
       {"name": "nps", "type": "number", "description": "Net Promoter Score"}
     ],
@@ -1605,7 +1605,7 @@ const dashboards = [
       {"name": "estado", "type": "text", "description": "Activo / Licencia / Comisión"}
     ],
     "datasetSource": "Sistema de Talento Humano - Módulo de contratación docente",
-    "datasetNotes": "Actualización semestral. Datos protegidos según normativa de habeas data."
+    "datasetNotes": "Actualizacion semestral. Datos protegidos según normativa de habeas data."
   },
   {
     "id": 55,
@@ -1639,7 +1639,7 @@ const dashboards = [
   },
   
   // ==========================================================================================
-  // MACROPROCESO ESTRATÉGICO - PROYECTOS ESPECIALES
+  // MACROPROCESO ESTRATEGICO - PROYECTOS ESPECIALES
   // ==========================================================================================
   {
     "id": 56,
@@ -1666,10 +1666,10 @@ const dashboards = [
       {"name": "estado_actual", "type": "text", "description": "Vigente / En formulación / Finalizado"},
       {"name": "fecha_inicio", "type": "date", "description": "Fecha de firma o inicio"},
       {"name": "fecha_fin_vigencia", "type": "date", "description": "Fecha de finalización"},
-      {"name": "area_responsable_ucundinamarca", "type": "text", "description": "Área líder dentro de la universidad"}
+      {"name": "area_responsable_ucundinamarca", "type": "text", "description": "Area líder dentro de la universidad"}
     ],
     "datasetSource": "Sistema de Gestión de Convenios y Proyectos Especiales",
-    "datasetNotes": "Actualización trimestral. Este es un resumen público, datos sensibles no se incluyen."
+    "datasetNotes": "Actualizacion trimestral. Este es un resumen público, datos sensibles no se incluyen."
   },
   {
     "id": 57,
@@ -1700,7 +1700,7 @@ const dashboards = [
       {"name": "estado_actual", "type": "text", "description": "Vigente / En ejecución / Cerrado"}
     ],
     "datasetSource": "Sistema de Gestión de Convenios y Proyectos Especiales",
-    "datasetNotes": "Actualización mensual para seguimiento de la gestión. Acceso restringido a personal administrativo."
+    "datasetNotes": "Actualizacion mensual para seguimiento de la gestión. Acceso restringido a personal administrativo."
   }
 ];
 
@@ -1771,53 +1771,53 @@ let infoPanelExpanded = false;
 
 const studentData = [
   {"MUNICIPIO_PROGRAMA": "Soacha", "Programa": "Contaduría Pública", "Estudiantes": 39},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Especialización En Gerencia Financiera Y Contable", "Estudiantes": 4},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Especialización En Gerencia Para La Transformación Digital", "Estudiantes": 51},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Ingeniería De Sistemas Y Computación", "Estudiantes": 670},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Especialización En Gerencia Financiera Y Contable", "Estudiantes": 4},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Especialización En Gerencia Para La Transformación Digital", "Estudiantes": 51},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Ingeniería De Sistemas Y Computación", "Estudiantes": 670},
   {"MUNICIPIO_PROGRAMA": "Facatativá", "Programa": "Contaduría Publica", "Estudiantes": 670},
   {"MUNICIPIO_PROGRAMA": "Facatativá", "Programa": "Ingeniería De Sistemas Y Computación", "Estudiantes": 608},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Ingeniería Agronómica", "Estudiantes": 318},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Ingeniería Agronómica", "Estudiantes": 318},
   {"MUNICIPIO_PROGRAMA": "Facatativá", "Programa": "Psicología", "Estudiantes": 368},
   {"MUNICIPIO_PROGRAMA": "Soacha", "Programa": "Ingeniería De Software", "Estudiantes": 375},
   {"MUNICIPIO_PROGRAMA": "Facatativá", "Programa": "Especialización En Gerencia Para El Desarrollo Organizacional", "Estudiantes": 14},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Especialización En Educación Ambiental Y Desarrollo De La Comunidad", "Estudiantes": 8},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Licenciatura En Educación Física, Recreación Y Deportes ", "Estudiantes": 134},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Especialización En Educación Ambiental Y Desarrollo De La Comunidad", "Estudiantes": 8},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Licenciatura En Educación Física, Recreación Y Deportes ", "Estudiantes": 134},
   {"MUNICIPIO_PROGRAMA": "Chía", "Programa": "Ingeniería Industrial", "Estudiantes": 218},
   {"MUNICIPIO_PROGRAMA": "Facatativá", "Programa": "Administración De Empresas", "Estudiantes": 634},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Ingeniería Electrónica", "Estudiantes": 334},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Ingeniería Electrónica", "Estudiantes": 334},
   {"MUNICIPIO_PROGRAMA": "Soacha", "Programa": "Ingeniería Industrial", "Estudiantes": 480},
   {"MUNICIPIO_PROGRAMA": "Zipaquirá", "Programa": "Música", "Estudiantes": 214},
   {"MUNICIPIO_PROGRAMA": "Chía", "Programa": "Ingeniería De Sistemas Y Computación", "Estudiantes": 677},
   {"MUNICIPIO_PROGRAMA": "Chía", "Programa": "Ingeniería Mecatrónica", "Estudiantes": 180},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Administración De Empresas", "Estudiantes": 633},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Contaduría Pública", "Estudiantes": 561},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Doctorado En Ciencias De La Educación", "Estudiantes": 18},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Maestría En Ciencias Ambientales", "Estudiantes": 4},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Maestría En Educación", "Estudiantes": 5},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Administración De Empresas", "Estudiantes": 633},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Contaduría Pública", "Estudiantes": 561},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Doctorado En Ciencias De La Educación", "Estudiantes": 18},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Maestría En Ciencias Ambientales", "Estudiantes": 4},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Maestría En Educación", "Estudiantes": 5},
   {"MUNICIPIO_PROGRAMA": "Chía", "Programa": "Ingeniería De Sistemas", "Estudiantes": 68},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Ingeniería De Sistemas", "Estudiantes": 8},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Ingeniería De Sistemas", "Estudiantes": 8},
   {"MUNICIPIO_PROGRAMA": "Ubaté", "Programa": "Ingeniería De Sistemas", "Estudiantes": 57},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Zootecnia", "Estudiantes": 324},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Zootecnia", "Estudiantes": 324},
   {"MUNICIPIO_PROGRAMA": "Soacha", "Programa": "Profesional En Ciencias Del Deporte", "Estudiantes": 631},
   {"MUNICIPIO_PROGRAMA": "Ubaté", "Programa": "Ingeniería De Sistemas Y Computación", "Estudiantes": 287},
   {"MUNICIPIO_PROGRAMA": "Facatativá", "Programa": "Ingeniería Agronómica", "Estudiantes": 289},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Licenciatura En Ciencias Sociales", "Estudiantes": 171},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Licenciatura En Ciencias Sociales", "Estudiantes": 171},
   {"MUNICIPIO_PROGRAMA": "Chía", "Programa": "Administración De Empresas", "Estudiantes": 532},
   {"MUNICIPIO_PROGRAMA": "Chía", "Programa": "Contaduría Publica", "Estudiantes": 321},
   {"MUNICIPIO_PROGRAMA": "Soacha", "Programa": "Administración De Empresas", "Estudiantes": 137},
   {"MUNICIPIO_PROGRAMA": "Ubaté", "Programa": "Contaduría Publica", "Estudiantes": 386},
   {"MUNICIPIO_PROGRAMA": "Soacha", "Programa": "Tecnología En Desarrollo De Software", "Estudiantes": 42},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Especialización En Gestión Pública", "Estudiantes": 45},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Especialización En Infraestructura Y Seguridad De Redes", "Estudiantes": 10},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Especialización En Marketing Digital", "Estudiantes": 22},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Especialización En Gestión Pública", "Estudiantes": 45},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Especialización En Infraestructura Y Seguridad De Redes", "Estudiantes": 10},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Especialización En Marketing Digital", "Estudiantes": 22},
   {"MUNICIPIO_PROGRAMA": "Soacha", "Programa": "Ingeniería Topográfica Y Geomática ", "Estudiantes": 22},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Licenciatura En Educación Básica Con Énfasis En Ciencias Sociales", "Estudiantes": 2},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Especialización En Metodologías De Calidad Para El Desarrollo Del Software", "Estudiantes": 24},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Especialización En Agroecología Y Desarrollo Agro ecoturístico", "Estudiantes": 10},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Especialización En Agronegocios Sostenibles", "Estudiantes": 10},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Especialización En Analítica Aplicada A Negocios", "Estudiantes": 32},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Especialización En Analítica Y Ciencia De Datos", "Estudiantes": 22},
-  {"MUNICIPIO_PROGRAMA": "Fusagasugá", "Programa": "Tecnología En Cartografía", "Estudiantes": 2},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Licenciatura En Educación Básica Con Enfasis En Ciencias Sociales", "Estudiantes": 2},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Especialización En Metodologías De Calidad Para El Desarrollo Del Software", "Estudiantes": 24},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Especialización En Agroecología Y Desarrollo Agro ecoturístico", "Estudiantes": 10},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Especialización En Agronegocios Sostenibles", "Estudiantes": 10},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Especialización En Analítica Aplicada A Negocios", "Estudiantes": 32},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Especialización En Analítica Y Ciencia De Datos", "Estudiantes": 22},
+  {"MUNICIPIO_PROGRAMA": "Fusagasuga", "Programa": "Tecnología En Cartografía", "Estudiantes": 2},
   {"MUNICIPIO_PROGRAMA": "Girardot", "Programa": "Administración De Empresas", "Estudiantes": 457},
   {"MUNICIPIO_PROGRAMA": "Girardot", "Programa": "Ingeniería De Software", "Estudiantes": 256},
   {"MUNICIPIO_PROGRAMA": "Girardot", "Programa": "Ingeniería Ambiental", "Estudiantes": 253},
@@ -1830,7 +1830,7 @@ const studentData = [
 ];
 
 // ==========================================
-// GESTIÓN DE SESIÓN PERSISTENTE CON ROLES
+// GESTION DE SESION PERSISTENTE CON ROLES
 // ==========================================
 
 function checkSession() {
@@ -1856,7 +1856,7 @@ if (sessionData.authenticated && sessionData.role) {
 }
 
 // ==========================================
-// NAVEGACIÓN CON SISTEMA DE ROLES MEJORADO
+// NAVEGACION CON SISTEMA DE ROLES MEJORADO
 // ==========================================
 
 function navigateTo(view) {
@@ -1867,14 +1867,40 @@ function navigateTo(view) {
     mobileMenu.classList.add('hidden');
   }
 
+  // Actualizar estado activo de los botones del menu
+  document.querySelectorAll('.nav-link-item').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  document.querySelectorAll('.nav-mobile-link').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  
+  // Activar el boton correspondiente a la vista actual
+  const navButtons = document.querySelectorAll('.nav-link-item');
+  const mobileButtons = document.querySelectorAll('.nav-mobile-link');
+  
+  navButtons.forEach(btn => {
+    const onclickAttr = btn.getAttribute('onclick');
+    if (onclickAttr && onclickAttr.includes(`'${view}'`)) {
+      btn.classList.add('active');
+    }
+  });
+  
+  mobileButtons.forEach(btn => {
+    const onclickAttr = btn.getAttribute('onclick');
+    if (onclickAttr && onclickAttr.includes(`'${view}'`)) {
+      btn.classList.add('active');
+    }
+  });
+
   const protectedViews = {
     'administrativos': 'Administrativo',
     'gestores': 'Docente'
   };
 
-  // Sección de estudiantes ahora es pública (sin protección)
+  // Seccion de estudiantes ahora es publica (sin proteccion)
   if (view === 'estudiantes') {
-    // Acceso directo sin autenticación
+    // Acceso directo sin autenticacion
     document.querySelectorAll('.view-container').forEach(v => v.classList.remove('active'));
     document.getElementById('estudiantesView').classList.add('active');
     currentView = view;
@@ -1887,7 +1913,7 @@ function navigateTo(view) {
       showLoginForRole(view);
       return;
     } else if (currentUser.role !== protectedViews[view]) {
-      alert(`Acceso denegado. Esta sección es solo para ${protectedViews[view]}s.`);
+      alert(`Acceso denegado. Esta seccion es solo para ${protectedViews[view]}s.`);
       return;
     }
   }
@@ -1912,7 +1938,7 @@ function navigateTo(view) {
 }
 
 // ==========================================
-// FUNCIONES DE AUTENTICACIÓN POR ROLES
+// FUNCIONES DE AUTENTICACION POR ROLES
 // ==========================================
 
 function showLoginForRole(targetView) {
@@ -2051,7 +2077,7 @@ function renderDashboardsByRole(role) {
 }
 
 // ==========================================
-// TOGGLE MACROPROCESO/ÁREA
+// TOGGLE MACROPROCESO/AREA
 // ==========================================
 
 function toggleMacroproceso(macroprocesoId) {
@@ -2061,7 +2087,7 @@ function toggleMacroproceso(macroprocesoId) {
   const icon = document.getElementById(`icon-${macroprocesoId}`);
   
   if (!content || !icon) {
-    console.error(`✗ No se encontraron elementos para macroproceso: ${macroprocesoId}`);
+    console.error(`âœ— No se encontraron elementos para macroproceso: ${macroprocesoId}`);
     return;
   }
   
@@ -2085,7 +2111,7 @@ function toggleArea(areaId) {
   const card = document.getElementById(`area-card-${areaId}`);
   
   if (!container || !card) {
-    console.error(`✗ No se encontraron elementos para área: ${areaId}`);
+    console.error(`âœ— No se encontraron elementos para área: ${areaId}`);
     return;
   }
   
@@ -2131,11 +2157,11 @@ function setupEventDelegation() {
     }
   });
   
-  debugLog('Event delegation configurado ✓');
+  debugLog('Event delegation configurado âœ“');
 }
 
 // ==========================================
-// CREAR TARJETA DE ÁREA
+// CREAR TARJETA DE AREA
 // ==========================================
 
 function createAreaCard(area, dashboardsInArea, macroprocesoColor, index, context = '') {
@@ -2191,7 +2217,7 @@ function createDashboardCard(dashboard) {
         <div class="dashboard-metadata">
           <div class="dashboard-metadata-item">
             <i class="fas fa-calendar-alt"></i>
-            <span><strong>Actualización:</strong> ${dashboard.fechaActualizacion}</span>
+            <span><strong>Actualizacion:</strong> ${dashboard.fechaActualizacion}</span>
           </div>
           <div class="dashboard-metadata-item">
             <i class="fas fa-database"></i>
@@ -2214,7 +2240,7 @@ function createDashboardCard(dashboard) {
 // MODAL DASHBOARD CON PANEL INFORMATIVO
 // ==========================================
 
-// --- INICIO DE CÓDIGO MEJORADO ---
+// --- INICIO DE CODIGO MEJORADO ---
 function getTypeClass(type) {
   if (type === 'text') return 'type-text';
   if (type === 'number') return 'type-number';
@@ -2231,7 +2257,7 @@ function renderDatasetInfo(dashboard) {
         <tr>
           <th>Campo</th>
           <th>Tipo</th>
-          <th>Descripción</th>
+          <th>Descripcion</th>
         </tr>
       </thead>
       <tbody>
@@ -2310,15 +2336,15 @@ function openDashboard(id) {
   const infoPanel = document.getElementById('dashboardInfoPanel');
   infoPanel.classList.remove('expanded');
   
-  document.documentElement.style.overflow = 'hidden';
-  document.body.style.overflow = 'hidden';
+  // Agregar clase para prevenir scroll
+  document.body.classList.add('modal-open');
 
   document.getElementById('dashboardModal').classList.add('active');
 }
 
 function closeDashboardModal() {
-  document.documentElement.style.overflow = ''; 
-  document.body.style.overflow = '';
+  // Remover clase que previene scroll
+  document.body.classList.remove('modal-open');
 
   document.getElementById('dashboardModal').classList.remove('active');
   document.getElementById('iframeContainer').innerHTML = '';
@@ -2334,29 +2360,14 @@ function toggleInfoPanel() {
   
   if (infoPanelExpanded) {
     panel.classList.add('expanded');
-    // Si se había cerrado manualmente, al abrir reseteamos a nulo para que tome el CSS o el último ancho válido si quieres
-    if (!panel.style.width) {
-        // Opcional: si quieres que empiece con el ancho por defecto de CSS
-    }
     toggleBtn.innerHTML = '<i class="fas fa-times"></i>';
-    toggleBtn.title = 'Ocultar información';
+    toggleBtn.title = 'Ocultar informacion';
   } else {
     panel.classList.remove('expanded');
-    // IMPORTANTE: Limpiar el estilo inline width para que el CSS pueda colapsarlo a 0
     panel.style.width = ''; 
     toggleBtn.innerHTML = '<i class="fas fa-info-circle"></i>';
-    toggleBtn.title = 'Mostrar información del tablero';
+    toggleBtn.title = 'Mostrar informacion del tablero';
   }
-}
-
-function closeDashboardModal() {
-  document.documentElement.style.overflow = ''; 
-  document.body.style.overflow = '';
-
-  document.getElementById('dashboardModal').classList.remove('active');
-  document.getElementById('iframeContainer').innerHTML = '';
-  currentDashboard = null;
-  infoPanelExpanded = false;
 }
 
 function openInNewTab() {
@@ -2368,7 +2379,7 @@ function openInNewTab() {
 function downloadCSV() {
   if (!currentDashboard) return;
   
-  const csvContent = `Tablero,Área,Fecha Actualización,Fuente,Elaborado Por,Descripción,Estado,Observaciones
+  const csvContent = `Tablero,Area,Fecha Actualizacion,Fuente,Elaborado Por,Descripcion,Estado,Observaciones
 "${currentDashboard.titulo}","${currentDashboard.area}","${currentDashboard.fechaActualizacion}","${currentDashboard.fuente}","${currentDashboard.elaboradoPor}","${currentDashboard.descripcion}","${currentDashboard.estado}","${currentDashboard.observaciones}"`;
   
   const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -2394,7 +2405,7 @@ function initializeMap() {
   }
 
   const mapData = [
-    { name: "Fusagasugá", coords: [4.3391, -74.3636], students: 3422 },
+    { name: "Fusagasuga", coords: [4.3391, -74.3636], students: 3422 },
     { name: "Soacha", coords: [4.579, -74.214], students: 1726 },
     { name: "Facatativá", coords: [4.814, -74.356], students: 2905 },
     { name: "Chía", coords: [4.858, -74.053], students: 1996 },
@@ -2553,7 +2564,7 @@ document.addEventListener('fullscreenchange', function() {
 });
 
 // ==========================================
-// MÉTRICAS
+// METRICAS
 // ==========================================
 
 function animateCounter(id, end) {
@@ -2638,7 +2649,7 @@ document.addEventListener('keydown', (e) => {
 });
 
 // ==========================================
-// MENÚ MÓVIL RESPONSIVE
+// MENU MOVIL RESPONSIVE
 // ==========================================
 function setupMobileMenu() {
   const hamburgerBtn = document.getElementById('hamburgerBtn');
@@ -2656,7 +2667,7 @@ function setupMobileMenu() {
 // ==========================================
 function handleResize() {
   if (currentView === 'home') {
-    debugLog('🔄 Iniciando redimensionamiento...');
+    debugLog('ðŸ”„ Iniciando redimensionamiento...');
     
     const mapContainer = document.getElementById('map');
     const chartContainer = document.getElementById('topProgramsChart');
@@ -2720,7 +2731,7 @@ function handleResize() {
 }
 
 // ==========================================
-// FUNCIÓN PARA CAMBIAR PESTAÑAS DE LINEAMIENTOS
+// FUNCION PARA CAMBIAR PESTANAS DE LINEAMIENTOS
 // ==========================================
 function mostrarLineamiento(tipo) {
   debugLog(`Cambiando a pestaña: ${tipo}`);
@@ -2760,7 +2771,7 @@ function mostrarLineamiento(tipo) {
 }
 
 // ==========================================
-// LÓGICA DE REDIMENSIONAMIENTO DEL PANEL
+// LOGICA DE REDIMENSIONAMIENTO DEL PANEL
 // ==========================================
 function initResizeHandle() {
   const handle = document.getElementById('resizeHandle');
@@ -2810,17 +2821,21 @@ function initResizeHandle() {
 }
 
 // ==========================================
-// INICIALIZACIÓN
+// INICIALIZACION
 // ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
-  debugLog('=== INICIALIZANDO APLICACIÓN ===');
+  debugLog('=== INICIALIZANDO APLICACION ===');
   
   initResizeHandle();
   setupEventDelegation();
   initializeMap();
   initializeMetrics();
   setupMobileMenu();
+  
+  // Establecer boton activo inicial en Home
+  const homeBtn = document.querySelector('.nav-link-item[onclick*="home"]');
+  if (homeBtn) homeBtn.classList.add('active');
   
   if (currentUser) {
     document.getElementById('logoutBtn').classList.remove('hidden');
@@ -2831,5 +2846,50 @@ document.addEventListener('DOMContentLoaded', () => {
     resizeTimeout = setTimeout(handleResize, 400);
   });
   
-  debugLog('=== APLICACIÓN INICIALIZADA ===');
+  // Inicializar animaciones al scroll
+  initScrollAnimations();
+  
+  debugLog('=== APLICACION INICIALIZADA ===');
 });
+
+// ==========================================
+// ANIMACIONES AL SCROLL CON INTERSECTION OBSERVER
+// ==========================================
+function initScrollAnimations() {
+  const animatedElements = document.querySelectorAll(
+    '.stat-card-modern, .purpose-card, .principle-card, .metric-card, ' +
+    '.work-area-card, .governance-card, .lineamiento-card, .dashboard-card, ' +
+    '.cert-card, .ai-objective-card'
+  );
+  
+  // Resetear estado inicial
+  animatedElements.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+  });
+  
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px 0px -50px 0px',
+    threshold: 0.1
+  };
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const siblings = entry.target.parentElement.children;
+        let siblingIndex = Array.from(siblings).indexOf(entry.target);
+        
+        setTimeout(() => {
+          entry.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }, siblingIndex * 100);
+        
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  
+  animatedElements.forEach(el => observer.observe(el));
+}
