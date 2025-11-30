@@ -364,7 +364,7 @@ h2, h3 {
    Cabecera principal con imagen de fondo adaptativa
    ========================================== */
 .hero-banner-new {
-  background: url('Images/Banner.png') center/cover no-repeat;
+  background: url('Images/Banner.jpg') center/cover no-repeat;
   position: relative;
   overflow: hidden;
   height: 420px;
@@ -2436,4 +2436,5 @@ select:focus {
 .resize-handle:hover,
 .resize-handle:active {
   background: rgba(0, 123, 62, 0.3); /* Resaltado verde translúcido */
+
 }
