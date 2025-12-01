@@ -408,7 +408,7 @@
               <div class="metric-label">Estudiantes Totales</div>
               <div class="metric-trend flex justify-between items-center w-full mt-4 pt-3 border-t border-white/20">
                 <span class="bg-white/20 px-2.5 py-1 rounded text-xs font-bold backdrop-blur-sm border border-white/10 flex items-center gap-1.5">
-                  <i class="fas fa-check-double text-[10px]"></i> Dato Verificado
+                  <i class="fas fa-check-double text-[10px]"></i> Matriculados
                 </span>
                 <span class="bg-white/20 px-2.5 py-1 rounded text-xs font-bold backdrop-blur-sm border border-white/10 flex items-center gap-1.5" title="Periodo de actualización">
                   <i class="far fa-clock text-[10px]"></i> 2025-2
@@ -454,37 +454,60 @@
           <div class="mb-10">
             <h3 class="text-2xl font-bold text-gray-800 mb-6">Distribución por Nivel Académico</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="level-card pregrado">
-                <div class="level-badge bg-green-500">
-                  <i class="fas fa-book"></i>
+              
+              <!-- Tarjeta Pregrado -->
+              <div class="level-card pregrado bg-white rounded-2xl p-6 shadow-md border-l-4 border-green-500 relative hover:shadow-lg transition-all">
+                <div class="flex justify-between items-start mb-4">
+                  <div class="level-badge bg-green-100 text-green-600 w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-sm">
+                    <i class="fas fa-book"></i>
+                  </div>
                 </div>
-                <h4 class="text-2xl font-bold text-gray-800 mb-4">PREGRADO</h4>
-                <div class="grid grid-cols-2 gap-4">
+                
+                <h4 class="text-2xl font-bold text-gray-800 mb-6">PREGRADO</h4>
+                
+                <div class="grid grid-cols-2 gap-4 mb-4">
                   <div class="level-stat">
-                    <div class="level-stat-value text-green-600">30</div>
-                    <div class="level-stat-label">Programas</div>
+                    <div class="level-stat-value text-3xl font-bold text-green-600">30</div>
+                    <div class="level-stat-label text-sm text-gray-500 font-medium uppercase tracking-wide mt-1">Programas</div>
                   </div>
                   <div class="level-stat">
-                    <div class="level-stat-value text-green-600">12,670</div>
-                    <div class="level-stat-label">Estudiantes</div>
+                    <div class="level-stat-value text-3xl font-bold text-green-600">12,670</div>
+                    <div class="level-stat-label text-sm text-gray-500 font-medium uppercase tracking-wide mt-1">Estudiantes</div>
                   </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-gray-100 flex justify-end items-center">
+                  <span class="bg-green-50 text-green-700 border border-green-100 px-2.5 py-1 rounded text-xs font-bold flex items-center gap-1.5" title="Periodo de actualización">
+                    <i class="far fa-clock text-[10px]"></i> 2025-2
+                  </span>
                 </div>
               </div>
               
-              <div class="level-card posgrado">
-                <div class="level-badge bg-[#79C000]">
-                  <i class="fas fa-user-graduate"></i>
+              <!-- Tarjeta Posgrado -->
+              <div class="level-card posgrado bg-white rounded-2xl p-6 shadow-md border-l-4 border-[#79C000] relative hover:shadow-lg transition-all">
+                <div class="flex justify-between items-start mb-4">
+                  <div class="level-badge bg-[#f4fccf] text-[#6da800] w-12 h-12 rounded-full flex items-center justify-center text-xl shadow-sm">
+                    <i class="fas fa-user-graduate"></i>
+                  </div>
                 </div>
-                <h4 class="text-2xl font-bold text-gray-800 mb-4">POSGRADO</h4>
-                <div class="grid grid-cols-2 gap-4">
+
+                <h4 class="text-2xl font-bold text-gray-800 mb-6">POSGRADO</h4>
+                
+                <div class="grid grid-cols-2 gap-4 mb-4">
                   <div class="level-stat">
-                    <div class="level-stat-value text-purple-600">19</div>
-                    <div class="level-stat-label">Programas</div>
+                    <div class="level-stat-value text-3xl font-bold text-[#79C000]">19</div>
+                    <div class="level-stat-label text-sm text-gray-500 font-medium uppercase tracking-wide mt-1">Programas</div>
                   </div>
                   <div class="level-stat">
-                    <div class="level-stat-value text-purple-600">279</div>
-                    <div class="level-stat-label">Estudiantes</div>
+                    <div class="level-stat-value text-3xl font-bold text-[#79C000]">279</div>
+                    <div class="level-stat-label text-sm text-gray-500 font-medium uppercase tracking-wide mt-1">Estudiantes</div>
                   </div>
+                </div>
+
+                <div class="mt-4 pt-4 border-t border-gray-100 flex justify-end items-center">
+                  <span class="bg-[#fcfdec] text-[#5a8f00] border border-[#eef5cb] px-2.5 py-1 rounded text-xs font-bold flex items-center gap-1.5" title="Periodo de actualización">
+                    <i class="far fa-clock text-[10px]"></i> 2025-2
+                  </span>
                 </div>
               </div>
             </div>
@@ -502,7 +525,7 @@
                   <i class="fas fa-expand" id="fullscreenIcon"></i>
                 </button>
               </div>
-              <div class="data-source mt-3">Fuente: SNIES - 2025</div>
+              <div class="data-source mt-3">Fuente: SNIES - 2025-2</div>
             </div>
             <div class="lg:col-span-3 bg-gray-50 p-6 rounded-2xl border border-gray-200">
               <div class="flex justify-between items-center mb-4">
@@ -520,7 +543,7 @@
               <div style="height: 280px;">
                 <canvas id="topProgramsChart"></canvas>
               </div>
-              <div class="data-source mt-3">Fuente: SNIES - 2025</div>
+              <div class="data-source mt-3">Fuente: SNIES - 2025-2</div>
             </div>
           </div>
         </div>
