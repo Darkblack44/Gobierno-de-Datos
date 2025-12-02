@@ -2210,30 +2210,6 @@ select:focus {
   border-radius: 50%;
 }
 
-.btn-cta-white {
-  display: inline-flex;
-  align-items: center;
-  padding: 16px 36px;
-  background: white;
-  color: var(--uc-green-1);
-  font-weight: 700;
-  font-size: 1.125rem;
-  border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  text-decoration: none;
-  cursor: pointer;
-  border: none;
-  position: relative;
-  z-index: 1;
-}
-
-.btn-cta-white:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
-  background: #f8fafc;
-}
-
 .btn-cta-outline {
   display: inline-flex;
   align-items: center;
