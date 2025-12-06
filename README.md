@@ -21,7 +21,7 @@ Es importante aclarar que:
 El sistema centraliza información crítica para la institución, cubriendo un amplio espectro de datos:
 * **Volumen de Datos:** Visualización de métricas clave que abarcan **18,390 estudiantes** y **54 programas activos**.
 * **Cobertura Geográfica:** Desglose de información a través de **7 sedes municipales**.
-* **Centralización de Información:** Acceso unificado a 57 tableros de control.
+* **Centralización de Información:** Acceso unificado a 62 tableros de control.
 * **Múltiples Fuentes de Datos:** Simulación de integración con sistemas como SNIES, SPADIES, plataforma CAI y SAP.
 * **Diccionario de Datos:** Visualización detallada de metadatos, tipos de variables y descripciones para cada conjunto de datos.
 
