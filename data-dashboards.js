@@ -1,1515 +1,712 @@
 // data-dashboards.js
 // Base de datos de dashboards institucionales
-// Actualizado automáticamente desde Dashboards_Micrositio.csv
 
-// ==========================================
-// REPOSITORIO DE DATOS: DASHBOARDS
-// ==========================================
 const dashboards = [
-  
-  // ==========================================================================================
-  // ÁREA: DIRECCIÓN DE SISTEMAS Y TECNOLOGÍA
-  // ==========================================================================================
-  {
-    "id": 1,
-    "titulo": "Experiencia de Aprendizaje Online con Efectividad",
-    "area": "Dirección de Sistemas y Tecnología - Área de Desarrollo de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiMWZiOWUyMjktODBiNi00ODRjLWJlNTUtOGE2ODA4NTM0NjljIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
-    "fechaActualizacion": "5/12/2025",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Desarrollo de Sistemas de Información",
-    "descripcion": "Tablero interactivo para el análisis de la efectividad y calidad de la experiencia de aprendizaje en modalidad online.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Reporte General.",
-    "esHistorico": false,
-    "datasetName": "Experiencia_de_Aprendizaje_Online_con_Efectividad",
-    "datasetAbstract": "Datos relacionados con Experiencia de Aprendizaje Online con Efectividad para el seguimiento académico y formativo de estudiantes.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: DIRECCIÓN DE SISTEMAS Y TECNOLOGÍA
-  // ==========================================================================================
-  {
-    "id": 2,
-    "titulo": "Horas Sustantivas de Docentes",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Gestor",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiZGYyZjdmZGUtMzZhZi00Zjk4LTkwOTQtOWVjNjVkOGUzMzNjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistema de Gestión de Talento Humano",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Seguimiento y análisis de las horas sustantivas dedicadas por los docentes a actividades académicas.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Reporte Académico.",
-    "esHistorico": false,
-    "datasetName": "Horas_Sustantivas_de_Docentes",
-    "datasetAbstract": "Información de gestión del conocimiento y datos del cuerpo docente relacionados con Horas Sustantivas de Docentes.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "identificacion_docente",
-        "type": "text",
-        "description": "Identificación del docente"
-      },
-      {
-        "name": "nombre_docente",
-        "type": "text",
-        "description": "Nombre completo del docente"
-      },
-      {
-        "name": "tipo_vinculacion",
-        "type": "text",
-        "description": "Tipo de vinculación docente"
-      },
-      {
-        "name": "programa_adscrito",
-        "type": "text",
-        "description": "Programa al que está adscrito"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
-    ],
-    "datasetSource": "Sistema de Gestión de Talento Humano",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 3,
-    "titulo": "Monitorias",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiYTk4ZWExYjMtYTNkYS00YmQzLTg4MWItZjA0N2VhNDRkMjQzIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Sistema de seguimiento y evaluación del programa de monitorías académicas institucional.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Seguimiento Académico.",
-    "esHistorico": false,
-    "datasetName": "Monitorias",
-    "datasetAbstract": "Datos relacionados con Monitorias para el seguimiento académico y formativo de estudiantes.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 4,
-    "titulo": "Inscripciones UCundinamarca",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiMmFmNWViOWMtMjIzMy00NTQ1LTgxYmEtZDVmZDFhOTkwYzdiIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Análisis de datos de inscripciones por programa, sede y periodo académico.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Reporte Inscripciones.",
-    "esHistorico": false,
-    "datasetName": "Inscripciones_UCundinamarca",
-    "datasetAbstract": "Datos relacionados con Inscripciones UCundinamarca para el seguimiento académico y formativo de estudiantes.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 5,
-    "titulo": "Horas de Interacción Social",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiMGE3NGVjMWEtYzk1Yy00YTQ2LWJmNDYtYjc2OTZkYTc0NjllIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "12/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Reporte analítico de Horas de Interacción Social con información actualizada y métricas institucionales.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Reporte Interacción.",
-    "esHistorico": false,
-    "datasetName": "Horas_de_Interacci_n_Social",
-    "datasetAbstract": "Datos relacionados con Horas de Interacción Social para el seguimiento académico y formativo de estudiantes.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: DIRECCIÓN DE SISTEMAS Y TECNOLOGÍA
-  // ==========================================================================================
-  {
-    "id": 6,
-    "titulo": "Matrícula Financiera UCundinamarca",
-    "area": "Dirección de Sistemas y Tecnología - Área de Desarrollo de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiYzgyNDZlYTItODk4NC00MzczLWE1ODctMTJhODcxYTRlZGVmIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "04/12/2025",
-    "fuente": "Sistema Académico Institucional",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Desarrollo de Sistemas de Información",
-    "descripcion": "Dashboard de análisis financiero de matrículas, ingresos y proyecciones presupuestales.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Reporte Financiero.",
-    "esHistorico": false,
-    "datasetName": "Matr_cula_Financiera_UCundinamarca",
-    "datasetAbstract": "Datos relacionados con Matrícula Financiera UCundinamarca para el seguimiento académico y formativo de estudiantes.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "monto",
-        "type": "number",
-        "description": "Monto en pesos colombianos"
-      },
-      {
-        "name": "concepto",
-        "type": "text",
-        "description": "Concepto del movimiento"
-      },
-      {
-        "name": "rubro_presupuestal",
-        "type": "text",
-        "description": "Rubro presupuestal"
-      }
-    ],
-    "datasetSource": "Sistema Académico Institucional",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: DIRECCIÓN DE SISTEMAS Y TECNOLOGÍA
-  // ==========================================================================================
-  {
-    "id": 7,
-    "titulo": "Grupos Académicos",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiZmI5MTZiZGEtMzE0Ny00NGZjLTg1NDctNzBlN2E5M2FiOTUzIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "5/12/2025",
-    "fuente": "Sistema Académico Institucional",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Información sobre la conformación y distribución de grupos académicos por programa y sede.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Reporte Académico.",
-    "esHistorico": false,
-    "datasetName": "Grupos_Acad_micos",
-    "datasetAbstract": "Datos relacionados con Grupos Académicos para el seguimiento académico y formativo de estudiantes.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
-    ],
-    "datasetSource": "Sistema Académico Institucional",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 8,
-    "titulo": "Atención al Ciudadano (PQRSFyD)",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiMGM0MTY1OGQtZjkyYy00ZDIyLThmMzctZWYwMjdkYjA3NmU4IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistema de Atención al Ciudadano",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Sistema de seguimiento y gestión de Peticiones, Quejas, Reclamos, Sugerencias, Felicitaciones y Denuncias.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Gestión PQRSFyD.",
-    "esHistorico": false,
-    "datasetName": "Atenci_n_al_Ciudadano__PQRSFyD",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Atención al Ciudadano (PQRSFyD).",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistema de Atención al Ciudadano",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: NO ESPECIFICADA
-  // ==========================================================================================
+  // ==============================================================================
+  // MACROPROCESO: ESTRATÉGICO
+  // ==============================================================================
   {
     "id": 9,
     "titulo": "Convenios",
-    "area": "No especificada",
+    "area": "Proyectos Especiales y Relaciones Interinstitucionales",
     "macroproceso": "Estratégico",
-    "subproceso": "Planeación y Desarrollo Institucional",
+    "subproceso": "Proyectos Especiales y Relaciones Interinstitucionales",
     "rol": "Administrativo",
     "url": "Sí",
     "fechaActualizacion": "Reporte Convenios",
     "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "No especificada",
-    "descripcion": "Tablero de seguimiento de convenios interinstitucionales, proyectos especiales y alianzas estratégicas.",
+    "elaboradoPor": "Proyectos Especiales y Relaciones Interinstitucionales",
+    "descripcion": "Dashboard institucional de Convenios con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Proyectos Especiales y Relaciones Interinstitucionales.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
     "datasetName": "Convenios",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Convenios.",
+    "datasetAbstract": "Datos relacionados con Convenios para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
-  
-  // ==========================================================================================
-  // ÁREA: DIRECCIÓN DE SISTEMAS Y TECNOLOGÍA
-  // ==========================================================================================
   {
     "id": 10,
     "titulo": "Eventos UCundinamarca - Interacción Redes Sociales",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
+    "area": "Comunicaciones",
+    "macroproceso": "Estratégico",
+    "subproceso": "Comunicaciones",
     "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiYTZkZDlmZTYtZDRiNi00ODMxLWFmYTMtOTlkMzU0MjdlYzA0IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
-    "fechaActualizacion": "01/01/2024",
+    "fechaActualizacion": "2021",
     "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Análisis de la interacción en redes sociales y alcance de eventos institucionales.",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Eventos UCundinamarca - Interacción Redes Sociales con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Reporte Eventos.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
-    "datasetName": "Eventos_UCundinamarca___Interacci_n_Redes_Sociales",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Eventos UCundinamarca - Interacción Redes Sociales.",
+    "datasetName": "Eventos_UCundinamarca_Interacci_n_Redes_Sociales",
+    "datasetAbstract": "Datos relacionados con Eventos UCundinamarca - Interacción Redes Sociales para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
-  {
-    "id": 11,
-    "titulo": "Tasa de Graduación",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiODNiNmI2MjUtY2Y1OC00M2QzLWI4YzItYmFlZTliODRhYjI5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection5303c09078171b834cd7",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Indicador institucional de graduación oportuna por programa y cohorte.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Indicador Académico.",
-    "esHistorico": false,
-    "datasetName": "Tasa_de_Graduaci_n",
-    "datasetAbstract": "Datos relacionados con Tasa de Graduación para el seguimiento académico y formativo de estudiantes.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 12,
-    "titulo": "Desarrollo de la Lengua Extranjera Inglés de la UCundinamarca",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiNDliNzdjMzAtMTg1MC00NDY2LTkxZjItYTA0YzQ2MmUyOWVlIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
-    "fechaActualizacion": "01/01/2025",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Seguimiento del desarrollo de competencias en lengua extranjera (inglés) de la comunidad estudiantil.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Navegación por Fases.",
-    "esHistorico": false,
-    "datasetName": "Desarrollo_de_la_Lengua_Extranjera_Ingl_s_de_la_UC",
-    "datasetAbstract": "Datos relacionados con Desarrollo de la Lengua Extranjera Inglés de la UCundinamarca para el seguimiento académico y formativo de estudiantes.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 13,
-    "titulo": "Plan de Aprendizaje Digital",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiZGE3MWY4OGYtYTFmMi00NTYwLThhZjYtOGFmNTE5OWFhYWFiIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
-    "fechaActualizacion": "04/12/2025",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Reporte analítico de Plan de Aprendizaje Digital con información actualizada y métricas institucionales.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Reporte PAD.",
-    "esHistorico": false,
-    "datasetName": "Plan_de_Aprendizaje_Digital",
-    "datasetAbstract": "Datos relacionados con Plan de Aprendizaje Digital para el seguimiento académico y formativo de estudiantes.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 14,
-    "titulo": "Seguimiento CADI 2020-2",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiMzU4OWQ2ODAtOGNiZS00MTE0LWE2ZWQtN2E3MDcwMzA0OWM4IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Seguimiento de los Centros de Apoyo Digital Institucional y su impacto en la formación.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Seguimiento CADI.",
-    "esHistorico": false,
-    "datasetName": "Seguimiento_CADI_2020_2",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Seguimiento CADI 2020-2.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 15,
-    "titulo": "Ejecución CADI 2021-1",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiMGY4MTYxODUtOTQ2ZC00NGU4LWEzMzUtMWJiNzZmZGE0MWY5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Seguimiento de los Centros de Apoyo Digital Institucional y su impacto en la formación.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Ejecución CADI.",
-    "esHistorico": false,
-    "datasetName": "Ejecuci_n_CADI_2021_1",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Ejecución CADI 2021-1.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 16,
-    "titulo": "Analítica Resultados Saber PRO - Saber TyT 2018-2019-2020-2021",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiNWQ4MmQ3NzAtNDQwYS00YmEyLThhODYtNmViMzkzYjdkMGM1IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSectionbb5377277b1ac3a3c699",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "ICFES - Sistema Académico",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Análisis de resultados institucionales en las pruebas Saber PRO y Saber TyT del ICFES.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Navegación Saber PRO.",
-    "esHistorico": false,
-    "datasetName": "Anal_tica_Resultados_Saber_PRO___Saber_TyT_2018_20",
-    "datasetAbstract": "Datos relacionados con Analítica Resultados Saber PRO - Saber TyT 2018-2019-2020-2021 para el seguimiento académico y formativo de estudiantes.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
-    ],
-    "datasetSource": "ICFES - Sistema Académico",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 17,
-    "titulo": "Resultados del Análisis y Sistematización de los Aportes al Reglamento Estudiantil V3",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiNzNhZjE4NTgtZDlhZi00ZTMxLWEzZGEtZTVkOGQyMTg4MTFjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Sistematización y análisis de aportes al proceso de actualización del reglamento estudiantil.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Navegación Reglamento.",
-    "esHistorico": false,
-    "datasetName": "Resultados_del_An_lisis_y_Sistematizaci_n_de_los_A",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Resultados del Análisis y Sistematización de los Aportes al Reglamento Estudiantil V3.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 18,
-    "titulo": "Sesiones Virtuales de la Dirección de Sistemas y Tecnología",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiYzU1YTY1ZTUtMDcxZC00N2M3LWI3ODItNmQwYTQ0MDQ3NWM3IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
-    "fechaActualizacion": "04/12/2025",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Estadísticas de uso y participación en sesiones virtuales institucionales.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Reporte Sesiones.",
-    "esHistorico": false,
-    "datasetName": "Sesiones_Virtuales_de_la_Direcci_n_de_Sistemas_y_T",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Sesiones Virtuales de la Dirección de Sistemas y Tecnología.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 19,
-    "titulo": "Microsoft Teams UCundinamarca",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiOTU2YWQwNDctYTRhZS00ZGZjLWFjMDAtMmNiNWZlMzM3ZDYzIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Microsoft Teams - Analytics",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Análisis de uso y adopción de Microsoft Teams como herramienta de trabajo colaborativo.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Reporte Teams.",
-    "esHistorico": false,
-    "datasetName": "Microsoft_Teams_UCundinamarca",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Microsoft Teams UCundinamarca.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Microsoft Teams - Analytics",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: DIRECCIÓN DE SISTEMAS Y TECNOLOGÍA
-  // ==========================================================================================
-  {
-    "id": 20,
-    "titulo": "ICFES Saber PRO y TyT UCundinamarca",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de la Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiNzk2YTg3MTctOTk3My00ZDliLWI0MDEtZGM4MWFkMjE2ZWZiIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "ICFES - Sistema Académico",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de la Información",
-    "descripcion": "Análisis de resultados institucionales en las pruebas Saber PRO y Saber TyT del ICFES.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Navegación ICFES.",
-    "esHistorico": false,
-    "datasetName": "ICFES_Saber_PRO_y_TyT_UCundinamarca",
-    "datasetAbstract": "Datos relacionados con ICFES Saber PRO y TyT UCundinamarca para el seguimiento académico y formativo de estudiantes.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
-    ],
-    "datasetSource": "ICFES - Sistema Académico",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: DIRECCIÓN DE SISTEMAS Y TECNOLOGÍA
-  // ==========================================================================================
-  {
-    "id": 21,
-    "titulo": "Bienestar Universitario Digital",
-    "area": "Dirección de Sistemas y Tecnología - Área de Desarrollo de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiMWE4YzYzOWUtZThhNy00MGJmLWIxODctYTNiYWE3NDJmZDlkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
-    "fechaActualizacion": "4/12/2025",
-    "fuente": "Sistema de Bienestar Universitario",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Desarrollo de Sistemas de Información",
-    "descripcion": "Dashboard de seguimiento de programas y servicios de bienestar universitario.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Navegación BU Digital.",
-    "esHistorico": false,
-    "datasetName": "Bienestar_Universitario_Digital",
-    "datasetAbstract": "Datos relacionados con Bienestar Universitario Digital para el seguimiento académico y formativo de estudiantes.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
-    ],
-    "datasetSource": "Sistema de Bienestar Universitario",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: DIRECCIÓN DE SISTEMAS Y TECNOLOGÍA
-  // ==========================================================================================
   {
     "id": 22,
     "titulo": "Sistema de Gestión de Seguridad de la Información - SGSI",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
+    "area": "Sistemas Integrados",
+    "macroproceso": "Estratégico",
+    "subproceso": "Sistemas Integrados",
     "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiYzAyMTE5MzktZWNhNS00ZmQ0LWFjNmMtYjNmNmE4ODViYTQ5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
-    "fechaActualizacion": "01/01/2024",
+    "fechaActualizacion": "2023",
     "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Sistema de Gestión de Seguridad de la Información: seguimiento de indicadores y controles de seguridad.",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Sistema de Gestión de Seguridad de la Información - SGSI con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Navegación SGSI.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
-    "datasetName": "Sistema_de_Gesti_n_de_Seguridad_de_la_Informaci_n_",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Sistema de Gestión de Seguridad de la Información - SGSI.",
+    "datasetName": "Sistema_de_Gesti_n_de_Seguridad_de_la_Informaci_n_SGSI",
+    "datasetAbstract": "Datos relacionados con Sistema de Gestión de Seguridad de la Información - SGSI para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: DIRECCIÓN DE SISTEMAS Y TECNOLOGÍA
-  // ==========================================================================================
-  {
-    "id": 23,
-    "titulo": "Inteligencia Emocional UCundinamarca Seccional Girardot",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de la Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiOTk3ODg3ODctYmU1Yy00Y2QyLThkNTItMzkxMWE5NTMzNDlkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de la Información",
-    "descripcion": "Evaluación y seguimiento del desarrollo de competencias socioemocionales en estudiantes.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Navegación IE.",
-    "esHistorico": false,
-    "datasetName": "Inteligencia_Emocional_UCundinamarca_Seccional_Gir",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Inteligencia Emocional UCundinamarca Seccional Girardot.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: DIRECCIÓN DE SISTEMAS Y TECNOLOGÍA
-  // ==========================================================================================
-  {
-    "id": 24,
-    "titulo": "Proceso de Digitalización CADIs",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiYTVjYzY5YjMtNDg1My00NWQzLTk3OTYtMDY5OGY4MzE4N2U1IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Seguimiento de los Centros de Apoyo Digital Institucional y su impacto en la formación.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Reporte Digitalización.",
-    "esHistorico": false,
-    "datasetName": "Proceso_de_Digitalizaci_n_CADIs",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Proceso de Digitalización CADIs.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 25,
-    "titulo": "Implementación Cursos Talento Humano",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Gestor",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiM2FkODU4MDktNjVlOC00MGQ5LTk5MWEtMjBmZGViYjI2NDQ0IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "5/12/2025",
-    "fuente": "Sistema de Gestión de Talento Humano",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Implementación y seguimiento del plan de capacitación y desarrollo del talento humano.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Navegación Cursos TH.",
-    "esHistorico": false,
-    "datasetName": "Implementaci_n_Cursos_Talento_Humano",
-    "datasetAbstract": "Información de gestión del conocimiento y datos del cuerpo docente relacionados con Implementación Cursos Talento Humano.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "identificacion_docente",
-        "type": "text",
-        "description": "Identificación del docente"
-      },
-      {
-        "name": "nombre_docente",
-        "type": "text",
-        "description": "Nombre completo del docente"
-      },
-      {
-        "name": "tipo_vinculacion",
-        "type": "text",
-        "description": "Tipo de vinculación docente"
-      },
-      {
-        "name": "programa_adscrito",
-        "type": "text",
-        "description": "Programa al que está adscrito"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
-    ],
-    "datasetSource": "Sistema de Gestión de Talento Humano",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 26,
-    "titulo": "Dirección de Bienes y Servicios",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiYjhiMzZlMWUtNWI3Zi00MGFmLTgzZjgtM2EyNDczNTg4MjZkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
-    "fechaActualizacion": "12/11/2023",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Gestión y control de bienes y servicios institucionales.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Navegación DBS.",
-    "esHistorico": false,
-    "datasetName": "Direcci_n_de_Bienes_y_Servicios",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Dirección de Bienes y Servicios.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 27,
     "titulo": "Fanpage Facultades UCundinamarca",
-    "area": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
+    "area": "Comunicaciones",
+    "macroproceso": "Estratégico",
+    "subproceso": "Comunicaciones",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiNzBhYmE1ZGItZTM4YS00MzdiLWExNmUtOWVkMTI3NmRmODUxIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "29/09/2023 6:09:07",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Fanpage Facultades UCundinamarca con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Fanpage_Facultades_UCundinamarca",
+    "datasetAbstract": "Datos relacionados con Fanpage Facultades UCundinamarca para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 46,
+    "titulo": "Sistema de Gestión Ambiental Indicadores",
+    "area": "Sistemas Integrados",
+    "macroproceso": "Estratégico",
+    "subproceso": "Sistemas Integrados",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiMDE0YTAyN2ItZWVjZi00MGMyLTkwZWYtOTdlYmNlZTU2MDVmIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "No especificada",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Sistema de Gestión Ambiental Indicadores con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Sistema_de_Gesti_n_Ambiental_Indicadores",
+    "datasetAbstract": "Datos relacionados con Sistema de Gestión Ambiental Indicadores para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 47,
+    "titulo": "Plan Integral de Gestión Ambiental -PIGA-",
+    "area": "Sistemas Integrados",
+    "macroproceso": "Estratégico",
+    "subproceso": "Sistemas Integrados",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiNzBiM2U2MDgtNTRlNy00ZmIxLTliZGEtZWYwYzZhNjY5NjFkIiwidCI6IjE5YzMxMzBjLTZjNTgtNGRiZi1iOWEyLTY3OWQzZDBlN2YwMCIsImMiOjR9",
+    "fechaActualizacion": "2022-2025",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas Integrados",
+    "descripcion": "Dashboard institucional de Plan Integral de Gestión Ambiental -PIGA- con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Plan_Integral_de_Gesti_n_Ambiental_PIGA_",
+    "datasetAbstract": "Datos relacionados con Plan Integral de Gestión Ambiental -PIGA- para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 58,
+    "titulo": "Dirección de Planeación Institucional - Boletín Estadístico XV",
+    "area": "Planeación Institucional",
+    "macroproceso": "Estratégico",
+    "subproceso": "Planeación Institucional",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiZTYyOWU0ZGQtNzUxNS00MTdjLTgxMTMtODRjNzc4NThkMTYxIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "2025-2",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Planeación Institucional",
+    "descripcion": "Dashboard institucional de Dirección de Planeación Institucional - Boletín Estadístico XV con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Direcci_n_de_Planeaci_n_Institucional_Bolet_n_Estad_stico_XV",
+    "datasetAbstract": "Datos relacionados con Dirección de Planeación Institucional - Boletín Estadístico XV para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 59,
+    "titulo": "Indicadores Deserción y Permanencia",
+    "area": "Planeación Institucional",
+    "macroproceso": "Estratégico",
+    "subproceso": "Planeación Institucional",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiYTY0MDk3MDAtZDIzMy00MTk3LThlZmItYzgyNzk3YWU3YjNhIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "2025-2",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Planeación Institucional",
+    "descripcion": "Dashboard institucional de Indicadores Deserción y Permanencia con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Indicadores_Deserci_n_y_Permanencia",
+    "datasetAbstract": "Datos relacionados con Indicadores Deserción y Permanencia para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 60,
+    "titulo": "UCundinamarca - Calendario Institucional 2025",
+    "area": "Planeación Institucional",
+    "macroproceso": "Estratégico",
+    "subproceso": "Planeación Institucional",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiOTQzMDgxODgtMTFkYS00YWU2LWE2NTAtMjI0OTFiMTBmNWY5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "2025-2",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Planeación Institucional",
+    "descripcion": "Dashboard institucional de UCundinamarca - Calendario Institucional 2025 con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "UCundinamarca_Calendario_Institucional_2025",
+    "datasetAbstract": "Datos relacionados con UCundinamarca - Calendario Institucional 2025 para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 61,
+    "titulo": "Campo de Aprendizaje Institucional - Encuentros Dialógicos y Formativos",
+    "area": "Planeación Institucional",
+    "macroproceso": "Estratégico",
+    "subproceso": "Planeación Institucional",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiMjFlYmIzOTUtMDcyMy00MGNiLTllZjktNTY2ZjM2ZjgxMmVlIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "No especificada (Uso para consulta)",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Planeación Institucional",
+    "descripcion": "Dashboard institucional de Campo de Aprendizaje Institucional - Encuentros Dialógicos y Formativos con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Campo_de_Aprendizaje_Institucional_Encuentros_Dial_gicos_y_Formativos",
+    "datasetAbstract": "Datos relacionados con Campo de Aprendizaje Institucional - Encuentros Dialógicos y Formativos para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  // ==============================================================================
+  // MACROPROCESO: MISIONAL
+  // ==============================================================================
+  {
+    "id": 1,
+    "titulo": "Experiencia de Aprendizaje Online con Efectividad",
+    "area": "Formación y Aprendizaje",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
     "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiNzBhYmE1ZGItZTM4YS00MzdiLWExNmUtOWVkMTI3NmRmODUxIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "29/09/2023",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiMWZiOWUyMjktODBiNi00ODRjLWJlNTUtOGE2ODA4NTM0NjljIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
+    "fechaActualizacion": "5/12/2025 8:05",
     "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Sistemas de Información",
-    "descripcion": "Reporte analítico de Fanpage Facultades UCundinamarca con información actualizada y métricas institucionales.",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Experiencia de Aprendizaje Online con Efectividad con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Reporte Redes Sociales.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
-    "datasetName": "Fanpage_Facultades_UCundinamarca",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Fanpage Facultades UCundinamarca.",
+    "datasetName": "Experiencia_de_Aprendizaje_Online_con_Efectividad",
+    "datasetAbstract": "Datos relacionados con Experiencia de Aprendizaje Online con Efectividad para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
-  
-  // ==========================================================================================
-  // ÁREA: DIRECCIÓN DE SISTEMAS Y TECNOLOGÍA
-  // ==========================================================================================
   {
-    "id": 28,
-    "titulo": "Matriculados Totales",
-    "area": "Dirección de Sistemas y Tecnología - Área de Desarrollo",
-    "macroproceso": "Apoyo",
-    "subproceso": "Gestión de Recursos",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiMjdlZWI3Y2EtNjIwOS00Y2Y5LTgwOGEtMWE2NDA3OWYwOGM5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología - Área de Desarrollo",
-    "descripcion": "Dashboard institucional de Matriculados Totales con información actualizada y visualizaciones interactivas.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Histórico Matriculados.",
-    "esHistorico": false,
-    "datasetName": "Matriculados_Totales",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Matriculados Totales.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: OFICINA DE EDUCACIÓN VIRTUAL Y A DISTANCIA
-  // ==========================================================================================
-  {
-    "id": 29,
-    "titulo": "Asesor Disciplinar",
-    "area": "Oficina de Educación Virtual y a Distancia",
+    "id": 3,
+    "titulo": "Monitorías",
+    "area": "Formación y Aprendizaje",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
     "rol": "Estudiante",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiMzM4YTllZGUtOGQ1Yy00MWQ5LWFkN2UtNWFhMmViY2MxZTVkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "5/12/2025",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiYTk4ZWExYjMtYTNkYS00YmQzLTg4MWItZjA0N2VhNDRkMjQzIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "IPA 2023",
     "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Seguimiento del programa de asesorías disciplinares para estudiantes.",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Monitorias con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte Asesorías.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
-    "datasetName": "Asesor_Disciplinar",
-    "datasetAbstract": "Datos relacionados con Asesor Disciplinar para el seguimiento académico y formativo de estudiantes.",
+    "datasetName": "Monitorias",
+    "datasetAbstract": "Datos relacionados con Monitorias para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 4,
+    "titulo": "Inscripciones UCundinamarca",
+    "area": "Admisiones y Registro",
+    "macroproceso": "Misional",
+    "subproceso": "Admisiones y Registro",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiMmFmNWViOWMtMjIzMy00NTQ1LTgxYmEtZDVmZDFhOTkwYzdiIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "2022-2",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Inscripciones UCundinamarca con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Inscripciones_UCundinamarca",
+    "datasetAbstract": "Datos relacionados con Inscripciones UCundinamarca para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 5,
+    "titulo": "Horas de Interacción Social",
+    "area": "Interacción Social Universitaria",
+    "macroproceso": "Misional",
+    "subproceso": "Interacción Social Universitaria",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiMGE3NGVjMWEtYzk1Yy00YTQ2LWJmNDYtYjc2OTZkYTc0NjllIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "12/01/2024 8:05:52",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Horas de Interacción Social con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Horas_de_Interacci_n_Social",
+    "datasetAbstract": "Datos relacionados con Horas de Interacción Social para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 7,
+    "titulo": "Grupos Académicos",
+    "area": "Ciencia, Tecnología e Innovación",
+    "macroproceso": "Misional",
+    "subproceso": "Ciencia, Tecnología e Innovación",
+    "rol": "Estudiante",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiZmI5MTZiZGEtMzE0Ny00NGZjLTg1NDctNzBlN2E5M2FiOTUzIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "5/12/2025 6:04",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Grupos Académicos con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Grupos_Acad_micos",
+    "datasetAbstract": "Datos relacionados con Grupos Académicos para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 11,
+    "titulo": "Tasa de Graduación",
+    "area": "Graduados",
+    "macroproceso": "Misional",
+    "subproceso": "Graduados",
+    "rol": "Estudiante",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiODNiNmI2MjUtY2Y1OC00M2QzLWI4YzItYmFlZTliODRhYjI5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection5303c09078171b834cd7",
+    "fechaActualizacion": "2023",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Tasa de Graduación con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Tasa_de_Graduaci_n",
+    "datasetAbstract": "Datos relacionados con Tasa de Graduación para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 12,
+    "titulo": "Desarrollo de la Lengua Extranjera Inglés de la UCundinamarca",
+    "area": "Formación y Aprendizaje",
+    "macroproceso": "Misional",
+    "subproceso": "Formación y Aprendizaje",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiNDliNzdjMzAtMTg1MC00NDY2LTkxZjItYTA0YzQ2MmUyOWVlIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
+    "fechaActualizacion": "No especificada",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Desarrollo de la Lengua Extranjera Inglés de la UCundinamarca con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Desarrollo_de_la_Lengua_Extranjera_Ingl_s_de_la_UCundinamarca",
+    "datasetAbstract": "Datos relacionados con Desarrollo de la Lengua Extranjera Inglés de la UCundinamarca para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 13,
+    "titulo": "Plan de Aprendizaje Digital",
+    "area": "Formación y Aprendizaje",
+    "macroproceso": "Misional",
+    "subproceso": "Formación y Aprendizaje",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiZGE3MWY4OGYtYTFmMi00NTYwLThhZjYtOGFmNTE5OWFhYWFiIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
+    "fechaActualizacion": "04/12/2025 11:03:44",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Plan de Aprendizaje Digital con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Plan_de_Aprendizaje_Digital",
+    "datasetAbstract": "Datos relacionados con Plan de Aprendizaje Digital para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 14,
+    "titulo": "Seguimiento CADI 2020-2",
+    "area": "Formación y Aprendizaje",
+    "macroproceso": "Misional",
+    "subproceso": "Formación y Aprendizaje",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiMzU4OWQ2ODAtOGNiZS00MTE0LWE2ZWQtN2E3MDcwMzA0OWM4IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
+    "fechaActualizacion": "2020-2",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Seguimiento CADI 2020-2 con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Seguimiento_CADI_2020_2",
+    "datasetAbstract": "Datos relacionados con Seguimiento CADI 2020-2 para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 15,
+    "titulo": "Ejecución CADI 2021-1",
+    "area": "Formación y Aprendizaje",
+    "macroproceso": "Misional",
+    "subproceso": "Formación y Aprendizaje",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiMGY4MTYxODUtOTQ2ZC00NGU4LWEzMzUtMWJiNzZmZGE0MWY5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
+    "fechaActualizacion": "2021-1",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Ejecución CADI 2021-1 con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Ejecuci_n_CADI_2021_1",
+    "datasetAbstract": "Datos relacionados con Ejecución CADI 2021-1 para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 16,
+    "titulo": "Analítica Resultados Saber PRO - Saber TyT 2018-2019-2020-2021",
+    "area": "Formación y Aprendizaje",
+    "macroproceso": "Misional",
+    "subproceso": "Formación y Aprendizaje",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiNWQ4MmQ3NzAtNDQwYS00YmEyLThhODYtNmViMzkzYjdkMGM1IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSectionbb5377277b1ac3a3c699",
+    "fechaActualizacion": "2021",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Analítica Resultados Saber PRO - Saber TyT 2018-2019-2020-2021 con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Anal_tica_Resultados_Saber_PRO_Saber_TyT_2018_2019_2020_2021",
+    "datasetAbstract": "Datos relacionados con Analítica Resultados Saber PRO - Saber TyT 2018-2019-2020-2021 para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 17,
+    "titulo": "Resultados del Análisis y Sistematización de los Aportes al Reglamento Estudiantil V3",
+    "area": "Bienestar Universitario",
+    "macroproceso": "Misional",
+    "subproceso": "Bienestar Universitario",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiNzNhZjE4NTgtZDlhZi00ZTMxLWEzZGEtZTVkOGQyMTg4MTFjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "2021-2",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Resultados del Análisis y Sistematización de los Aportes al Reglamento Estudiantil V3 con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Resultados_del_An_lisis_y_Sistematizaci_n_de_los_Aportes_al_Reglamento_Estudiantil_V3",
+    "datasetAbstract": "Datos relacionados con Resultados del Análisis y Sistematización de los Aportes al Reglamento Estudiantil V3 para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 20,
+    "titulo": "ICFES Saber PRO y TyT UCundinamarca",
+    "area": "Formación y Aprendizaje",
+    "macroproceso": "Misional",
+    "subproceso": "Formación y Aprendizaje",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiNzk2YTg3MTctOTk3My00ZDliLWI0MDEtZGM4MWFkMjE2ZWZiIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "2022",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de ICFES Saber PRO y TyT UCundinamarca con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "ICFES_Saber_PRO_y_TyT_UCundinamarca",
+    "datasetAbstract": "Datos relacionados con ICFES Saber PRO y TyT UCundinamarca para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 21,
+    "titulo": "Bienestar Universitario Digital",
+    "area": "Bienestar Universitario",
+    "macroproceso": "Misional",
+    "subproceso": "Bienestar Universitario",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiMWE4YzYzOWUtZThhNy00MGJmLWIxODctYTNiYWE3NDJmZDlkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
+    "fechaActualizacion": "4/12/2025 6:43",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Bienestar Universitario Digital con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Bienestar_Universitario_Digital",
+    "datasetAbstract": "Datos relacionados con Bienestar Universitario Digital para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 23,
+    "titulo": "Inteligencia Emocional UCundinamarca Seccional Girardot",
+    "area": "Bienestar Universitario",
+    "macroproceso": "Misional",
+    "subproceso": "Bienestar Universitario",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiOTk3ODg3ODctYmU1Yy00Y2QyLThkNTItMzkxMWE5NTMzNDlkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
+    "fechaActualizacion": "2022-1",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Inteligencia Emocional UCundinamarca Seccional Girardot con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Inteligencia_Emocional_UCundinamarca_Seccional_Girardot",
+    "datasetAbstract": "Datos relacionados con Inteligencia Emocional UCundinamarca Seccional Girardot para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 24,
+    "titulo": "Proceso de Digitalización CADIs",
+    "area": "Formación y Aprendizaje",
+    "macroproceso": "Misional",
+    "subproceso": "Formación y Aprendizaje",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiYTVjYzY5YjMtNDg1My00NWQzLTk3OTYtMDY5OGY4MzE4N2U1IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
+    "fechaActualizacion": "2022-1",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Proceso de Digitalización CADIs con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Proceso_de_Digitalizaci_n_CADIs",
+    "datasetAbstract": "Datos relacionados con Proceso de Digitalización CADIs para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 28,
+    "titulo": "Matriculados Totales",
+    "area": "Admisiones y Registro",
+    "macroproceso": "Misional",
+    "subproceso": "Admisiones y Registro",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiMjdlZWI3Y2EtNjIwOS00Y2Y5LTgwOGEtMWE2NDA3OWYwOGM5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "1992-2022",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Matriculados Totales con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Matriculados_Totales",
+    "datasetAbstract": "Datos relacionados con Matriculados Totales para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 29,
+    "titulo": "Asesor Disciplinar",
+    "area": "Formación y Aprendizaje",
+    "macroproceso": "Misional",
+    "subproceso": "Formación y Aprendizaje",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiMzM4YTllZGUtOGQ1Yy00MWQ5LWFkN2UtNWFhMmViY2MxZTVkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "5/12/2025 4:08",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Formación y Aprendizaje",
+    "descripcion": "Dashboard institucional de Asesor Disciplinar con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Asesor_Disciplinar",
+    "datasetAbstract": "Datos relacionados con Asesor Disciplinar para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 30,
@@ -1517,311 +714,149 @@ const dashboards = [
     "area": "Oficina de Educación Virtual y a Distancia",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiMWFkODZhODgtOTVmZi00ZTFhLTlmZjgtMDlhZjlhNjA0N2YwIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "5/12/2025",
+    "fechaActualizacion": "5/12/2025 9:06",
     "fuente": "Sistemas de Información Institucionales",
     "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Reporte analítico de CAI Cátedra Generación Siglo XXI con información actualizada y métricas institucionales.",
+    "descripcion": "Dashboard institucional de CAI Cátedra Generación Siglo XXI con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte CAI.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
     "datasetName": "CAI_C_tedra_Generaci_n_Siglo_XXI",
-    "datasetAbstract": "Datos relacionados con CAI Cátedra Generación Siglo XXI para el seguimiento académico y formativo de estudiantes.",
+    "datasetAbstract": "Datos relacionados con CAI Cátedra Generación Siglo XXI para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 31,
     "titulo": "CAI Viviendo el MEDIT",
-    "area": "Oficina de Educación Virtual y a Distancia",
+    "area": "Oficina de Desarrollo Académico",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiZjdhZmFjYjEtZTUyMi00NzUwLTg0YzItMjEyYjgyNWZjYTBkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
+    "fechaActualizacion": "16/12/2024",
     "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Dashboard interactivo de navegación y exploración de datos relacionados con CAI Viviendo el MEDIT.",
+    "elaboradoPor": "Oficina de Desarrollo Académico",
+    "descripcion": "Dashboard institucional de CAI Viviendo el MEDIT con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Navegación MEDIT.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
     "datasetName": "CAI_Viviendo_el_MEDIT",
-    "datasetAbstract": "Datos relacionados con CAI Viviendo el MEDIT para el seguimiento académico y formativo de estudiantes.",
+    "datasetAbstract": "Datos relacionados con CAI Viviendo el MEDIT para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 32,
     "titulo": "Campo Multidimensional de Aprendizaje CMA - Pregrado",
-    "area": "Oficina de Educación Virtual y a Distancia",
+    "area": "Oficina de Desarrollo Académico",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiMzdlYjNhNDAtYzQzOC00ZmRhLTk5NTktNWQ2YzA4NGI5YTc0IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "26/11/2025",
+    "fechaActualizacion": "26/11/2025 8:10:31",
     "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Dashboard interactivo de navegación y exploración de datos relacionados con Campo Multidimensional de Aprendizaje CMA - Pregrado.",
+    "elaboradoPor": "Oficina de Desarrollo Académico",
+    "descripcion": "Dashboard institucional de Campo Multidimensional de Aprendizaje CMA - Pregrado con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Navegación CMA Pregrado.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
-    "datasetName": "Campo_Multidimensional_de_Aprendizaje_CMA___Pregra",
-    "datasetAbstract": "Datos relacionados con Campo Multidimensional de Aprendizaje CMA - Pregrado para el seguimiento académico y formativo de estudiantes.",
+    "datasetName": "Campo_Multidimensional_de_Aprendizaje_CMA_Pregrado",
+    "datasetAbstract": "Datos relacionados con Campo Multidimensional de Aprendizaje CMA - Pregrado para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 33,
     "titulo": "Diagnósticos y Nivelatorios",
-    "area": "Oficina de Educación Virtual y a Distancia",
+    "area": "Oficina de Desarrollo Académico",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiZWQwOTI0ZDYtZTYxNC00MGFmLWE1OTUtNTM4MzViZDcwNDNkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "27/06/2025",
+    "fechaActualizacion": "27/06/2025 9:12:57",
     "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Reporte analítico de Diagnósticos y Nivelatorios con información actualizada y métricas institucionales.",
+    "elaboradoPor": "Oficina de Desarrollo Académico",
+    "descripcion": "Dashboard institucional de Diagnósticos y Nivelatorios con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte DN.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
     "datasetName": "Diagn_sticos_y_Nivelatorios",
-    "datasetAbstract": "Datos relacionados con Diagnósticos y Nivelatorios para el seguimiento académico y formativo de estudiantes.",
+    "datasetAbstract": "Datos relacionados con Diagnósticos y Nivelatorios para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 34,
     "titulo": "Ingresos al Campo Multidimensional de Aprendizaje",
-    "area": "Oficina de Educación Virtual y a Distancia",
+    "area": "Oficina de Desarrollo Académico",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiMDNjYzVmNjYtYzI4OS00NGEwLWJlNDgtODMzY2M2ZDMzY2Q2IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "17/06/2025",
+    "fechaActualizacion": "17/06/2025 9:11:16",
     "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Reporte analítico de Ingresos al Campo Multidimensional de Aprendizaje con información actualizada y métricas institucionales.",
+    "elaboradoPor": "Oficina de Desarrollo Académico",
+    "descripcion": "Dashboard institucional de Ingresos al Campo Multidimensional de Aprendizaje con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte Ingresos CMA.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
     "datasetName": "Ingresos_al_Campo_Multidimensional_de_Aprendizaje",
-    "datasetAbstract": "Datos relacionados con Ingresos al Campo Multidimensional de Aprendizaje para el seguimiento académico y formativo de estudiantes.",
+    "datasetAbstract": "Datos relacionados con Ingresos al Campo Multidimensional de Aprendizaje para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 35,
-    "titulo": "Monitorias (OEVD)",
-    "area": "Oficina de Educación Virtual y a Distancia",
+    "titulo": "Monitorías (OEVD)",
+    "area": "Oficina de Desarrollo Académico",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiMjdlNTVkNmItMDMwZi00ZjlkLWJhNzktNWYwMWQyYWY4MGFjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "5/12/2025",
+    "fechaActualizacion": "5/12/2025 10:05",
     "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Sistema de seguimiento y evaluación del programa de monitorías académicas institucional.",
+    "elaboradoPor": "Oficina de Desarrollo Académico",
+    "descripcion": "Dashboard institucional de Monitorías (OEVD) con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte Monitorias.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
-    "datasetName": "Monitorias__OEVD",
-    "datasetAbstract": "Datos relacionados con Monitorias (OEVD) para el seguimiento académico y formativo de estudiantes.",
+    "datasetName": "Monitorias_OEVD_",
+    "datasetAbstract": "Datos relacionados con Monitorías (OEVD) para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 36,
@@ -1829,51 +864,24 @@ const dashboards = [
     "area": "Oficina de Educación Virtual y a Distancia",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiN2IwOWQ0MTAtZjY1Mi00YmRjLTg2MmItYTJlYmZjZDk1YjY1IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "28/07/2024",
+    "fechaActualizacion": "28/07/2024 9:03",
     "fuente": "Sistemas de Información Institucionales",
     "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Reporte analítico de Tránsito de la Educación Media a la Educación Superior con información actualizada y métricas institucionales.",
+    "descripcion": "Dashboard institucional de Tránsito de la Educación Media a la Educación Superior con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte Transición.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
-    "datasetName": "Tr_nsito_de_la_Educaci_n_Media_a_la_Educaci_n_Supe",
-    "datasetAbstract": "Datos relacionados con Tránsito de la Educación Media a la Educación Superior para el seguimiento académico y formativo de estudiantes.",
+    "datasetName": "Tr_nsito_de_la_Educaci_n_Media_a_la_Educaci_n_Superior",
+    "datasetAbstract": "Datos relacionados con Tránsito de la Educación Media a la Educación Superior para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 37,
@@ -1881,51 +889,24 @@ const dashboards = [
     "area": "Oficina de Educación Virtual y a Distancia",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiOTE5MTcyZjAtYjNkNy00ZTE0LTgyMDItNGQ0MGE4OTZlMDk0IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "5/12/2025",
+    "fechaActualizacion": "5/12/2025 8:09",
     "fuente": "Sistemas de Información Institucionales",
     "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Seguimiento del programa de asesorías disciplinares para estudiantes.",
+    "descripcion": "Dashboard institucional de Asesor Disciplinar (Detalle) con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte Asesorías Detalle.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
-    "datasetName": "Asesor_Disciplinar__Detalle",
-    "datasetAbstract": "Datos relacionados con Asesor Disciplinar (Detalle) para el seguimiento académico y formativo de estudiantes.",
+    "datasetName": "Asesor_Disciplinar_Detalle_",
+    "datasetAbstract": "Datos relacionados con Asesor Disciplinar (Detalle) para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 38,
@@ -1933,51 +914,24 @@ const dashboards = [
     "area": "Oficina de Educación Virtual y a Distancia",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiNjQ3ODYwNzItZDRlMi00ZDljLTk1ODQtNjJlMGY1YTI2NTJjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "ICFES - Sistema Académico",
+    "fechaActualizacion": "5/12/2025",
+    "fuente": "Sistemas de Información Institucionales",
     "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Análisis de resultados institucionales en las pruebas Saber PRO y Saber TyT del ICFES.",
+    "descripcion": "Dashboard institucional de CAI Cátedra Generación Siglo 21 - Estrategia Institucional Saber PRO con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte CAI Saber PRO.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
-    "datasetName": "CAI_C_tedra_Generaci_n_Siglo_21___Estrategia_Insti",
-    "datasetAbstract": "Datos relacionados con CAI Cátedra Generación Siglo 21 - Estrategia Institucional Saber PRO para el seguimiento académico y formativo de estudiantes.",
+    "datasetName": "CAI_C_tedra_Generaci_n_Siglo_21_Estrategia_Institucional_Saber_PRO",
+    "datasetAbstract": "Datos relacionados con CAI Cátedra Generación Siglo 21 - Estrategia Institucional Saber PRO para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
-    "datasetSource": "ICFES - Sistema Académico",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 39,
@@ -1985,51 +939,24 @@ const dashboards = [
     "area": "Oficina de Educación Virtual y a Distancia",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiY2RiZTJjMzktNGVhOC00YmZhLWFkNzItNTUzOTlhZTYyNTc4IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "19/11/2025",
+    "fechaActualizacion": "19/11/2025 12:32:41",
     "fuente": "Sistemas de Información Institucionales",
     "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Información detallada sobre programas de posgrado: oferta, matrícula y graduados.",
+    "descripcion": "Dashboard institucional de Campo Multidimensional de Aprendizaje CMA - Posgrados con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Navegación CMA Posgrados.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
-    "datasetName": "Campo_Multidimensional_de_Aprendizaje_CMA___Posgra",
-    "datasetAbstract": "Datos relacionados con Campo Multidimensional de Aprendizaje CMA - Posgrados para el seguimiento académico y formativo de estudiantes.",
+    "datasetName": "Campo_Multidimensional_de_Aprendizaje_CMA_Posgrados",
+    "datasetAbstract": "Datos relacionados con Campo Multidimensional de Aprendizaje CMA - Posgrados para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 40,
@@ -2037,178 +964,74 @@ const dashboards = [
     "area": "Oficina de Educación Virtual y a Distancia",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiOTBhNThkMTktNmU0OC00YmM5LTkyNDktNGFjMTA5NGFmNTdmIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "26/08/202409:34:17",
+    "fechaActualizacion": "26/08/2024 09:34:17",
     "fuente": "Sistemas de Información Institucionales",
     "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Seguimiento de la oferta de cursos en modalidad autogestionada.",
+    "descripcion": "Dashboard institucional de Cursos Autogestionados con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte Cursos.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
     "datasetName": "Cursos_Autogestionados",
-    "datasetAbstract": "Datos relacionados con Cursos Autogestionados para el seguimiento académico y formativo de estudiantes.",
+    "datasetAbstract": "Datos relacionados con Cursos Autogestionados para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
-  
-  // ==========================================================================================
-  // ÁREA: OFICINA DE EDUCACIÓN VIRTUAL Y A DISTANCIA (OFICINA DE GRADUADOS)
-  // ==========================================================================================
   {
     "id": 41,
     "titulo": "Graduados UCundinamarca",
-    "area": "Oficina de Educación Virtual y a Distancia (Oficina de Graduados)",
+    "area": "Oficina de Graduados",
     "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "subproceso": "Graduados",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiZjZkZmQ1MzUtMjA4Yy00OTIzLWE5N2QtMmU4NTE1Y2UwMWY5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "5/12/2025",
+    "fechaActualizacion": "5/12/2025 7:06",
     "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Oficina de Educación Virtual y a Distancia (Oficina de Graduados)",
-    "descripcion": "Caracterización y seguimiento de egresados de la universidad.",
+    "elaboradoPor": "Oficina de Graduados",
+    "descripcion": "Dashboard institucional de Graduados UCundinamarca con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Análisis General Graduados.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
     "datasetName": "Graduados_UCundinamarca",
-    "datasetAbstract": "Datos relacionados con Graduados UCundinamarca para el seguimiento académico y formativo de estudiantes.",
+    "datasetAbstract": "Datos relacionados con Graduados UCundinamarca para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "fecha_grado",
-        "type": "date",
-        "description": "Fecha de graduación"
-      },
-      {
-        "name": "opcion_grado",
-        "type": "text",
-        "description": "Modalidad de opción de grado"
-      },
-      {
-        "name": "distincion",
-        "type": "text",
-        "description": "Distinción obtenida"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
-  
-  // ==========================================================================================
-  // ÁREA: OFICINA DE EDUCACIÓN VIRTUAL Y A DISTANCIA
-  // ==========================================================================================
   {
     "id": 42,
     "titulo": "Informe Final",
     "area": "Oficina de Educación Virtual y a Distancia",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiYzdiN2I2ZWQtOWY4ZS00MWJiLWIyODUtZTViY2Q0ZTc3NDc2IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "16/06/2025",
+    "fechaActualizacion": "16/06/2025 5:37",
     "fuente": "Sistemas de Información Institucionales",
     "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Dashboard interactivo de navegación y exploración de datos relacionados con Informe Final.",
+    "descripcion": "Dashboard institucional de Informe Final con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Navegación Informes.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
     "datasetName": "Informe_Final",
-    "datasetAbstract": "Datos relacionados con Informe Final para el seguimiento académico y formativo de estudiantes.",
+    "datasetAbstract": "Datos relacionados con Informe Final para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 43,
@@ -2216,98 +1039,49 @@ const dashboards = [
     "area": "Oficina de Educación Virtual y a Distancia",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiYWQ1MmJiNzQtNzJkZS00MzYzLTg4YWEtMjFjOTAxNDMzYWJjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "28/10/2025",
+    "fechaActualizacion": "28/10/2025 7:07",
     "fuente": "Sistemas de Información Institucionales",
     "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Sistema de reconocimiento mediante insignias digitales de logros académicos.",
+    "descripcion": "Dashboard institucional de Insignias Digitales con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte Insignias.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
     "datasetName": "Insignias_Digitales",
-    "datasetAbstract": "Datos relacionados con Insignias Digitales para el seguimiento académico y formativo de estudiantes.",
+    "datasetAbstract": "Datos relacionados con Insignias Digitales para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 44,
     "titulo": "Inventario Recursos Educativos Digitales",
     "area": "Oficina de Educación Virtual y a Distancia",
-    "macroproceso": "Apoyo",
-    "subproceso": "Gestión Administrativa y Financiera",
+    "macroproceso": "Misional",
+    "subproceso": "Formación y Aprendizaje",
     "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiN2JlODU1MGQtM2FiNi00NWU4LWI1YjItNWVmMGZlMmNlM2I5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2025",
+    "fechaActualizacion": "No especificada",
     "fuente": "Sistemas de Información Institucionales",
     "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Inventario y gestión de recursos educativos digitales institucionales.",
+    "descripcion": "Dashboard institucional de Inventario Recursos Educativos Digitales con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte RED.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
     "datasetName": "Inventario_Recursos_Educativos_Digitales",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Inventario Recursos Educativos Digitales.",
+    "datasetAbstract": "Datos relacionados con Inventario Recursos Educativos Digitales para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 45,
@@ -2315,515 +1089,24 @@ const dashboards = [
     "area": "Oficina de Educación Virtual y a Distancia",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiMjFiNDQ4ODQtMWE4Mi00YjFmLWJiOTYtYWU1MGViNjQzOWI1IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "11/09/2024",
+    "fechaActualizacion": "11/09/2024 4:53",
     "fuente": "Sistemas de Información Institucionales",
     "elaboradoPor": "Oficina de Educación Virtual y a Distancia",
-    "descripcion": "Información detallada sobre programas de posgrado: oferta, matrícula y graduados.",
+    "descripcion": "Dashboard institucional de Posgrados con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte Posgrados.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
     "datasetName": "Posgrados",
-    "datasetAbstract": "Datos relacionados con Posgrados para el seguimiento académico y formativo de estudiantes.",
+    "datasetAbstract": "Datos relacionados con Posgrados para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: DIRECCIÓN DE SISTEMAS Y TECNOLOGÍA
-  // ==========================================================================================
-  {
-    "id": 46,
-    "titulo": "Sistema de Gestión Ambiental Indicadores",
-    "area": "Dirección de Sistemas y Tecnología",
-    "macroproceso": "Apoyo",
-    "subproceso": "Gestión de Recursos",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiMDE0YTAyN2ItZWVjZi00MGMyLTkwZWYtOTdlYmNlZTU2MDVmIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2025",
-    "fuente": "Sistema de Gestión Ambiental",
-    "elaboradoPor": "Dirección de Sistemas y Tecnología",
-    "descripcion": "Sistema de Gestión Ambiental: seguimiento de indicadores y plan integral de gestión ambiental.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por Dirección de Sistemas y Tecnología. Navegación SGA.",
-    "esHistorico": false,
-    "datasetName": "Sistema_de_Gesti_n_Ambiental_Indicadores",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Sistema de Gestión Ambiental Indicadores.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistema de Gestión Ambiental",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: SISTEMA DE GESTIÓN AMBIENTAL
-  // ==========================================================================================
-  {
-    "id": 47,
-    "titulo": "Plan Integral de Gestión Ambiental -PIGA-",
-    "area": "Sistema de Gestión Ambiental",
-    "macroproceso": "Apoyo",
-    "subproceso": "Gestión Administrativa y Financiera",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiNzBiM2U2MDgtNTRlNy00ZmIxLTliZGEtZWYwYzZhNjY5NjFkIiwidCI6IjE5YzMxMzBjLTZjNTgtNGRiZi1iOWEyLTY3OWQzZDBlN2YwMCIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistema de Gestión Ambiental",
-    "elaboradoPor": "Sistema de Gestión Ambiental",
-    "descripcion": "Sistema de Gestión Ambiental: seguimiento de indicadores y plan integral de gestión ambiental.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte PIGA.",
-    "esHistorico": false,
-    "datasetName": "Plan_Integral_de_Gesti_n_Ambiental__PIGA",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Plan Integral de Gestión Ambiental -PIGA-.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistema de Gestión Ambiental",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: VICERRECTORÍA ADMINISTRATIVA Y FINANCIERA
-  // ==========================================================================================
-  {
-    "id": 48,
-    "titulo": "Seguimiento ABS",
-    "area": "Vicerrectoría Administrativa y Financiera - Oficina de Compras",
-    "macroproceso": "Apoyo",
-    "subproceso": "Gestión de Recursos",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiZTJkYjJlNmYtZjY3MC00Y2YxLWI2YzctNzNmMTUyYTlkNGU3IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Vicerrectoría Administrativa y Financiera - Oficina de Compras",
-    "descripcion": "Reporte analítico de Seguimiento ABS con información actualizada y métricas institucionales.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte ABS.",
-    "esHistorico": false,
-    "datasetName": "Seguimiento_ABS",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Seguimiento ABS.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: DIRECCIÓN DE CONTROL INTERNO
-  // ==========================================================================================
-  {
-    "id": 49,
-    "titulo": "Matriz Estado de Avance Planes de Mejoramiento",
-    "area": "Dirección de Control Interno",
-    "macroproceso": "Estratégico",
-    "subproceso": "Planeación y Desarrollo Institucional",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiYzBmNDk1MGYtZjJiYi00OTBlLWI4ZDMtMWVhZDFjMDc0ZGUxIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2025",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Control Interno",
-    "descripcion": "Sistema de seguimiento al estado de avance de planes de mejoramiento institucionales.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte Planes Mejoramiento.",
-    "esHistorico": false,
-    "datasetName": "Matriz_Estado_de_Avance_Planes_de_Mejoramiento",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Matriz Estado de Avance Planes de Mejoramiento.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: VICERRECTORÍA ADMINISTRATIVA Y FINANCIERA
-  // ==========================================================================================
-  {
-    "id": 50,
-    "titulo": "Ejecución Activa",
-    "area": "Vicerrectoría Administrativa y Financiera - Oficina de Tesorería",
-    "macroproceso": "Apoyo",
-    "subproceso": "Gestión de Recursos",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiM2UzMWM0ODEtYmMwNC00NzUzLWEyM2YtOThiMzAwZjZmMzRlIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Vicerrectoría Administrativa y Financiera - Oficina de Tesorería",
-    "descripcion": "Seguimiento de la ejecución presupuestal activa y pasiva de la universidad.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte Presupuestal.",
-    "esHistorico": false,
-    "datasetName": "Ejecuci_n_Activa",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Ejecución Activa.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: VICERRECTORÍA ADMINISTRATIVA Y FINANCIERA
-  // ==========================================================================================
-  {
-    "id": 51,
-    "titulo": "Ejecución Pasiva",
-    "area": "Vicerrectoría Administrativa y Financiera - Oficina de Presupuesto",
-    "macroproceso": "Apoyo",
-    "subproceso": "Gestión Administrativa y Financiera",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiMWE4NGI1N2EtNGY2OC00MmMyLTkzMjMtYWUxZjA5OTk2ZGVhIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Vicerrectoría Administrativa y Financiera - Oficina de Presupuesto",
-    "descripcion": "Seguimiento de la ejecución presupuestal activa y pasiva de la universidad.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte Presupuestal.",
-    "esHistorico": false,
-    "datasetName": "Ejecuci_n_Pasiva",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Ejecución Pasiva.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: VICERRECTORÍA ADMINISTRATIVA Y FINANCIERA
-  // ==========================================================================================
-  {
-    "id": 52,
-    "titulo": "Planes de Mejoramiento",
-    "area": "Vicerrectoría Administrativa y Financiera - Dirección de Control Interno",
-    "macroproceso": "Estratégico",
-    "subproceso": "Planeación y Desarrollo Institucional",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiYjFhMTE5MjgtZjRmZS00ZDQzLWE3ZTktNjMyZDdiNjRhODlkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Vicerrectoría Administrativa y Financiera - Dirección de Control Interno",
-    "descripcion": "Sistema de seguimiento al estado de avance de planes de mejoramiento institucionales.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte Planes.",
-    "esHistorico": false,
-    "datasetName": "Planes_de_Mejoramiento",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Planes de Mejoramiento.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: VICERRECTORÍA ADMINISTRATIVA Y FINANCIERA
-  // ==========================================================================================
-  {
-    "id": 53,
-    "titulo": "Plan Contratación Mensual 2025",
-    "area": "Vicerrectoría Administrativa y Financiera",
-    "macroproceso": "Apoyo",
-    "subproceso": "Gestión Administrativa y Financiera",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiZmNkOWQ1MTItOTM0Yy00YjgyLWFkNGYtNzEwNjBmNzM3YWM2IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Vicerrectoría Administrativa y Financiera",
-    "descripcion": "Seguimiento al plan de contratación mensual y ejecución contractual.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Reporte Contratación.",
-    "esHistorico": false,
-    "datasetName": "Plan_Contrataci_n_Mensual_2025",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Plan Contratación Mensual 2025.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  
-  // ==========================================================================================
-  // ÁREA: INSTITUTO DE POSGRADOS
-  // ==========================================================================================
-  {
-    "id": 54,
-    "titulo": "Conexión Líneas Profundización Pregrado y Programas Posgrado",
-    "area": "Instituto de Posgrados",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiYTBmN2M3YjctOGFiMS00OWYyLWJkNGItOWVkM2VjNDgyZDIxIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Instituto de Posgrados",
-    "descripcion": "Dashboard institucional de Conexión Líneas Profundización Pregrado y Programas Posgrado con información actualizada y visualizaciones interactivas.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Ruta de Aprendizaje.",
-    "esHistorico": false,
-    "datasetName": "Conexi_n_L_neas_Profundizaci_n_Pregrado_y_Programa",
-    "datasetAbstract": "Datos relacionados con Conexión Líneas Profundización Pregrado y Programas Posgrado para el seguimiento académico y formativo de estudiantes.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 55,
@@ -2831,51 +1114,24 @@ const dashboards = [
     "area": "Instituto de Posgrados",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiMGE4MjRlOWUtMDM5MC00YmFlLWJlYTEtZTgxNGUzOGVmYTIwIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistema Académico Institucional",
+    "fechaActualizacion": "Octubre 2023",
+    "fuente": "Sistemas de Información Institucionales",
     "elaboradoPor": "Instituto de Posgrados",
-    "descripcion": "Caracterización sociodemográfica de la población estudiantil.",
+    "descripcion": "Dashboard institucional de Perfil Sociodemográfico de Estudiantes Actuales con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Estudio Sociodemográfico.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
     "datasetName": "Perfil_Sociodemogr_fico_de_Estudiantes_Actuales",
-    "datasetAbstract": "Datos relacionados con Perfil Sociodemográfico de Estudiantes Actuales para el seguimiento académico y formativo de estudiantes.",
+    "datasetAbstract": "Datos relacionados con Perfil Sociodemográfico de Estudiantes Actuales para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
-    "datasetSource": "Sistema Académico Institucional",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 56,
@@ -2883,51 +1139,24 @@ const dashboards = [
     "area": "Instituto de Posgrados",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiYjEyOTYyN2MtNmZhYy00YjAzLThjNDgtMmU3Yjg1OWM1ZTQwIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
+    "fechaActualizacion": "11/12/2024",
     "fuente": "Sistemas de Información Institucionales",
     "elaboradoPor": "Instituto de Posgrados",
-    "descripcion": "Encuesta de satisfacción de estudiantes con programas y servicios institucionales.",
+    "descripcion": "Dashboard institucional de Encuesta Satisfacción Programas con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Estudio Satisfacción.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
     "datasetName": "Encuesta_Satisfacci_n_Programas",
-    "datasetAbstract": "Datos relacionados con Encuesta Satisfacción Programas para el seguimiento académico y formativo de estudiantes.",
+    "datasetAbstract": "Datos relacionados con Encuesta Satisfacción Programas para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
     "id": 57,
@@ -2935,313 +1164,379 @@ const dashboards = [
     "area": "Instituto de Posgrados",
     "macroproceso": "Misional",
     "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
+    "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiODJlMjM2MTctOWI4NS00NzBjLWE4NTYtNDQxNzdkNzRhMWVmIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
+    "fechaActualizacion": "2024",
     "fuente": "Sistemas de Información Institucionales",
     "elaboradoPor": "Instituto de Posgrados",
-    "descripcion": "Análisis de las modalidades de grado elegidas por estudiantes de posgrado.",
+    "descripcion": "Dashboard institucional de Reporte de Opciones de Grado con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Análisis Opciones de Grado.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
     "datasetName": "Reporte_de_Opciones_de_Grado",
-    "datasetAbstract": "Datos relacionados con Reporte de Opciones de Grado para el seguimiento académico y formativo de estudiantes.",
+    "datasetAbstract": "Datos relacionados con Reporte de Opciones de Grado para el seguimiento institucional.",
     "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
     "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
-  
-  // ==========================================================================================
-  // ÁREA: DIRECCIÓN DE PLANEACIÓN INSTITUCIONAL
-  // ==========================================================================================
+  // ==============================================================================
+  // MACROPROCESO: APOYO
+  // ==============================================================================
   {
-    "id": 58,
-    "titulo": "Dirección de Planeación Institucional - Boletín Estadístico XV",
-    "area": "Dirección de Planeación Institucional",
-    "macroproceso": "Estratégico",
-    "subproceso": "Planeación y Desarrollo Institucional",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiZTYyOWU0ZGQtNzUxNS00MTdjLTgxMTMtODRjNzc4NThkMTYxIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Planeación Institucional",
-    "descripcion": "Boletín estadístico institucional con indicadores clave de gestión académica y administrativa.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Boletín Estadístico.",
-    "esHistorico": false,
-    "datasetName": "Direcci_n_de_Planeaci_n_Institucional___Bolet_n_Es",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Dirección de Planeación Institucional - Boletín Estadístico XV.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 59,
-    "titulo": "Indicadores Deserción y Permanencia",
-    "area": "Dirección de Planeación Institucional",
-    "macroproceso": "Estratégico",
-    "subproceso": "Planeación y Desarrollo Institucional",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiYTY0MDk3MDAtZDIzMy00MTk3LThlZmItYzgyNzk3YWU3YjNhIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Planeación Institucional",
-    "descripcion": "Indicadores institucionales de deserción estudiantil y estrategias de permanencia.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Navegación Indicadores.",
-    "esHistorico": false,
-    "datasetName": "Indicadores_Deserci_n_y_Permanencia",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con Indicadores Deserción y Permanencia.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 60,
-    "titulo": "UCundinamarca - Calendario Institucional 2025",
-    "area": "Dirección de Planeación Institucional",
-    "macroproceso": "Estratégico",
-    "subproceso": "Planeación y Desarrollo Institucional",
-    "rol": "Administrativo",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiOTQzMDgxODgtMTFkYS00YWU2LWE2NTAtMjI0OTFiMTBmNWY5IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/01/2024",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Planeación Institucional",
-    "descripcion": "Calendario institucional con eventos académicos y administrativos relevantes.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. Calendario Eventos.",
-    "esHistorico": false,
-    "datasetName": "UCundinamarca___Calendario_Institucional_2025",
-    "datasetAbstract": "Datos administrativos y de gestión institucional relacionados con UCundinamarca - Calendario Institucional 2025.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "dependencia",
-        "type": "text",
-        "description": "Dependencia responsable"
-      },
-      {
-        "name": "periodo",
-        "type": "text",
-        "description": "Periodo de reporte"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      },
-      {
-        "name": "estado",
-        "type": "text",
-        "description": "Estado del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-  {
-    "id": 61,
-    "titulo": "Campo de Aprendizaje Institucional - Encuentros Dialógicos y Formativos",
-    "area": "Dirección de Planeación Institucional",
-    "macroproceso": "Misional",
-    "subproceso": "Formación y Aprendizaje",
-    "rol": "Estudiante",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiMjFlYmIzOTUtMDcyMy00MGNiLTllZjktNTY2ZjM2ZjgxMmVlIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "No especificada (Uso para consulta)",
-    "fuente": "Sistemas de Información Institucionales",
-    "elaboradoPor": "Dirección de Planeación Institucional",
-    "descripcion": "Dashboard institucional de Campo de Aprendizaje Institucional - Encuentros Dialógicos y Formativos con información actualizada y visualizaciones interactivas.",
-    "estado": "Activo",
-    "observaciones": "Dashboard gestionado por la dependencia responsable. CAI Encuentros.",
-    "esHistorico": false,
-    "datasetName": "Campo_de_Aprendizaje_Institucional___Encuentros_Di",
-    "datasetAbstract": "Datos relacionados con Campo de Aprendizaje Institucional - Encuentros Dialógicos y Formativos para el seguimiento académico y formativo de estudiantes.",
-    "columns": [
-      {
-        "name": "id_registro",
-        "type": "number",
-        "description": "Identificador único del registro"
-      },
-      {
-        "name": "codigo_estudiante",
-        "type": "text",
-        "description": "Código del estudiante"
-      },
-      {
-        "name": "programa_academico",
-        "type": "text",
-        "description": "Programa académico"
-      },
-      {
-        "name": "periodo_academico",
-        "type": "text",
-        "description": "Periodo en formato AAAA-P"
-      },
-      {
-        "name": "sede",
-        "type": "text",
-        "description": "Sede de la universidad"
-      },
-      {
-        "name": "fecha_registro",
-        "type": "date",
-        "description": "Fecha del registro"
-      }
-    ],
-    "datasetSource": "Sistemas de Información Institucionales",
-    "datasetNotes": "Datos actualizados periódicamente según calendario institucional. Los datos históricos se conservan con fines de análisis de tendencias."
-  },
-
-  // ==========================================================================================
-  // ÁREA DE APOYO: GESTIÓN DE TALENTO HUMANO (DOCENTE)
-  // ==========================================================================================
-  {
-    "id": 62,
-    "titulo": "Información sobre el cuerpo docente de la Ucundinamarca",
-    "area": "Dirección de Talento Humano",
+    "id": 2,
+    "titulo": "Horas Sustantivas de Docentes",
+    "area": "Talento Humano",
     "macroproceso": "Apoyo",
-    "subproceso": "Gestión del Talento Humano",
-    "rol": "Docente",
-    "url": "https://app.powerbi.com/view?r=eyJrIjoiMThlNDcyY2EtNDNlMC00MTUyLWI0ODMtMjNkYTllMTFjODljIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/03/2025",
-    "fuente": "Módulos de Contratación - Sistema de Talento Humano",
-    "elaboradoPor": "Dirección de Talento Humano",
-    "descripcion": "Caracterización del cuerpo docente: perfiles académicos, vinculación, escalafón y producción académica.",
+    "subproceso": "Talento Humano",
+    "rol": "Gestor",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiZGYyZjdmZGUtMzZhZi00Zjk4LTkwOTQtOWVjNjVkOGUzMzNjIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "IPA 2023",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Horas Sustantivas de Docentes con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Actualizado semestralmente con datos del sistema de talento humano.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
-    "datasetName": "Cuerpo_Docente",
-    "datasetAbstract": "Información completa sobre el cuerpo docente institucional: formación, vinculación y producción académica.",
+    "datasetName": "Horas_Sustantivas_de_Docentes",
+    "datasetAbstract": "Datos relacionados con Horas Sustantivas de Docentes para el seguimiento institucional.",
     "columns": [
-      {"name": "cedula_docente", "type": "text", "description": "Número de identificación del docente"},
-      {"name": "nombre_completo", "type": "text", "description": "Nombre completo del docente"},
-      {"name": "tipo_vinculacion", "type": "text", "description": "Planta / Cátedra / Ocasional"},
-      {"name": "nivel_formacion", "type": "text", "description": "Pregrado / Especialización / Maestría / Doctorado"},
-      {"name": "escalafon", "type": "text", "description": "Categoría según escalafón docente"},
-      {"name": "programa_adscrito", "type": "text", "description": "Programa al que está vinculado"},
-      {"name": "sede", "type": "text", "description": "Sede de trabajo principal"},
-      {"name": "fecha_ingreso", "type": "date", "description": "Fecha de ingreso a la universidad"},
-      {"name": "produccion_academica", "type": "number", "description": "Número de publicaciones / proyectos"},
-      {"name": "estado", "type": "text", "description": "Activo / Licencia / Comisión"}
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
-    "datasetSource": "Sistema de Talento Humano - Módulo de contratación docente",
-    "datasetNotes": "Actualización semestral. Datos protegidos según normativa de habeas data."
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
   {
-    "id": 63,
-    "titulo": "Implementación Cursos Talento Humano - RH",
-    "area": "Dirección de Talento Humano",
+    "id": 6,
+    "titulo": "Matrícula Financiera UCundinamarca",
+    "area": "Financiera",
     "macroproceso": "Apoyo",
-    "subproceso": "Gestión del Talento Humano",
+    "subproceso": "Financiera",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiYzgyNDZlYTItODk4NC00MzczLWE1ODctMTJhODcxYTRlZGVmIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "04/12/2025 10:01:57",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Matrícula Financiera UCundinamarca con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Matr_cula_Financiera_UCundinamarca",
+    "datasetAbstract": "Datos relacionados con Matrícula Financiera UCundinamarca para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 18,
+    "titulo": "Sesiones Virtuales de la Dirección de Sistemas y Tecnología",
+    "area": "Sistemas y Tecnología",
+    "macroproceso": "Apoyo",
+    "subproceso": "Sistemas y Tecnología",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiYzU1YTY1ZTUtMDcxZC00N2M3LWI3ODItNmQwYTQ0MDQ3NWM3IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
+    "fechaActualizacion": "04/12/2025 10:32:39",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Sesiones Virtuales de la Dirección de Sistemas y Tecnología con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Sesiones_Virtuales_de_la_Direcci_n_de_Sistemas_y_Tecnolog_a",
+    "datasetAbstract": "Datos relacionados con Sesiones Virtuales de la Dirección de Sistemas y Tecnología para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 19,
+    "titulo": "Microsoft Teams UCundinamarca",
+    "area": "Sistemas y Tecnología",
+    "macroproceso": "Apoyo",
+    "subproceso": "Sistemas y Tecnología",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiOTU2YWQwNDctYTRhZS00ZGZjLWFjMDAtMmNiNWZlMzM3ZDYzIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
+    "fechaActualizacion": "2023-2 (20/09/2023)",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Microsoft Teams UCundinamarca con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Microsoft_Teams_UCundinamarca",
+    "datasetAbstract": "Datos relacionados con Microsoft Teams UCundinamarca para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 25,
+    "titulo": "Implementación Cursos Talento Humano",
+    "area": "Talento Humano",
+    "macroproceso": "Apoyo",
+    "subproceso": "Talento Humano",
     "rol": "Administrativo",
     "url": "https://app.powerbi.com/view?r=eyJrIjoiM2FkODU4MDktNjVlOC00MGQ5LTk5MWEtMjBmZGViYjI2NDQ0IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
-    "fechaActualizacion": "01/03/2025",
-    "fuente": "Sistema de Capacitación",
-    "elaboradoPor": "Dirección de Talento Humano",
-    "descripcion": "Seguimiento de implementación de cursos de formación para el talento humano institucional.",
+    "fechaActualizacion": "5/12/2025 5:37",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Implementación Cursos Talento Humano con información actualizada y visualizaciones interactivas.",
     "estado": "Activo",
-    "observaciones": "Incluye cobertura, certificación y evaluación de impacto.",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
     "esHistorico": false,
-    "datasetName": "Plan_Capacitacion_Talento_Humano",
-    "datasetAbstract": "Seguimiento al Plan Institucional de Capacitación para docentes y administrativos.",
+    "datasetName": "Implementaci_n_Cursos_Talento_Humano",
+    "datasetAbstract": "Datos relacionados con Implementación Cursos Talento Humano para el seguimiento institucional.",
     "columns": [
-      {"name": "id_curso", "type": "text", "description": "Identificador del curso de capacitación"},
-      {"name": "nombre_curso", "type": "text", "description": "Nombre del curso"},
-      {"name": "eje_tematico", "type": "text", "description": "Eje del plan de capacitación"},
-      {"name": "publico_objetivo", "type": "text", "description": "Docentes / Administrativos / Ambos"},
-      {"name": "numero_inscritos", "type": "number", "description": "Total de funcionarios inscritos"},
-      {"name": "numero_certificados", "type": "number", "description": "Total de funcionarios que completaron y aprobaron"},
-      {"name": "tasa_finalizacion", "type": "number", "description": "Porcentaje de finalización (Certificados/Inscritos)"},
-      {"name": "satisfaccion_promedio", "type": "number", "description": "Calificación promedio de satisfacción del curso (1-5)"}
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
     ],
-    "datasetSource": "Sistema de Gestión de la Capacitación (SGCap)",
-    "datasetNotes": "Los datos se actualizan al finalizar cada cohorte de cursos."
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
   },
+  {
+    "id": 26,
+    "titulo": "Dirección de Bienes y Servicios",
+    "area": "Bienes y Servicios",
+    "macroproceso": "Apoyo",
+    "subproceso": "Bienes y Servicios",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiYjhiMzZlMWUtNWI3Zi00MGFmLTgzZjgtM2EyNDczNTg4MjZkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
+    "fechaActualizacion": "12/11/2023 9:37:39",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Dirección de Bienes y Servicios con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Direcci_n_de_Bienes_y_Servicios",
+    "datasetAbstract": "Datos relacionados con Dirección de Bienes y Servicios para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 48,
+    "titulo": "Seguimiento ABS",
+    "area": "Bienes y Servicios",
+    "macroproceso": "Apoyo",
+    "subproceso": "Bienes y Servicios",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiZTJkYjJlNmYtZjY3MC00Y2YxLWI2YzctNzNmMTUyYTlkNGU3IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "2025",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Bienes y Servicios",
+    "descripcion": "Dashboard institucional de Seguimiento ABS con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Seguimiento_ABS",
+    "datasetAbstract": "Datos relacionados con Seguimiento ABS para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 50,
+    "titulo": "Ejecución Activa",
+    "area": "Financiera",
+    "macroproceso": "Apoyo",
+    "subproceso": "Financiera",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiM2UzMWM0ODEtYmMwNC00NzUzLWEyM2YtOThiMzAwZjZmMzRlIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "2025",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Financiera",
+    "descripcion": "Dashboard institucional de Ejecución Activa con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Ejecuci_n_Activa",
+    "datasetAbstract": "Datos relacionados con Ejecución Activa para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 51,
+    "titulo": "Ejecución Pasiva",
+    "area": "Financiera",
+    "macroproceso": "Apoyo",
+    "subproceso": "Financiera",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiMWE4NGI1N2EtNGY2OC00MmMyLTkzMjMtYWUxZjA5OTk2ZGVhIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "30/11/2025",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Financiera",
+    "descripcion": "Dashboard institucional de Ejecución Pasiva con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Ejecuci_n_Pasiva",
+    "datasetAbstract": "Datos relacionados con Ejecución Pasiva para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 53,
+    "titulo": "Plan Contratación Mensual 2025",
+    "area": "Financiera",
+    "macroproceso": "Apoyo",
+    "subproceso": "Financiera",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiZmNkOWQ1MTItOTM0Yy00YjgyLWFkNGYtNzEwNjBmNzM3YWM2IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "2025",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Financiera",
+    "descripcion": "Dashboard institucional de Plan Contratación Mensual 2025 con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Plan_Contrataci_n_Mensual_2025",
+    "datasetAbstract": "Datos relacionados con Plan Contratación Mensual 2025 para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 62,
+    "titulo": "Información para gestores del conocimiento UCundinamarca 2025-1",
+    "area": "Talento Humano",
+    "macroproceso": "Apoyo",
+    "subproceso": "Talento Humano",
+    "rol": "Gestor",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiMThlNDcyY2EtNDNlMC00MTUyLWI0ODMtMjNkYTllMTFjODljIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "No especificada",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Información para gestores del conocimiento UCundinamarca 2025-1 con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Informaci_n_para_gestores_del_conocimiento_UCundinamarca_2025_1",
+    "datasetAbstract": "Datos relacionados con Información para gestores del conocimiento UCundinamarca 2025-1 para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  // ==============================================================================
+  // MACROPROCESO: SEGUIMIENTO
+  // ==============================================================================
+  {
+    "id": 8,
+    "titulo": "Atención al Ciudadano (PQRSFyD)",
+    "area": "Servicio de Atención al Ciudadano",
+    "macroproceso": "Seguimiento",
+    "subproceso": "Servicio de Atención al Ciudadano",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiMGM0MTY1OGQtZjkyYy00ZDIyLThmMzctZWYwMjdkYjA3NmU4IiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9&pageName=ReportSection",
+    "fechaActualizacion": "2022",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Sistemas y Tecnología",
+    "descripcion": "Dashboard institucional de Atención al Ciudadano (PQRSFyD) con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Atenci_n_al_Ciudadano_PQRSFyD_",
+    "datasetAbstract": "Datos relacionados con Atención al Ciudadano (PQRSFyD) para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 49,
+    "titulo": "Matriz Estado de Avance Planes de Mejoramiento",
+    "area": "Control Interno",
+    "macroproceso": "Seguimiento",
+    "subproceso": "Control Interno",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiYzBmNDk1MGYtZjJiYi00OTBlLWI4ZDMtMWVhZDFjMDc0ZGUxIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "No especificada",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Control Interno",
+    "descripcion": "Dashboard institucional de Matriz Estado de Avance Planes de Mejoramiento con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Matriz_Estado_de_Avance_Planes_de_Mejoramiento",
+    "datasetAbstract": "Datos relacionados con Matriz Estado de Avance Planes de Mejoramiento para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  },
+  {
+    "id": 52,
+    "titulo": "Planes de Mejoramiento",
+    "area": "Control Interno",
+    "macroproceso": "Seguimiento",
+    "subproceso": "Control Interno",
+    "rol": "Administrativo",
+    "url": "https://app.powerbi.com/view?r=eyJrIjoiYjFhMTE5MjgtZjRmZS00ZDQzLWE3ZTktNjMyZDdiNjRhODlkIiwidCI6IjA3ZGE2N2EwLTFmNDMtNGU4Yy05NzdmLTVmODhiNjQ3MGVlNiIsImMiOjR9",
+    "fechaActualizacion": "15/10/2025",
+    "fuente": "Sistemas de Información Institucionales",
+    "elaboradoPor": "Control Interno",
+    "descripcion": "Dashboard institucional de Planes de Mejoramiento con información actualizada y visualizaciones interactivas.",
+    "estado": "Activo",
+    "observaciones": "Dashboard gestionado por la dependencia responsable.",
+    "esHistorico": false,
+    "datasetName": "Planes_de_Mejoramiento",
+    "datasetAbstract": "Datos relacionados con Planes de Mejoramiento para el seguimiento institucional.",
+    "columns": [
+      {"name": "id_registro", "type": "number", "description": "Identificador único del registro"},
+      {"name": "fecha_registro", "type": "date", "description": "Fecha del registro"},
+      {"name": "periodo", "type": "text", "description": "Periodo de reporte"}
+    ],
+    "datasetSource": "Sistemas de Información Institucionales",
+    "datasetNotes": "Datos actualizados periódicamente según calendario institucional."
+  }
 ];
