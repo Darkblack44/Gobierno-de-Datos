@@ -422,7 +422,138 @@
         pointer-events: auto;
       }
     }
-  </style>
+  
+    /* Contador de tableros en macroproceso */
+    .macroproceso-title-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .macroproceso-count {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+    }
+    
+    /* Contador ultra minimalista */
+    .role-stats {
+      margin: 0.75rem 0 1rem 0;
+      padding: 0;
+    }
+    
+    .stat-card {
+      background: transparent;
+      border: none;
+      padding: 0;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+    
+    .stat-label {
+      color: #6b7280;
+      font-weight: 400;
+    }
+    
+    .stat-value {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #10b981;
+    }
+
+    
+    /* Ocultar íconos en navbar desktop */
+    @media (min-width: 769px) {
+      .nav-link-item i,
+      .nav-link-item .fas {
+        display: none;
+      }
+    }
+    
+    /* Mantener íconos en móvil */
+    @media (max-width: 768px) {
+      .nav-mobile-link i {
+        display: inline-block;
+      }
+    }
+    
+    /* Consistencia de colores en navbar */
+    .nav-link-item {
+      color: #1f2937;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+    
+    .nav-link-item:hover {
+      color: #10b981;
+    }
+    
+    .nav-link-item.active {
+      color: #10b981;
+      background-color: rgba(16, 185, 129, 0.1);
+      border-radius: 8px;
+    }
+
+    
+    /* Ocultar íconos en navbar desktop */
+    .nav-link-item i {
+      display: none;
+    }
+    
+    /* Mostrar íconos en navbar móvil */
+    .nav-mobile-link i,
+    .nav-mobile-dropdown-item i {
+      display: inline-block;
+    }
+
+    
+    /* Ajuste responsive para 784px - Navbar compacto */
+    @media (max-width: 900px) and (min-width: 769px) {
+      .navbar-container {
+        padding: 0.5rem 1rem;
+      }
+      
+      .navbar-brand {
+        transform: scale(0.85);
+        transform-origin: left center;
+      }
+      
+      .nav-links-new {
+        gap: 0.5rem;
+      }
+      
+      .nav-link-item {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.7rem;
+      }
+      
+      .nav-user-button {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+      }
+    }
+    
+    /* Reducir más a 784px específicamente */
+    @media (max-width: 850px) and (min-width: 769px) {
+      .navbar-brand {
+        transform: scale(0.75);
+      }
+      
+      .nav-links-new {
+        gap: 0.3rem;
+      }
+      
+      .nav-link-item {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.6rem;
+      }
+    }
+
+    </style>
 </head>
 <body>
   
@@ -445,23 +576,8 @@
       <div class="nav-links-new">
         <button onclick="navigateTo('home')" class="nav-link-item">Inicio</button>
         
-        <!-- Dropdown para Lineamientos -->
-        <div class="nav-dropdown" id="lineamientosDropdown">
-          <button class="nav-link-item has-dropdown" onclick="toggleDropdown('lineamientosDropdown')">
-            Lineamientos
-          </button>
-          <div class="nav-dropdown-content">
-            <button onclick="navigateToLineamiento('gobierno-datos')" class="nav-dropdown-item">
-              <i class="fas fa-database"></i>
-              <span>Gobierno de Datos</span>
-            </button>
-            <button onclick="navigateToLineamiento('inteligencia-artificial')" class="nav-dropdown-item">
-              <i class="fas fa-brain"></i>
-              <span>Inteligencia Artificial</span>
-            </button>
-          </div>
-        </div>
-
+        <button onclick="navigateToLineamiento('gobierno-datos')" class="nav-link-item">Gobierno de Datos</button>
+        <button onclick="navigateToLineamiento('inteligencia-artificial')" class="nav-link-item">Inteligencia Artificial</button>
         <button onclick="navigateTo('estudiantes')" class="nav-link-item">Estudiantes</button>
         <button onclick="navigateTo('administrativos')" class="nav-link-item">Administrativos</button>
         <button onclick="navigateTo('gestores')" class="nav-link-item">Gestores</button>
@@ -485,21 +601,14 @@
         <span>Inicio</span>
       </button>
       
-      <!-- Mobile Dropdown para Lineamientos -->
-      <button onclick="toggleMobileDropdown('lineamientosMobileDropdown')" class="nav-mobile-link has-dropdown">
-        <i class="fas fa-book"></i>
-        <span>Lineamientos</span>
+      <button onclick="navigateToLineamiento('gobierno-datos')" class="nav-mobile-link">
+        <i class="fas fa-database"></i>
+        <span>Gobierno de Datos</span>
       </button>
-      <div id="lineamientosMobileDropdown" class="nav-mobile-dropdown">
-        <button onclick="navigateToLineamiento('gobierno-datos')" class="nav-mobile-dropdown-item">
-          <i class="fas fa-database"></i>
-          <span>Gobierno de Datos</span>
-        </button>
-        <button onclick="navigateToLineamiento('inteligencia-artificial')" class="nav-mobile-dropdown-item">
-          <i class="fas fa-brain"></i>
-          <span>Inteligencia Artificial</span>
-        </button>
-      </div>
+      <button onclick="navigateToLineamiento('inteligencia-artificial')" class="nav-mobile-link">
+        <i class="fas fa-brain"></i>
+        <span>Inteligencia Artificial</span>
+      </button>
 
       <button onclick="navigateTo('estudiantes')" class="nav-mobile-link">
         <i class="fas fa-user-graduate"></i>
@@ -1061,7 +1170,7 @@
                 </div>
                 <div class="flex items-start gap-2 text-gray-700">
                   <i class="fas fa-check-circle text-green-600 mt-1"></i>
-                  <span>Profesional designado by la oficina de planeación institucional</span>
+                  <span>Profesional designado por la oficina de planeación institucional</span>
                 </div>
                 <div class="flex items-start gap-2 text-gray-700">
                   <i class="fas fa-check-circle text-green-600 mt-1"></i>
@@ -1415,6 +1524,12 @@
         </div>
         <div id="searchResultsEstudiantes" class="search-results-info"></div>
       </div>
+      
+      <!-- Contadores globales de tableros -->
+      <div class="role-stats" id="statsEstudiantes">
+        <div class="stat-card"><span class="stat-label">Tableros disponibles:</span> <span class="stat-value" id="totalEstudiantes">-</span></div>
+      </div>
+
 
       <div id="estudiantesDashboards"></div>
     </main>
@@ -1452,6 +1567,12 @@
         </div>
         <div id="searchResultsAdministrativos" class="search-results-info"></div>
       </div>
+      
+      <!-- Contadores globales de tableros -->
+      <div class="role-stats" id="statsAdministrativos">
+        <div class="stat-card"><span class="stat-label">Tableros disponibles:</span> <span class="stat-value" id="totalAdministrativos">-</span></div>
+      </div>
+
 
       <div id="administrativosDashboards"></div>
     </main>
@@ -1489,6 +1610,12 @@
         </div>
         <div id="searchResultsGestores" class="search-results-info"></div>
       </div>
+      
+      <!-- Contadores globales de tableros -->
+      <div class="role-stats" id="statsGestores">
+        <div class="stat-card"><span class="stat-label">Tableros disponibles:</span> <span class="stat-value" id="totalGestores">-</span></div>
+      </div>
+
 
       <div id="gestoresDashboards"></div>
     </main>
