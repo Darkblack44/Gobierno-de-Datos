@@ -39,7 +39,7 @@ function generateSafeId(text, prefix = '') {
 const USERS = {
   'estudiante': { password: 'udec2024', role: 'Estudiante', name: 'Estudiante' },
   'admin': { password: 'udec2024', role: 'Administrativo', name: 'Administrativo' },
-  'docente': { password: 'udec2024', role: 'Docente', name: 'Gestor del Conocimiento' }
+  'docente': { password: 'udec2024', role: 'Gestor', name: 'Gestor del Conocimiento' }
 };
 
 let currentUser = null;
@@ -250,7 +250,7 @@ function navigateTo(view) {
   // Verificación de permisos y redireccionamiento de vistas
   const protectedViews = {
     'administrativos': 'Administrativo',
-    'gestores': 'Docente'
+    'gestores': 'Gestor'
   };
 
   if (view === 'estudiantes') {
@@ -279,8 +279,8 @@ function navigateTo(view) {
     renderDashboardsByRole('Estudiante');
   } else if (view === 'administrativos' && currentUser && currentUser.role === 'Administrativo') {
     renderDashboardsByRole('Administrativo');
-  } else if (view === 'gestores' && currentUser && currentUser.role === 'Docente') {
-    renderDashboardsByRole('Docente');
+  } else if (view === 'gestores' && currentUser && currentUser.role === 'Gestor') {
+    renderDashboardsByRole('Gestor');
   }
   
   if (view === 'home') {
@@ -319,7 +319,7 @@ function showLoginForRole(targetView) {
     loginTitle.textContent = 'Acceso Gestores del Conocimiento';
     loginSubtitle.textContent = 'Ingrese sus credenciales para ver información docente';
     loginIcon.className = 'fas fa-chalkboard-teacher text-white text-2xl';
-    document.getElementById('loginForm').dataset.targetRole = 'Docente';
+    document.getElementById('loginForm').dataset.targetRole = 'Gestor';
     document.getElementById('loginForm').dataset.targetView = 'gestores';
   }
 }
@@ -337,8 +337,8 @@ function handleLogin() {
     // Asignar usuario demo según el rol objetivo
     if (targetRole === 'Administrativo') {
       currentUser = { password: 'demo', role: 'Administrativo', name: 'Usuario Demo - Administrativo' };
-    } else if (targetRole === 'Docente') {
-      currentUser = { password: 'demo', role: 'Docente', name: 'Usuario Demo - Gestor' };
+    } else if (targetRole === 'Gestor') {
+      currentUser = { password: 'demo', role: 'Gestor', name: 'Usuario Demo - Gestor' };
     } else {
       currentUser = { password: 'demo', role: 'Estudiante', name: 'Usuario Demo - Estudiante' };
     }
@@ -383,6 +383,29 @@ function logout() {
 // MOTOR DE RENDERIZADO DINÁMICO DE INTERFAZ
 // ==========================================
 
+
+// ==========================================
+// CONTADORES GLOBALES DE TABLEROS POR ROL
+// ==========================================
+function updateRoleStats(role) {
+  const roleDashboards = dashboards.filter(d => d.rol === role);
+  const total = roleDashboards.length;
+  
+  let statElementId;
+  if (role === 'Estudiante') {
+    statElementId = 'totalEstudiantes';
+  } else if (role === 'Administrativo') {
+    statElementId = 'totalAdministrativos';
+  } else {
+    statElementId = 'totalGestores';
+  }
+  
+  const statElement = document.getElementById(statElementId);
+  if (statElement) {
+    statElement.textContent = total;
+  }
+}
+
 function renderDashboardsByRole(role) {
   debugLog(`Renderizando dashboards para rol: ${role}`);
   
@@ -401,7 +424,11 @@ function renderDashboardsByRole(role) {
   });
   
   container.innerHTML = Object.entries(grouped).map(([macroproceso, areas]) => {
-    const config = MACROPROCESOS[macroproceso];
+    const config = MACROPROCESOS[macroproceso] || {
+      icon: 'fa-layer-group',
+      color: 'misional',
+      areas: []
+    };
     const macroprocesoId = generateSafeId(`${role}-${macroproceso}`, 'macro');
     
     return `
@@ -411,7 +438,10 @@ function renderDashboardsByRole(role) {
             <div class="macroproceso-icon">
               <i class="fas ${config.icon}"></i>
             </div>
-            <span>Macroproceso ${macroproceso}</span>
+            <div class="macroproceso-title-text">
+              <span>Macroproceso ${macroproceso}</span>
+              <div class="macroproceso-count">${Object.values(areas).reduce((sum, arr) => sum + arr.length, 0)} tableros</div>
+            </div>
           </div>
           <i class="fas fa-chevron-down collapse-icon expanded" id="icon-${macroprocesoId}"></i>
         </div>
@@ -429,6 +459,7 @@ function renderDashboardsByRole(role) {
     expandedMacroprocesos[macroprocesoId] = true;
   });
   
+  updateRoleStats(role);
   debugLog(`Dashboards renderizados para ${role}`);
 }
 
@@ -1174,7 +1205,7 @@ function mostrarLineamiento(tipo) {
       headerIcon.className = 'fas fa-database text-4xl';
     }
     
-    debugLog('✓ Vista de Gobierno de Datos activada');
+    debugLog('✔ Vista de Gobierno de Datos activada');
     
   } else if (tipo === 'inteligencia-artificial') {
     // Activar Inteligencia Artificial
@@ -1189,7 +1220,7 @@ function mostrarLineamiento(tipo) {
       headerIcon.className = 'fas fa-brain text-4xl';
     }
     
-    debugLog('✓ Vista de Inteligencia Artificial activada');
+    debugLog('✔ Vista de Inteligencia Artificial activada');
   }
 }
 
@@ -1471,7 +1502,11 @@ function renderFilteredDashboards(role, filteredDashboards, searchTerm) {
   
   // Renderizar dashboards con resaltado de búsqueda
   container.innerHTML = Object.entries(grouped).map(([macroproceso, areas]) => {
-    const config = MACROPROCESOS[macroproceso];
+    const config = MACROPROCESOS[macroproceso] || {
+      icon: 'fa-layer-group',
+      color: 'misional',
+      areas: []
+    };
     const macroprocesoId = generateSafeId(`${role}-${macroproceso}`, 'macro');
     
     return `
@@ -1623,7 +1658,7 @@ function initializeSearch(role) {
     }
   });
   
-  debugLog(`✓ Sistema de búsqueda inicializado para rol: ${role}`);
+  debugLog(`✔ Sistema de búsqueda inicializado para rol: ${role}`);
 }
 
 /**
@@ -1943,9 +1978,9 @@ navigateTo = function(view) {
     } else if (view === 'administrativos') {
       initializeSearch('Administrativo');
     } else if (view === 'gestores') {
-      initializeSearch('Docente');
+      initializeSearch('Gestor');
     }
   }, 200);
 };
 
-debugLog('✓ Sistema de búsqueda independiente cargado correctamente');
+debugLog('✔ Sistema de búsqueda independiente cargado correctamente');
