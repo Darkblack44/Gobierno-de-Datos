@@ -133,6 +133,53 @@ img {
 }
 
 /* ==========================================
+   BREAKPOINT: TABLETS Y DISPOSITIVOS MEDIANOS (769px - 900px)
+   Mejora de visualización del menú en resoluciones intermedias
+   ========================================== */
+@media (min-width: 769px) and (max-width: 900px) {
+  /* Ajuste del contenedor de navegación */
+  .nav-container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Reducir tamaño de texto del logo */
+  .nav-logo-text {
+    font-size: 0.85rem;
+  }
+
+  .nav-logo-subtitle {
+    font-size: 0.65rem;
+  }
+
+  .nav-logo-title {
+    font-size: 0.85rem;
+  }
+
+  /* Ajustar el logo */
+  .nav-logo img {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* Reducir espaciado de los links del menú */
+  .nav-links-new {
+    gap: 0.5rem;
+  }
+
+  .nav-link-item {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  /* Ajustar márgenes generales */
+  .max-w-7xl {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* ==========================================
    BREAKPOINT: TABLETS MODO RETRATO (<= 768px)
    Punto de corte principal para diseño móvil
    ========================================== */
