@@ -143,7 +143,7 @@ h2, h3 {
   left: 50%;
   transform: translateX(-50%);
   width: calc(100% - 80px);
-  max-width: 1100px;
+  max-width: 1500px;
   background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
@@ -198,7 +198,7 @@ h2, h3 {
 .nav-links-new {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 10px;
 }
 
 .nav-link-item {
@@ -1207,7 +1207,7 @@ canvas {
 .area-card-badge {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 10px;
   background: var(--uc-gray-100);
   padding: 4px 10px;
   border-radius: var(--uc-radius-full);
@@ -2699,5 +2699,77 @@ select:focus {
     width: 45px;
     height: 45px;
     font-size: 1.1rem;
+  }
+}
+/* ==========================================
+   NAVBAR: MANEJO DE TEXTOS LARGOS
+   ========================================== */
+
+/* Contenedor para textos alternativos (completo/corto) */
+.nav-link-item .nav-text-short {
+  display: none;
+}
+
+.nav-link-item .nav-text-full {
+  display: inline;
+}
+
+/* Botones con texto largo - ajuste de padding */
+.nav-link-item.nav-link-long {
+  padding: 10px 16px;
+  font-size: 0.82rem;
+  white-space: nowrap;
+}
+
+/* Pantallas grandes (>1280px): Mostrar texto completo */
+@media (min-width: 1280px) {
+  .nav-link-item.nav-link-long {
+    font-size: 0.88rem;
+    padding: 10px 18px;
+  }
+}
+
+/* Pantallas medianas-grandes (1025px - 1279px): Texto completo con tamaño reducido */
+@media (min-width: 1025px) and (max-width: 1279px) {
+  .nav-link-item.nav-link-long {
+    font-size: 0.75rem;
+    padding: 10px 10px;
+  }
+}
+
+/* Pantallas medianas (900px - 1024px): Mostrar texto corto */
+@media (min-width: 900px) and (max-width: 1024px) {
+  .nav-link-item .nav-text-full {
+    display: none;
+  }
+  
+  .nav-link-item .nav-text-short {
+    display: inline;
+  }
+  
+  .nav-link-item.nav-link-long {
+    font-size: 0.8rem;
+    padding: 8px 12px;
+  }
+}
+
+/* Pantallas pequeñas-medianas (769px - 899px): Texto aún más compacto */
+@media (min-width: 769px) and (max-width: 899px) {
+  .nav-link-item .nav-text-full {
+    display: none;
+  }
+  
+  .nav-link-item .nav-text-short {
+    display: inline;
+  }
+  
+  .nav-link-item.nav-link-long {
+    font-size: 0.75rem;
+    padding: 6px 10px;
+  }
+  
+  .nav-link-item {
+    font-size: 0.8rem;
+    padding: 8px 10px;
   }
 }
