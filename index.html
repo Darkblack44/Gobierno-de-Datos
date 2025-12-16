@@ -572,26 +572,32 @@
         </div>
       </div>
 
+      <!-- Botón Menú Móvil (Hamburguesa) -->
+      <button class="nav-mobile-toggle" onclick="toggleMobileMenu()" aria-label="Menú">
+        <i class="fas fa-bars"></i>
+      </button>
+
       <!-- Menú Desktop -->
       <div class="nav-links-new">
         <button onclick="navigateTo('home')" class="nav-link-item">Inicio</button>
         
         <button onclick="navigateToLineamiento('gobierno-datos')" class="nav-link-item">Gobierno de Datos</button>
         <button onclick="navigateToLineamiento('inteligencia-artificial')" class="nav-link-item">Inteligencia Artificial</button>
-        <button onclick="navigateTo('estudiantes')" class="nav-link-item">Estudiantes</button>
+        
+        <button onclick="navigateTo('estudiantes')" class="nav-link-item nav-link-long">
+          <span class="nav-text-full">Creadores de Oportunidades</span>
+          <span class="nav-text-short">Creadores</span>
+        </button>
+        
         <button onclick="navigateTo('administrativos')" class="nav-link-item">Administrativos</button>
-        <button onclick="navigateTo('gestores')" class="nav-link-item">Gestores</button>
+        
+        <button onclick="navigateTo('gestores')" class="nav-link-item nav-link-long">
+          <span class="nav-text-full">Gestores del Conocimiento</span>
+          <span class="nav-text-short">Gestores</span>
+        </button>
+        
         <button id="logoutBtn" onclick="logout()" class="nav-link-item nav-logout hidden">Salir</button>
       </div>
-
-      <!-- Controles de Usuario y Móvil -->
-      <button class="nav-user-btn">
-        <i class="fas fa-user"></i>
-      </button>
-
-      <button id="hamburgerBtn" class="nav-mobile-toggle">
-        <i class="fas fa-bars"></i>
-      </button>
     </div>
 
     <!-- Menú Desplegable Móvil -->
@@ -612,7 +618,7 @@
 
       <button onclick="navigateTo('estudiantes')" class="nav-mobile-link">
         <i class="fas fa-user-graduate"></i>
-        <span>Estudiantes</span>
+        <span>Creadores de Oportunidades</span>
       </button>
       <button onclick="navigateTo('administrativos')" class="nav-mobile-link">
         <i class="fas fa-user-tie"></i>
@@ -1501,7 +1507,7 @@
             <i class="fas fa-user-graduate text-green-600 text-3xl"></i>
           </div>
           <div>
-            <h2 class="text-3xl font-bold text-gray-800 mb-2">Portal Estudiantil</h2>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">Portal Creadores de Oportunidades</h2>
             <p class="text-gray-600">Tableros de indicadores académicos y formativos organizados por áreas institucionales</p>
           </div>
         </div>
@@ -1540,12 +1546,12 @@
     <main class="max-w-7xl mx-auto px-4 py-8">
       <div class="bg-white rounded-2xl p-6 shadow-lg border border-gray-200 mb-8">
         <div class="flex items-center gap-4">
-          <div class="bg-blue-100 p-4 rounded-full">
-            <i class="fas fa-briefcase text-blue-600 text-3xl"></i>
+          <div class="bg-amber-100 p-4 rounded-full">
+            <i class="fas fa-chalkboard-teacher text-amber-600 text-3xl"></i>
           </div>
           <div>
-            <h2 class="text-3xl font-bold text-gray-800 mb-2">Portal Administrativo</h2>
-            <p class="text-gray-600">Tableros de gestión institucional, planeación estratégica y control interno</p>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">Portal Gestores del Conocimiento y el Aprendizaje y el Aprendizaje</h2>
+            <p class="text-gray-600">Información sobre cuerpo docente, contratación y gestión del talento académico</p>
           </div>
         </div>
       </div>
@@ -1587,7 +1593,7 @@
             <i class="fas fa-chalkboard-teacher text-amber-600 text-3xl"></i>
           </div>
           <div>
-            <h2 class="text-3xl font-bold text-gray-800 mb-2">Portal Gestores del Conocimiento</h2>
+            <h2 class="text-3xl font-bold text-gray-800 mb-2">Portal Gestores del Conocimiento y el Aprendizaje</h2>
             <p class="text-gray-600">Información sobre cuerpo docente, contratación y gestión del talento académico</p>
           </div>
         </div>
@@ -1723,10 +1729,50 @@
           <p class="text-gray-400 text-sm">Universidad de Cundinamarca<br>Fusagasugá, Colombia</p>
         </div>
       </div>
-      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">© 2025 Universidad de Cundinamarca - Todos los derechos reservados</div>
+      <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400 text-sm">© 2025 Universidad de Cundinamarca</p>
+      </div>
     </div>
   </footer>
 
+  <!-- Scripts de funcionalidad -->
+  <script>
+    // Función para toggle del menú móvil
+    function toggleMobileMenu() {
+      const mobileMenu = document.getElementById('mobileMenu');
+      const toggleBtn = document.querySelector('.nav-mobile-toggle');
+      
+      if (mobileMenu && toggleBtn) {
+        mobileMenu.classList.toggle('hidden');
+        toggleBtn.classList.toggle('menu-open');
+        
+        // Cambiar icono
+        const icon = toggleBtn.querySelector('i');
+        if (icon) {
+          if (mobileMenu.classList.contains('hidden')) {
+            icon.className = 'fas fa-bars';
+          } else {
+            icon.className = 'fas fa-times';
+          }
+        }
+      }
+    }
+    
+    // Cerrar menú móvil al hacer clic en un link
+    document.addEventListener('DOMContentLoaded', function() {
+      const mobileLinks = document.querySelectorAll('.nav-mobile-link');
+      mobileLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          const mobileMenu = document.getElementById('mobileMenu');
+          const toggleBtn = document.querySelector('.nav-mobile-toggle');
+          if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            toggleMobileMenu();
+          }
+        });
+      });
+    });
+  </script>
+  
+  <!-- Scripts principales -->
   <script src="data-dashboards.js"></script>
   <script src="app.js"></script>
 </body>
