@@ -184,6 +184,34 @@ img {
    Punto de corte principal para diseño móvil
    ========================================== */
 @media (max-width: 768px) {
+
+  /* Asegurar que el navbar tenga position relative para el menú móvil */
+  .nav-wrapper-new {
+    position: relative;
+  }
+
+  /* Ocultar menú desktop y mostrar botón hamburguesa */
+  .nav-links-new {
+    display: none !important;
+  }
+
+  .nav-mobile-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Posicionamiento del menú móvil */
+  .nav-mobile-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-radius: 0 0 24px 24px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+  }
   .banner-section {
     height: 18vh;
     min-height: 120px;
@@ -196,6 +224,25 @@ img {
 
   .nav-links-desktop {
     display: none !important;
+  }
+
+  /* Ajuste para texto largo en menú móvil */
+  .nav-mobile-link span {
+    font-size: 0.9rem;
+    line-height: 1.3;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+  
+  .nav-mobile-link {
+    padding: 16px 20px;
+    min-height: 56px;
+    align-items: flex-start;
+  }
+  
+  .nav-mobile-link i {
+    margin-top: 2px;
+    flex-shrink: 0;
   }
 
   /* --- NAVEGACIÓN Y MENÚ COLAPSABLE --- */
