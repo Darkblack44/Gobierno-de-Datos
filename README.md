@@ -19,9 +19,9 @@ Es importante aclarar que:
 
 ### Gestión de Datos Institucionales y Métricas
 El sistema centraliza información crítica para la institución, cubriendo un amplio espectro de datos:
-* **Volumen de datos:** visualización de métricas clave que abarcan **18,390 estudiantes** y **54 programas activos**.
+* **Volumen de datos:** visualización de métricas clave que abarcan **12,949 estudiantes** y **49 programas activos**.
 * **Cobertura geográfica:** desglose de información a través de **7 sedes municipales**.
-* **Centralización de la información:** acceso unificado a 62 tableros de control.
+* **Centralización de la información:** acceso unificado a 57 tableros de control.
 * **Múltiples fuentes de datos:** simulación de integración con sistemas como SNIES, SPADIES, plataforma CAI y SAP.
 * **Diccionario de datos:** visualización detallada de metadatos, tipos de variables y descripciones para cada conjunto de datos.
 
