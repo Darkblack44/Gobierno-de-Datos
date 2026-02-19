@@ -29,7 +29,7 @@ Gobierno de Datos/
 │   ├── movil.js                      # Deteccion de dispositivo movil
 │   ├── datos/
 │   │   ├── estudiantes.js            # Dataset JSON de matriculas por municipio/programa
-│   │   └── tableros.js               # Base de datos de 57 tableros con metadatos
+│   │   └── tableros.js               # Base de datos de 61 tableros con metadatos
 │   └── modulos/
 │       ├── navegacion.js             # Sistema SPA de vistas, roles y autenticacion
 │       ├── menu-movil.js             # Toggle del menu hamburguesa y cierre externo
