@@ -1,0 +1,1432 @@
+/* ==========================================================================
+   HOJA DE ESTILOS RESPONSIVA - UNIVERSIDAD DE CUNDINAMARCA
+   Adaptación multiplataforma y correcciones para dispositivos móviles
+   ========================================================================== */
+
+/* ==========================================
+   NORMALIZACIÓN Y CONFIGURACIÓN BASE
+   ========================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+  min-height: 100vh;
+  min-height: 100dvh; /* Soporte para Dynamic Viewport Height */
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Variables para áreas seguras en dispositivos con "notch" o barras de gesto */
+:root {
+  --mobile-safe-area-inset-top: env(safe-area-inset-top, 0px);
+  --mobile-safe-area-inset-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ==========================================
+   BREAKPOINT: PANTALLAS GRANDES (>= 1440px)
+   Monitores de alta resolución y escritorio
+   ========================================== */
+@media (min-width: 1440px) {
+  .max-w-7xl {
+    max-width: 1400px;
+  }
+}
+
+/* ==========================================
+   BREAKPOINT: LAPTOPS Y ESCRITORIOS PEQUEÑOS (<= 1280px)
+   ========================================== */
+@media (max-width: 1280px) {
+  .max-w-7xl {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .valor-estadistica {
+    font-size: 2.75rem;
+  }
+
+  .sistemas-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+/* ==========================================
+   BREAKPOINT: TABLETS MODO PAISAJE / LAPTOPS TÁCTILES (<= 1024px)
+   ========================================== */
+@media (max-width: 1024px) {
+  .banner-section {
+    height: 22vh;
+    background-position: center center;
+    background-size: cover;
+  }
+
+  /* Ocultar texto en botones de navegación para ahorrar espacio */
+  .nav-links-desktop button span {
+    display: none;
+  }
+
+  .nav-links-desktop button {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  /* Ajuste de grillas para mejor distribución del contenido */
+  .grid.lg\:grid-cols-5 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid.lg\:grid-cols-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid.lg\:grid-cols-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .valor-estadistica {
+    font-size: 2.5rem;
+  }
+
+  .nivel-stats {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+
+  .sistemas-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .sistema-card img {
+    width: 150px;
+    height: 120px;
+  }
+
+  .titulo-tarjeta-area {
+    font-size: 1.05rem;
+  }
+
+  .titulo-macroproceso {
+    font-size: 1.25rem;
+  }
+  
+  .panel-info-tablero.expandido {
+    width: 450px;
+  }
+}
+
+/* ==========================================
+   BREAKPOINT: TABLETS Y DISPOSITIVOS MEDIANOS (769px - 900px)
+   Mejora de visualización del menú en resoluciones intermedias
+   ========================================== */
+@media (min-width: 769px) and (max-width: 900px) {
+  /* Ajuste del contenedor de navegación */
+  .nav-contenedor {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Reducir tamaño de texto del logo */
+  .nav-texto-logo {
+    font-size: 0.85rem;
+  }
+
+  .nav-subtitulo-logo {
+    font-size: 0.65rem;
+  }
+
+  .nav-titulo-logo {
+    font-size: 0.85rem;
+  }
+
+  /* Ajustar el logo */
+  .nav-logotipo img {
+    width: 38px;
+    height: 38px;
+  }
+
+  /* Reducir espaciado de los links del menú */
+  .nav-enlaces {
+    gap: 0.5rem;
+  }
+
+  .nav-enlace-item {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  /* Ajustar márgenes generales */
+  .max-w-7xl {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+/* ==========================================
+   BREAKPOINT: TABLETS MODO RETRATO (<= 768px)
+   Punto de corte principal para diseño móvil
+   ========================================== */
+@media (max-width: 768px) {
+
+  /* Asegurar que la cabecera tenga position relative para el menú móvil */
+  .cabecera-principal {
+    position: sticky;
+  }
+
+  /* Ocultar menú desktop y mostrar botón hamburguesa */
+  .nav-enlaces {
+    display: none !important;
+  }
+
+  .cabecera-principal .nav-boton-movil {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Posicionamiento del menú móvil */
+  .nav-menu-movil {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    border-radius: 0 0 24px 24px;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+  }
+  .banner-section {
+    height: 18vh;
+    min-height: 120px;
+  }
+
+  .nav-wrapper {
+    position: sticky;
+    top: 0;
+  }
+
+  .nav-links-desktop {
+    display: none !important;
+  }
+
+  /* Ajuste para texto largo en menú móvil */
+  .nav-enlace-movil span {
+    font-size: 0.9rem;
+    line-height: 1.3;
+    white-space: normal;
+    word-wrap: break-word;
+  }
+  
+  .nav-enlace-movil {
+    padding: 16px 20px;
+    min-height: 56px;
+    align-items: flex-start;
+    color: #FFFFFF !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .nav-enlace-movil i {
+    margin-top: 2px;
+    flex-shrink: 0;
+    color: rgba(255, 255, 255, 0.7) !important;
+    transition: color 0.3s ease;
+  }
+
+  /* --- NAVEGACIÓN Y MENÚ COLAPSABLE --- */
+  #menuMovil {
+    background: rgba(0, 72, 43, 0.98); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .nav-enlace-movil:hover {
+    color: #FBE122 !important;
+    padding-left: 1.5rem;
+  }
+
+  .nav-enlace-movil:hover i {
+    color: #FBE122 !important; 
+  }
+
+  .nav-enlace-movil.activo {
+    background: rgba(0, 123, 62, 1); 
+    color: #FFFFFF !important;
+    border-left: 4px solid #FBE122; 
+    font-weight: 700;
+  }
+  
+  .nav-enlace-movil.activo i {
+    color: #FFFFFF !important;
+  }
+
+  .nav-enlace-movil:last-child {
+    border-bottom: none;
+  }
+
+  /* --- ADAPTACIÓN DE TIPOGRAFÍA Y ESPACIADO --- */
+  .max-w-7xl {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  h1.text-4xl { font-size: 2rem; line-height: 1.2; }
+  h2.text-3xl { font-size: 1.75rem; line-height: 1.3; }
+  h3.text-2xl { font-size: 1.5rem; }
+
+  /* Reorganización de columnas a flujo vertical */
+  .grid.md\:grid-cols-3,
+  .grid.md\:grid-cols-2,
+  .grid.lg\:grid-cols-3,
+  .grid.lg\:grid-cols-2 {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .tarjeta-estadistica-moderna { padding: 1.5rem; }
+  .valor-estadistica { font-size: 2.25rem; }
+  .stat-icon { width: 56px; height: 56px; }
+  .sede-count { font-size: 1.75rem; }
+  .nivel-card { padding: 1.5rem; }
+  
+  .nivel-stats {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .nivel-stat-item {
+    text-align: center;
+    padding: 0.75rem;
+    background: rgba(0, 123, 62, 0.05);
+    border-radius: 8px;
+  }
+
+  .nivel-valor-estadistica { font-size: 1.75rem; }
+
+  .sistemas-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .sistema-card { padding: 0.75rem; }
+  .sistema-card img { width: 140px; height: 112px; }
+
+  .seccion-macroproceso { padding: 1.25rem; }
+  .titulo-macroproceso { font-size: 1.125rem; }
+  .icono-macroproceso { width: 36px; height: 36px; font-size: 18px; }
+
+  .tarjeta-area { padding: 1.25rem; }
+  .icono-tarjeta-area { width: 50px; height: 50px; font-size: 24px; }
+  .titulo-tarjeta-area { font-size: 1rem; }
+  .subtitulo-tarjeta-area { font-size: 0.8125rem; }
+
+  .tarjeta-tablero { margin-bottom: 1rem; }
+  .tarjeta-tablero .p-6 { padding: 1.25rem; }
+
+  .boton-primario, .boton-secundario {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+
+  /* --- PERSONALIZACIÓN DE LA VENTANA MODAL --- */
+  .fondo-modal {
+    padding: 0;
+    align-items: stretch;
+  }
+  
+  .modal-contenido-mejorado {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .encabezado-modal-tablero {
+    padding: 0.75rem 1rem;
+    flex-shrink: 0;
+    min-height: 56px;
+    display: flex !important;
+    align-items: flex-start !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+  }
+  
+  .encabezado-modal-tablero .text-white {
+    flex: 1 !important;
+    width: auto !important;
+    min-width: 0;
+  }
+  
+  #tituloModal {
+    font-size: 1rem;
+    line-height: 1.3;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    word-wrap: break-word;
+  }
+  
+  #areaModal {
+    font-size: 0.75rem;
+    white-space: normal;
+    opacity: 0.9;
+  }
+
+  /* Estilos específicos para el botón de cierre */
+  .encabezado-modal-tablero button {
+    flex: 0 0 auto !important;
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    max-width: 34px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-top: 2px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    background: rgba(255, 255, 255, 0.15) !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
+  }
+
+  .encabezado-modal-tablero button i {
+    font-size: 16px !important;
+    line-height: 1 !important;
+    margin: 0 !important;
+    color: #FFFFFF !important;
+    transition: color 0.2s ease !important;
+  }
+
+  /* Estados interactivos del botón */
+  .encabezado-modal-tablero button:active,
+  .encabezado-modal-tablero button:hover {
+    background: rgba(255, 255, 255, 0.3) !important;
+    transform: scale(1.05);
+  }
+
+  .encabezado-modal-tablero button:active i,
+  .encabezado-modal-tablero button:hover i {
+    color: #FBE122 !important;
+  }
+
+  /* --- ESTRUCTURA INTERNA DEL MODAL E IFRAME --- */
+  .cuerpo-modal-tablero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden !important;
+    min-height: 0;
+  }
+  
+  .envoltura-iframe-tablero {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden !important;
+    min-height: 0;
+  }
+  
+  .contenedor-iframe-tablero, #contenedorIframe {
+    flex: 1;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden !important;
+    background: #f5f5f5;
+  }
+  
+  .contenedor-iframe-tablero iframe, #contenedorIframe iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    border: none !important;
+    display: block;
+  }
+  
+  /* Panel deslizante de información */
+  .panel-info-tablero {
+    position: fixed;
+    top: 0; right: 0;
+    width: 0; height: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    z-index: 30;
+    background: #ffffff;
+  }
+  
+  .panel-info-tablero.expandido {
+    width: 85%;
+    max-width: 400px;
+  }
+  
+  .boton-panel-info {
+    width: 40px; height: 40px;
+    font-size: 1rem;
+    top: 0.5rem; right: 0.5rem;
+    z-index: 20;
+  }
+  
+  .pie-modal-tablero {
+    padding: 0.625rem 0.875rem;
+    flex-shrink: 0;
+    min-height: 48px;
+  }
+
+  /* --- AJUSTES COMPLEMENTARIOS UI --- */
+  footer .grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  footer h4 { font-size: 1.125rem; }
+  .p-8 { padding: 1.5rem; }
+  .p-6 { padding: 1.25rem; }
+  section { margin-bottom: 2rem; }
+  .chart-container { height: 280px; }
+  #mapa { min-height: 300px; }
+
+  .tarjeta-acceso {
+    max-width: 100%;
+    padding: 2rem 1.5rem;
+  }
+
+  #adminSelectionSection .grid,
+  #vistaLineamientos .grid {
+    gap: 1.5rem;
+  }
+  
+  button, a, .encabezado-tarjeta-area, .encabezado-macroproceso {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  #hamburgerBtn {
+    padding: 0.75rem;
+    min-width: 48px;
+    min-height: 48px;
+  }
+  
+  /* Accesibilidad: foco visible */
+  button:focus, a:focus, input:focus {
+    outline: 3px solid #007B3E;
+    outline-offset: 3px;
+  }
+}
+
+/* ==========================================
+   BREAKPOINT: MÓVILES GRANDES (<= 640px)
+   ========================================== */
+@media (max-width: 640px) {
+  .banner-section {
+    height: 15vh;
+    min-height: 100px;
+  }
+
+  .nav-wrapper .flex.items-center.gap-3 img {
+    height: 2.25rem;
+    width: 2.25rem;
+  }
+
+  .nav-wrapper .font-bold.text-lg {
+    font-size: 1rem;
+  }
+
+  .nav-wrapper .text-xs {
+    font-size: 0.7rem;
+  }
+
+  .max-w-7xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  h1.text-4xl {
+    font-size: 1.75rem;
+  }
+
+  h2.text-3xl {
+    font-size: 1.5rem;
+  }
+
+  h3.text-2xl {
+    font-size: 1.25rem;
+  }
+
+  h3.text-xl {
+    font-size: 1.125rem;
+  }
+
+  .valor-estadistica {
+    font-size: 2rem;
+  }
+
+  .etiqueta-estadistica {
+    font-size: 0.8125rem;
+  }
+
+  .stat-icon {
+    width: 48px;
+    height: 48px;
+    font-size: 22px;
+  }
+
+  .sistemas-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+
+  .sistema-card img {
+    width: 120px;
+    height: 96px;
+  }
+
+  .seccion-macroproceso {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .titulo-macroproceso {
+    font-size: 1rem;
+    gap: 8px;
+  }
+
+  .icono-macroproceso {
+    width: 32px;
+    height: 32px;
+    font-size: 16px;
+  }
+
+  .tarjeta-area {
+    padding: 1rem;
+  }
+
+  .icono-tarjeta-area {
+    width: 44px;
+    height: 44px;
+    font-size: 20px;
+  }
+
+  .titulo-tarjeta-area {
+    font-size: 0.9375rem;
+  }
+
+  .contenedor-tableros-area .grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem;
+  }
+
+  .tarjeta-tablero .p-6 {
+    padding: 1rem;
+  }
+
+  .tarjeta-tablero h4 {
+    font-size: 0.9375rem;
+  }
+
+  .metadatos-tablero {
+    font-size: 0.75rem;
+  }
+
+  .boton-primario,
+  .boton-secundario {
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .boton-primario i,
+  .boton-secundario i {
+    font-size: 0.875rem;
+  }
+
+  /* --- ADAPTACIÓN A PANTALLA COMPLETA PARA MÓVILES --- */
+  .fondo-modal {
+    padding: 0;
+  }
+  
+  .modal-contenido-mejorado {
+    width: 100vw;
+    height: 100vh;
+    height: 100dvh;
+    border-radius: 0;
+  }
+  
+  .encabezado-modal-tablero {
+    padding: 0.75rem 0.875rem;
+    min-height: 52px;
+  }
+  
+  #tituloModal {
+    font-size: 0.9375rem;
+  }
+  
+  #areaModal {
+    font-size: 0.6875rem;
+  }
+  
+  .encabezado-modal-tablero button {
+    padding: 0.375rem;
+    min-width: 36px;
+    min-height: 36px;
+  }
+  
+  /* Configuración del panel de información en fullscreen */
+  .panel-info-tablero.expandido {
+    width: 100%;
+    max-width: 100%;
+  }
+  
+  .contenido-panel-info {
+    padding: 1rem;
+    padding-bottom: calc(1rem + var(--mobile-safe-area-inset-bottom));
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  .boton-panel-info {
+    width: 36px;
+    height: 36px;
+    font-size: 0.875rem;
+    top: 0.375rem;
+    right: 0.375rem;
+  }
+  
+  /* Ajuste del pie de página del modal */
+  .pie-modal-tablero {
+    padding: 0.5rem 0.75rem;
+    padding-bottom: calc(0.5rem + var(--mobile-safe-area-inset-bottom));
+    flex-direction: column;
+    gap: 0.375rem;
+    min-height: 44px;
+  }
+  
+  .pie-modal-tablero button {
+    width: 100%;
+    justify-content: center;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  footer {
+    padding: 2rem 0;
+  }
+
+  footer .max-w-7xl {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  footer h4 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  footer p,
+  footer li,
+  footer a {
+    font-size: 0.8125rem;
+  }
+
+  footer .grid {
+    gap: 1.5rem;
+  }
+
+  .p-8 {
+    padding: 1.25rem;
+  }
+
+  .p-6 {
+    padding: 1rem;
+  }
+
+  .p-4 {
+    padding: 0.875rem;
+  }
+
+  .tarjeta-acceso {
+    padding: 1.5rem 1rem;
+  }
+
+  .tarjeta-acceso h2 {
+    font-size: 1.5rem;
+  }
+
+  .tarjeta-acceso input {
+    padding: 0.75rem 1rem;
+  }
+
+  #adminSelectionSection h3 {
+    font-size: 1.25rem;
+  }
+
+  #mapa {
+    min-height: 250px;
+  }
+
+  .chart-container {
+    height: 240px;
+  }
+}
+
+/* ==========================================
+   BREAKPOINT: MÓVILES PEQUEÑOS (<= 480px)
+   ========================================== */
+@media (max-width: 480px) {
+  .banner-section {
+    height: 12vh;
+    min-height: 80px;
+  }
+
+  .nav-wrapper .h-16 {
+    height: 3.5rem;
+  }
+
+  .nav-wrapper .flex.items-center.gap-3 img {
+    height: 2rem;
+    width: 2rem;
+  }
+
+  .nav-wrapper .font-bold.text-lg {
+    font-size: 0.9375rem;
+  }
+
+  .nav-wrapper .text-xs {
+    font-size: 0.625rem;
+  }
+
+  #hamburgerBtn i {
+    font-size: 1.5rem;
+  }
+
+  .max-w-7xl {
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+  }
+
+  h1.text-4xl {
+    font-size: 1.375rem;
+  }
+
+  h2.text-3xl {
+    font-size: 1.25rem;
+  }
+
+  h3.text-2xl {
+    font-size: 1.125rem;
+  }
+
+  .tarjeta-estadistica-moderna {
+    padding: 1rem;
+  }
+
+  .valor-estadistica {
+    font-size: 1.75rem;
+  }
+
+  .etiqueta-estadistica {
+    font-size: 0.75rem;
+  }
+
+  .stat-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .sede-card {
+    padding: 1rem;
+  }
+
+  .sede-name {
+    font-size: 0.9375rem;
+  }
+
+  .sede-count {
+    font-size: 1.5rem;
+  }
+
+  .nivel-card {
+    padding: 1rem;
+  }
+
+  .nivel-title {
+    font-size: 1.125rem;
+  }
+
+  .nivel-valor-estadistica {
+    font-size: 1.5rem;
+  }
+
+  .nivel-etiqueta-estadistica {
+    font-size: 0.75rem;
+  }
+
+  .sistemas-grid {
+    grid-template-columns: 1fr;
+    gap: 0.625rem;
+  }
+
+  .sistema-card {
+    padding: 0.625rem;
+  }
+
+  .sistema-card img {
+    width: 130px;
+    height: 104px;
+  }
+
+  .seccion-macroproceso {
+    padding: 0.875rem;
+    margin-bottom: 0.875rem;
+  }
+
+  .encabezado-macroproceso {
+    padding: 0.625rem;
+  }
+
+  .titulo-macroproceso {
+    font-size: 0.9375rem;
+    gap: 6px;
+  }
+
+  .icono-macroproceso {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+
+  .tarjeta-area {
+    padding: 0.875rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .icono-tarjeta-area {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  .titulo-tarjeta-area {
+    font-size: 0.875rem;
+  }
+
+  .subtitulo-tarjeta-area {
+    font-size: 0.75rem;
+  }
+
+  .insignia-tarjeta-area {
+    padding: 3px 8px;
+    font-size: 0.6875rem;
+  }
+
+  .tarjeta-tablero {
+    margin-bottom: 0.625rem;
+  }
+
+  .tarjeta-tablero .p-6 {
+    padding: 0.875rem;
+  }
+
+  .tarjeta-tablero h4 {
+    font-size: 0.875rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .metadatos-tablero {
+    font-size: 0.6875rem;
+    gap: 0.375rem;
+  }
+
+  .item-metadatos-tablero {
+    gap: 0.375rem;
+  }
+
+  .boton-primario,
+  .boton-secundario {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.8125rem;
+    gap: 0.375rem;
+  }
+
+  #vistaLineamientos .bg-gradient-to-r button {
+    word-break: break-all;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: auto;
+    min-height: 44px;
+  }
+
+  /* Encabezado del modal ultra compacto */
+  .encabezado-modal-tablero {
+    padding: 0.625rem 0.75rem;
+    min-height: 48px;
+  }
+  
+  #tituloModal {
+    font-size: 0.875rem;
+  }
+  
+  #areaModal {
+    font-size: 0.625rem;
+  }
+  
+  .encabezado-panel-info {
+    padding: 0.875rem;
+  }
+  
+  .encabezado-panel-info h3 {
+    font-size: 0.9375rem;
+  }
+  
+  .seccion-info h4 {
+    font-size: 0.8125rem;
+  }
+  
+  .seccion-info p {
+    font-size: 0.75rem;
+  }
+  
+  .boton-panel-info {
+    width: 32px;
+    height: 32px;
+    font-size: 0.75rem;
+  }
+  
+  .pie-modal-tablero {
+    padding: 0.375rem 0.625rem;
+    padding-bottom: calc(0.375rem + var(--mobile-safe-area-inset-bottom));
+  }
+
+  footer {
+    padding: 1.5rem 0;
+  }
+
+  footer h4 {
+    font-size: 0.9375rem;
+    margin-bottom: 0.625rem;
+  }
+
+  footer p,
+  footer li,
+  footer a {
+    font-size: 0.75rem;
+  }
+
+  footer .grid {
+    gap: 1.25rem;
+  }
+
+  footer .border-t {
+    margin-top: 1.25rem;
+    padding-top: 1.25rem;
+  }
+
+  .tarjeta-acceso {
+    padding: 1.25rem 0.875rem;
+  }
+
+  .tarjeta-acceso h2 {
+    font-size: 1.375rem;
+  }
+
+  .tarjeta-acceso p {
+    font-size: 0.8125rem;
+  }
+
+  .tarjeta-acceso input {
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+  }
+
+  .tarjeta-acceso label {
+    font-size: 0.8125rem;
+  }
+
+  .tarjeta-acceso .w-16 {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  #adminSelectionSection h2 {
+    font-size: 1.375rem;
+  }
+
+  #adminSelectionSection h3 {
+    font-size: 1.125rem;
+  }
+
+  #adminSelectionSection p {
+    font-size: 0.8125rem;
+  }
+
+  #adminSelectionSection .w-20 {
+    width: 4.5rem;
+    height: 4.5rem;
+  }
+
+  #vistaLineamientos .border-l-4 {
+    padding-left: 0.75rem;
+  }
+
+  #vistaLineamientos .bg-white.p-4 {
+    padding: 0.75rem;
+  }
+
+  #mapa {
+    min-height: 220px;
+  }
+
+  .chart-container {
+    height: 200px;
+  }
+
+  #botonPantallaCompletaMapa {
+    padding: 6px 10px;
+    font-size: 0.75rem;
+  }
+
+  .p-8 {
+    padding: 1rem;
+  }
+
+  .p-6 {
+    padding: 0.875rem;
+  }
+
+  .p-4 {
+    padding: 0.75rem;
+  }
+
+  section {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* ==========================================
+   BREAKPOINT: MÓVILES EXTRA PEQUEÑOS (<= 360px)
+   ========================================== */
+@media (max-width: 360px) {
+  .banner-section {
+    height: 10vh;
+    min-height: 70px;
+  }
+
+  .nav-wrapper .h-16 {
+    height: 3rem;
+  }
+
+  .max-w-7xl {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  h1.text-4xl {
+    font-size: 1.375rem;
+  }
+
+  h2.text-3xl {
+    font-size: 1.25rem;
+  }
+
+  .valor-estadistica {
+    font-size: 1.5rem;
+  }
+
+  .stat-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .sistema-card img {
+    width: 110px;
+    height: 88px;
+  }
+
+  .boton-primario,
+  .boton-secundario {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .encabezado-modal-tablero {
+    padding: 0.5rem 0.625rem;
+    min-height: 44px;
+  }
+  
+  #tituloModal {
+    font-size: 0.8125rem;
+  }
+  
+  #areaModal {
+    font-size: 0.5625rem;
+  }
+  
+  .boton-panel-info {
+    width: 28px;
+    height: 28px;
+    font-size: 0.625rem;
+  }
+
+  footer p,
+  footer li,
+  footer a {
+    font-size: 0.6875rem;
+  }
+}
+
+/* ==========================================
+   GESTIÓN DE DESBORDAMIENTO Y SCROLL
+   ========================================== */
+
+html,
+body {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+.max-w-7xl,
+section,
+.contenedor-vista,
+.grid,
+.flex {
+  max-width: 100%;
+}
+
+/* ==========================================
+   CONFIGURACIÓN DE SCROLL EN MODAL
+   ========================================== */
+
+/* Bloqueo de scroll en contenedor del iframe */
+#contenedorIframe {
+  overflow: hidden !important;
+}
+
+/* Habilitación de scroll interno en panel de información */
+.contenido-panel-info {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ==========================================
+   OPTIMIZACIÓN DE RENDIMIENTO Y UX
+   ========================================== */
+
+@media (max-width: 768px) {
+  * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .tarjeta-tablero,
+  .tarjeta-area,
+  .sistema-card,
+  button {
+    -webkit-tap-highlight-color: rgba(0, 123, 62, 0.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ==========================================
+   COMPATIBILIDAD CON IOS (SAFARI/WEBKIT)
+   ========================================== */
+@supports (-webkit-touch-callout: none) {
+  body {
+    min-height: -webkit-fill-available;
+  }
+  
+  .banner-section {
+    min-height: 100px;
+  }
+
+  .fondo-modal {
+    height: 100vh;
+    height: -webkit-fill-available;
+  }
+  
+  .modal-contenido-mejorado {
+    height: 100%;
+    max-height: -webkit-fill-available;
+  }
+  
+  /* Forzado de renderizado del iframe en iOS */
+  #contenedorIframe iframe {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+/* ==========================================
+   COMPATIBILIDAD CON ANDROID CHROME
+   ========================================== */
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  .modal-contenido-mejorado {
+    height: 100dvh;
+  }
+}
+
+/* ==========================================
+   AJUSTES PARA MODO PAISAJE EN MÓVIL
+   ========================================== */
+@media (max-height: 500px) and (orientation: landscape) {
+  .modal-contenido-mejorado {
+    height: 100vh;
+    height: 100dvh;
+  }
+  
+  .encabezado-modal-tablero {
+    padding: 0.375rem 0.75rem;
+    min-height: 40px;
+  }
+  
+  #tituloModal {
+    font-size: 0.8125rem;
+  }
+  
+  #areaModal {
+    display: none;
+  }
+  
+  .pie-modal-tablero {
+    padding: 0.375rem;
+    min-height: 36px;
+  }
+  
+  .pie-modal-tablero button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .boton-panel-info {
+    width: 28px;
+    height: 28px;
+    font-size: 0.625rem;
+  }
+}
+
+/* ==========================================
+   ESTILOS DE IMPRESIÓN
+   ========================================== */
+@media print {
+  .banner-section,
+  nav,
+  footer,
+  #hamburgerBtn,
+  #menuMovil,
+  .boton-primario,
+  .boton-secundario,
+  .fondo-modal {
+    display: none !important;
+  }
+
+  body {
+    background: white !important;
+  }
+
+  .contenedor-vista.activo {
+    display: block !important;
+  }
+
+  * {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+}
+
+/* ==========================================
+   ESTILOS ADICIONALES PARA MENÚ MÓVIL Y CORREO
+   ========================================== */
+
+/* Estilo especial para el botón de Salir en menú móvil */
+@media (max-width: 768px) {
+  .nav-cerrarSesion-movil {
+    border-top: 1px solid rgba(251, 225, 34, 0.2);
+    color: #FBE122 !important;
+    font-weight: 600;
+  }
+
+  .nav-cerrarSesion-movil i {
+    color: #FBE122 !important;
+  }
+
+  .nav-cerrarSesion-movil:hover {
+    color: #FFFFFF !important;
+  }
+
+  /* Adaptación del botón de correo para responsivo */
+  .boton-llamada-contorno {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    word-break: break-word;
+    padding: 0.625rem 0.75rem !important;
+    font-size: 0.8125rem !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.375rem;
+    flex-wrap: wrap;
+  }
+
+  .boton-llamada-contorno i {
+    flex-shrink: 0;
+  }
+}
+
+/* ==========================================
+   CORRECCIÓN ADICIONAL PARA BOTÓN DE CORREO EN MÓVILES PEQUEÑOS
+   ========================================== */
+@media (max-width: 480px) {
+  .boton-llamada-contorno {
+    font-size: 0.75rem !important;
+    padding: 0.5rem 0.625rem !important;
+  }
+
+  .flex.flex-wrap.justify-center.gap-4 {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .boton-llamada-blanco,
+  .boton-llamada-contorno {
+    width: 100%;
+    justify-content: center;
+  }
+}
