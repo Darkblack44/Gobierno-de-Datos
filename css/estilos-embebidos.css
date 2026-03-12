@@ -1,0 +1,536 @@
+    /* Estilos Dataset (Originales) */
+    .vista-general-dataset {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 2px solid var(--uc-gray-200);
+    }
+    
+    .encabezado-dataset {
+      background: linear-gradient(135deg, rgba(0, 123, 62, 0.05), rgba(121, 192, 0, 0.05));
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    
+    .nombre-dataset {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--uc-green-1);
+      margin-bottom: 0.5rem;
+    }
+    
+    .resumen-dataset {
+      font-size: 0.875rem;
+      color: var(--uc-gray-700);
+      line-height: 1.5;
+    }
+    
+    .tabla-columnas {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.8125rem;
+      background: white;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+    
+    .tabla-columnas thead {
+      background: var(--uc-green-1);
+      color: white;
+    }
+    
+    .tabla-columnas th {
+      padding: 0.75rem 0.5rem;
+      text-align: left;
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .tabla-columnas td {
+      padding: 0.75rem 0.5rem;
+      border-bottom: 1px solid var(--uc-gray-200);
+      color: var(--uc-gray-700);
+    }
+    
+    .tabla-columnas tbody tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .tabla-columnas tbody tr:hover {
+      background: var(--uc-gray-50);
+    }
+    
+    .tipo-columna {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.6875rem;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+    
+    .tipo-texto {
+      background: #dbeafe;
+      color: #1d4ed8;
+    }
+
+    .tipo-numero {
+      background: #d1fae5;
+      color: #047857;
+    }
+
+    .tipo-fecha {
+      background: #ffedd5;
+      color: #c2410c;
+    }
+    
+    .metadatos-dataset {
+      margin-top: 1rem;
+      padding: 0.75rem;
+      background: var(--uc-gray-50);
+      border-radius: 8px;
+      font-size: 0.8125rem;
+    }
+    
+    .item-metadatos-dataset {
+      margin-bottom: 0.5rem;
+    }
+    
+    .item-metadatos-dataset:last-child {
+      margin-bottom: 0;
+    }
+    
+    .etiqueta-metadatos-dataset {
+      font-weight: 700;
+      color: var(--uc-green-1);
+    }
+    
+    .valor-metadatos-dataset {
+      color: var(--uc-gray-700);
+    }
+
+    /* ==========================================
+       ESTILOS PARA EL BUSCADOR (NUEVO - INTEGRADO)
+       ========================================== */
+    .contenedor-busqueda {
+      margin-bottom: 2rem;
+      animation: fadeInDown 0.5s ease-out;
+      position: relative;
+      z-index: 10;
+    }
+
+    .caja-busqueda {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .input-busqueda {
+      width: 100%;
+      padding: 1rem 1rem 1rem 3.5rem;
+      border: 2px solid var(--uc-gray-200); /* Usando variable original */
+      border-radius: 12px;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      background: white;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .input-busqueda:focus {
+      outline: none;
+      border-color: var(--uc-green-1);
+      box-shadow: 0 4px 12px rgba(0, 123, 62, 0.15);
+    }
+
+    .icono-busqueda {
+      position: absolute;
+      left: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #9ca3af;
+      font-size: 1.25rem;
+      pointer-events: none;
+    }
+
+    .limpiar-busqueda {
+      position: absolute;
+      right: 1.25rem;
+      top: 50%;
+      transform: translateY(-50%);
+      background: #f3f4f6;
+      border: none;
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s ease;
+      color: #4b5563;
+    }
+
+    .limpiar-busqueda.visible {
+      opacity: 1;
+    }
+
+    .limpiar-busqueda:hover {
+      background: #e5e7eb;
+    }
+
+    .info-resultados-busqueda {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 0.875rem;
+      color: #4b5563;
+    }
+
+    .info-resultados-busqueda strong {
+      color: var(--uc-green-1);
+    }
+
+    /* Utilidad para ocultar items filtrados */
+    .hidden-by-search {
+      display: none !important;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ==========================================
+       DROPDOWN SUBMENU PARA LINEAMIENTOS
+       ========================================== */
+    .nav-desplegable {
+      position: relative;
+    }
+
+    .nav-desplegable::before {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 0.5rem;
+      background: transparent;
+      z-index: 999;
+    }
+
+    .nav-contenido-desplegable {
+      display: none;
+      position: absolute;
+      top: calc(100% + 0.5rem);
+      left: 0;
+      background: white;
+      min-width: 260px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+      border-radius: 8px;
+      z-index: 1000;
+      border: 1px solid #e5e7eb;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      pointer-events: none;
+    }
+
+    .nav-desplegable:hover .nav-contenido-desplegable,
+    .nav-desplegable.activo .nav-contenido-desplegable {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .nav-contenido-desplegable:hover {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .nav-item-desplegable {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1.25rem;
+      color: #374151;
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      width: 100%;
+      text-align: left;
+      font-size: 0.9375rem;
+    }
+
+    .nav-item-desplegable:first-child {
+      border-radius: 8px 8px 0 0;
+    }
+
+    .nav-item-desplegable:last-child {
+      border-radius: 0 0 8px 8px;
+    }
+
+    .nav-item-desplegable:hover {
+      background: #f9fafb;
+      color: var(--uc-green-1);
+    }
+
+    .nav-item-desplegable i {
+      width: 20px;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .nav-enlace-item.tiene-desplegable::after {
+      content: '\f107';
+      font-family: 'Font Awesome 6 Free', sans-serif;
+      font-weight: 900;
+      margin-left: 0.5rem;
+      font-size: 0.75rem;
+      transition: transform 0.3s;
+    }
+
+    .nav-desplegable:hover .nav-enlace-item.tiene-desplegable::after,
+    .nav-desplegable.activo .nav-enlace-item.tiene-desplegable::after {
+      transform: rotate(180deg);
+    }
+
+    .nav-enlace-item.tiene-desplegable.vista-activa {
+      background: rgba(0, 123, 62, 0.1);
+      color: var(--uc-green-1);
+      font-weight: 600;
+    }
+
+    .nav-desplegable-movil {
+      display: flex;
+      flex-direction: column;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      background: rgba(0, 0, 0, 0.15); 
+    }
+
+    .nav-desplegable-movil.activo {
+      max-height: 200px;
+    }
+
+    .nav-item-desplegable-movil {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1.25rem 0.875rem 3rem;
+      color: #ffffff; 
+      transition: all 0.2s;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      width: 100%;
+      text-align: left;
+      font-size: 0.9375rem;
+      opacity: 0.9;
+    }
+
+    .nav-item-desplegable-movil:hover {
+      background: rgba(255, 255, 255, 0.1);
+      opacity: 1;
+    }
+
+    .nav-item-desplegable-movil.vista-activa {
+      background: rgba(255, 255, 255, 0.15);
+      font-weight: 600;
+    }
+
+    /* Icono de flecha en el padre */
+    .nav-enlace-movil.tiene-desplegable::after {
+      content: '\f107';
+      font-family: 'Font Awesome 6 Free', sans-serif;
+      font-weight: 900;
+      margin-left: auto;
+      font-size: 0.75rem;
+      transition: transform 0.3s;
+      color: #ffffff;
+    }
+
+    .nav-enlace-movil.tiene-desplegable.activo::after {
+      transform: rotate(180deg);
+    }
+
+    .nav-enlace-movil.tiene-desplegable.vista-activa {
+      background: rgba(0, 123, 62, 0.1);
+      color: var(--uc-green-1);
+      font-weight: 600;
+    }
+
+    @media (max-width: 1024px) {
+      .nav-desplegable::before {
+        display: none;
+      }
+      
+      .nav-desplegable:hover .nav-contenido-desplegable {
+        display: none;
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+      }
+      
+      .nav-desplegable.activo .nav-contenido-desplegable {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+    }
+  
+    /* Contador de tableros en macroproceso */
+    .texto-titulo-macroproceso {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .conteo-macroproceso {
+      font-size: 0.875rem;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+    }
+    
+    /* Contador ultra minimalista */
+    .estadisticas-rol {
+      margin: 0.75rem 0 1rem 0;
+      padding: 0;
+    }
+    
+    .tarjeta-estadistica {
+      background: transparent;
+      border: none;
+      padding: 0;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 0.4rem;
+      color: #6b7280;
+      font-size: 0.875rem;
+    }
+    
+    .etiqueta-estadistica {
+      color: #6b7280;
+      font-weight: 400;
+    }
+    
+    .valor-estadistica {
+      font-size: 0.875rem;
+      font-weight: 700;
+      color: #10b981;
+    }
+
+    
+    /* Ocultar íconos en barra de utilidades desktop */
+    @media (min-width: 769px) {
+      .enlace-utilidad i,
+      .enlace-utilidad .fas {
+        display: none;
+      }
+      /* Mantener íconos visibles en accesos rápidos del header */
+      .acceso-rapido-header i,
+      .acceso-rapido-header .fas {
+        display: inline-block !important;
+      }
+    }
+
+    /* Mantener íconos en móvil */
+    @media (max-width: 768px) {
+      .nav-enlace-movil i {
+        display: inline-block;
+      }
+    }
+    
+    /* Consistencia de colores en navbar (solo para items que NO están en utility bar ni header accesos) */
+    .nav-enlace-item:not(.enlace-utilidad):not(.acceso-rapido-header) {
+      color: #1f2937;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    .nav-enlace-item:not(.enlace-utilidad):not(.acceso-rapido-header):hover {
+      color: #10b981;
+    }
+
+    .nav-enlace-item:not(.enlace-utilidad):not(.acceso-rapido-header).activo {
+      color: #047857;
+      background-color: #d1fae5;
+      border-radius: 8px;
+    }
+
+    
+    /* Ocultar íconos en barra de utilidades (desktop) */
+    .enlace-utilidad i {
+      display: none;
+    }
+
+    /* Mostrar íconos en accesos rápidos del header */
+    .acceso-rapido-header i {
+      display: inline-block !important;
+    }
+
+    /* Mostrar íconos en navbar móvil */
+    .nav-enlace-movil i,
+    .nav-item-desplegable-movil i {
+      display: inline-block;
+    }
+
+    
+    /* Ajuste responsive para 784px - Navbar compacto */
+    @media (max-width: 900px) and (min-width: 769px) {
+      .navbar-container {
+        padding: 0.5rem 1rem;
+      }
+      
+      .navbar-brand {
+        transform: scale(0.85);
+        transform-origin: left center;
+      }
+      
+      .nav-enlaces {
+        gap: 0.5rem;
+      }
+      
+      .nav-enlace-item {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.7rem;
+      }
+      
+      .nav-user-button {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+      }
+    }
+    
+    /* Reducir más a 784px específicamente */
+    @media (max-width: 850px) and (min-width: 769px) {
+      .navbar-brand {
+        transform: scale(0.75);
+      }
+      
+      .nav-enlaces {
+        gap: 0.3rem;
+      }
+      
+      .nav-enlace-item {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.6rem;
+      }
+    }
+
+    
