@@ -178,7 +178,7 @@
     const aniosDisp = [...new Set(d.map(r => r.anio))].sort((a, b) => a - b);
     const anio = (filtros.anio && aniosDisp.includes(+filtros.anio))
       ? +filtros.anio
-      : (aniosDisp.at(-1) || 2025);
+      : (aniosDisp.at(-1) || 2026);
 
     // Filtrar por año y período
     const periodos = (!filtros.periodo || filtros.periodo === 'ambos')
@@ -244,4 +244,4 @@
   };
   registrarDepuracion('✔ Motor datos-indicadores.js cargado');
 
-})(); // fin IIFE
+})();
