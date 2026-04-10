@@ -72,7 +72,7 @@ function inicializarMapa() {
   }
 
   // ── Datos desde CSV vía calcularSnapshotComunidad + obtenerPlantaFisicaFiltrada ──
-  const snap = calcularSnapshotComunidad({ categoria: 'Matriculados', periodo: 'IIPA' });
+  const snap = _snapshotActual();
   if (!snap) return;
 
   // Lookup de infraestructura indexado por sede (Planta_Fisica.csv)
@@ -294,6 +294,17 @@ document.addEventListener('click', function(e) {
 // VISUALIZACIÓN DE MÉTRICAS Y GRÁFICOS
 // ==========================================
 
+/**
+ * Devuelve el snapshot de Matriculados del último año disponible.
+ * Intenta primero IIPA (2.º semestre); si no hay datos (ej: año en curso
+ * con solo IPA disponible), cae a IPA automáticamente.
+ */
+function _snapshotActual() {
+  const snapIIPA = calcularSnapshotComunidad({ categoria: 'Matriculados', periodo: 'IIPA' });
+  if (snapIIPA && snapIIPA.total > 0) return snapIIPA;
+  return calcularSnapshotComunidad({ categoria: 'Matriculados', periodo: 'IPA' });
+}
+
 function animarContador(id, valorFinal) {
   const elemento = document.getElementById(id);
   const duracion = 1500;
@@ -314,7 +325,7 @@ function animarContador(id, valorFinal) {
 }
 
 function inicializarMetricas() {
-  const snap = calcularSnapshotComunidad({ categoria: 'Matriculados', periodo: 'IIPA' });
+  const snap = _snapshotActual();
   if (!snap) return;
   animarContador('contadorEstudiantesTotal', snap.total);
   animarContador('contadorProgramasTotal',  snap.programasTop.length);
@@ -324,11 +335,17 @@ function inicializarMetricas() {
   animarContador('numPregradoEstudiantes',  snap.pregrado);
   animarContador('numPosgradoProgramas',    snap.posgradoProgramas);
   animarContador('numPosgradoEstudiantes',  snap.posgrado);
+  // Actualizar badge de período dinámicamente
+  const badge = document.getElementById('badgePeriodoEstudiantes');
+  if (badge) {
+    const periodoLabel = snap.periodos.includes('IIPA') ? snap.anio + '-2' : snap.anio + '-1';
+    badge.innerHTML = '<i class="far fa-clock text-[10px]"></i> ' + periodoLabel;
+  }
   actualizarGraficoProgramas(5);
 }
 
 function actualizarGraficoProgramas(cantidadTop) {
-  const snap = calcularSnapshotComunidad({ categoria: 'Matriculados', periodo: 'IIPA' });
+  const snap = _snapshotActual();
   if (!snap) return;
   const programasTop = snap.programasTop.slice(0, cantidadTop);
   renderizarGraficoProgramas(programasTop.map(([p]) => p), programasTop.map(([, v]) => v));
