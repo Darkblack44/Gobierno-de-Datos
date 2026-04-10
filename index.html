@@ -380,12 +380,12 @@
                 <span class="bg-white/20 px-2.5 py-1 rounded text-xs font-bold backdrop-blur-sm border border-white/10 flex items-center gap-1.5">
                   <i class="fas fa-check-double text-[10px]"></i> Matriculados
                 </span>
-                <span class="bg-white/20 px-2.5 py-1 rounded text-xs font-bold backdrop-blur-sm border border-white/10 flex items-center gap-1.5" title="Periodo de actualización">
-                  <i class="far fa-clock text-[10px]"></i> 2025-2
+                <span id="badgePeriodoEstudiantes" class="bg-white/20 px-2.5 py-1 rounded text-xs font-bold backdrop-blur-sm border border-white/10 flex items-center gap-1.5" title="Periodo de actualización">
+                  <i class="far fa-clock text-[10px]"></i> 2026-1
                 </span>
               </div>
             </div>
-            
+
             <!-- Tarjeta 2: Programas -->
             <div class="tarjeta-metrica tm-programas">
               <div class="icono-metrica">
@@ -398,11 +398,11 @@
                   <i class="fas fa-check-circle text-[10px]"></i> Activos
                 </span>
                 <span class="bg-white/20 px-2.5 py-1 rounded text-xs font-bold backdrop-blur-sm border border-white/10 flex items-center gap-1.5" title="Periodo de actualización">
-                  <i class="far fa-clock text-[10px]"></i> 2025-2
+                  <i class="far fa-clock text-[10px]"></i> 2026-1
                 </span>
               </div>
             </div>
-            
+
             <!-- Tarjeta 3: Sedes -->
             <div class="tarjeta-metrica tm-sedes">
               <div class="icono-metrica">
@@ -482,7 +482,7 @@
                   <i class="fas fa-expand" id="iconoPantallaCompleta"></i>
                 </button>
               </div>
-              <div class="fuente-datos mt-3">Fuente: SNIES - 2025-2</div>
+              <div class="fuente-datos mt-3">Fuente: SNIES - 2026-1</div>
             </div>
             <div class="lg:col-span-3 bg-gray-50 p-6 rounded-2xl border border-gray-200">
               <div class="flex justify-between items-center mb-4">
@@ -508,7 +508,7 @@
                   <canvas id="graficoProgramas"></canvas>
                 </div>
               </div>
-              <div class="fuente-datos mt-3">Fuente: SNIES - 2025-2</div>
+              <div class="fuente-datos mt-3">Fuente: SNIES - 2026-1</div>
             </div>
           </div>
         </div>
@@ -685,6 +685,7 @@
                   <div class="ind-dropdown-opcion" data-value="Inscritos">Inscritos</div>
                   <div class="ind-dropdown-opcion" data-value="Admitidos">Admitidos</div>
                   <div class="ind-dropdown-opcion" data-value="Graduados">Graduados</div>
+                  <div class="ind-dropdown-opcion" data-value="Primiparos">Primiparos</div>
                 </div>
               </div>
             </div>
@@ -861,6 +862,7 @@
                   <div class="ind-dropdown-opcion" data-value="Inscritos">Inscritos</div>
                   <div class="ind-dropdown-opcion" data-value="Admitidos">Admitidos</div>
                   <div class="ind-dropdown-opcion" data-value="Graduados">Graduados</div>
+                  <div class="ind-dropdown-opcion" data-value="Primiparos">Primiparos</div>
                 </div>
               </div>
             </div>
@@ -906,11 +908,11 @@
           <div class="ind-canvas-wrap-medium">
             <canvas id="graficoLineaHistorico"></canvas>
           </div>
-          <div class="fuente-datos mt-3">Fuente: SNIES – Matriculados totales por período</div>
+          <div class="fuente-datos mt-3">Fuente: SNIES – Totales por categoría y período (2007–2026)</div>
         </div>
         <div class="bg-blue-50 border border-blue-200 rounded-xl p-5 text-sm text-blue-800">
           <p class="font-semibold mb-1"><i class="fas fa-info-circle mr-2"></i>Nota metodológica</p>
-          <p>Los datos provienen del SNIES e incluyen las categorías <strong>Matriculados</strong>, <strong>Inscritos</strong>, <strong>Admitidos</strong> y <strong>Graduados</strong>.
+          <p>Los datos provienen del SNIES e incluyen las categorías <strong>Matriculados</strong>, <strong>Inscritos</strong>, <strong>Admitidos</strong>, <strong>Graduados</strong> y <strong>Primiparos</strong>.
           El período <strong>IPA</strong> corresponde al primer semestre y <strong>IIPA</strong> al segundo semestre de cada año académico.
           <span id="notaFallback" class="hidden"> En modo sin servidor el histórico solo está disponible para Matriculados.</span></p>
         </div>
